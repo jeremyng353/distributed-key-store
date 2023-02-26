@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CPEN431_2023_PROJECT_G2" />
+        <module name="CPEN431_2023_A7" />
       </profile>
     </annotationProcessing>
   </component>
