@@ -6,9 +6,14 @@ import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import java.net.DatagramPacket;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -27,6 +32,29 @@ public class Server {
     private static final int IS_ALIVE = 0x06;
     private static final int GET_PID = 0x07;
     private static final int GET_MS_ID = 0x08;
+
+    private String ip;
+    private int port;
+
+    ConsistentHash consistentHash = new ConsistentHash();
+
+    public Server(int port) {
+        // Adapted from https://www.baeldung.com/java-get-ip-address
+        String urlString = "http://checkip.amazonaws.com/";
+        URL url = null;
+        try {
+            url = new URL(urlString);
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
+                ip = br.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+
+        this.port = port;
+    }
 
     /**
      * This function builds the message to be sent back to the client.
@@ -142,7 +170,7 @@ public class Server {
      * @return A ByteString containing the operation response payload to be sent back
      * @throws InvalidProtocolBufferException: This exception is thrown when an operation error occurs with parseFrom() function
      */
-    public static ByteString exeCommand(Message.Msg message) throws InvalidProtocolBufferException {
+    public ByteString exeCommand(Message.Msg message) throws InvalidProtocolBufferException, UnknownHostException {
         // get kvrequest from message
         KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.parseFrom(message.getPayload());
         int status;
@@ -151,28 +179,52 @@ public class Server {
         // for each command, run corresponding memory command, store response in cache and return response
         switch (kvRequest.getCommand()) {
             case PUT -> {
-                status = Memory.put(kvRequest.getKey(), kvRequest.getValue(), kvRequest.getVersion());
-                response = buildResPayload(status);
-                // only add to cache if runtime memory is not full
-                if (status != NO_MEM_ERR)
-                    RequestCache.put(message.getMessageID(), response);
-                return response;
+                // determine which node should handle request
+                AddressPair nodeAddress = consistentHash.getNode(kvRequest);
+                // if this node should handle the request
+                if (nodeAddress.getIp() == ip && nodeAddress.getPort() == port) {
+                    status = Memory.put(kvRequest.getKey(), kvRequest.getValue(), kvRequest.getVersion());
+                    response = buildResPayload(status);
+                    // only add to cache if runtime memory is not full
+                    if (status != NO_MEM_ERR)
+                        RequestCache.put(message.getMessageID(), response);
+                    return response;
+                }
+
+                // TODO: call another node to do it
+                return null;
             }
             case GET -> {
-                status = Memory.isStored(kvRequest.getKey());
-                if (status == SUCCESS) {
-                    Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
-                    response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                } else {
-                    response = buildResPayload(status);
+                // determine which node should handle request
+                AddressPair nodeAddress = consistentHash.getNode(kvRequest);
+                // if this node should handle the request
+                if (nodeAddress.getIp() == ip && nodeAddress.getPort() == port) {
+                    status = Memory.isStored(kvRequest.getKey());
+                    if (status == SUCCESS) {
+                        Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
+                        response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    } else {
+                        response = buildResPayload(status);
+                    }
+                    return response;
                 }
-                return response;
+
+                // TODO: call another node to do it
+                return null;
             }
             case REMOVE -> {
-                status = Memory.remove(kvRequest.getKey());
-                response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
-                return response;
+                // determine which node should handle request
+                AddressPair nodeAddress = consistentHash.getNode(kvRequest);
+                // if this node should handle the request
+                if (nodeAddress.getIp() == ip && nodeAddress.getPort() == port) {
+                    status = Memory.remove(kvRequest.getKey());
+                    response = buildResPayload(status);
+                    RequestCache.put(message.getMessageID(), response);
+                    return response;
+                }
+
+                // TODO: call another node to do it
+                return null;
             }
             case SHUTDOWN -> {
                 status = Memory.shutdown();
@@ -214,4 +266,6 @@ public class Server {
             }
         }
     }
+
+
 }

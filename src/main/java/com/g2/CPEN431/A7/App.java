@@ -5,20 +5,28 @@ import com.google.protobuf.ByteString;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 
 public class App
 {
     public static final int MAX_INCOMING_PACKET_SIZE = 16 * 1024;   // 16 kilobyte buffer to receive packets
 
-    public static void main( String[] args ) throws IOException {
+    // List of node IP:port
+    public static ArrayList<AddressPair> nodeList = new ArrayList<>();
 
-        DatagramSocket socket = new DatagramSocket(4445);
+    public static void main( String[] args ) throws IOException {
+        // TODO: multiple nodes on one ec2 instance --> create multiple sockets
+        // possibly loop through a range of ports to create the sockets?
+        int port = 4445;
+        DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
         // print listening port to console
         int localPort = socket.getLocalPort();
         String localAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
+
+        Server server = new Server(port);
 
         while(true) {
             try {
@@ -34,7 +42,7 @@ public class App
                 if (RequestCache.isStored(message.getMessageID())) {
                     kvResponse = RequestCache.get(message.getMessageID());
                 } else {
-                    kvResponse = Server.exeCommand(message);
+                    kvResponse = server.exeCommand(message);
                 }
 
                 // build checksum and response message
@@ -42,9 +50,9 @@ public class App
                 byte[] resMessage = Server.buildMessage(message.getMessageID(), kvResponse, checksum);
 
                 // load message into packet to send back to client
-                int port = packet.getPort();
+                int packetPort = packet.getPort();
                 InetAddress address = packet.getAddress();
-                packet = new DatagramPacket(resMessage, resMessage.length, address, port);
+                packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
 
                 socket.send(packet);
             } catch (PacketCorruptionException e) {
