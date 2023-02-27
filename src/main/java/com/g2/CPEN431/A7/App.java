@@ -15,8 +15,7 @@ public class App
     public static ArrayList<AddressPair> nodeList = new ArrayList<>();
 
     public static void main( String[] args ) throws IOException {
-        // TODO: multiple nodes on one ec2 instance --> create multiple sockets
-        // possibly loop through a range of ports to create the sockets?
+        // multiple nodes on one ec2 instance --> create multiple sockets, do in another branch
         int port = 4445;
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
@@ -37,22 +36,27 @@ public class App
 
                 Message.Msg message = Server.readRequest(packet);
 
-                ByteString kvResponse;
+                Object kvResponse;
                 // if message cached retrieved cached response otherwise execute command
                 if (RequestCache.isStored(message.getMessageID())) {
                     kvResponse = RequestCache.get(message.getMessageID());
                 } else {
-                    kvResponse = server.exeCommand(message);
+                    kvResponse = server.exeCommand(message, packet);
                 }
 
-                // build checksum and response message
-                long checksum = Server.buildChecksum(message.getMessageID(), kvResponse);
-                byte[] resMessage = Server.buildMessage(message.getMessageID(), kvResponse, checksum);
-
-                // load message into packet to send back to client
                 int packetPort = packet.getPort();
                 InetAddress address = packet.getAddress();
-                packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
+
+                if (kvResponse instanceof DatagramPacket) {
+                    packet = new DatagramPacket(((DatagramPacket) kvResponse).getData(), ((DatagramPacket) kvResponse).getLength(), address, packetPort);
+                } else {
+                    // build checksum and response message
+                    long checksum = Server.buildChecksum(message.getMessageID(), (ByteString) kvResponse);
+                    byte[] resMessage = Server.buildMessage(message.getMessageID(), (ByteString) kvResponse, checksum);
+
+                    // load message into packet to send back to client
+                    packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
+                }
 
                 socket.send(packet);
             } catch (PacketCorruptionException e) {

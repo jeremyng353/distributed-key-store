@@ -12,8 +12,6 @@ import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -33,8 +31,8 @@ public class Server {
     private static final int GET_PID = 0x07;
     private static final int GET_MS_ID = 0x08;
 
-    private String ip;
-    private int port;
+    private final String ip;
+    private final int port;
 
     ConsistentHash consistentHash = new ConsistentHash();
 
@@ -170,7 +168,7 @@ public class Server {
      * @return A ByteString containing the operation response payload to be sent back
      * @throws InvalidProtocolBufferException: This exception is thrown when an operation error occurs with parseFrom() function
      */
-    public ByteString exeCommand(Message.Msg message) throws InvalidProtocolBufferException, UnknownHostException {
+    public Object exeCommand(Message.Msg message, DatagramPacket packet) throws InvalidProtocolBufferException, UnknownHostException {
         // get kvrequest from message
         KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.parseFrom(message.getPayload());
         int status;
@@ -182,7 +180,7 @@ public class Server {
                 // determine which node should handle request
                 AddressPair nodeAddress = consistentHash.getNode(kvRequest);
                 // if this node should handle the request
-                if (nodeAddress.getIp() == ip && nodeAddress.getPort() == port) {
+                if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
                     status = Memory.put(kvRequest.getKey(), kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
@@ -191,14 +189,14 @@ public class Server {
                     return response;
                 }
 
-                // TODO: call another node to do it
-                return null;
+                // call another node to handle the request
+                return consistentHash.callNode(packet);
             }
             case GET -> {
                 // determine which node should handle request
                 AddressPair nodeAddress = consistentHash.getNode(kvRequest);
                 // if this node should handle the request
-                if (nodeAddress.getIp() == ip && nodeAddress.getPort() == port) {
+                if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
                     status = Memory.isStored(kvRequest.getKey());
                     if (status == SUCCESS) {
                         Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
@@ -209,22 +207,22 @@ public class Server {
                     return response;
                 }
 
-                // TODO: call another node to do it
-                return null;
+                // call another node to handle the request
+                return consistentHash.callNode(packet);
             }
             case REMOVE -> {
                 // determine which node should handle request
                 AddressPair nodeAddress = consistentHash.getNode(kvRequest);
                 // if this node should handle the request
-                if (nodeAddress.getIp() == ip && nodeAddress.getPort() == port) {
+                if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
                     status = Memory.remove(kvRequest.getKey());
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
                     return response;
                 }
 
-                // TODO: call another node to do it
-                return null;
+                // call another node to handle the request
+                return consistentHash.callNode(packet);
             }
             case SHUTDOWN -> {
                 status = Memory.shutdown();
@@ -266,6 +264,4 @@ public class Server {
             }
         }
     }
-
-
 }
