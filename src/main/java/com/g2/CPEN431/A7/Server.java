@@ -9,9 +9,14 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Member;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -30,12 +35,14 @@ public class Server {
     private static final int IS_ALIVE = 0x06;
     private static final int GET_PID = 0x07;
     private static final int GET_MS_ID = 0x08;
+    public static final int GET_MS_LIST = 0x22;
 
     private final String ip;
     private final int port;
     ConsistentHash consistentHash;
+    private final MemberMonitor memberMonitor;
 
-    public Server(int port, ConsistentHash consistentHash) {
+    public Server(int port, ConsistentHash consistentHash, MemberMonitor memberMonitor) {
         // Adapted from https://www.baeldung.com/java-get-ip-address
         String urlString = "http://checkip.amazonaws.com/";
         URL url = null;
@@ -52,6 +59,7 @@ public class Server {
 
         this.port = port;
         this.consistentHash = consistentHash;
+        this.memberMonitor = memberMonitor;
     }
 
     /**
@@ -141,6 +149,23 @@ public class Server {
                 .setMembershipCount(membershipCount)
                 .build();
         return resPayload.toByteString();
+    }
+
+    /**
+     * This function builds the response payload following a getMembershipInfo operation
+     * @param errCode: Integer response code to add into the payload
+     * @param membershipInfo: The count of current active members
+     * @return A ByteString containing the response code and membershipCount
+     */
+    public static ByteString buildResPayload(int errCode, KeyValueResponse.KVResponse.MembershipInfo[] membershipInfo) {
+        KeyValueResponse.KVResponse.Builder resPayloadBuilder = KeyValueResponse.KVResponse.newBuilder()
+                .setErrCode(errCode);
+
+        for (int i = 0; i < membershipInfo.length; i++) {
+            resPayloadBuilder.setMembershipInfo(i, membershipInfo[i]);
+        }
+
+        return resPayloadBuilder.build().toByteString();
     }
 
     /**
@@ -257,6 +282,23 @@ public class Server {
                 status = SUCCESS;
                 int membershipCount = 1;
                 response = buildResPayload(status, membershipCount);
+                RequestCache.put(message.getMessageID(), response);
+                return response;
+            }
+            case GET_MS_LIST -> {
+                status = SUCCESS;
+                KeyValueResponse.KVResponse.MembershipInfo[] membershipInfos =
+                        (KeyValueResponse.KVResponse.MembershipInfo[]) memberMonitor
+                                .getMembershipInfo()
+                                .entrySet()
+                                .stream()
+                                .map((entry) -> KeyValueResponse.KVResponse.MembershipInfo.newBuilder()
+                                        .setAddressPair(entry.getKey().toString())
+                                        // TODO: Update this so that if the node refers to the current node, use the current time
+                                        .setTime(entry.getValue().toEpochSecond(ZoneOffset.UTC))
+                                        .build())
+                                .toArray();
+                response = buildResPayload(status, membershipInfos);
                 RequestCache.put(message.getMessageID(), response);
                 return response;
             }

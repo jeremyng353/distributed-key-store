@@ -11,6 +11,12 @@ public class AddressPair {
         this.port = port;
     }
 
+    public AddressPair(String addressAndPort) {
+        String[] addressAndPortSplit = addressAndPort.split(":");
+        this.ip = addressAndPortSplit[0];
+        this.port = Integer.parseInt(addressAndPortSplit[1]);
+    }
+
     public String getIp() {
         return ip;
     }

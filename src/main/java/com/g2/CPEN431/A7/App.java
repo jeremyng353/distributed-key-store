@@ -34,7 +34,8 @@ public class App
         }
 
         //create a thread to monitor the other servers in the system
-        Thread monitorThread = new Thread(new MemberMonitor());
+        MemberMonitor memberMonitor = new MemberMonitor(new ArrayList<>());
+        Thread monitorThread = new Thread(memberMonitor);
         monitorThread.start();
 
         // print listening port to console
@@ -42,7 +43,7 @@ public class App
         String localAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
 
-        Server server = new Server(port, consistentHash);
+        Server server = new Server(port, consistentHash, memberMonitor);
 
         while(true) {
             try {
