@@ -29,9 +29,7 @@ public class App
         Scanner myReader = new Scanner(nodeList);
         while (myReader.hasNextLine()) {
             String ip = myReader.nextLine();
-            System.out.println("node ip: " + ip);
             String nodePort = myReader.nextLine();
-            System.out.println("node port: " + port);
             consistentHash.addNode(new AddressPair(ip, Integer.parseInt(nodePort)));
         }
 
@@ -48,6 +46,7 @@ public class App
 
                 // listen for next packet
                 socket.receive(packet);
+                System.out.println("Node " + port + " received a packet from node " + packet.getPort());
 
                 Message.Msg message = Server.readRequest(packet);
 
@@ -74,6 +73,7 @@ public class App
                     System.out.println("not instance of datagrampacket");
                 }
 
+                System.out.println("Node " + port + " is sending the packet now");
                 socket.send(packet);
             } catch (PacketCorruptionException e) {
                 System.out.println("the packet is corrupt");
