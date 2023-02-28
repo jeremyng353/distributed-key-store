@@ -3,16 +3,18 @@ package com.g2.CPEN431.A7;
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class App
 {
     public static final int MAX_INCOMING_PACKET_SIZE = 16 * 1024;   // 16 kilobyte buffer to receive packets
 
     // List of node IP:port
-    public static ArrayList<AddressPair> nodeList = new ArrayList<>();
+    // public static ArrayList<AddressPair> nodeList = new ArrayList<>();
 
     public static void main( String[] args ) throws IOException {
         // multiple nodes on one ec2 instance --> create multiple sockets, do in another branch
@@ -22,6 +24,16 @@ public class App
 
         // TODO: add nodes to consistentHash, maybe hardcode in a txt file?
         ConsistentHash consistentHash = new ConsistentHash(port);
+
+        File nodeList = new File("nodes.txt");
+        Scanner myReader = new Scanner(nodeList);
+        while (myReader.hasNextLine()) {
+            String ip = myReader.nextLine();
+            System.out.println("node ip: " + ip);
+            String nodePort = myReader.nextLine();
+            System.out.println("node port: " + port);
+            consistentHash.addNode(new AddressPair(ip, Integer.parseInt(nodePort)));
+        }
 
         // print listening port to console
         int localPort = socket.getLocalPort();
@@ -59,6 +71,7 @@ public class App
 
                     // load message into packet to send back to client
                     packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
+                    System.out.println("not instance of datagrampacket");
                 }
 
                 socket.send(packet);

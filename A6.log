@@ -1,0 +1,25 @@
+CPEN 431 EVALUATION test Client
+Time: Mon Feb 27 20:27:49 PST 2023
+Build Date: Mon Feb 27 19:58:12 PST 2023
+Java process ID: 14216
+Client Version: 1
+
+[Info] A6 client running in TEST mode.
+
+[Info] Starting A6 Tests
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+[Info] You must have a local deployment of your KVS on 127.0.0.1 (localhost), port 43100 to run in submit mode!
+
+[Info] Done building nodes' list.
+[Info] The deployment has 1 server nodes.
+[Test isAlive] for 127.0.0.1:4445
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_UNDECIDED
+[Error] Failed in single front-end basic put-get. Potentially buggy implementation. Aborting!
+Testing completed in 15.669s
