@@ -16,11 +16,11 @@ public class App
 
     public static void main( String[] args ) throws IOException {
         // multiple nodes on one ec2 instance --> create multiple sockets, do in another branch
-        int port = 4445;
+        int port = Integer.parseInt(args[0]);
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
-        // TODO: add nodes to consistentHash,
+        // TODO: add nodes to consistentHash, maybe hardcode in a txt file?
         ConsistentHash consistentHash = new ConsistentHash(port);
 
         // print listening port to console
