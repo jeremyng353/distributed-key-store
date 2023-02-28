@@ -33,10 +33,9 @@ public class Server {
 
     private final String ip;
     private final int port;
+    ConsistentHash consistentHash;
 
-    ConsistentHash consistentHash = new ConsistentHash();
-
-    public Server(int port) {
+    public Server(int port, ConsistentHash consistentHash) {
         // Adapted from https://www.baeldung.com/java-get-ip-address
         String urlString = "http://checkip.amazonaws.com/";
         URL url = null;
@@ -52,6 +51,7 @@ public class Server {
         }
 
         this.port = port;
+        this.consistentHash = consistentHash;
     }
 
     /**
@@ -178,10 +178,11 @@ public class Server {
         switch (kvRequest.getCommand()) {
             case PUT -> {
                 // determine which node should handle request
-                AddressPair nodeAddress = consistentHash.getNode(kvRequest);
+                ByteString key = kvRequest.getKey();
+                AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    status = Memory.put(kvRequest.getKey(), kvRequest.getValue(), kvRequest.getVersion());
+                    status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR)
@@ -190,14 +191,15 @@ public class Server {
                 }
 
                 // call another node to handle the request
-                return consistentHash.callNode(packet);
+                return consistentHash.callNode(packet, nodeAddress);
             }
             case GET -> {
                 // determine which node should handle request
-                AddressPair nodeAddress = consistentHash.getNode(kvRequest);
+                ByteString key = kvRequest.getKey();
+                AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    status = Memory.isStored(kvRequest.getKey());
+                    status = Memory.isStored(key);
                     if (status == SUCCESS) {
                         Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
                         response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
@@ -208,21 +210,22 @@ public class Server {
                 }
 
                 // call another node to handle the request
-                return consistentHash.callNode(packet);
+                return consistentHash.callNode(packet, nodeAddress);
             }
             case REMOVE -> {
                 // determine which node should handle request
-                AddressPair nodeAddress = consistentHash.getNode(kvRequest);
+                ByteString key = kvRequest.getKey();
+                AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    status = Memory.remove(kvRequest.getKey());
+                    status = Memory.remove(key);
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
                     return response;
                 }
 
                 // call another node to handle the request
-                return consistentHash.callNode(packet);
+                return consistentHash.callNode(packet, nodeAddress);
             }
             case SHUTDOWN -> {
                 status = Memory.shutdown();

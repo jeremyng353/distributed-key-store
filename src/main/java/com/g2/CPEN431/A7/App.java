@@ -20,12 +20,15 @@ public class App
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
+        // TODO: add nodes to consistentHash,
+        ConsistentHash consistentHash = new ConsistentHash(port);
+
         // print listening port to console
         int localPort = socket.getLocalPort();
         String localAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
 
-        Server server = new Server(port);
+        Server server = new Server(port, consistentHash);
 
         while(true) {
             try {
