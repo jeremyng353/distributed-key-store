@@ -191,6 +191,7 @@ public class Server {
                 }
 
                 // call another node to handle the request
+                System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
                 return consistentHash.callNode(packet, nodeAddress);
             }
             case GET -> {

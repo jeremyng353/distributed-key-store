@@ -57,11 +57,13 @@ public class ConsistentHash {
      */
     public DatagramPacket callNode(DatagramPacket packet, AddressPair nodeAddress) {
         DatagramPacket forwardedPacket = null;
+        System.out.println("calling node at ip: " + nodeAddress.getIp() + ", port: " + nodeAddress.getPort());
         try {
             socket.send(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName(nodeAddress.getIp()), nodeAddress.getPort()));
             byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
             forwardedPacket = new DatagramPacket(buf, buf.length);
             socket.receive(forwardedPacket);
+            System.out.println("received packet");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
