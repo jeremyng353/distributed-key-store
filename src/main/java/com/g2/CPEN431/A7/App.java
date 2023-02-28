@@ -33,6 +33,10 @@ public class App
             consistentHash.addNode(new AddressPair(ip, Integer.parseInt(nodePort)));
         }
 
+        //create a thread to monitor the other servers in the system
+        Thread monitorThread = new Thread(new MemberMonitor());
+        monitorThread.start();
+
         // print listening port to console
         int localPort = socket.getLocalPort();
         String localAddress = InetAddress.getLocalHost().getHostAddress();
