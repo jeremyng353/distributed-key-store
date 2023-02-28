@@ -46,7 +46,7 @@ public class App
 
                 // listen for next packet
                 socket.receive(packet);
-                System.out.println("Node " + port + " received a packet from node " + packet.getPort());
+                // System.out.println("Node " + port + " received a packet from node " + packet.getPort());
 
                 Message.Msg message = Server.readRequest(packet);
 
@@ -70,10 +70,10 @@ public class App
 
                     // load message into packet to send back to client
                     packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
-                    System.out.println("not instance of datagrampacket");
+                    // System.out.println("not instance of datagrampacket");
                 }
 
-                System.out.println("Node " + port + " is sending the packet now");
+                // System.out.println("Node " + port + " is sending the packet now");
                 socket.send(packet);
             } catch (PacketCorruptionException e) {
                 System.out.println("the packet is corrupt");
