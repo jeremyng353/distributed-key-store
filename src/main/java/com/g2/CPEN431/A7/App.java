@@ -20,7 +20,8 @@ public class App
 
     public static void main( String[] args ) throws IOException {
         // multiple nodes on one ec2 instance --> create multiple sockets, do in another branch
-        int port = Integer.parseInt(args[0]);
+        String currentIp = args[0];
+        int port = Integer.parseInt(args[1]);
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
@@ -29,13 +30,16 @@ public class App
 
         File nodeList = new File("nodes.txt");
         Scanner myReader = new Scanner(nodeList);
+        ArrayList<AddressPair> initialNodes = new ArrayList<>();
         while (myReader.hasNextLine()) {
             String ip = myReader.nextLine();
             String nodePort = myReader.nextLine();
-            consistentHash.addNode(new AddressPair(ip, Integer.parseInt(nodePort)));
+            AddressPair addressPair = new AddressPair(ip, Integer.parseInt(nodePort));
+            consistentHash.addNode(addressPair);
+            initialNodes.add(addressPair);
         }
 
-        MemberMonitor memberMonitor = new MemberMonitor(new ArrayList<>());
+        MemberMonitor memberMonitor = new MemberMonitor(initialNodes, new AddressPair(currentIp, port));
         //create a thread to monitor the other servers in the system
         TimerTask pullEpidemic = new TimerTask() {
             @Override
@@ -44,7 +48,7 @@ public class App
             }
         };
         Timer timer = new Timer("Send Timer");
-        timer.schedule(pullEpidemic, 3000);
+        timer.scheduleAtFixedRate(pullEpidemic, 3000, 3000);
 //        Thread monitorThread = new Thread(memberMonitor);
 //        monitorThread.start();
 

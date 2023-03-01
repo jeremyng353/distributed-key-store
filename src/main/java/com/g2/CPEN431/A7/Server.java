@@ -162,7 +162,7 @@ public class Server {
                 .setErrCode(errCode);
 
         for (int i = 0; i < membershipInfo.length; i++) {
-            resPayloadBuilder.setMembershipInfo(i, membershipInfo[i]);
+            resPayloadBuilder.addMembershipInfo(i, membershipInfo[i]);
         }
 
         return resPayloadBuilder.build().toByteString();
@@ -286,18 +286,18 @@ public class Server {
                 return response;
             }
             case GET_MS_LIST -> {
+                System.out.println("[" + port + "]: Got a pull request!");
                 status = SUCCESS;
-                KeyValueResponse.KVResponse.MembershipInfo[] membershipInfos =
-                        (KeyValueResponse.KVResponse.MembershipInfo[]) memberMonitor
-                                .getMembershipInfo()
-                                .entrySet()
-                                .stream()
-                                .map((entry) -> KeyValueResponse.KVResponse.MembershipInfo.newBuilder()
-                                        .setAddressPair(entry.getKey().toString())
-                                        // TODO: Update this so that if the node refers to the current node, use the current time
-                                        .setTime(entry.getValue().toEpochSecond(ZoneOffset.UTC))
-                                        .build())
-                                .toArray();
+                KeyValueResponse.KVResponse.MembershipInfo[] membershipInfos = memberMonitor
+                        .getMembershipInfo()
+                        .entrySet()
+                        .stream()
+                        .map((entry) -> KeyValueResponse.KVResponse.MembershipInfo.newBuilder()
+                                .setAddressPair(entry.getKey().toString())
+                                // TODO: Update this so that if the node refers to the current node, use the current time
+                                .setTime(entry.getKey().getPort() == port ? LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) : entry.getValue().toEpochSecond(ZoneOffset.UTC))
+                                .build())
+                        .toArray(KeyValueResponse.KVResponse.MembershipInfo[]::new);
                 response = buildResPayload(status, membershipInfos);
                 RequestCache.put(message.getMessageID(), response);
                 return response;

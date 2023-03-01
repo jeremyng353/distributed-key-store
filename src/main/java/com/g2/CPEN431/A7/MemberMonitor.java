@@ -21,14 +21,16 @@ public class MemberMonitor implements Runnable{
     private final HashMap<AddressPair, LocalDateTime> nodeStore;
     private final Random random;
     private final UDPClient udpClient;
+    private final AddressPair self;
 
     //dummy time until we set the amount of nodes
     final int FULL_INFECTION_TIME = 10000;
 
-    public MemberMonitor(ArrayList<AddressPair> initialMembership) {
+    public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress) {
         this.nodeStore = new HashMap<>();
         this.random = new Random();
         this.udpClient = new UDPClient();
+        this.self = selfAddress;
 
         LocalDateTime currentTime = LocalDateTime.now();
         for (AddressPair addressPair : initialMembership) {
@@ -45,9 +47,19 @@ public class MemberMonitor implements Runnable{
                 // update the nodeStore if the value received is older than what is saved
                 // if no value is returned past the timeout, then check if the node is past the FULL_INFECTION_TIME limit
                     // if so, nodeStore.get(randomNode.InetAddress).setBoolean(false)
+
+                // Update itself in the nodestore to be the latest time
+                nodeStore.put(self, LocalDateTime.now());
+
                 Set<AddressPair> nodes = nodeStore.keySet();
                 int index = random.nextInt(nodes.size());
                 AddressPair node = (AddressPair) nodes.toArray()[index];
+
+                // Make sure it's not trying to contact itself
+                while (node.equals(self)) {
+                    index = random.nextInt(nodes.size());
+                    node = (AddressPair) nodes.toArray()[index];
+                }
 
                 KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.newBuilder()
                         .setCommand(GET_MS_LIST)
@@ -55,23 +67,30 @@ public class MemberMonitor implements Runnable{
 
                 try {
                     Message.Msg nodeResponse = udpClient.request(
-                            InetAddress.getByName(node.getIp()),
+                            // TODO: Replace this with the node IP
+                            InetAddress.getByName("localhost"),
                             node.getPort(),
                             kvRequest.toByteArray());
-                    KeyValueResponse.KVResponse.parseFrom(nodeResponse.getPayload())
-                            .getMembershipInfoList()
-                            .forEach((membershipInfo -> {
-                                AddressPair checkAddressPair = new AddressPair(membershipInfo.getAddressPair());
-                                long checkLastAlive = Math.max(
-                                        membershipInfo.getTime(),
-                                        nodeStore.get(checkAddressPair).toEpochSecond(ZoneOffset.UTC));
-                                // Note that we're using system default time zone, which we'll need to keep in mind when we check if a node is alive
-                                nodeStore.put(
-                                        checkAddressPair,
-                                        LocalDateTime.ofInstant(
-                                                Instant.ofEpochMilli(checkLastAlive),
-                                                ZoneId.systemDefault()));
-                    }));
+                    if (nodeResponse != null) {
+                        KeyValueResponse.KVResponse.parseFrom(nodeResponse.getPayload())
+                                .getMembershipInfoList()
+                                .forEach((membershipInfo -> {
+                                    AddressPair checkAddressPair = new AddressPair(membershipInfo.getAddressPair());
+                                    long checkLastAlive = Math.max(
+                                            membershipInfo.getTime(),
+                                            nodeStore.get(checkAddressPair).toEpochSecond(ZoneOffset.UTC));
+                                    // Note that we're using system default time zone, which we'll need to keep in mind when we check if a node is alive
+                                    nodeStore.put(
+                                            checkAddressPair,
+                                            LocalDateTime.ofInstant(
+                                                    Instant.ofEpochMilli(checkLastAlive),
+                                                    ZoneId.systemDefault()));
+                                }));
+                        System.out.println("[" + self.getPort() + "]: " + nodeStore);
+                    } else {
+                        System.out.println("No response from node " + node + ", it may be dead!");
+                    }
+
 
                 } catch (UnknownHostException e) {
                     System.err.println("Error while getting IP for node: " + node.getIp());
