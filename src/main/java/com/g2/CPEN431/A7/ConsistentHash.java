@@ -52,8 +52,11 @@ public class ConsistentHash {
 
         // match hash of key to the least entry that has a strictly greater key
         Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(key.hashCode());
-        System.out.println("Key " + key + " should be directed to entry: " + (nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue()));
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
+    }
+
+    public AddressPair removeNode(AddressPair addressPair) {
+        return nodeRing.remove(Objects.hashCode(addressPair));
     }
 
     /**
@@ -74,11 +77,11 @@ public class ConsistentHash {
                     socket.setSoTimeout(TIMEOUT);
                     byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
                     forwardedPacket = new DatagramPacket(buf, buf.length);
-                    System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
+//                    System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
                     socket.receive(forwardedPacket);
-                    System.out.println("[" + port + "]: received packet");
+//                    System.out.println("[" + port + "]: received packet");
                     readRequest(forwardedPacket);
-                    System.out.println("received a forwarded packet that is not corrupt");
+//                    System.out.println("received a forwarded packet that is not corrupt");
                 } catch (PacketCorruptionException e) {
                     System.out.println("the packet is corrupt, putting it back in the queue");
                     queue.add(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));

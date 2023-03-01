@@ -286,7 +286,6 @@ public class Server {
                 return response;
             }
             case GET_MS_LIST -> {
-                System.out.println("[" + port + "]: Got a pull request!");
                 status = SUCCESS;
                 KeyValueResponse.KVResponse.MembershipInfo[] membershipInfos = memberMonitor
                         .getMembershipInfo()
@@ -295,7 +294,7 @@ public class Server {
                         .map((entry) -> KeyValueResponse.KVResponse.MembershipInfo.newBuilder()
                                 .setAddressPair(entry.getKey().toString())
                                 // TODO: Update this so that if the node refers to the current node, use the current time
-                                .setTime(entry.getKey().getPort() == port ? LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) : entry.getValue().toEpochSecond(ZoneOffset.UTC))
+                                .setTime(entry.getKey().getPort() == port ? System.currentTimeMillis() : entry.getValue())
                                 .build())
                         .toArray(KeyValueResponse.KVResponse.MembershipInfo[]::new);
                 response = buildResPayload(status, membershipInfos);

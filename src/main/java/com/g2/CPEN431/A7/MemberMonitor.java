@@ -7,10 +7,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.*;
 
 import static com.g2.CPEN431.A7.Server.GET_MS_LIST;
@@ -18,21 +14,25 @@ import static com.g2.CPEN431.A7.Server.GET_MS_LIST;
 public class MemberMonitor implements Runnable{
 
     // A HashMap to store node information
-    private final HashMap<AddressPair, LocalDateTime> nodeStore;
+    private final HashMap<AddressPair, Long> nodeStore;
     private final Random random;
     private final UDPClient udpClient;
     private final AddressPair self;
+    private final ConsistentHash consistentHash;
 
     //dummy time until we set the amount of nodes
-    final int FULL_INFECTION_TIME = 10000;
+    final int DEFAULT_INTERVAL = 3000;
+    final int NUM_NODES = 20;
+    final int SAFETY_MARGIN = 6000;
 
-    public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress) {
+    public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new HashMap<>();
         this.random = new Random();
         this.udpClient = new UDPClient();
         this.self = selfAddress;
+        this.consistentHash = consistentHash;
 
-        LocalDateTime currentTime = LocalDateTime.now();
+        Long currentTime = System.currentTimeMillis();
         for (AddressPair addressPair : initialMembership) {
             nodeStore.put(addressPair, currentTime);
         }
@@ -49,14 +49,14 @@ public class MemberMonitor implements Runnable{
                     // if so, nodeStore.get(randomNode.InetAddress).setBoolean(false)
 
                 // Update itself in the nodestore to be the latest time
-                nodeStore.put(self, LocalDateTime.now());
+                nodeStore.put(self, System.currentTimeMillis());
 
                 Set<AddressPair> nodes = nodeStore.keySet();
                 int index = random.nextInt(nodes.size());
                 AddressPair node = (AddressPair) nodes.toArray()[index];
 
-                // Make sure it's not trying to contact itself
-                while (node.equals(self)) {
+                // Make sure it's not trying to contact itself or a dead node
+                while (node.equals(self) || isDead(node)) {
                     index = random.nextInt(nodes.size());
                     node = (AddressPair) nodes.toArray()[index];
                 }
@@ -78,19 +78,21 @@ public class MemberMonitor implements Runnable{
                                     AddressPair checkAddressPair = new AddressPair(membershipInfo.getAddressPair());
                                     long checkLastAlive = Math.max(
                                             membershipInfo.getTime(),
-                                            nodeStore.get(checkAddressPair).toEpochSecond(ZoneOffset.UTC));
+                                            nodeStore.get(checkAddressPair));
                                     // Note that we're using system default time zone, which we'll need to keep in mind when we check if a node is alive
-                                    nodeStore.put(
-                                            checkAddressPair,
-                                            LocalDateTime.ofInstant(
-                                                    Instant.ofEpochMilli(checkLastAlive),
-                                                    ZoneId.systemDefault()));
+                                    nodeStore.put(checkAddressPair, checkLastAlive);
                                 }));
-                        System.out.println("[" + self.getPort() + "]: " + nodeStore);
+//                        System.out.println("[" + self.getPort() + "]: " + nodeStore);
+                        for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
+                            if (isDead(entry.getKey())) {
+                                System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
+                                consistentHash.removeNode(entry.getKey());
+                            }
+                        }
                     } else {
                         System.out.println("No response from node " + node + ", it may be dead!");
+                        consistentHash.removeNode(node);
                     }
-
 
                 } catch (UnknownHostException e) {
                     System.err.println("Error while getting IP for node: " + node.getIp());
@@ -100,13 +102,12 @@ public class MemberMonitor implements Runnable{
                     e.printStackTrace();
                 }
             }
-//        };
 
-//        Timer timer = new Timer("Send Timer");
-//        timer.schedule(pullEpidemic, 3000);
-//    }
-
-    public Map<AddressPair, LocalDateTime> getMembershipInfo() {
+    public Map<AddressPair, Long> getMembershipInfo() {
         return this.nodeStore;
+    }
+
+    private boolean isDead(AddressPair addressPair) {
+        return System.currentTimeMillis() - nodeStore.get(addressPair) > (DEFAULT_INTERVAL * (Math.log(NUM_NODES) / Math.log(2) + SAFETY_MARGIN));
     }
 }

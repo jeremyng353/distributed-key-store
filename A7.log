@@ -1,0 +1,1701 @@
+CPEN 431 EVALUATION test Client
+Time: Wed Mar 01 02:08:01 PST 2023
+Build Date: Wed Dec 31 16:00:00 PST 1969
+Java process ID: 798624
+Client Version: 1
+
+[Info] A7 client running in TEST mode.
+
+[Info] Starting A7 Tests
+
+
+[Info] Done building nodes' list.
+[Info] The deployment has 20 server nodes.
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.11 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for 127.0.0.1:4445
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.035 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.023 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.023 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.025 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.025 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.021 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.023 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.024 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Key ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Value ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 374050
+Total Requests (including replies): 374050
+Successful Responses: 374048
+Timeout Responses: 0
+Total Failed Responses: 2
+% Success: 99.99946531212404
+% Timeout: 0.0
+% Failed: 5.346878759524128E-4
+Response Time (Successful requests):
+[max] 5ms, [min] 0ms
+[avg] 0.06443558046026178 ms, [stdev] 0.24861115225557437ms
+Throughput: 6234.062765620573 requests per second
+Goodput: 6234.029432842786 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.024 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.304 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 2
+Total Requests (without replies): 761877
+Total Requests (including replies): 761877
+Successful Responses: 761869
+Timeout Responses: 0
+Total Failed Responses: 8
+% Success: 99.99894996173923
+% Timeout: 0.0
+% Failed: 0.0010500382607691269
+Response Time (Successful requests):
+[max] 4ms, [min] 0ms
+[avg] 0.06204216210398376 ms, [stdev] 0.24377061966823568ms
+Throughput: 12697.73837102715 requests per second
+Goodput: 12697.605039916001 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.239 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 8
+Total Requests (without replies): 1162551
+Total Requests (including replies): 1162551
+Successful Responses: 1162519
+Timeout Responses: 0
+Total Failed Responses: 32
+% Success: 99.99724743258575
+% Timeout: 0.0
+% Failed: 0.0027525674142467728
+Response Time (Successful requests):
+[max] 6ms, [min] 0ms
+[avg] 0.09128194894018936 ms, [stdev] 0.2925789032155364ms
+Throughput: 19375.527074548758 requests per second
+Goodput: 19374.993750104164 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.515 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 1177798
+Total Requests (including replies): 1177798
+Successful Responses: 1177703
+Timeout Responses: 0
+Total Failed Responses: 95
+% Success: 99.99193410075412
+% Timeout: 0.0
+% Failed: 0.008065899245880873
+Response Time (Successful requests):
+[max] 8ms, [min] 0ms
+[avg] 0.1487930318594756 ms, [stdev] 0.37810049437301646ms
+Throughput: 19629.639506008232 requests per second
+Goodput: 19628.05619906335 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.511 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 1208690
+Total Requests (including replies): 1208690
+Successful Responses: 1208274
+Timeout Responses: 0
+Total Failed Responses: 416
+% Success: 99.96558257286814
+% Timeout: 0.0
+% Failed: 0.034417427131853494
+Response Time (Successful requests):
+[max] 19ms, [min] 0ms
+[avg] 0.326670109594347 ms, [stdev] 0.7774568005922003ms
+Throughput: 20143.82614202623 requests per second
+Goodput: 20136.893155342234 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.358 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 81.807 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.008 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.022 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4459
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 260260
+Total Requests (including replies): 260260
+Successful Responses: 260259
+Timeout Responses: 0
+Total Failed Responses: 1
+% Success: 99.99961576884654
+% Timeout: 0.0
+% Failed: 3.842311534619227E-4
+Response Time (Successful requests):
+[max] 15ms, [min] 0ms
+[avg] 0.12724632001198805 ms, [stdev] 0.34328985850226884ms
+Throughput: 4337.5943734271095 requests per second
+Goodput: 4337.577707038216 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.095 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4457
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 2
+Total Requests (without replies): 550286
+Total Requests (including replies): 550286
+Successful Responses: 550281
+Timeout Responses: 0
+Total Failed Responses: 5
+% Success: 99.9990913815725
+% Timeout: 0.0
+% Failed: 9.086184275086046E-4
+Response Time (Successful requests):
+[max] 9ms, [min] 0ms
+[avg] 0.11723828371323015 ms, [stdev] 0.333655257048115ms
+Throughput: 9171.28047865869 requests per second
+Goodput: 9171.197146714221 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.168 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4462
+[ ... Completed in 0.025 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 8
+Total Requests (without replies): 1102691
+Total Requests (including replies): 1102691
+Successful Responses: 1102658
+Timeout Responses: 0
+Total Failed Responses: 33
+% Success: 99.99700732118063
+% Timeout: 0.0
+% Failed: 0.0029926788193609995
+Response Time (Successful requests):
+[max] 17ms, [min] 0ms
+[avg] 0.17596027054626184 ms, [stdev] 0.4184170829331381ms
+Throughput: 18377.877035382742 requests per second
+Goodput: 18377.327044549256 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.04 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.358 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.032 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.033 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.03 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.032 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4463
+[ ... Completed in 0.018 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 1129290
+Total Requests (including replies): 1129290
+Successful Responses: 1129179
+Timeout Responses: 0
+Total Failed Responses: 111
+% Success: 99.99017081529102
+% Timeout: 0.0
+% Failed: 0.009829184708976436
+Response Time (Successful requests):
+[max] 22ms, [min] 0ms
+[avg] 0.19940682566714402 ms, [stdev] 0.473913059147263ms
+Throughput: 18821.18631356144 requests per second
+Goodput: 18819.33634439426 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.347 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.036 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.032 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.061 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.03 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4463
+[ ... Completed in 0.018 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 1132072
+Total Requests (including replies): 1132072
+Successful Responses: 1131669
+Timeout Responses: 0
+Total Failed Responses: 403
+% Success: 99.9644015574981
+% Timeout: 0.0
+% Failed: 0.035598442501890336
+Response Time (Successful requests):
+[max] 23ms, [min] 0ms
+[avg] 0.28605360754779 ms, [stdev] 0.7650382950370936ms
+Throughput: 18867.237758741376 requests per second
+Goodput: 18860.521315956135 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.03 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.359 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+Sending GETPID to all servers... 
+[Info] Server node 127.0.0.14445 has process ID 836424.
+[Info] Server node 127.0.0.14446 has process ID 810232.
+[Info] Server node 127.0.0.14447 has process ID 722388.
+[Info] Server node 127.0.0.14448 has process ID 780296.
+[Info] Server node 127.0.0.14449 has process ID 887024.
+[Info] Server node 127.0.0.14450 has process ID 807028.
+[Info] Server node 127.0.0.14451 has process ID 788600.
+[Info] Server node 127.0.0.14452 has process ID 829276.
+[Info] Server node 127.0.0.14453 has process ID 823000.
+[Info] Server node 127.0.0.14454 has process ID 787288.
+[Info] Server node 127.0.0.14455 has process ID 788784.
+[Info] Server node 127.0.0.14456 has process ID 137680.
+[Info] Server node 127.0.0.14457 has process ID 742932.
+[Info] Server node 127.0.0.14458 has process ID 784376.
+[Info] Server node 127.0.0.14459 has process ID 730532.
+[Info] Server node 127.0.0.14460 has process ID 821648.
+[Info] Server node 127.0.0.14461 has process ID 99196.
+[Info] Server node 127.0.0.14462 has process ID 494948.
+[Info] Server node 127.0.0.14463 has process ID 786812.
+[Info] Server node 127.0.0.14464 has process ID 120680.
+[ ... Completed in 0.02 seconds ]
+[OK]
+
+[ TEST Concurrent Store/Load (Clients = 10, Value Size = 1000 bytes, Limit = 2000 PUTs, ~1.91 MiB) ]
+Issuing puts... 
+[DONE in 0.141s]
+Confirming... 
+[DONE in 0.113s]
+TEST_PASSED
+[Info] To shutdown - 3 nodes.
+
+[ TEST Crash; Key Recovery ]
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4446
+[ ... Completed in 0.001 seconds ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4448
+[ ... Completed in 0.002 seconds ]
+Determining if storage was successful... 
+[DONE in 0.111s]
+Sending SHUTDOWN to 3 servers.
+[ ... Completed in 0.967 seconds ]
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4446
+[ ... Completed in 9.642 seconds ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4448
+[ ... Completed in 0.002 seconds ]
+Attempting retrieval of keys... 
+[DONE in 0.103s]
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4446
+[ ... Completed in 9.625 seconds ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4448
+[ ... Completed in 0.003 seconds ]
+Of 2000 usable puts:
+Failed: 0 Timed out: 0 Invalid value: 0
+Expecting 15.0% keys to fail. Actual failed: 0.0%
+Key fail issue: No keys failed after server crash.
+Did you implement replication early?
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 25.497 seconds ]
+Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.005 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.025 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 380182
+Total Requests (including replies): 380182
+Successful Responses: 380180
+Timeout Responses: 0
+Total Failed Responses: 2
+% Success: 99.99947393616742
+% Timeout: 0.0
+% Failed: 5.260638325854459E-4
+Response Time (Successful requests):
+[max] 6ms, [min] 0ms
+[avg] 0.0622100057867326 ms, [stdev] 0.2445237509585195ms
+Throughput: 6336.261062315628 requests per second
+Goodput: 6336.227729537841 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.043 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.131 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.0 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 2
+Total Requests (without replies): 757348
+Total Requests (including replies): 757348
+Successful Responses: 757341
+Timeout Responses: 0
+Total Failed Responses: 7
+% Success: 99.9990757221251
+% Timeout: 0.0
+% Failed: 9.2427787490031E-4
+Response Time (Successful requests):
+[max] 3ms, [min] 0ms
+[avg] 0.06209488196202239 ms, [stdev] 0.2433058253569638ms
+Throughput: 12622.256295728404 requests per second
+Goodput: 12622.13963100615 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.208 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 8
+Total Requests (without replies): 1160212
+Total Requests (including replies): 1160212
+Successful Responses: 1160177
+Timeout Responses: 0
+Total Failed Responses: 35
+% Success: 99.9969833099468
+% Timeout: 0.0
+% Failed: 0.0030166900531971744
+Response Time (Successful requests):
+[max] 9ms, [min] 0ms
+[avg] 0.091212806321794 ms, [stdev] 0.29442410744950803ms
+Throughput: 19336.544390926818 requests per second
+Goodput: 19335.961067315544 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.329 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.0 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 1192369
+Total Requests (including replies): 1192369
+Successful Responses: 1192266
+Timeout Responses: 0
+Total Failed Responses: 103
+% Success: 99.99136173449662
+% Timeout: 0.0
+% Failed: 0.008638265503380246
+Response Time (Successful requests):
+[max] 13ms, [min] 0ms
+[avg] 0.13456057624724685 ms, [stdev] 0.35693546553259914ms
+Throughput: 19872.48545857569 requests per second
+Goodput: 19870.768820519657 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.331 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 1202067
+Total Requests (including replies): 1202067
+Successful Responses: 1201680
+Timeout Responses: 0
+Total Failed Responses: 387
+% Success: 99.96780545510359
+% Timeout: 0.0
+% Failed: 0.032194544896415926
+Response Time (Successful requests):
+[max] 16ms, [min] 0ms
+[avg] 0.26501814126889023 ms, [stdev] 0.7011179383145284ms
+Throughput: 20033.78220725976 requests per second
+Goodput: 20027.33242225259 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.03 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.344 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4447
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 277903
+Total Requests (including replies): 277903
+Successful Responses: 277902
+Timeout Responses: 0
+Total Failed Responses: 1
+% Success: 99.99964016221487
+% Timeout: 0.0
+% Failed: 3.59837785126465E-4
+Response Time (Successful requests):
+[max] 14ms, [min] 0ms
+[avg] 0.11366956696965118 ms, [stdev] 0.32269379273029475ms
+Throughput: 4631.639472675455 requests per second
+Goodput: 4631.622806286562 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.03 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.106 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4450
+[ ... Completed in 0.011 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 2
+Total Requests (without replies): 558427
+Total Requests (including replies): 558427
+Successful Responses: 558421
+Timeout Responses: 0
+Total Failed Responses: 6
+% Success: 99.99892555338478
+% Timeout: 0.0
+% Failed: 0.0010744466152245503
+Response Time (Successful requests):
+[max] 12ms, [min] 0ms
+[avg] 0.11437069880967944 ms, [stdev] 0.3277359791766177ms
+Throughput: 9306.961550640823 requests per second
+Goodput: 9306.861552307462 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.193 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.025 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.032 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4447
+[ ... Completed in 0.015 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 8
+Total Requests (without replies): 1105127
+Total Requests (including replies): 1105127
+Successful Responses: 1105092
+Timeout Responses: 0
+Total Failed Responses: 35
+% Success: 99.9968329431821
+% Timeout: 0.0
+% Failed: 0.0031670568179041868
+Response Time (Successful requests):
+[max] 14ms, [min] 0ms
+[avg] 0.17266526225870787 ms, [stdev] 0.4094264243986185ms
+Throughput: 18418.476358727356 requests per second
+Goodput: 18417.89303511608 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.31 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.035 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.032 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.026 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4462
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 1149782
+Total Requests (including replies): 1149782
+Successful Responses: 1149664
+Timeout Responses: 0
+Total Failed Responses: 118
+% Success: 99.98973718496202
+% Timeout: 0.0
+% Failed: 0.010262815037981113
+Response Time (Successful requests):
+[max] 15ms, [min] 0ms
+[avg] 0.1905521961199098 ms, [stdev] 0.4512850916179848ms
+Throughput: 19162.71395476742 requests per second
+Goodput: 19160.747320877985 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.319 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.028 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.037 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.036 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.031 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4448
+[ ... Completed in 0.007 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 1051866
+Total Requests (including replies): 1051866
+Successful Responses: 1051609
+Timeout Responses: 0
+Total Failed Responses: 257
+% Success: 99.97556723004641
+% Timeout: 0.0
+% Failed: 0.024432769953587244
+Response Time (Successful requests):
+[max] 25ms, [min] 0ms
+[avg] 0.3631891701193124 ms, [stdev] 0.9859512988332835ms
+Throughput: 17530.51564947835 requests per second
+Goodput: 17526.232458918035 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.03 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.335 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4455
+[ ... Completed in 9.664 seconds ]
+
+Results Summary:
+Client Local Hostname : DESKTOP-482AJRL
+Client Local IP : DESKTOP-482AJRL/192.168.1.81
+Concurrent Store/Load (MiB) : 1.91
+Concurrent Store/Load Test : 2.0
+Server Count : 20
+Server List : 127.0.0.1_4445_127.0.0.1_4446_127.0.0.1_4447_127.0.0.1_4448_127.0.0.1_4449_127.0.0.1_4450_127.0.0.1_4451_127.0.0.1_4452_127.0.0.1_4453_127.0.0.1_4454_127.0.0.1_4455_127.0.0.1_4456_127.0.0.1_4457_127.0.0.1_4458_127.0.0.1_4459_127.0.0.1_4460_127.0.0.1_4461_127.0.0.1_4462_127.0.0.1_4463_127.0.0.1_4464_
+Single Front Node (At-Most-Once) Policy : 2.0
+Single Front Node At-Most-Once Policy Empty REMs : 2.0
+Single Front Node At-Most-Once Policy Error Return Code : 2.0
+Single Front Node At-Most-Once Policy Full Test : 2.0
+Single Front Node Basic PUT GET  : 2.0
+Single Front Node Double PUT with version : 2.0
+Single Front Node Double Remove : 2.0
+Single Front Node Invalid Command : 2.0
+Single Front Node Invalid Key Test : 2.0
+Single Front Node Invalid Value Test : 2.0
+Single Front Node Remove Operation : 2.0
+Stage 1 Random Front-End Basic : 2.0
+Stage 1 Random Front-End Performance: 1 Client(s) % Failed : 3.842311534619227E-4
+Stage 1 Random Front-End Performance: 1 Client(s) % Success : 99.99961576884654
+Stage 1 Random Front-End Performance: 1 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 1 Client(s) Goodput (Requests per Second) : 4338.0
+Stage 1 Random Front-End Performance: 1 Client(s) Maximum Response Time (ms) : 15.0
+Stage 1 Random Front-End Performance: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 1 Client(s) Successful Responses : 260259
+Stage 1 Random Front-End Performance: 1 Client(s) Throughput (Requests per Second) : 4338.0
+Stage 1 Random Front-End Performance: 1 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 1 Client(s) Total Failed Responses : 1
+Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (including replies) : 260260
+Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (without replies) : 260260
+Stage 1 Random Front-End Performance: 128 Client(s) % Failed : 0.035598442501890336
+Stage 1 Random Front-End Performance: 128 Client(s) % Success : 99.9644015574981
+Stage 1 Random Front-End Performance: 128 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 128 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 128 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
+Stage 1 Random Front-End Performance: 128 Client(s) Goodput (Requests per Second) : 18861.0
+Stage 1 Random Front-End Performance: 128 Client(s) Maximum Response Time (ms) : 23.0
+Stage 1 Random Front-End Performance: 128 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 128 Client(s) Successful Responses : 1131669
+Stage 1 Random Front-End Performance: 128 Client(s) Throughput (Requests per Second) : 18868.0
+Stage 1 Random Front-End Performance: 128 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 128 Client(s) Total Failed Responses : 403
+Stage 1 Random Front-End Performance: 128 Client(s) Total Requests (including replies) : 1132072
+Stage 1 Random Front-End Performance: 128 Client(s) Total Requests (without replies) : 1132072
+Stage 1 Random Front-End Performance: 2 Client(s) % Failed : 9.086184275086046E-4
+Stage 1 Random Front-End Performance: 2 Client(s) % Success : 99.9990913815725
+Stage 1 Random Front-End Performance: 2 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 2 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 2 Client(s) Goodput (Requests per Second) : 9172.0
+Stage 1 Random Front-End Performance: 2 Client(s) Maximum Response Time (ms) : 9.0
+Stage 1 Random Front-End Performance: 2 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 2 Client(s) Successful Responses : 550281
+Stage 1 Random Front-End Performance: 2 Client(s) Throughput (Requests per Second) : 9172.0
+Stage 1 Random Front-End Performance: 2 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 2 Client(s) Total Failed Responses : 5
+Stage 1 Random Front-End Performance: 2 Client(s) Total Requests (including replies) : 550286
+Stage 1 Random Front-End Performance: 2 Client(s) Total Requests (without replies) : 550286
+Stage 1 Random Front-End Performance: 32 Client(s) % Failed : 0.009829184708976436
+Stage 1 Random Front-End Performance: 32 Client(s) % Success : 99.99017081529102
+Stage 1 Random Front-End Performance: 32 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 32 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 32 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
+Stage 1 Random Front-End Performance: 32 Client(s) Goodput (Requests per Second) : 18820.0
+Stage 1 Random Front-End Performance: 32 Client(s) Maximum Response Time (ms) : 22.0
+Stage 1 Random Front-End Performance: 32 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 32 Client(s) Successful Responses : 1129179
+Stage 1 Random Front-End Performance: 32 Client(s) Throughput (Requests per Second) : 18822.0
+Stage 1 Random Front-End Performance: 32 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 32 Client(s) Total Failed Responses : 111
+Stage 1 Random Front-End Performance: 32 Client(s) Total Requests (including replies) : 1129290
+Stage 1 Random Front-End Performance: 32 Client(s) Total Requests (without replies) : 1129290
+Stage 1 Random Front-End Performance: 8 Client(s) % Failed : 0.0029926788193609995
+Stage 1 Random Front-End Performance: 8 Client(s) % Success : 99.99700732118063
+Stage 1 Random Front-End Performance: 8 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 8 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 8 Client(s) Goodput (Requests per Second) : 18378.0
+Stage 1 Random Front-End Performance: 8 Client(s) Maximum Response Time (ms) : 17.0
+Stage 1 Random Front-End Performance: 8 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End Performance: 8 Client(s) Successful Responses : 1102658
+Stage 1 Random Front-End Performance: 8 Client(s) Throughput (Requests per Second) : 18378.0
+Stage 1 Random Front-End Performance: 8 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 8 Client(s) Total Failed Responses : 33
+Stage 1 Random Front-End Performance: 8 Client(s) Total Requests (including replies) : 1102691
+Stage 1 Random Front-End Performance: 8 Client(s) Total Requests (without replies) : 1102691
+Stage 1 Single Front Node Multi-Client Crash : 2.0
+Stage 1 Single Front-End: 1 Client(s) % Failed : 5.346878759524128E-4
+Stage 1 Single Front-End: 1 Client(s) % Success : 99.99946531212404
+Stage 1 Single Front-End: 1 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 6235.0
+Stage 1 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 5.0
+Stage 1 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Single Front-End: 1 Client(s) Successful Responses : 374048
+Stage 1 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 6235.0
+Stage 1 Single Front-End: 1 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 1 Client(s) Total Failed Responses : 2
+Stage 1 Single Front-End: 1 Client(s) Total Requests (including retries) : 374050
+Stage 1 Single Front-End: 1 Client(s) Total Requests (without retries) : 374050
+Stage 1 Single Front-End: 128 Client(s) % Failed : 0.034417427131853494
+Stage 1 Single Front-End: 128 Client(s) % Success : 99.96558257286814
+Stage 1 Single Front-End: 128 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 128 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Single Front-End: 128 Client(s) Goodput (Requests per Second) : 20137.0
+Stage 1 Single Front-End: 128 Client(s) Maximum Response Time (ms) : 19.0
+Stage 1 Single Front-End: 128 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Single Front-End: 128 Client(s) Successful Responses : 1208274
+Stage 1 Single Front-End: 128 Client(s) Throughput (Requests per Second) : 20144.0
+Stage 1 Single Front-End: 128 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 128 Client(s) Total Failed Responses : 416
+Stage 1 Single Front-End: 128 Client(s) Total Requests (including retries) : 1208690
+Stage 1 Single Front-End: 128 Client(s) Total Requests (without retries) : 1208690
+Stage 1 Single Front-End: 2 Client(s) % Failed : 0.0010500382607691269
+Stage 1 Single Front-End: 2 Client(s) % Success : 99.99894996173923
+Stage 1 Single Front-End: 2 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 2 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Single Front-End: 2 Client(s) Goodput (Requests per Second) : 12698.0
+Stage 1 Single Front-End: 2 Client(s) Maximum Response Time (ms) : 4.0
+Stage 1 Single Front-End: 2 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Single Front-End: 2 Client(s) Successful Responses : 761869
+Stage 1 Single Front-End: 2 Client(s) Throughput (Requests per Second) : 12698.0
+Stage 1 Single Front-End: 2 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 2 Client(s) Total Failed Responses : 8
+Stage 1 Single Front-End: 2 Client(s) Total Requests (including retries) : 761877
+Stage 1 Single Front-End: 2 Client(s) Total Requests (without retries) : 761877
+Stage 1 Single Front-End: 32 Client(s) % Failed : 0.008065899245880873
+Stage 1 Single Front-End: 32 Client(s) % Success : 99.99193410075412
+Stage 1 Single Front-End: 32 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 32 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Single Front-End: 32 Client(s) Goodput (Requests per Second) : 19629.0
+Stage 1 Single Front-End: 32 Client(s) Maximum Response Time (ms) : 8.0
+Stage 1 Single Front-End: 32 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Single Front-End: 32 Client(s) Successful Responses : 1177703
+Stage 1 Single Front-End: 32 Client(s) Throughput (Requests per Second) : 19630.0
+Stage 1 Single Front-End: 32 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 32 Client(s) Total Failed Responses : 95
+Stage 1 Single Front-End: 32 Client(s) Total Requests (including retries) : 1177798
+Stage 1 Single Front-End: 32 Client(s) Total Requests (without retries) : 1177798
+Stage 1 Single Front-End: 8 Client(s) % Failed : 0.0027525674142467728
+Stage 1 Single Front-End: 8 Client(s) % Success : 99.99724743258575
+Stage 1 Single Front-End: 8 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 8 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Single Front-End: 8 Client(s) Goodput (Requests per Second) : 19375.0
+Stage 1 Single Front-End: 8 Client(s) Maximum Response Time (ms) : 6.0
+Stage 1 Single Front-End: 8 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Single Front-End: 8 Client(s) Successful Responses : 1162519
+Stage 1 Single Front-End: 8 Client(s) Throughput (Requests per Second) : 19376.0
+Stage 1 Single Front-End: 8 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 8 Client(s) Total Failed Responses : 32
+Stage 1 Single Front-End: 8 Client(s) Total Requests (including retries) : 1162551
+Stage 1 Single Front-End: 8 Client(s) Total Requests (without retries) : 1162551
+Stage 2 Distributed Shutdown Honoured : 2.0
+Stage 2 Random Front-End Basic : 2.0
+Stage 2 Random Front-End: 1 Client(s) % Failed : 3.59837785126465E-4
+Stage 2 Random Front-End: 1 Client(s) % Success : 99.99964016221487
+Stage 2 Random Front-End: 1 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 4632.0
+Stage 2 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 14.0
+Stage 2 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 1 Client(s) Successful Responses : 277902
+Stage 2 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 4632.0
+Stage 2 Random Front-End: 1 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 1 Client(s) Total Failed Responses : 1
+Stage 2 Random Front-End: 1 Client(s) Total Requests (including replies) : 277903
+Stage 2 Random Front-End: 1 Client(s) Total Requests (without replies) : 277903
+Stage 2 Random Front-End: 128 Client(s) % Failed : 0.024432769953587244
+Stage 2 Random Front-End: 128 Client(s) % Success : 99.97556723004641
+Stage 2 Random Front-End: 128 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 128 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 128 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
+Stage 2 Random Front-End: 128 Client(s) Goodput (Requests per Second) : 17527.0
+Stage 2 Random Front-End: 128 Client(s) Maximum Response Time (ms) : 25.0
+Stage 2 Random Front-End: 128 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 128 Client(s) Successful Responses : 1051609
+Stage 2 Random Front-End: 128 Client(s) Throughput (Requests per Second) : 17531.0
+Stage 2 Random Front-End: 128 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 128 Client(s) Total Failed Responses : 257
+Stage 2 Random Front-End: 128 Client(s) Total Requests (including replies) : 1051866
+Stage 2 Random Front-End: 128 Client(s) Total Requests (without replies) : 1051866
+Stage 2 Random Front-End: 2 Client(s) % Failed : 0.0010744466152245503
+Stage 2 Random Front-End: 2 Client(s) % Success : 99.99892555338478
+Stage 2 Random Front-End: 2 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 2 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 2 Client(s) Goodput (Requests per Second) : 9307.0
+Stage 2 Random Front-End: 2 Client(s) Maximum Response Time (ms) : 12.0
+Stage 2 Random Front-End: 2 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 2 Client(s) Successful Responses : 558421
+Stage 2 Random Front-End: 2 Client(s) Throughput (Requests per Second) : 9307.0
+Stage 2 Random Front-End: 2 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 2 Client(s) Total Failed Responses : 6
+Stage 2 Random Front-End: 2 Client(s) Total Requests (including replies) : 558427
+Stage 2 Random Front-End: 2 Client(s) Total Requests (without replies) : 558427
+Stage 2 Random Front-End: 32 Client(s) % Failed : 0.010262815037981113
+Stage 2 Random Front-End: 32 Client(s) % Success : 99.98973718496202
+Stage 2 Random Front-End: 32 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 32 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 32 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
+Stage 2 Random Front-End: 32 Client(s) Goodput (Requests per Second) : 19161.0
+Stage 2 Random Front-End: 32 Client(s) Maximum Response Time (ms) : 15.0
+Stage 2 Random Front-End: 32 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 32 Client(s) Successful Responses : 1149664
+Stage 2 Random Front-End: 32 Client(s) Throughput (Requests per Second) : 19163.0
+Stage 2 Random Front-End: 32 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 32 Client(s) Total Failed Responses : 118
+Stage 2 Random Front-End: 32 Client(s) Total Requests (including replies) : 1149782
+Stage 2 Random Front-End: 32 Client(s) Total Requests (without replies) : 1149782
+Stage 2 Random Front-End: 8 Client(s) % Failed : 0.0031670568179041868
+Stage 2 Random Front-End: 8 Client(s) % Success : 99.9968329431821
+Stage 2 Random Front-End: 8 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 8 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 8 Client(s) Goodput (Requests per Second) : 18418.0
+Stage 2 Random Front-End: 8 Client(s) Maximum Response Time (ms) : 14.0
+Stage 2 Random Front-End: 8 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 8 Client(s) Successful Responses : 1105092
+Stage 2 Random Front-End: 8 Client(s) Throughput (Requests per Second) : 18419.0
+Stage 2 Random Front-End: 8 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 8 Client(s) Total Failed Responses : 35
+Stage 2 Random Front-End: 8 Client(s) Total Requests (including replies) : 1105127
+Stage 2 Random Front-End: 8 Client(s) Total Requests (without replies) : 1105127
+Stage 2 Single Front-End: 1 Client(s) % Failed : 5.260638325854459E-4
+Stage 2 Single Front-End: 1 Client(s) % Success : 99.99947393616742
+Stage 2 Single Front-End: 1 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 6337.0
+Stage 2 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 6.0
+Stage 2 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Single Front-End: 1 Client(s) Successful Responses : 380180
+Stage 2 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 6337.0
+Stage 2 Single Front-End: 1 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 1 Client(s) Total Failed Responses : 2
+Stage 2 Single Front-End: 1 Client(s) Total Requests (including retries) : 380182
+Stage 2 Single Front-End: 1 Client(s) Total Requests (without retries) : 380182
+Stage 2 Single Front-End: 128 Client(s) % Failed : 0.032194544896415926
+Stage 2 Single Front-End: 128 Client(s) % Success : 99.96780545510359
+Stage 2 Single Front-End: 128 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 128 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Single Front-End: 128 Client(s) Goodput (Requests per Second) : 20028.0
+Stage 2 Single Front-End: 128 Client(s) Maximum Response Time (ms) : 16.0
+Stage 2 Single Front-End: 128 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Single Front-End: 128 Client(s) Successful Responses : 1201680
+Stage 2 Single Front-End: 128 Client(s) Throughput (Requests per Second) : 20034.0
+Stage 2 Single Front-End: 128 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 128 Client(s) Total Failed Responses : 387
+Stage 2 Single Front-End: 128 Client(s) Total Requests (including retries) : 1202067
+Stage 2 Single Front-End: 128 Client(s) Total Requests (without retries) : 1202067
+Stage 2 Single Front-End: 2 Client(s) % Failed : 9.2427787490031E-4
+Stage 2 Single Front-End: 2 Client(s) % Success : 99.9990757221251
+Stage 2 Single Front-End: 2 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 2 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Single Front-End: 2 Client(s) Goodput (Requests per Second) : 12623.0
+Stage 2 Single Front-End: 2 Client(s) Maximum Response Time (ms) : 3.0
+Stage 2 Single Front-End: 2 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Single Front-End: 2 Client(s) Successful Responses : 757341
+Stage 2 Single Front-End: 2 Client(s) Throughput (Requests per Second) : 12623.0
+Stage 2 Single Front-End: 2 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 2 Client(s) Total Failed Responses : 7
+Stage 2 Single Front-End: 2 Client(s) Total Requests (including retries) : 757348
+Stage 2 Single Front-End: 2 Client(s) Total Requests (without retries) : 757348
+Stage 2 Single Front-End: 32 Client(s) % Failed : 0.008638265503380246
+Stage 2 Single Front-End: 32 Client(s) % Success : 99.99136173449662
+Stage 2 Single Front-End: 32 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 32 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Single Front-End: 32 Client(s) Goodput (Requests per Second) : 19871.0
+Stage 2 Single Front-End: 32 Client(s) Maximum Response Time (ms) : 13.0
+Stage 2 Single Front-End: 32 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Single Front-End: 32 Client(s) Successful Responses : 1192266
+Stage 2 Single Front-End: 32 Client(s) Throughput (Requests per Second) : 19873.0
+Stage 2 Single Front-End: 32 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 32 Client(s) Total Failed Responses : 103
+Stage 2 Single Front-End: 32 Client(s) Total Requests (including retries) : 1192369
+Stage 2 Single Front-End: 32 Client(s) Total Requests (without retries) : 1192369
+Stage 2 Single Front-End: 8 Client(s) % Failed : 0.0030166900531971744
+Stage 2 Single Front-End: 8 Client(s) % Success : 99.9969833099468
+Stage 2 Single Front-End: 8 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 8 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Single Front-End: 8 Client(s) Goodput (Requests per Second) : 19336.0
+Stage 2 Single Front-End: 8 Client(s) Maximum Response Time (ms) : 9.0
+Stage 2 Single Front-End: 8 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Single Front-End: 8 Client(s) Successful Responses : 1160177
+Stage 2 Single Front-End: 8 Client(s) Throughput (Requests per Second) : 19337.0
+Stage 2 Single Front-End: 8 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 8 Client(s) Total Failed Responses : 35
+Stage 2 Single Front-End: 8 Client(s) Total Requests (including retries) : 1160212
+Stage 2 Single Front-End: 8 Client(s) Total Requests (without retries) : 1160212
+Test Crash; % Keys Failed : 0.0
+Test Crash; Key Recovery : 2.0
+Test Start Time : Wed Mar 01 02:08:01 PST 2023
+Result Verification Code : 0A00FA87D24F18119CB4E1D6CCA1D9E2
+[Info] Completed A7 Tests.
+Testing completed in 1565.411s
