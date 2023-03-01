@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
+import static com.g2.CPEN431.A7.AddressPair.bytesToHex;
 import static com.g2.CPEN431.A7.App.MAX_INCOMING_PACKET_SIZE;
 
 public class ConsistentHash {
@@ -15,12 +16,13 @@ public class ConsistentHash {
     private DatagramSocket socket;
 
     // Ring where key is hash cutoff for the node and value is the ip and port of the node
-    private TreeMap<Integer, AddressPair> nodeRing = new TreeMap<>();
+    private TreeMap<String, AddressPair> nodeRing = new TreeMap<>();
 
     public ConsistentHash(int port) {
         this.port = port;
         try {
             socket = new DatagramSocket(50000 + port);
+            socket.setSoTimeout(10000);
         } catch (SocketException e) {
             throw new RuntimeException(e);
         }
@@ -31,8 +33,8 @@ public class ConsistentHash {
      * @param addressPair: The ip and the port of the node
      */
     public void addNode(AddressPair addressPair) {
-        System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hashCode());
-        nodeRing.put(Objects.hashCode(addressPair), addressPair);
+        System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hash());
+        nodeRing.put(addressPair.hash(), addressPair);
     }
 
     /**
@@ -46,8 +48,8 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(key.hashCode());
-        System.out.println("Key " + key + " should be directed to entry: " + (nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue()));
+        Map.Entry<String, AddressPair> nextEntry = nodeRing.higherEntry(bytesToHex(key.toByteArray()));
+        System.out.println("[" + port + "]: Key " + bytesToHex(key.toByteArray()) + " should be directed to " + (nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue()));
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
@@ -60,17 +62,23 @@ public class ConsistentHash {
     public DatagramPacket callNode(DatagramPacket packet, AddressPair nodeAddress) {
         DatagramPacket forwardedPacket = null;
         // System.out.println("calling node at ip: " + nodeAddress.getIp() + ", port: " + nodeAddress.getPort());
-        try {
-            // nodeAddress.getIp()
-            socket.send(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
-            byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
-            forwardedPacket = new DatagramPacket(buf, buf.length);
-            System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
-            socket.receive(forwardedPacket);
-            System.out.println("[" + port + "]: received packet");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < 5; i++) {
+            try {
+                // nodeAddress.getIp()
+                socket.send(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
+                byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
+                forwardedPacket = new DatagramPacket(buf, buf.length);
+                System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
+                socket.receive(forwardedPacket);
+                System.out.println("[" + port + "]: received packet");
+            } catch (IOException e) {
+                continue;
+                // throw new RuntimeException(e);
+            }
+
+            return forwardedPacket;
         }
+
 
         return forwardedPacket;
     }
