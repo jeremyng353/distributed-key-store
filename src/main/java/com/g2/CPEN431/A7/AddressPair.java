@@ -1,5 +1,7 @@
 package com.g2.CPEN431.A7;
 
+import java.util.Objects;
+
 public class AddressPair {
     private String ip;
     private int port;
@@ -15,5 +17,23 @@ public class AddressPair {
 
     public int getPort() {
         return port;
+    }
+
+    @Override
+    public String toString() {
+        return ip + ":" + port;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressPair that = (AddressPair) o;
+        return port == that.port && Objects.equals(ip, that.ip);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ip + port) % 256;
     }
 }

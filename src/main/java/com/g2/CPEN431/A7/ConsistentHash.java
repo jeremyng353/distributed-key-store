@@ -31,6 +31,7 @@ public class ConsistentHash {
      * @param addressPair: The ip and the port of the node
      */
     public void addNode(AddressPair addressPair) {
+        System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hashCode());
         nodeRing.put(Objects.hashCode(addressPair), addressPair);
     }
 
@@ -46,6 +47,7 @@ public class ConsistentHash {
 
         // match hash of key to the least entry that has a strictly greater key
         Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(key.hashCode());
+        System.out.println("Key " + key + " should be directed to entry: " + (nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue()));
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
@@ -63,9 +65,9 @@ public class ConsistentHash {
             socket.send(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
             byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
             forwardedPacket = new DatagramPacket(buf, buf.length);
-            System.out.println("waiting for packet");
+            System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
             socket.receive(forwardedPacket);
-            System.out.println("received packet");
+            System.out.println("[" + port + "]: received packet");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
