@@ -1,12 +1,15 @@
 package com.g2.CPEN431.A7;
 
+import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.nio.ByteBuffer;
+import java.util.*;
+import java.util.concurrent.TimeoutException;
+import java.util.zip.CRC32;
 
 import static com.g2.CPEN431.A7.App.MAX_INCOMING_PACKET_SIZE;
 
@@ -16,6 +19,8 @@ public class ConsistentHash {
 
     // Ring where key is hash cutoff for the node and value is the ip and port of the node
     private TreeMap<Integer, AddressPair> nodeRing = new TreeMap<>();
+    private Queue<DatagramPacket> queue = new LinkedList<>();
+    private final int TIMEOUT = 100;
 
     public ConsistentHash(int port) {
         this.port = port;
@@ -62,16 +67,51 @@ public class ConsistentHash {
         // System.out.println("calling node at ip: " + nodeAddress.getIp() + ", port: " + nodeAddress.getPort());
         try {
             // nodeAddress.getIp()
-            socket.send(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
-            byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
-            forwardedPacket = new DatagramPacket(buf, buf.length);
-            System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
-            socket.receive(forwardedPacket);
-            System.out.println("[" + port + "]: received packet");
+            queue.add(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
+            while(!queue.isEmpty()){
+                try {
+                    socket.send(queue.remove());
+                    socket.setSoTimeout(TIMEOUT);
+                    byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
+                    forwardedPacket = new DatagramPacket(buf, buf.length);
+                    System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
+                    socket.receive(forwardedPacket);
+                    System.out.println("[" + port + "]: received packet");
+                    readRequest(forwardedPacket);
+                    System.out.println("received a forwarded packet that is not corrupt");
+                } catch (PacketCorruptionException e) {
+                    System.out.println("the packet is corrupt, putting it back in the queue");
+                    queue.add(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
+                } catch (SocketTimeoutException e){
+                    System.out.println("timeout, putting it back in the queue");
+                    queue.add(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
+                }
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         return forwardedPacket;
+    }
+
+    private static long buildChecksum(ByteString messageID, ByteString payload) {
+        CRC32 checksum = new CRC32();
+        ByteBuffer buf = ByteBuffer.allocate(messageID.size() + payload.size());
+
+        buf.put(messageID.toByteArray());
+        buf.put(payload.toByteArray());
+        checksum.update(buf.array());
+
+        return checksum.getValue();
+    }
+    private static void readRequest(DatagramPacket packet) throws InvalidProtocolBufferException, PacketCorruptionException {
+        // Truncate data to match correct data length
+        byte[] data = Arrays.copyOfRange(packet.getData(), 0, packet.getLength());
+        Message.Msg message = Message.Msg.parseFrom(data);
+
+        // Verify the messageID and the checksum is correct
+        if (message.getCheckSum() != buildChecksum(message.getMessageID(), message.getPayload())) {
+            throw new PacketCorruptionException();
+        }
     }
 }
