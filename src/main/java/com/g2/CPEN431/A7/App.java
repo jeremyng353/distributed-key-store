@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class App
 {
@@ -33,10 +35,18 @@ public class App
             consistentHash.addNode(new AddressPair(ip, Integer.parseInt(nodePort)));
         }
 
-        //create a thread to monitor the other servers in the system
         MemberMonitor memberMonitor = new MemberMonitor(new ArrayList<>());
-        Thread monitorThread = new Thread(memberMonitor);
-        monitorThread.start();
+        //create a thread to monitor the other servers in the system
+        TimerTask pullEpidemic = new TimerTask() {
+            @Override
+            public void run() {
+                memberMonitor.run();
+            }
+        };
+        Timer timer = new Timer("Send Timer");
+        timer.schedule(pullEpidemic, 3000);
+//        Thread monitorThread = new Thread(memberMonitor);
+//        monitorThread.start();
 
         // print listening port to console
         int localPort = socket.getLocalPort();

@@ -37,10 +37,10 @@ public class MemberMonitor implements Runnable{
     }
 
     @Override
-    public run() {
-        TimerTask pullEpidemic = new TimerTask() {
-            @Override
-            public void run() {
+    public void run() {
+//        TimerTask pullEpidemic = new TimerTask() {
+//            @Override
+//            public void run() {
                 // grab a random node from the nodeStore at random, and pull its status
                 // update the nodeStore if the value received is older than what is saved
                 // if no value is returned past the timeout, then check if the node is past the FULL_INFECTION_TIME limit
@@ -81,16 +81,11 @@ public class MemberMonitor implements Runnable{
                     e.printStackTrace();
                 }
             }
-        };
+//        };
 
-        Timer timer = new Timer("Send Timer");
-        timer.schedule(pullEpidemic, 3000);
-
-        while (true) {
-            //listen for other nodes
-        }
-
-    }
+//        Timer timer = new Timer("Send Timer");
+//        timer.schedule(pullEpidemic, 3000);
+//    }
 
     public Map<AddressPair, LocalDateTime> getMembershipInfo() {
         return this.nodeStore;
