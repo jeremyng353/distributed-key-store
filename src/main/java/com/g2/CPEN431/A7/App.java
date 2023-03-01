@@ -59,7 +59,7 @@ public class App
 
         Server server = new Server(port, consistentHash, memberMonitor);
 
-        while(true) {
+        while (true) {
             try {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
 
@@ -80,20 +80,24 @@ public class App
                 int packetPort = packet.getPort();
                 InetAddress address = packet.getAddress();
 
+                if (message.hasClientPort() && message.hasClientIp()) {
+                    packetPort = message.getClientPort();
+                    address = InetAddress.getByName(message.getClientIp());
+                }
+
                 if (kvResponse instanceof DatagramPacket) {
                     packet = new DatagramPacket(((DatagramPacket) kvResponse).getData(), ((DatagramPacket) kvResponse).getLength(), address, packetPort);
-                } else {
+                    socket.send(packet);
+                } else if (kvResponse instanceof ByteString) {
                     // build checksum and response message
                     long checksum = Server.buildChecksum(message.getMessageID(), (ByteString) kvResponse);
                     byte[] resMessage = Server.buildMessage(message.getMessageID(), (ByteString) kvResponse, checksum);
 
                     // load message into packet to send back to client
                     packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
-                    // System.out.println("not instance of datagrampacket");
+                    socket.send(packet);
                 }
 
-                // System.out.println("Node " + port + " is sending the packet now");
-                socket.send(packet);
             } catch (PacketCorruptionException e) {
                 System.out.println("the packet is corrupt");
             }

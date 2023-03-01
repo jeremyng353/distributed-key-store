@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.*;
-import java.util.concurrent.TimeoutException;
 import java.util.zip.CRC32;
-
-import static com.g2.CPEN431.A7.App.MAX_INCOMING_PACKET_SIZE;
 
 public class ConsistentHash {
     public int port;
@@ -51,7 +48,7 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(key.hashCode());
+        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()) % 256);
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
@@ -63,38 +60,23 @@ public class ConsistentHash {
      * This function forwards a request from this node to another node
      * @param packet: The packet to be forwarded to another node
      * @param nodeAddress: The address of the node to forward the packet to
-     * @return A DatagramPacket containing the response from the other node
      */
-    public DatagramPacket callNode(DatagramPacket packet, AddressPair nodeAddress) {
-        DatagramPacket forwardedPacket = null;
-        // System.out.println("calling node at ip: " + nodeAddress.getIp() + ", port: " + nodeAddress.getPort());
+    public void callNode(DatagramPacket packet, AddressPair nodeAddress) {
         try {
-            // nodeAddress.getIp()
-            queue.add(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
-            while(!queue.isEmpty()){
-                try {
-                    socket.send(queue.remove());
-                    socket.setSoTimeout(TIMEOUT);
-                    byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
-                    forwardedPacket = new DatagramPacket(buf, buf.length);
-//                    System.out.println("[" + port + "]: waiting for packet sent to port: " + nodeAddress.getPort());
-                    socket.receive(forwardedPacket);
-//                    System.out.println("[" + port + "]: received packet");
-                    readRequest(forwardedPacket);
-//                    System.out.println("received a forwarded packet that is not corrupt");
-                } catch (PacketCorruptionException e) {
-                    System.out.println("the packet is corrupt, putting it back in the queue");
-                    queue.add(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
-                } catch (SocketTimeoutException e){
-                    System.out.println("timeout, putting it back in the queue");
-                    queue.add(new DatagramPacket(packet.getData(), packet.getLength(), InetAddress.getByName("localhost"), nodeAddress.getPort()));
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            Message.Msg message = Server.readRequest(packet);
+            Message.Msg forwardMessage = Message.Msg.newBuilder(message)
+                    .setClientIp(packet.getAddress().getHostAddress())
+                    .setClientPort(packet.getPort())
+                    .build();
+            DatagramPacket forwardPacket = new DatagramPacket(
+                    forwardMessage.toByteArray(),
+                    forwardMessage.toByteArray().length,
+                    InetAddress.getByName("localhost"),
+                    nodeAddress.getPort());
+            socket.send(forwardPacket);
+        } catch (IOException | PacketCorruptionException e) {
+            e.printStackTrace();
         }
-
-        return forwardedPacket;
     }
 
     private static long buildChecksum(ByteString messageID, ByteString payload) {

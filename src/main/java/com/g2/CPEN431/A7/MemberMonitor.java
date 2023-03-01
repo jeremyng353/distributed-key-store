@@ -11,7 +11,7 @@ import java.util.*;
 
 import static com.g2.CPEN431.A7.Server.GET_MS_LIST;
 
-public class MemberMonitor implements Runnable{
+public class MemberMonitor implements Runnable {
 
     // A HashMap to store node information
     private final HashMap<AddressPair, Long> nodeStore;

@@ -9,14 +9,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Member;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -217,7 +212,8 @@ public class Server {
 
                 // call another node to handle the request
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
-                return consistentHash.callNode(packet, nodeAddress);
+                consistentHash.callNode(packet, nodeAddress);
+                return null;
             }
             case GET -> {
                 // determine which node should handle request
@@ -236,7 +232,8 @@ public class Server {
                 }
 
                 // call another node to handle the request
-                return consistentHash.callNode(packet, nodeAddress);
+                consistentHash.callNode(packet, nodeAddress);
+                return null;
             }
             case REMOVE -> {
                 // determine which node should handle request
@@ -251,7 +248,8 @@ public class Server {
                 }
 
                 // call another node to handle the request
-                return consistentHash.callNode(packet, nodeAddress);
+                consistentHash.callNode(packet, nodeAddress);
+                return null;
             }
             case SHUTDOWN -> {
                 status = Memory.shutdown();

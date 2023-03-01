@@ -1,5 +1,9 @@
 package com.g2.CPEN431.A7;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class AddressPair {
@@ -40,6 +44,11 @@ public class AddressPair {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ip + port) % 256;
+        try {
+            return Math.abs(new BigInteger(MessageDigest.getInstance("SHA-256").digest((ip + port).getBytes(StandardCharsets.UTF_8))).intValue()) % 256;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
