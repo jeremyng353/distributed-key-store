@@ -46,12 +46,12 @@ public class MemberMonitor implements Runnable {
         Set<AddressPair> nodes = nodeStore.keySet();
         int index = random.nextInt(nodes.size());
         AddressPair node = (AddressPair) nodes.toArray()[index];
-
-        for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
-            if (isDead(entry.getKey())) {
-                consistentHash.removeNode(entry.getKey());
-            }
-        }
+//
+//        for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
+//            if (isDead(entry.getKey())) {
+//                consistentHash.removeNode(entry.getKey());
+//            }
+//        }
 
         // Make sure it's not trying to contact itself or a dead node
         while (node.equals(self) || isDead(node)) {
