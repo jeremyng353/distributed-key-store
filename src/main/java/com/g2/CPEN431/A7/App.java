@@ -11,6 +11,8 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.g2.CPEN431.A7.MemberMonitor.DEFAULT_INTERVAL;
+
 public class App
 {
     public static final int MAX_INCOMING_PACKET_SIZE = 16 * 1024;   // 16 kilobyte buffer to receive packets
@@ -48,7 +50,7 @@ public class App
             }
         };
         Timer timer = new Timer("Send Timer");
-        timer.scheduleAtFixedRate(pullEpidemic, 3000, 3000);
+        timer.scheduleAtFixedRate(pullEpidemic, DEFAULT_INTERVAL, DEFAULT_INTERVAL);
 
         // print listening port to console
         int localPort = socket.getLocalPort();

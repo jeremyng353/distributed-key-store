@@ -21,7 +21,7 @@ public class MemberMonitor implements Runnable {
     private final ConsistentHash consistentHash;
 
     //dummy time until we set the amount of nodes
-    final int DEFAULT_INTERVAL = 100;
+    public static final int DEFAULT_INTERVAL = 100;
     final int NUM_NODES = 20;
     final int SAFETY_MARGIN = 10000;
 
