@@ -90,8 +90,8 @@ public class MemberMonitor implements Runnable {
                             }
                         }
                     } else {
-                        System.out.println("No response from node " + node + ", it may be dead!");
-                        consistentHash.removeNode(node);
+                        System.out.println("No response from node " + node + ", it may be dead?");
+//                        consistentHash.removeNode(node);
                     }
 
                 } catch (UnknownHostException e) {
