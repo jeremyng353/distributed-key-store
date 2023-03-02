@@ -3,7 +3,7 @@
 **Verification Code:** 
 
 **Used Run Command:**
-sh start.sh
+./start.sh
 
 **Brief Description:** 
 We use a TreeMap for Consistent Hashing. Forwarding to other nodes is using UDPClient Protocols from A2.
