@@ -23,7 +23,7 @@ public class MemberMonitor implements Runnable {
     //dummy time until we set the amount of nodes
     public static final int DEFAULT_INTERVAL = 500;
     final int NUM_NODES = 20;
-    final int SAFETY_MARGIN = 3000;
+    final int SAFETY_MARGIN = 5;
 
     public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new HashMap<>();
@@ -47,6 +47,11 @@ public class MemberMonitor implements Runnable {
         int index = random.nextInt(nodes.size());
         AddressPair node = (AddressPair) nodes.toArray()[index];
 
+        for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
+            if (isDead(entry.getKey())) {
+                consistentHash.removeNode(entry.getKey());
+            }
+        }
 
         // Make sure it's not trying to contact itself or a dead node
         while (node.equals(self) || isDead(node)) {
@@ -75,7 +80,6 @@ public class MemberMonitor implements Runnable {
                             // Note that we're using system default time zone, which we'll need to keep in mind when we check if a node is alive
                             nodeStore.put(checkAddressPair, checkLastAlive);
                         }));
-//                        System.out.println("[" + self.getPort() + "]: " + nodeStore);
                 for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
                     if (isDead(entry.getKey())) {
 //                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
@@ -84,7 +88,7 @@ public class MemberMonitor implements Runnable {
                 }
             } else {
 //                System.out.println("No response from node " + node + ", it may be dead?");
-//                        consistentHash.removeNode(node);
+                        consistentHash.removeNode(node);
             }
 
         } catch (UnknownHostException e) {
