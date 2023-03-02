@@ -84,6 +84,17 @@ public class App
                     address = InetAddress.getByName(message.getClientIp());
                 }
 
+                if (kvResponse != null) {
+                    // build checksum and response message
+                    long checksum = Server.buildChecksum(message.getMessageID(), (ByteString) kvResponse);
+                    byte[] resMessage = Server.buildMessage(message.getMessageID(), (ByteString) kvResponse, checksum);
+
+                    // load message into packet to send back to client
+                    packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
+                    socket.send(packet);
+                }
+
+                /*
                 if (kvResponse instanceof DatagramPacket) {
                     packet = new DatagramPacket(((DatagramPacket) kvResponse).getData(), ((DatagramPacket) kvResponse).getLength(), address, packetPort);
                     socket.send(packet);
@@ -96,6 +107,8 @@ public class App
                     packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
                     socket.send(packet);
                 }
+
+                 */
 
             } catch (PacketCorruptionException e) {
                 System.out.println("the packet is corrupt");
