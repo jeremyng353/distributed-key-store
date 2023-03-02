@@ -21,9 +21,9 @@ public class MemberMonitor implements Runnable {
     private final ConsistentHash consistentHash;
 
     //dummy time until we set the amount of nodes
-    public static final int DEFAULT_INTERVAL = 3000;
+    public static final int DEFAULT_INTERVAL = 500;
     final int NUM_NODES = 20;
-    final int SAFETY_MARGIN = 6000;
+    final int SAFETY_MARGIN = 3000;
 
     public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new HashMap<>();
