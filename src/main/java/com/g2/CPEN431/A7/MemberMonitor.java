@@ -21,9 +21,9 @@ public class MemberMonitor implements Runnable {
     private final ConsistentHash consistentHash;
 
     //dummy time until we set the amount of nodes
-    public static final int DEFAULT_INTERVAL = 100;
+    public static final int DEFAULT_INTERVAL = 1000;
     final int NUM_NODES = 20;
-    final int SAFETY_MARGIN = 95;
+    final int SAFETY_MARGIN = 6;
 
     public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new HashMap<>();
@@ -54,7 +54,7 @@ public class MemberMonitor implements Runnable {
 //        }
 
         // Make sure it's not trying to contact itself or a dead node
-        while (node.equals(self) || isDead(node)) {
+        while (node.equals(self)) {
             index = random.nextInt(nodes.size());
             node = (AddressPair) nodes.toArray()[index];
         }
