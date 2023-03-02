@@ -17,6 +17,16 @@ public class UDPClient {
     private static final int MAX_RETRIES = 3;
     private static final int DEFAULT_TIMEOUT = 100;
 
+    private DatagramSocket socket = null;
+
+    public UDPClient() {
+        try {
+            socket = new DatagramSocket();
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Message.Msg request(InetAddress address, int port, byte[] buf) {
         return request(address, port, buf, DEFAULT_TIMEOUT);
     }
@@ -34,12 +44,9 @@ public class UDPClient {
     public Message.Msg request(InetAddress address, int port, byte[] payload, int timeout) {
         byte[] uuid = null;
         int current_timeout = timeout;
-
         for (int i = 0; i <= MAX_RETRIES; i++) {
             try {
-                DatagramSocket socket = new DatagramSocket();
                 socket.setSoTimeout(current_timeout);
-
                 // Build request payload
                 if (uuid == null) {
                     uuid = generateUUID(address, port);

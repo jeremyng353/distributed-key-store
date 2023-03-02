@@ -260,7 +260,6 @@ public class Server {
                 status = Memory.erase();
                 RequestCache.erase();
                 response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
                 return response;
             }
             case IS_ALIVE -> {

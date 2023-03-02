@@ -20,12 +20,11 @@ public class App
 
     public static void main( String[] args ) throws IOException {
         // multiple nodes on one ec2 instance --> create multiple sockets, do in another branch
-        String currentIp = args[0];
-        int port = Integer.parseInt(args[1]);
+        // String currentIp = args[0];
+        int port = Integer.parseInt(args[0]);
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
-        // TODO: add nodes to consistentHash, maybe hardcode in a txt file?
         ConsistentHash consistentHash = new ConsistentHash(port);
 
         File nodeList = new File("nodes.txt");
@@ -39,6 +38,7 @@ public class App
             initialNodes.add(addressPair);
         }
 
+        /*
         MemberMonitor memberMonitor = new MemberMonitor(initialNodes, new AddressPair(currentIp, port), consistentHash);
         //create a thread to monitor the other servers in the system
         TimerTask pullEpidemic = new TimerTask() {
@@ -52,12 +52,14 @@ public class App
 //        Thread monitorThread = new Thread(memberMonitor);
 //        monitorThread.start();
 
+         */
+
         // print listening port to console
         int localPort = socket.getLocalPort();
         String localAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
 
-        Server server = new Server(port, consistentHash, memberMonitor);
+        Server server = new Server(port, consistentHash, null);
 
         while (true) {
             try {
