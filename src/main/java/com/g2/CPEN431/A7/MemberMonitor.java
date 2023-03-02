@@ -78,7 +78,7 @@ public class MemberMonitor implements Runnable {
 //                        System.out.println("[" + self.getPort() + "]: " + nodeStore);
                 for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
                     if (isDead(entry.getKey())) {
-                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
+//                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
                         consistentHash.removeNode(entry.getKey());
                     }
                 }
