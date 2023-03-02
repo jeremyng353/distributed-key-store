@@ -17,6 +17,18 @@ public class UDPClient {
     private static final int MAX_RETRIES = 3;
     private static final int DEFAULT_TIMEOUT = 100;
 
+    private DatagramSocket socket = null;
+
+    public UDPClient() {
+        try {
+            this.socket = new DatagramSocket();
+            socket.setSoTimeout(DEFAULT_TIMEOUT);
+        } catch (IOException e) {
+            System.err.println("Couldn't open socket!");
+            e.printStackTrace();
+        }
+    }
+
     public Message.Msg request(InetAddress address, int port, byte[] buf) {
         return request(address, port, buf, DEFAULT_TIMEOUT);
     }
@@ -33,16 +45,20 @@ public class UDPClient {
      */
     public Message.Msg request(InetAddress address, int port, byte[] payload, int timeout) {
         byte[] uuid = null;
+
         int current_timeout = timeout;
 
         for (int i = 0; i <= MAX_RETRIES; i++) {
             try {
-                DatagramSocket socket = new DatagramSocket();
-                socket.setSoTimeout(current_timeout);
-
                 // Build request payload
                 if (uuid == null) {
                     uuid = generateUUID(address, port);
+                }
+
+                try {
+                    socket.setSoTimeout(current_timeout);
+                } catch (SocketException e) {
+                    e.printStackTrace();
                 }
 
                 byte[] checksumByteArray = concatenateByteArrays(uuid, payload);
@@ -70,15 +86,15 @@ public class UDPClient {
                 byte[] receivedUUID = rcvMessage.getMessageID().toByteArray();
 
                 if (!validateChecksum(rcvMessage)) {
-                    System.out.println("Received packet with corrupted data. Retrying " + (i + 1) + " of " + MAX_RETRIES);
+//                    System.out.println("Received packet with corrupted data. Retrying " + (i + 1) + " of " + MAX_RETRIES);
                 } else if (!Arrays.equals(receivedUUID, uuid)) {
-                    System.out.println("Received corrupted packet. Retrying " + (i + 1) + " of " + MAX_RETRIES);
+//                    System.out.println("Received corrupted packet. Retrying " + (i + 1) + " of " + MAX_RETRIES);
                 } else {
                     return rcvMessage;
                 }
             } catch (SocketTimeoutException e) {
                 if (i < MAX_RETRIES) {
-                    System.out.println("Socket timed out. Retrying " + (i + 1) + " of " + MAX_RETRIES);
+//                    System.out.println("Socket timed out. Retrying " + (i + 1) + " of " + MAX_RETRIES);
                     current_timeout *= 2;
                 }
             } catch (IOException e) {
@@ -87,7 +103,7 @@ public class UDPClient {
             }
         }
 
-        System.err.println("Could not receive a response after " + MAX_RETRIES + " retries");
+//        System.err.println("Could not receive a response after " + MAX_RETRIES + " retries");
         return null;
     }
 

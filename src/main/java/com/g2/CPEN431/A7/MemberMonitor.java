@@ -21,9 +21,9 @@ public class MemberMonitor implements Runnable {
     private final ConsistentHash consistentHash;
 
     //dummy time until we set the amount of nodes
-    final int DEFAULT_INTERVAL = 3000;
+    final int DEFAULT_INTERVAL = 100;
     final int NUM_NODES = 20;
-    final int SAFETY_MARGIN = 6000;
+    final int SAFETY_MARGIN = 10000;
 
     public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new HashMap<>();
@@ -40,68 +40,61 @@ public class MemberMonitor implements Runnable {
 
     @Override
     public void run() {
-//        TimerTask pullEpidemic = new TimerTask() {
-//            @Override
-//            public void run() {
-                // grab a random node from the nodeStore at random, and pull its status
-                // update the nodeStore if the value received is older than what is saved
-                // if no value is returned past the timeout, then check if the node is past the FULL_INFECTION_TIME limit
-                    // if so, nodeStore.get(randomNode.InetAddress).setBoolean(false)
+        // Update itself in the nodestore to be the latest time
+        nodeStore.put(self, System.currentTimeMillis());
 
-                // Update itself in the nodestore to be the latest time
-                nodeStore.put(self, System.currentTimeMillis());
+        Set<AddressPair> nodes = nodeStore.keySet();
+        int index = random.nextInt(nodes.size());
+        AddressPair node = (AddressPair) nodes.toArray()[index];
 
-                Set<AddressPair> nodes = nodeStore.keySet();
-                int index = random.nextInt(nodes.size());
-                AddressPair node = (AddressPair) nodes.toArray()[index];
 
-                // Make sure it's not trying to contact itself or a dead node
-                while (node.equals(self) || isDead(node)) {
-                    index = random.nextInt(nodes.size());
-                    node = (AddressPair) nodes.toArray()[index];
-                }
+        // Make sure it's not trying to contact itself or a dead node
+        while (node.equals(self) || isDead(node)) {
+            index = random.nextInt(nodes.size());
+            node = (AddressPair) nodes.toArray()[index];
+        }
 
-                KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.newBuilder()
-                        .setCommand(GET_MS_LIST)
-                        .build();
+        KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(GET_MS_LIST)
+                .build();
 
-                try {
-                    Message.Msg nodeResponse = udpClient.request(
-                            // TODO: Replace this with the node IP
-                            InetAddress.getByName("localhost"),
-                            node.getPort(),
-                            kvRequest.toByteArray());
-                    if (nodeResponse != null) {
-                        KeyValueResponse.KVResponse.parseFrom(nodeResponse.getPayload())
-                                .getMembershipInfoList()
-                                .forEach((membershipInfo -> {
-                                    AddressPair checkAddressPair = new AddressPair(membershipInfo.getAddressPair());
-                                    long checkLastAlive = Math.max(
-                                            membershipInfo.getTime(),
-                                            nodeStore.get(checkAddressPair));
-                                    // Note that we're using system default time zone, which we'll need to keep in mind when we check if a node is alive
-                                    nodeStore.put(checkAddressPair, checkLastAlive);
-                                }));
+        try {
+            Message.Msg nodeResponse = udpClient.request(
+                    // TODO: Replace this with the node IP
+                    InetAddress.getByName("localhost"),
+                    node.getPort(),
+                    kvRequest.toByteArray());
+            if (nodeResponse != null) {
+                KeyValueResponse.KVResponse.parseFrom(nodeResponse.getPayload())
+                        .getMembershipInfoList()
+                        .forEach((membershipInfo -> {
+                            AddressPair checkAddressPair = new AddressPair(membershipInfo.getAddressPair());
+                            long checkLastAlive = Math.max(
+                                    membershipInfo.getTime(),
+                                    nodeStore.get(checkAddressPair));
+                            // Note that we're using system default time zone, which we'll need to keep in mind when we check if a node is alive
+                            nodeStore.put(checkAddressPair, checkLastAlive);
+                        }));
 //                        System.out.println("[" + self.getPort() + "]: " + nodeStore);
-                        for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
-                            if (isDead(entry.getKey())) {
-                                System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
-                                consistentHash.removeNode(entry.getKey());
-                            }
-                        }
-                    } else {
-                        System.out.println("No response from node " + node + ", it may be dead?");
-//                        consistentHash.removeNode(node);
+                for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
+                    if (isDead(entry.getKey())) {
+                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
+                        consistentHash.removeNode(entry.getKey());
                     }
-
-                } catch (UnknownHostException e) {
-                    System.err.println("Error while getting IP for node: " + node.getIp());
-                    e.printStackTrace();
-                } catch (InvalidProtocolBufferException e) {
-                    System.err.println("Couldn't parse protocol buffer");
-                    e.printStackTrace();
                 }
+            } else {
+//                System.out.println("No response from node " + node + ", it may be dead?");
+//                        consistentHash.removeNode(node);
             }
+
+        } catch (UnknownHostException e) {
+            System.err.println("Error while getting IP for node: " + node.getIp());
+            e.printStackTrace();
+        } catch (InvalidProtocolBufferException e) {
+            System.err.println("Couldn't parse protocol buffer");
+            e.printStackTrace();
+        }
+    }
 
     public Map<AddressPair, Long> getMembershipInfo() {
         return this.nodeStore;

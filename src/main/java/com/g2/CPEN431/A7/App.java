@@ -49,8 +49,6 @@ public class App
         };
         Timer timer = new Timer("Send Timer");
         timer.scheduleAtFixedRate(pullEpidemic, 3000, 3000);
-//        Thread monitorThread = new Thread(memberMonitor);
-//        monitorThread.start();
 
         // print listening port to console
         int localPort = socket.getLocalPort();
@@ -65,7 +63,6 @@ public class App
 
                 // listen for next packet
                 socket.receive(packet);
-                // System.out.println("Node " + port + " received a packet from node " + packet.getPort());
 
                 Message.Msg message = Server.readRequest(packet);
 
