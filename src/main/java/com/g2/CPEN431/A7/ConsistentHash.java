@@ -12,17 +12,15 @@ import java.util.zip.CRC32;
 
 public class ConsistentHash {
     public int port;
-    private DatagramSocket socket;
+    private final DatagramSocket socket;
 
     // Ring where key is hash cutoff for the node and value is the ip and port of the node
     private TreeMap<Integer, AddressPair> nodeRing = new TreeMap<>();
-    private Queue<DatagramPacket> queue = new LinkedList<>();
-    private final int TIMEOUT = 100;
 
     public ConsistentHash(int port) {
         this.port = port;
         try {
-            socket = new DatagramSocket(50000 + port);
+            socket = new DatagramSocket();
         } catch (SocketException e) {
             throw new RuntimeException(e);
         }
