@@ -1,6 +1,6 @@
 **Group ID:** G2
 
-**Verification Code:**
+**Verification Code:** 6BEB6A6FFE3EA78D34D9E07ADEF98DC7
 
 **Used Run Command:**
 ./start.sh

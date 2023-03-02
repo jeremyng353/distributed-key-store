@@ -1,24 +1,439 @@
 CPEN 431 EVALUATION test Client
-Time: Wed Mar 01 05:07:55 PST 2023
-Build Date: Wed Dec 31 16:00:00 PST 1969
-Java process ID: 481756
+Time: Thu Mar 02 06:02:23 UTC 2023
+Build Date: Wed Mar 01 23:27:24 UTC 2023
+Java process ID: 14904
 Client Version: 1
-
-[Info] A7 client running in TEST mode.
-
 [Info] Starting A7 Tests
+
+[Info] Correct submission information.
+[Info] Checking if the test client is running on AWS
+[Info] Detected instance type: c6a.xlarge
 
 
 [Info] Done building nodes' list.
 [Info] The deployment has 20 server nodes.
+[Info] Checking server deployment.
+Deployment information:
+c6a.xlarge
+ Ubuntu 20.04.5 LTS
+ qdisc netem 8001: root refcnt 2 limit 1000 delay 5.0ms loss 2.5%
+ qdisc netem 8002: root refcnt 5 limit 1000 delay 5.0ms loss 2.5%
 
-[Info] Skipping tests of local deployment since not running in submit mode.
-
+[Test isAlive] for 127.0.0.1:43100
+Sending GETPID to all servers...
+[Info] Server node 127.0.0.143100 has process ID 14879.
+[ ... Completed in 0.005 seconds ]
+[OK]
+Sending GetMembershipCount to all servers...
+[Info] Server 127.0.0.1:43100 replied with membership count = 1 (expected count = 1)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (1)
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.094 seconds ]
+[ ... Completed in 0.008 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[Test isAlive] for 127.0.0.1:4445
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 2048 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 10000 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 2048 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 10000 Bytes ]
+TEST_PASSED
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+
+[TEST Invalid Key ]
+TEST_PASSED
+
+[TEST Invalid Value ]
+TEST_PASSED
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+Test time limit reached: 60.0s.
+Test completed after 595689 closed loops.
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 0.001 seconds ]
+Local Single node: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 1191377
+Total Requests (including replies): 1191377
+Successful Responses: 1191377
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 17ms, [min] 0ms
+[avg] 0.03909509752160735 ms, [stdev] 0.2128827019859874ms
+Throughput: 19855.95240079332 requests per second
+Goodput: 19855.95240079332 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.015 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.803 seconds ]
+
+[ TEST Single Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 86319 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 84695 closed loops.
+Test completed after 85478 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 84585 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 85787 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 86686 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 85907 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 84145 closed loops.
+Test completed after 84939 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 85025 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 85015 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 84542 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 85014 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 85612 closed loops.
+Test completed after 84975 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 84448 closed loops.
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 0.001 seconds ]
+Local Single node: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 2726332
+Total Requests (including replies): 2726332
+Successful Responses: 2726332
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 44ms, [min] 0ms
+[avg] 0.33570452901554176 ms, [stdev] 0.6391510925649649ms
+Throughput: 45433.56608395687 requests per second
+Goodput: 45433.56608395687 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.023 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.767 seconds ]
+
+[ TEST Single Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 21070 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 20969 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20990 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21004 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21072 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21022 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20963 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20979 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20945 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21013 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20937 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20978 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21028 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20991 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20926 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21061 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20998 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20997 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20990 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20967 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20906 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21035 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 21035 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21034 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21064 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20983 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20981 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 20948 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20955 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20996 closed loops.
+Test completed after 20985 closed loops.
+Test completed after 20939 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21036 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21090 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21036 closed loops.
+Test completed after 20961 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21007 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20973 closed loops.
+Test completed after 21078 closed loops.
+Test completed after 21006 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20923 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20972 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20920 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20979 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21054 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20975 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20986 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21026 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 20926 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21032 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 20955 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21020 closed loops.
+Test completed after 21008 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21013 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20998 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20946 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20972 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20980 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20955 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21096 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 20892 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 21012 closed loops.
+Test completed after 20977 closed loops.
+Test completed after 21001 closed loops.
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 0.001 seconds ]
+Local Single node: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 2687093
+Total Requests (including replies): 2687093
+Successful Responses: 2687093
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 27ms, [min] 0ms
+[avg] 1.4123344446954385 ms, [stdev] 0.929869045012788ms
+Throughput: 44781.151570702445 requests per second
+Goodput: 44781.151570702445 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.021 seconds ]
+
+[ TEST Single Client Capacity (Value Size = 500 bytes, Limit = 146800 PUTs, ~69.99969482421875 MiB) : PUT -> GET (closed loop) ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+ERROR_OUT_OF_SPACE
+Received error code after 91574 closed loops (~43.66588592529297 MiB).
+PUTs sent = 91574(~43.66588592529297 MiB) , Limit = 146800
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+[Info] Shutting down local server(s)!
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 9.206 seconds ]
+[Info] Local tests completed in 254.981 seconds
+[Info] Finished tests for the local deployment!
+Testing memory usage
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463 has memory limit of 64M.
+Command information:
+c6a.xlarge
+ Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m Xmx64m
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464 has memory limit of 64M.
+[ ... Completed in 12.381 seconds ]
+[OK]
+
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.112 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
 
 [ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
 TEST_PASSED
@@ -32,7 +447,7 @@ TEST_PASSED
 [ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.037 seconds ]
+[ ... Completed in 0.073 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -52,42 +467,42 @@ TEST_PASSED
 [ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.029 seconds ]
+[ ... Completed in 0.073 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.029 seconds ]
+[ ... Completed in 0.071 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.022 seconds ]
+[ ... Completed in 0.08 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Invalid Command. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.022 seconds ]
+[ ... Completed in 0.076 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.024 seconds ]
+[ ... Completed in 0.076 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.026 seconds ]
+[ ... Completed in 0.071 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -98,159 +513,159 @@ TEST_PASSED
 [ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.032 seconds ]
+[ ... Completed in 0.072 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.024 seconds ]
+[ ... Completed in 0.075 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [TEST Invalid Key ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.037 seconds ]
+[ ... Completed in 0.074 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [TEST Invalid Value ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.025 seconds ]
+[ ... Completed in 0.073 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.004 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.005 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 1
-Total Requests (without replies): 262619
-Total Requests (including replies): 262619
-Successful Responses: 262619
+Total Requests (without replies): 5088
+Total Requests (including replies): 5363
+Successful Responses: 5088
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 19ms, [min] 0ms
-[avg] 0.12520038534911793 ms, [stdev] 0.33930860133025037ms
-Throughput: 4376.91038482692 requests per second
-Goodput: 4376.91038482692 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 290ms, [min] 5ms
+[avg] 11.762382075471699 ms, [stdev] 11.616545413528861ms
+Throughput: 84.7957602119894 requests per second
+Goodput: 84.7957602119894 requests per second
+Retry Rate (Successful requests): 1.0540487421383649
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.035 seconds ]
+[ ... Completed in 0.075 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.261 seconds ]
+[ ... TEST Completed in 65.099 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.001 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.006 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 2
-Total Requests (without replies): 564653
-Total Requests (including replies): 564653
-Successful Responses: 564653
+Total Requests (without replies): 10545
+Total Requests (including replies): 11041
+Successful Responses: 10545
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 6ms, [min] 0ms
-[avg] 0.11314382461440921 ms, [stdev] 0.32138092694174825ms
-Throughput: 9410.726487891869 requests per second
-Goodput: 9410.726487891869 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 290ms, [min] 5ms
+[avg] 11.357041251778094 ms, [stdev] 10.342190515769795ms
+Throughput: 175.72364145378194 requests per second
+Goodput: 175.72364145378194 requests per second
+Retry Rate (Successful requests): 1.047036510194405
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.042 seconds ]
+[ ... Completed in 0.079 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.195 seconds ]
+[ ... TEST Completed in 65.116 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.001 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.007 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 8
-Total Requests (without replies): 1205295
-Total Requests (including replies): 1205303
-Successful Responses: 1205295
+Total Requests (without replies): 42002
+Total Requests (including replies): 44037
+Successful Responses: 42002
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 57ms, [min] 0ms
-[avg] 0.1545173588208696 ms, [stdev] 0.41512784005466097ms
-Throughput: 20087.91520141331 requests per second
-Goodput: 20087.91520141331 requests per second
-Retry Rate (Successful requests): 1.000006637379231
+[max] 291ms, [min] 5ms
+[avg] 11.409099566687301 ms, [stdev] 10.743813926726084ms
+Throughput: 699.8117262866759 requests per second
+Goodput: 699.8117262866759 requests per second
+Retry Rate (Successful requests): 1.0484500738060092
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.055 seconds ]
+[ ... Completed in 0.081 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.555 seconds ]
+[ ... TEST Completed in 65.124 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.001 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.006 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 32
-Total Requests (without replies): 1182960
-Total Requests (including replies): 1182960
-Successful Responses: 1182960
+Total Requests (without replies): 169231
+Total Requests (including replies): 177263
+Successful Responses: 169231
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 15ms, [min] 0ms
-[avg] 0.1857586055318861 ms, [stdev] 0.43088391493340084ms
-Throughput: 19715.671405476576 requests per second
-Goodput: 19715.671405476576 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 291ms, [min] 5ms
+[avg] 11.332994545916529 ms, [stdev] 10.303567483875911ms
+Throughput: 2814.793253717441 requests per second
+Goodput: 2814.793253717441 requests per second
+Retry Rate (Successful requests): 1.0474617534612454
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.044 seconds ]
+[ ... Completed in 0.093 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.415 seconds ]
+[ ... TEST Completed in 65.281 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.0 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.006 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 128
-Total Requests (without replies): 1204346
-Total Requests (including replies): 1204346
-Successful Responses: 1204346
-Timeout Responses: 0
+Total Requests (without replies): 660157
+Total Requests (including replies): 692073
+Successful Responses: 660156
+Timeout Responses: 1
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 99.99984852088215
+% Timeout: 1.5147911784620932E-4
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 17ms, [min] 0ms
-[avg] 0.2350943997821224 ms, [stdev] 0.5980851094041163ms
-Throughput: 20071.42976184524 requests per second
-Goodput: 20071.42976184524 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 862ms, [min] 5ms
+[avg] 11.612703663982453 ms, [stdev] 15.282822974805192ms
+Throughput: 10980.838004624162 requests per second
+Goodput: 10980.82137094762 requests per second
+Retry Rate (Successful requests): 1.0483460752517961
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.048 seconds ]
+[ ... Completed in 0.116 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.45 seconds ]
+[ ... TEST Completed in 65.538 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
@@ -258,10 +673,10 @@ Waiting for 5 seconds for the cache to be cleared!
 Test Passed. Server is ok.
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.031 seconds ]
+[ ... Completed in 0.091 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 81.948 seconds ]
+[ ... TEST Completed in 83.026 seconds ]
 
 [ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
 TEST_PASSED
@@ -274,356 +689,358 @@ TEST_PASSED
 
 [ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
-[ ... TEST Completed in 0.01 seconds ]
+[ ... TEST Completed in 0.24 seconds ]
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.031 seconds ]
+[ ... Completed in 0.082 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4451
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4457
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4464
-[ ... Completed in 0.006 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[ ... Completed in 0.007 seconds ]
 TEST_PASSED
 Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
 Clients: 1
-Total Requests (without replies): 264770
-Total Requests (including replies): 264770
-Successful Responses: 264770
+Total Requests (without replies): 4941
+Total Requests (including replies): 5188
+Successful Responses: 4941
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 5ms, [min] 0ms
-[avg] 0.12603769309211768 ms, [stdev] 0.33725392926253617ms
-Throughput: 4412.759787336878 requests per second
-Goodput: 4412.759787336878 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 291ms, [min] 5ms
+[avg] 12.124266342845578 ms, [stdev] 11.051678027445716ms
+Throughput: 82.34451036597561 requests per second
+Goodput: 82.34451036597561 requests per second
+Retry Rate (Successful requests): 1.0499898805909735
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.034 seconds ]
+[ ... Completed in 0.092 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.135 seconds ]
+[ ... TEST Completed in 65.106 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4451
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4457
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4464
-[ ... Completed in 0.023 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[ ... Completed in 0.047 seconds ]
 TEST_PASSED
 Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
 Clients: 2
-Total Requests (without replies): 539100
-Total Requests (including replies): 539100
-Successful Responses: 539100
+Total Requests (without replies): 9960
+Total Requests (including replies): 10449
+Successful Responses: 9960
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 8ms, [min] 0ms
-[avg] 0.1234910035243925 ms, [stdev] 0.3400129568908774ms
-Throughput: 8984.850252495791 requests per second
-Goodput: 8984.850252495791 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 131ms, [min] 5ms
+[avg] 12.024899598393574 ms, [stdev] 10.245362477685626ms
+Throughput: 165.99446685110496 requests per second
+Goodput: 165.99446685110496 requests per second
+Retry Rate (Successful requests): 1.0490963855421687
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.037 seconds ]
+[ ... Completed in 0.095 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.24 seconds ]
+[ ... TEST Completed in 65.149 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4451
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4457
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4464
-[ ... Completed in 0.019 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[ ... Completed in 0.046 seconds ]
 TEST_PASSED
 Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
 Clients: 8
-Total Requests (without replies): 1149634
-Total Requests (including replies): 1149634
-Successful Responses: 1149634
+Total Requests (without replies): 39733
+Total Requests (including replies): 41728
+Successful Responses: 39733
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 23ms, [min] 0ms
-[avg] 0.17310552749831687 ms, [stdev] 0.4138801651929066ms
-Throughput: 19160.24732921118 requests per second
-Goodput: 19160.24732921118 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 291ms, [min] 5ms
+[avg] 12.065864646515491 ms, [stdev] 10.511421714740942ms
+Throughput: 661.8746980726625 requests per second
+Goodput: 661.8746980726625 requests per second
+Retry Rate (Successful requests): 1.050210152769738
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.043 seconds ]
+[ ... Completed in 0.094 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.424 seconds ]
+[ ... TEST Completed in 65.185 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4451
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4457
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4462
-[ ... Completed in 0.01 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[ ... Completed in 0.007 seconds ]
 TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.31 ]
 Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
 Clients: 32
-Total Requests (without replies): 1188103
-Total Requests (including replies): 1188103
-Successful Responses: 1188103
+Total Requests (without replies): 158541
+Total Requests (including replies): 166660
+Successful Responses: 158541
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 18ms, [min] 0ms
-[avg] 0.18229985110718516 ms, [stdev] 0.4402235159617094ms
-Throughput: 19801.38664355594 requests per second
-Goodput: 19801.38664355594 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 530ms, [min] 5ms
+[avg] 12.096183321664428 ms, [stdev] 10.756839276177315ms
+Throughput: 2640.457672001732 requests per second
+Goodput: 2640.457672001732 requests per second
+Retry Rate (Successful requests): 1.0512107278243483
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.033 seconds ]
+[ ... Completed in 0.091 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.445 seconds ]
+[ ... TEST Completed in 65.208 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4451
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4457
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4461
-[ ... Completed in 0.028 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[ ... Completed in 0.012 seconds ]
 TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.85 ]
 Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
 Clients: 128
-Total Requests (without replies): 1184301
-Total Requests (including replies): 1184301
-Successful Responses: 1184301
-Timeout Responses: 0
+Total Requests (without replies): 633828
+Total Requests (including replies): 665687
+Successful Responses: 633827
+Timeout Responses: 1
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 99.999842228491
+% Timeout: 1.5777150898982058E-4
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 28ms, [min] 0ms
-[avg] 0.2505731228800786 ms, [stdev] 0.6462990369366177ms
-Throughput: 19737.69207693077 requests per second
-Goodput: 19737.69207693077 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 531ms, [min] 5ms
+[avg] 12.096545271817073 ms, [stdev] 10.59101640404275ms
+Throughput: 10543.766842998304 requests per second
+Goodput: 10543.75020793825 requests per second
+Retry Rate (Successful requests): 1.050264425049067
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.034 seconds ]
+[ ... Completed in 0.089 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.483 seconds ]
+[ ... TEST Completed in 65.498 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
-Sending GETPID to all servers... 
-[Info] Server node 127.0.0.14445 has process ID 194208.
-[Info] Server node 127.0.0.14446 has process ID 844112.
-[Info] Server node 127.0.0.14447 has process ID 128820.
-[Info] Server node 127.0.0.14448 has process ID 118096.
-[Info] Server node 127.0.0.14449 has process ID 117324.
-[Info] Server node 127.0.0.14450 has process ID 203580.
-[Info] Server node 127.0.0.14451 has process ID 60140.
-[Info] Server node 127.0.0.14452 has process ID 118704.
-[Info] Server node 127.0.0.14453 has process ID 166036.
-[Info] Server node 127.0.0.14454 has process ID 169252.
-[Info] Server node 127.0.0.14455 has process ID 95968.
-[Info] Server node 127.0.0.14456 has process ID 776200.
-[Info] Server node 127.0.0.14457 has process ID 98236.
-[Info] Server node 127.0.0.14458 has process ID 643408.
-[Info] Server node 127.0.0.14459 has process ID 100576.
-[Info] Server node 127.0.0.14460 has process ID 134604.
-[Info] Server node 127.0.0.14461 has process ID 488516.
-[Info] Server node 127.0.0.14462 has process ID 190336.
-[Info] Server node 127.0.0.14463 has process ID 122048.
-[Info] Server node 127.0.0.14464 has process ID 127252.
-[ ... Completed in 0.033 seconds ]
+Sending GET PID to all servers...
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4445 has process ID 22274.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4446 has process ID 22275.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4447 has process ID 22276.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4448 has process ID 22277.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4449 has process ID 22278.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4450 has process ID 22279.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4451 has process ID 22280.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4452 has process ID 22281.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4453 has process ID 22282.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4454 has process ID 22283.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4455 has process ID 22284.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4456 has process ID 22285.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4457 has process ID 22286.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4458 has process ID 22287.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4459 has process ID 22288.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4460 has process ID 22289.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4461 has process ID 22290.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4462 has process ID 22291.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4463 has process ID 22292.
+>>> Server node ec2-35-92-11-160.us-west-2.compute.amazonaws.com4464 has process ID 22293.
+[ ... Completed in 26.266 seconds ]
 [OK]
 
 [ TEST Concurrent Store/Load (Clients = 10, Value Size = 1000 bytes, Limit = 2000 PUTs, ~1.91 MiB) ]
-Issuing puts... 
-[DONE in 0.134s]
-Confirming... 
-[DONE in 0.104s]
+Issuing puts...
+[DONE in 2.577s]
+Confirming...
+[DONE in 2.645s]
 TEST_PASSED
 [Info] To shutdown - 3 nodes.
 
 [ TEST Crash; Key Recovery ]
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4457
-[ ... Completed in 0.001 seconds ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4451
-[ ... Completed in 0.001 seconds ]
-Determining if storage was successful... 
-[DONE in 0.1s]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[ ... Completed in 0.005 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[ ... Completed in 0.007 seconds ]
+Determining if storage was successful...
+[DONE in 2.594s]
 Sending SHUTDOWN to 3 servers.
-[ ... Completed in 0.965 seconds ]
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4457
-[ ... Completed in 9.595 seconds ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4451
-[ ... Completed in 0.002 seconds ]
-Attempting retrieval of keys... 
-[DONE in 10.627s]
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4457
-[ ... Completed in 9.663 seconds ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4451
-[ ... Completed in 0.002 seconds ]
+[ ... Completed in 0.921 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[ ... Completed in 9.203 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[ ... Completed in 0.007 seconds ]
+Attempting retrieval of keys...
+[DONE in 30.781s]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[ ... Completed in 9.204 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[ ... Completed in 0.008 seconds ]
 Of 2000 usable puts:
-Failed: 0 Timed out: 94 Invalid value: 0
-Expecting 15.0% keys to fail. Actual failed: 4.7%
+Failed: 0 Timed out: 304 Invalid value: 0
+Expecting 15.0% keys to fail. Actual failed: 15.2%
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.029 seconds ]
+[ ... Completed in 0.091 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 35.998 seconds ]
+[ ... TEST Completed in 57.821 seconds ]
 Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
@@ -637,369 +1054,425 @@ TEST_PASSED
 
 [ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
-[ ... TEST Completed in 0.007 seconds ]
+[ ... TEST Completed in 0.247 seconds ]
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.033 seconds ]
+[ ... Completed in 0.075 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.001 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.006 seconds ]
 Stage 2 Single Front-End: Test Status: TEST_PASSED
 Clients: 1
-Total Requests (without replies): 3860
-Total Requests (including replies): 4108
-Successful Responses: 3798
-Timeout Responses: 62
+Total Requests (without replies): 733
+Total Requests (including replies): 994
+Successful Responses: 676
+Timeout Responses: 57
 Total Failed Responses: 0
-% Success: 98.39378238341969
-% Timeout: 1.6062176165803108
+% Success: 92.2237380627558
+% Timeout: 7.776261937244202
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 1ms, [min] 0ms
-[avg] 0.1345444971037388 ms, [stdev] 0.34123639226031005ms
-Throughput: 63.676405087513814 requests per second
-Goodput: 62.65362345139313 requests per second
-Retry Rate (Successful requests): 1.0642487046632125
+[max] 130ms, [min] 5ms
+[avg] 11.347633136094675 ms, [stdev] 10.549496343246915ms
+Throughput: 12.187416866187816 requests per second
+Goodput: 11.239691407289172 requests per second
+Retry Rate (Successful requests): 1.3560709413369714
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.039 seconds ]
+[ ... Completed in 0.075 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.688 seconds ]
+[ ... TEST Completed in 65.227 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.001 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.006 seconds ]
 Stage 2 Single Front-End: Test Status: TEST_PASSED
 Clients: 2
-Total Requests (without replies): 492876
-Total Requests (including replies): 492948
-Successful Responses: 492858
-Timeout Responses: 18
+Total Requests (without replies): 1354
+Total Requests (including replies): 1871
+Successful Responses: 1238
+Timeout Responses: 116
 Total Failed Responses: 0
-% Success: 99.99634796581697
-% Timeout: 0.003652034183039953
+% Success: 91.4327917282127
+% Timeout: 8.567208271787297
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 7ms, [min] 0ms
-[avg] 0.11146212499340581 ms, [stdev] 0.31969921729075884ms
-Throughput: 8214.463092281796 requests per second
-Goodput: 8214.163097281711 requests per second
-Retry Rate (Successful requests): 1.0001460813673215
+[max] 130ms, [min] 5ms
+[avg] 10.991922455573505 ms, [stdev] 8.98031949918237ms
+Throughput: 22.469299701294393 requests per second
+Goodput: 20.54430799867242 requests per second
+Retry Rate (Successful requests): 1.381831610044313
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.026 seconds ]
+[ ... Completed in 0.073 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.189 seconds ]
+[ ... TEST Completed in 65.342 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.006 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.007 seconds ]
 Stage 2 Single Front-End: Test Status: TEST_PASSED
 Clients: 8
-Total Requests (without replies): 1208741
-Total Requests (including replies): 1208741
-Successful Responses: 1208741
-Timeout Responses: 0
+Total Requests (without replies): 5576
+Total Requests (including replies): 7665
+Successful Responses: 5116
+Timeout Responses: 460
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 91.75035868005739
+% Timeout: 8.249641319942612
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 11ms, [min] 0ms
-[avg] 0.1536491274805769 ms, [stdev] 0.38078488768433444ms
-Throughput: 20145.347577540375 requests per second
-Goodput: 20145.347577540375 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 773ms, [min] 5ms
+[avg] 11.603401094605161 ms, [stdev] 20.49768909351856ms
+Throughput: 91.79356325623507 requests per second
+Goodput: 84.22092353280105 requests per second
+Retry Rate (Successful requests): 1.3746413199426113
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.039 seconds ]
+[ ... Completed in 0.078 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.356 seconds ]
+[ ... TEST Completed in 65.836 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.0 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.006 seconds ]
 Stage 2 Single Front-End: Test Status: TEST_PASSED
 Clients: 32
-Total Requests (without replies): 1213266
-Total Requests (including replies): 1213266
-Successful Responses: 1213266
-Timeout Responses: 0
+Total Requests (without replies): 22420
+Total Requests (including replies): 30799
+Successful Responses: 20570
+Timeout Responses: 1850
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 91.74843889384478
+% Timeout: 8.251561106155219
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 13ms, [min] 0ms
-[avg] 0.16797635473177358 ms, [stdev] 0.40313404267244507ms
-Throughput: 20220.762987283546 requests per second
-Goodput: 20220.762987283546 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 530ms, [min] 5ms
+[avg] 11.20855614973262 ms, [stdev] 10.762931971544859ms
+Throughput: 368.08405844688883 requests per second
+Goodput: 337.71137744212774 requests per second
+Retry Rate (Successful requests): 1.373728813559322
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.03 seconds ]
+[ ... Completed in 0.073 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.343 seconds ]
+[ ... TEST Completed in 65.997 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.0 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[ ... Completed in 0.005 seconds ]
 Stage 2 Single Front-End: Test Status: TEST_PASSED
 Clients: 128
-Total Requests (without replies): 1207733
-Total Requests (including replies): 1207733
-Successful Responses: 1207733
-Timeout Responses: 0
+Total Requests (without replies): 89357
+Total Requests (including replies): 122838
+Successful Responses: 81949
+Timeout Responses: 7408
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 91.70965900824781
+% Timeout: 8.290340991752185
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 20ms, [min] 0ms
-[avg] 0.22787072970598635 ms, [stdev] 0.589641692988015ms
-Throughput: 20128.212392920235 requests per second
-Goodput: 20128.212392920235 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 291ms, [min] 5ms
+[avg] 11.15576761156329 ms, [stdev] 10.34371922386522ms
+Throughput: 1467.1778536713516 requests per second
+Goodput: 1345.5438066465256 requests per second
+Retry Rate (Successful requests): 1.3746880490616291
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.038 seconds ]
+[ ... Completed in 0.075 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.37 seconds ]
+[ ... TEST Completed in 66.024 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4451
-[ ... Completed in 0.002 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[ ... Completed in 0.007 seconds ]
 TEST_PASSED
 Stage 2 Random Front-End: Test Status: TEST_PASSED
 Clients: 1
-Total Requests (without replies): 267204
-Total Requests (including replies): 267204
-Successful Responses: 267204
-Timeout Responses: 0
+Total Requests (without replies): 711
+Total Requests (including replies): 967
+Successful Responses: 654
+Timeout Responses: 57
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 91.9831223628692
+% Timeout: 8.016877637130802
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 6ms, [min] 0ms
-[avg] 0.12151764195146779 ms, [stdev] 0.33104061461734946ms
-Throughput: 4453.325777903701 requests per second
-Goodput: 4453.325777903701 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 51ms, [min] 5ms
+[avg] 11.602446483180428 ms, [stdev] 8.265901743270348ms
+Throughput: 11.83599407367948 requests per second
+Goodput: 10.887116911654543 requests per second
+Retry Rate (Successful requests): 1.360056258790436
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.037 seconds ]
+[ ... Completed in 0.078 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.101 seconds ]
+[ ... TEST Completed in 65.157 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4451
-[ ... Completed in 0.016 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[ ... Completed in 0.048 seconds ]
 TEST_PASSED
 Stage 2 Random Front-End: Test Status: TEST_PASSED
 Clients: 2
-Total Requests (without replies): 533877
-Total Requests (including replies): 533877
-Successful Responses: 533877
-Timeout Responses: 0
+Total Requests (without replies): 1562
+Total Requests (including replies): 2083
+Successful Responses: 1450
+Timeout Responses: 112
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 92.82970550576185
+% Timeout: 7.170294494238156
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 10ms, [min] 0ms
-[avg] 0.12351721463932704 ms, [stdev] 0.33933750105162747ms
-Throughput: 8897.801703304945 requests per second
-Goodput: 8897.801703304945 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 131ms, [min] 5ms
+[avg] 12.095172413793103 ms, [stdev] 10.85417022057285ms
+Throughput: 25.761973875181422 requests per second
+Goodput: 23.914764480802216 requests per second
+Retry Rate (Successful requests): 1.3335467349551857
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.034 seconds ]
+[ ... Completed in 0.076 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.184 seconds ]
+[ ... TEST Completed in 65.756 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4451
-[Test isAlive] for 127.0.0.1:4459
-[ ... Completed in 0.009 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[ ... Completed in 0.007 seconds ]
 TEST_PASSED
 Stage 2 Random Front-End: Test Status: TEST_PASSED
 Clients: 8
-Total Requests (without replies): 1177535
-Total Requests (including replies): 1177535
-Successful Responses: 1177535
-Timeout Responses: 0
+Total Requests (without replies): 5453
+Total Requests (including replies): 7544
+Successful Responses: 4994
+Timeout Responses: 459
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 91.58261507427105
+% Timeout: 8.417384925728957
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 9ms, [min] 0ms
-[avg] 0.16509827733358245 ms, [stdev] 0.39898686698329705ms
-Throughput: 19625.256245729237 requests per second
-Goodput: 19625.256245729237 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 131ms, [min] 5ms
+[avg] 12.06888265919103 ms, [stdev] 9.97405830542086ms
+Throughput: 89.57258779854791 requests per second
+Goodput: 82.03291829560762 requests per second
+Retry Rate (Successful requests): 1.3834586466165413
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.045 seconds ]
+[ ... Completed in 0.075 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.358 seconds ]
+[ ... TEST Completed in 65.962 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4460
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4451
-[ ... Completed in 0.016 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[ ... Completed in 0.047 seconds ]
 TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.01 ]
 Stage 2 Random Front-End: Test Status: TEST_PASSED
 Clients: 32
-Total Requests (without replies): 1178400
-Total Requests (including replies): 1178400
-Successful Responses: 1178400
-Timeout Responses: 0
+Total Requests (without replies): 22404
+Total Requests (including replies): 30744
+Successful Responses: 20572
+Timeout Responses: 1832
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 91.82288876986253
+% Timeout: 8.177111230137475
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 32ms, [min] 0ms
-[avg] 0.18461048879837066 ms, [stdev] 0.4382275361076832ms
-Throughput: 19639.67267212213 requests per second
-Goodput: 19639.67267212213 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 290ms, [min] 5ms
+[avg] 11.992125218743924 ms, [stdev] 10.680029656201281ms
+Throughput: 368.25668167921367 requests per second
+Goodput: 338.14392320589104 requests per second
+Retry Rate (Successful requests): 1.3722549544724156
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.038 seconds ]
+[ ... Completed in 0.079 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.364 seconds ]
+[ ... TEST Completed in 65.972 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Random Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
-[Test isAlive] for 127.0.0.1:4445
-[Test isAlive] for 127.0.0.1:4453
-[Test isAlive] for 127.0.0.1:4462
-[Test isAlive] for 127.0.0.1:4455
-[Test isAlive] for 127.0.0.1:4447
-[Test isAlive] for 127.0.0.1:4456
-[Test isAlive] for 127.0.0.1:4463
-[Test isAlive] for 127.0.0.1:4458
-[Test isAlive] for 127.0.0.1:4461
-[Test isAlive] for 127.0.0.1:4454
-[Test isAlive] for 127.0.0.1:4450
-[Test isAlive] for 127.0.0.1:4449
-[Test isAlive] for 127.0.0.1:4451
-[Test isAlive] for 127.0.0.1:4448
-[Test isAlive] for 127.0.0.1:4464
-[Test isAlive] for 127.0.0.1:4459
-[Test isAlive] for 127.0.0.1:4460
-[ ... Completed in 0.025 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4445
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4454
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4447
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4463
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4460
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4457
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4451
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4461
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4464
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4446
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4456
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4462
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4458
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4453
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4448
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4455
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4459
+[ ... Completed in 0.007 seconds ]
 TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.14 ]
 Stage 2 Random Front-End: Test Status: TEST_PASSED
 Clients: 128
-Total Requests (without replies): 1151404
-Total Requests (including replies): 1151408
-Successful Responses: 1151404
-Timeout Responses: 0
+Total Requests (without replies): 89264
+Total Requests (including replies): 122699
+Successful Responses: 81937
+Timeout Responses: 7327
 Total Failed Responses: 0
-% Success: 100.0
-% Timeout: 0.0
+% Success: 91.79176375694568
+% Timeout: 8.20823624305431
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 59ms, [min] 0ms
-[avg] 0.29482180016744775 ms, [stdev] 0.8847039172136687ms
-Throughput: 19189.1072113061 requests per second
-Goodput: 19189.1072113061 requests per second
-Retry Rate (Successful requests): 1.000003474019545
+[max] 291ms, [min] 5ms
+[avg] 12.019893332682427 ms, [stdev] 10.799854163090831ms
+Throughput: 1465.6749257015254 requests per second
+Goodput: 1345.3688652447333 requests per second
+Retry Rate (Successful requests): 1.3745630937443987
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.035 seconds ]
+[ ... Completed in 0.088 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.382 seconds ]
+[ ... TEST Completed in 66.032 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
-[Test isAlive] for 127.0.0.1:4446
-[Test isAlive] for 127.0.0.1:4452
-[Test isAlive] for 127.0.0.1:4457
-[ ... Completed in 9.63 seconds ]
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4450
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4449
+[Test isAlive] for ec2-35-92-11-160.us-west-2.compute.amazonaws.com:4452
+[ ... Completed in 9.204 seconds ]
 
 Results Summary:
-Client Local Hostname : DESKTOP-482AJRL
-Client Local IP : DESKTOP-482AJRL/192.168.1.81
+Client AWS Instance Type : c6a.xlarge
+Client Local Hostname : ip-172-31-13-37
+Client Local IP : ip-172-31-13-37/172.31.13.37
 Concurrent Store/Load (MiB) : 1.91
 Concurrent Store/Load Test : 2.0
+Local At-Most-Once Policy : 2.0
+Local At-Most-Once Policy Empty REMs : 2.0
+Local At-Most-Once Policy Error Return Code : 2.0
+Local At-Most-Once Policy Full Test : 2.0
+Local Basic PUT GET  : 2.0
+Local Client Capacity Test : 2.0
+Local Double PUT with version : 2.0
+Local Double Remove : 2.0
+Local Invalid Command : 2.0
+Local Invalid Key Test : 2.0
+Local Invalid Value Test : 2.0
+Local Remove Operation : 2.0
+Local Shutdown Test : 2.0
+Local Single node: 1 Client(s) % Failed : 0.0
+Local Single node: 1 Client(s) % Success : 100.0
+Local Single node: 1 Client(s) % Timeout : 0.0
+Local Single node: 1 Client(s) Average Response Time (ms) : 1.0
+Local Single node: 1 Client(s) Goodput (Requests per Second) : 19856.0
+Local Single node: 1 Client(s) Maximum Response Time (ms) : 17.0
+Local Single node: 1 Client(s) STDEV Response Time (ms) : 1.0
+Local Single node: 1 Client(s) Successful Responses : 1191377
+Local Single node: 1 Client(s) Throughput (Requests per Second) : 19856.0
+Local Single node: 1 Client(s) Timeout Responses : 0
+Local Single node: 1 Client(s) Total Failed Responses : 0
+Local Single node: 1 Client(s) Total Requests (including retries) : 1191377
+Local Single node: 1 Client(s) Total Requests (without retries) : 1191377
+Local Single node: 16 Client(s) % Failed : 0.0
+Local Single node: 16 Client(s) % Success : 100.0
+Local Single node: 16 Client(s) % Timeout : 0.0
+Local Single node: 16 Client(s) Average Response Time (ms) : 1.0
+Local Single node: 16 Client(s) Goodput (Requests per Second) : 45434.0
+Local Single node: 16 Client(s) Maximum Response Time (ms) : 44.0
+Local Single node: 16 Client(s) STDEV Response Time (ms) : 1.0
+Local Single node: 16 Client(s) Successful Responses : 2726332
+Local Single node: 16 Client(s) Throughput (Requests per Second) : 45434.0
+Local Single node: 16 Client(s) Timeout Responses : 0
+Local Single node: 16 Client(s) Total Failed Responses : 0
+Local Single node: 16 Client(s) Total Requests (including retries) : 2726332
+Local Single node: 16 Client(s) Total Requests (without retries) : 2726332
+Local Single node: 64 Client(s) % Failed : 0.0
+Local Single node: 64 Client(s) % Success : 100.0
+Local Single node: 64 Client(s) % Timeout : 0.0
+Local Single node: 64 Client(s) Average Response Time (ms) : 2.0
+Local Single node: 64 Client(s) Goodput (Requests per Second) : 44782.0
+Local Single node: 64 Client(s) Maximum Response Time (ms) : 27.0
+Local Single node: 64 Client(s) STDEV Response Time (ms) : 1.0
+Local Single node: 64 Client(s) Successful Responses : 2687093
+Local Single node: 64 Client(s) Throughput (Requests per Second) : 44782.0
+Local Single node: 64 Client(s) Timeout Responses : 0
+Local Single node: 64 Client(s) Total Failed Responses : 0
+Local Single node: 64 Client(s) Total Requests (including retries) : 2687093
+Local Single node: 64 Client(s) Total Requests (without retries) : 2687093
 Server Count : 20
-Server List : 127.0.0.1_4445_127.0.0.1_4446_127.0.0.1_4447_127.0.0.1_4448_127.0.0.1_4449_127.0.0.1_4450_127.0.0.1_4451_127.0.0.1_4452_127.0.0.1_4453_127.0.0.1_4454_127.0.0.1_4455_127.0.0.1_4456_127.0.0.1_4457_127.0.0.1_4458_127.0.0.1_4459_127.0.0.1_4460_127.0.0.1_4461_127.0.0.1_4462_127.0.0.1_4463_127.0.0.1_4464_
+Server List : ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4445_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4446_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4447_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4448_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4449_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4450_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4451_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4452_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4453_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4454_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4455_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4456_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4457_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4458_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4459_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4460_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4461_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4462_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4463_ec2-35-92-11-160.us-west-2.compute.amazonaws.com_4464_
+Single Client Capacity (MiB) for value size of 500 : 44.0
 Single Front Node (At-Most-Once) Policy : 2.0
 Single Front Node At-Most-Once Policy Empty REMs : 2.0
 Single Front Node At-Most-Once Policy Error Return Code : 2.0
@@ -1015,273 +1488,276 @@ Stage 1 Random Front-End Basic : 2.0
 Stage 1 Random Front-End Performance: 1 Client(s) % Failed : 0.0
 Stage 1 Random Front-End Performance: 1 Client(s) % Success : 100.0
 Stage 1 Random Front-End Performance: 1 Client(s) % Timeout : 0.0
-Stage 1 Random Front-End Performance: 1 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 1 Client(s) Goodput (Requests per Second) : 4413.0
-Stage 1 Random Front-End Performance: 1 Client(s) Maximum Response Time (ms) : 5.0
-Stage 1 Random Front-End Performance: 1 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 1 Client(s) Successful Responses : 264770
-Stage 1 Random Front-End Performance: 1 Client(s) Throughput (Requests per Second) : 4413.0
+Stage 1 Random Front-End Performance: 1 Client(s) Average Response Time (ms) : 13.0
+Stage 1 Random Front-End Performance: 1 Client(s) Goodput (Requests per Second) : 83.0
+Stage 1 Random Front-End Performance: 1 Client(s) Maximum Response Time (ms) : 291.0
+Stage 1 Random Front-End Performance: 1 Client(s) STDEV Response Time (ms) : 12.0
+Stage 1 Random Front-End Performance: 1 Client(s) Successful Responses : 4941
+Stage 1 Random Front-End Performance: 1 Client(s) Throughput (Requests per Second) : 83.0
 Stage 1 Random Front-End Performance: 1 Client(s) Timeout Responses : 0
 Stage 1 Random Front-End Performance: 1 Client(s) Total Failed Responses : 0
-Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (including replies) : 264770
-Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (without replies) : 264770
+Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (including replies) : 5188
+Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (without replies) : 4941
 Stage 1 Random Front-End Performance: 128 Client(s) % Failed : 0.0
-Stage 1 Random Front-End Performance: 128 Client(s) % Success : 100.0
-Stage 1 Random Front-End Performance: 128 Client(s) % Timeout : 0.0
-Stage 1 Random Front-End Performance: 128 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 128 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
-Stage 1 Random Front-End Performance: 128 Client(s) Goodput (Requests per Second) : 19738.0
-Stage 1 Random Front-End Performance: 128 Client(s) Maximum Response Time (ms) : 28.0
-Stage 1 Random Front-End Performance: 128 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 128 Client(s) Successful Responses : 1184301
-Stage 1 Random Front-End Performance: 128 Client(s) Throughput (Requests per Second) : 19738.0
-Stage 1 Random Front-End Performance: 128 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 128 Client(s) % Success : 99.999842228491
+Stage 1 Random Front-End Performance: 128 Client(s) % Timeout : 1.5777150898982058E-4
+Stage 1 Random Front-End Performance: 128 Client(s) Average Response Time (ms) : 13.0
+Stage 1 Random Front-End Performance: 128 Client(s) CPU load (loadavg - last one minute) : 0.85
+Stage 1 Random Front-End Performance: 128 Client(s) Goodput (Requests per Second) : 10544.0
+Stage 1 Random Front-End Performance: 128 Client(s) Maximum Response Time (ms) : 531.0
+Stage 1 Random Front-End Performance: 128 Client(s) STDEV Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 128 Client(s) Successful Responses : 633827
+Stage 1 Random Front-End Performance: 128 Client(s) Throughput (Requests per Second) : 10544.0
+Stage 1 Random Front-End Performance: 128 Client(s) Timeout Responses : 1
 Stage 1 Random Front-End Performance: 128 Client(s) Total Failed Responses : 0
-Stage 1 Random Front-End Performance: 128 Client(s) Total Requests (including replies) : 1184301
-Stage 1 Random Front-End Performance: 128 Client(s) Total Requests (without replies) : 1184301
+Stage 1 Random Front-End Performance: 128 Client(s) Total Requests (including replies) : 665687
+Stage 1 Random Front-End Performance: 128 Client(s) Total Requests (without replies) : 633828
 Stage 1 Random Front-End Performance: 2 Client(s) % Failed : 0.0
 Stage 1 Random Front-End Performance: 2 Client(s) % Success : 100.0
 Stage 1 Random Front-End Performance: 2 Client(s) % Timeout : 0.0
-Stage 1 Random Front-End Performance: 2 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 2 Client(s) Goodput (Requests per Second) : 8985.0
-Stage 1 Random Front-End Performance: 2 Client(s) Maximum Response Time (ms) : 8.0
-Stage 1 Random Front-End Performance: 2 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 2 Client(s) Successful Responses : 539100
-Stage 1 Random Front-End Performance: 2 Client(s) Throughput (Requests per Second) : 8985.0
+Stage 1 Random Front-End Performance: 2 Client(s) Average Response Time (ms) : 13.0
+Stage 1 Random Front-End Performance: 2 Client(s) Goodput (Requests per Second) : 166.0
+Stage 1 Random Front-End Performance: 2 Client(s) Maximum Response Time (ms) : 131.0
+Stage 1 Random Front-End Performance: 2 Client(s) STDEV Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 2 Client(s) Successful Responses : 9960
+Stage 1 Random Front-End Performance: 2 Client(s) Throughput (Requests per Second) : 166.0
 Stage 1 Random Front-End Performance: 2 Client(s) Timeout Responses : 0
 Stage 1 Random Front-End Performance: 2 Client(s) Total Failed Responses : 0
-Stage 1 Random Front-End Performance: 2 Client(s) Total Requests (including replies) : 539100
-Stage 1 Random Front-End Performance: 2 Client(s) Total Requests (without replies) : 539100
+Stage 1 Random Front-End Performance: 2 Client(s) Total Requests (including replies) : 10449
+Stage 1 Random Front-End Performance: 2 Client(s) Total Requests (without replies) : 9960
 Stage 1 Random Front-End Performance: 32 Client(s) % Failed : 0.0
 Stage 1 Random Front-End Performance: 32 Client(s) % Success : 100.0
 Stage 1 Random Front-End Performance: 32 Client(s) % Timeout : 0.0
-Stage 1 Random Front-End Performance: 32 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 32 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
-Stage 1 Random Front-End Performance: 32 Client(s) Goodput (Requests per Second) : 19802.0
-Stage 1 Random Front-End Performance: 32 Client(s) Maximum Response Time (ms) : 18.0
-Stage 1 Random Front-End Performance: 32 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 32 Client(s) Successful Responses : 1188103
-Stage 1 Random Front-End Performance: 32 Client(s) Throughput (Requests per Second) : 19802.0
+Stage 1 Random Front-End Performance: 32 Client(s) Average Response Time (ms) : 13.0
+Stage 1 Random Front-End Performance: 32 Client(s) CPU load (loadavg - last one minute) : 0.31
+Stage 1 Random Front-End Performance: 32 Client(s) Goodput (Requests per Second) : 2641.0
+Stage 1 Random Front-End Performance: 32 Client(s) Maximum Response Time (ms) : 530.0
+Stage 1 Random Front-End Performance: 32 Client(s) STDEV Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 32 Client(s) Successful Responses : 158541
+Stage 1 Random Front-End Performance: 32 Client(s) Throughput (Requests per Second) : 2641.0
 Stage 1 Random Front-End Performance: 32 Client(s) Timeout Responses : 0
 Stage 1 Random Front-End Performance: 32 Client(s) Total Failed Responses : 0
-Stage 1 Random Front-End Performance: 32 Client(s) Total Requests (including replies) : 1188103
-Stage 1 Random Front-End Performance: 32 Client(s) Total Requests (without replies) : 1188103
+Stage 1 Random Front-End Performance: 32 Client(s) Total Requests (including replies) : 166660
+Stage 1 Random Front-End Performance: 32 Client(s) Total Requests (without replies) : 158541
 Stage 1 Random Front-End Performance: 8 Client(s) % Failed : 0.0
 Stage 1 Random Front-End Performance: 8 Client(s) % Success : 100.0
 Stage 1 Random Front-End Performance: 8 Client(s) % Timeout : 0.0
-Stage 1 Random Front-End Performance: 8 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 8 Client(s) Goodput (Requests per Second) : 19161.0
-Stage 1 Random Front-End Performance: 8 Client(s) Maximum Response Time (ms) : 23.0
-Stage 1 Random Front-End Performance: 8 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Random Front-End Performance: 8 Client(s) Successful Responses : 1149634
-Stage 1 Random Front-End Performance: 8 Client(s) Throughput (Requests per Second) : 19161.0
+Stage 1 Random Front-End Performance: 8 Client(s) Average Response Time (ms) : 13.0
+Stage 1 Random Front-End Performance: 8 Client(s) Goodput (Requests per Second) : 662.0
+Stage 1 Random Front-End Performance: 8 Client(s) Maximum Response Time (ms) : 291.0
+Stage 1 Random Front-End Performance: 8 Client(s) STDEV Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 8 Client(s) Successful Responses : 39733
+Stage 1 Random Front-End Performance: 8 Client(s) Throughput (Requests per Second) : 662.0
 Stage 1 Random Front-End Performance: 8 Client(s) Timeout Responses : 0
 Stage 1 Random Front-End Performance: 8 Client(s) Total Failed Responses : 0
-Stage 1 Random Front-End Performance: 8 Client(s) Total Requests (including replies) : 1149634
-Stage 1 Random Front-End Performance: 8 Client(s) Total Requests (without replies) : 1149634
+Stage 1 Random Front-End Performance: 8 Client(s) Total Requests (including replies) : 41728
+Stage 1 Random Front-End Performance: 8 Client(s) Total Requests (without replies) : 39733
 Stage 1 Single Front Node Multi-Client Crash : 2.0
 Stage 1 Single Front-End: 1 Client(s) % Failed : 0.0
 Stage 1 Single Front-End: 1 Client(s) % Success : 100.0
 Stage 1 Single Front-End: 1 Client(s) % Timeout : 0.0
-Stage 1 Single Front-End: 1 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 4377.0
-Stage 1 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 19.0
-Stage 1 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Single Front-End: 1 Client(s) Successful Responses : 262619
-Stage 1 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 4377.0
+Stage 1 Single Front-End: 1 Client(s) Average Response Time (ms) : 12.0
+Stage 1 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 85.0
+Stage 1 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 290.0
+Stage 1 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 12.0
+Stage 1 Single Front-End: 1 Client(s) Successful Responses : 5088
+Stage 1 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 85.0
 Stage 1 Single Front-End: 1 Client(s) Timeout Responses : 0
 Stage 1 Single Front-End: 1 Client(s) Total Failed Responses : 0
-Stage 1 Single Front-End: 1 Client(s) Total Requests (including retries) : 262619
-Stage 1 Single Front-End: 1 Client(s) Total Requests (without retries) : 262619
+Stage 1 Single Front-End: 1 Client(s) Total Requests (including retries) : 5363
+Stage 1 Single Front-End: 1 Client(s) Total Requests (without retries) : 5088
 Stage 1 Single Front-End: 128 Client(s) % Failed : 0.0
-Stage 1 Single Front-End: 128 Client(s) % Success : 100.0
-Stage 1 Single Front-End: 128 Client(s) % Timeout : 0.0
-Stage 1 Single Front-End: 128 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Single Front-End: 128 Client(s) Goodput (Requests per Second) : 20072.0
-Stage 1 Single Front-End: 128 Client(s) Maximum Response Time (ms) : 17.0
-Stage 1 Single Front-End: 128 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Single Front-End: 128 Client(s) Successful Responses : 1204346
-Stage 1 Single Front-End: 128 Client(s) Throughput (Requests per Second) : 20072.0
-Stage 1 Single Front-End: 128 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 128 Client(s) % Success : 99.99984852088215
+Stage 1 Single Front-End: 128 Client(s) % Timeout : 1.5147911784620932E-4
+Stage 1 Single Front-End: 128 Client(s) Average Response Time (ms) : 12.0
+Stage 1 Single Front-End: 128 Client(s) Goodput (Requests per Second) : 10981.0
+Stage 1 Single Front-End: 128 Client(s) Maximum Response Time (ms) : 862.0
+Stage 1 Single Front-End: 128 Client(s) STDEV Response Time (ms) : 16.0
+Stage 1 Single Front-End: 128 Client(s) Successful Responses : 660156
+Stage 1 Single Front-End: 128 Client(s) Throughput (Requests per Second) : 10981.0
+Stage 1 Single Front-End: 128 Client(s) Timeout Responses : 1
 Stage 1 Single Front-End: 128 Client(s) Total Failed Responses : 0
-Stage 1 Single Front-End: 128 Client(s) Total Requests (including retries) : 1204346
-Stage 1 Single Front-End: 128 Client(s) Total Requests (without retries) : 1204346
+Stage 1 Single Front-End: 128 Client(s) Total Requests (including retries) : 692073
+Stage 1 Single Front-End: 128 Client(s) Total Requests (without retries) : 660157
 Stage 1 Single Front-End: 2 Client(s) % Failed : 0.0
 Stage 1 Single Front-End: 2 Client(s) % Success : 100.0
 Stage 1 Single Front-End: 2 Client(s) % Timeout : 0.0
-Stage 1 Single Front-End: 2 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Single Front-End: 2 Client(s) Goodput (Requests per Second) : 9411.0
-Stage 1 Single Front-End: 2 Client(s) Maximum Response Time (ms) : 6.0
-Stage 1 Single Front-End: 2 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Single Front-End: 2 Client(s) Successful Responses : 564653
-Stage 1 Single Front-End: 2 Client(s) Throughput (Requests per Second) : 9411.0
+Stage 1 Single Front-End: 2 Client(s) Average Response Time (ms) : 12.0
+Stage 1 Single Front-End: 2 Client(s) Goodput (Requests per Second) : 176.0
+Stage 1 Single Front-End: 2 Client(s) Maximum Response Time (ms) : 290.0
+Stage 1 Single Front-End: 2 Client(s) STDEV Response Time (ms) : 11.0
+Stage 1 Single Front-End: 2 Client(s) Successful Responses : 10545
+Stage 1 Single Front-End: 2 Client(s) Throughput (Requests per Second) : 176.0
 Stage 1 Single Front-End: 2 Client(s) Timeout Responses : 0
 Stage 1 Single Front-End: 2 Client(s) Total Failed Responses : 0
-Stage 1 Single Front-End: 2 Client(s) Total Requests (including retries) : 564653
-Stage 1 Single Front-End: 2 Client(s) Total Requests (without retries) : 564653
+Stage 1 Single Front-End: 2 Client(s) Total Requests (including retries) : 11041
+Stage 1 Single Front-End: 2 Client(s) Total Requests (without retries) : 10545
 Stage 1 Single Front-End: 32 Client(s) % Failed : 0.0
 Stage 1 Single Front-End: 32 Client(s) % Success : 100.0
 Stage 1 Single Front-End: 32 Client(s) % Timeout : 0.0
-Stage 1 Single Front-End: 32 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Single Front-End: 32 Client(s) Goodput (Requests per Second) : 19716.0
-Stage 1 Single Front-End: 32 Client(s) Maximum Response Time (ms) : 15.0
-Stage 1 Single Front-End: 32 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Single Front-End: 32 Client(s) Successful Responses : 1182960
-Stage 1 Single Front-End: 32 Client(s) Throughput (Requests per Second) : 19716.0
+Stage 1 Single Front-End: 32 Client(s) Average Response Time (ms) : 12.0
+Stage 1 Single Front-End: 32 Client(s) Goodput (Requests per Second) : 2815.0
+Stage 1 Single Front-End: 32 Client(s) Maximum Response Time (ms) : 291.0
+Stage 1 Single Front-End: 32 Client(s) STDEV Response Time (ms) : 11.0
+Stage 1 Single Front-End: 32 Client(s) Successful Responses : 169231
+Stage 1 Single Front-End: 32 Client(s) Throughput (Requests per Second) : 2815.0
 Stage 1 Single Front-End: 32 Client(s) Timeout Responses : 0
 Stage 1 Single Front-End: 32 Client(s) Total Failed Responses : 0
-Stage 1 Single Front-End: 32 Client(s) Total Requests (including retries) : 1182960
-Stage 1 Single Front-End: 32 Client(s) Total Requests (without retries) : 1182960
+Stage 1 Single Front-End: 32 Client(s) Total Requests (including retries) : 177263
+Stage 1 Single Front-End: 32 Client(s) Total Requests (without retries) : 169231
 Stage 1 Single Front-End: 8 Client(s) % Failed : 0.0
 Stage 1 Single Front-End: 8 Client(s) % Success : 100.0
 Stage 1 Single Front-End: 8 Client(s) % Timeout : 0.0
-Stage 1 Single Front-End: 8 Client(s) Average Response Time (ms) : 1.0
-Stage 1 Single Front-End: 8 Client(s) Goodput (Requests per Second) : 20088.0
-Stage 1 Single Front-End: 8 Client(s) Maximum Response Time (ms) : 57.0
-Stage 1 Single Front-End: 8 Client(s) STDEV Response Time (ms) : 1.0
-Stage 1 Single Front-End: 8 Client(s) Successful Responses : 1205295
-Stage 1 Single Front-End: 8 Client(s) Throughput (Requests per Second) : 20088.0
+Stage 1 Single Front-End: 8 Client(s) Average Response Time (ms) : 12.0
+Stage 1 Single Front-End: 8 Client(s) Goodput (Requests per Second) : 700.0
+Stage 1 Single Front-End: 8 Client(s) Maximum Response Time (ms) : 291.0
+Stage 1 Single Front-End: 8 Client(s) STDEV Response Time (ms) : 11.0
+Stage 1 Single Front-End: 8 Client(s) Successful Responses : 42002
+Stage 1 Single Front-End: 8 Client(s) Throughput (Requests per Second) : 700.0
 Stage 1 Single Front-End: 8 Client(s) Timeout Responses : 0
 Stage 1 Single Front-End: 8 Client(s) Total Failed Responses : 0
-Stage 1 Single Front-End: 8 Client(s) Total Requests (including retries) : 1205303
-Stage 1 Single Front-End: 8 Client(s) Total Requests (without retries) : 1205295
+Stage 1 Single Front-End: 8 Client(s) Total Requests (including retries) : 44037
+Stage 1 Single Front-End: 8 Client(s) Total Requests (without retries) : 42002
 Stage 2 Distributed Shutdown Honoured : 2.0
 Stage 2 Random Front-End Basic : 2.0
 Stage 2 Random Front-End: 1 Client(s) % Failed : 0.0
-Stage 2 Random Front-End: 1 Client(s) % Success : 100.0
-Stage 2 Random Front-End: 1 Client(s) % Timeout : 0.0
-Stage 2 Random Front-End: 1 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 4454.0
-Stage 2 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 6.0
-Stage 2 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Random Front-End: 1 Client(s) Successful Responses : 267204
-Stage 2 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 4454.0
-Stage 2 Random Front-End: 1 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 1 Client(s) % Success : 91.9831223628692
+Stage 2 Random Front-End: 1 Client(s) % Timeout : 8.016877637130802
+Stage 2 Random Front-End: 1 Client(s) Average Response Time (ms) : 12.0
+Stage 2 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 11.0
+Stage 2 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 51.0
+Stage 2 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 9.0
+Stage 2 Random Front-End: 1 Client(s) Successful Responses : 654
+Stage 2 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 12.0
+Stage 2 Random Front-End: 1 Client(s) Timeout Responses : 57
 Stage 2 Random Front-End: 1 Client(s) Total Failed Responses : 0
-Stage 2 Random Front-End: 1 Client(s) Total Requests (including replies) : 267204
-Stage 2 Random Front-End: 1 Client(s) Total Requests (without replies) : 267204
+Stage 2 Random Front-End: 1 Client(s) Total Requests (including replies) : 967
+Stage 2 Random Front-End: 1 Client(s) Total Requests (without replies) : 711
 Stage 2 Random Front-End: 128 Client(s) % Failed : 0.0
-Stage 2 Random Front-End: 128 Client(s) % Success : 100.0
-Stage 2 Random Front-End: 128 Client(s) % Timeout : 0.0
-Stage 2 Random Front-End: 128 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Random Front-End: 128 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
-Stage 2 Random Front-End: 128 Client(s) Goodput (Requests per Second) : 19190.0
-Stage 2 Random Front-End: 128 Client(s) Maximum Response Time (ms) : 59.0
-Stage 2 Random Front-End: 128 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Random Front-End: 128 Client(s) Successful Responses : 1151404
-Stage 2 Random Front-End: 128 Client(s) Throughput (Requests per Second) : 19190.0
-Stage 2 Random Front-End: 128 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 128 Client(s) % Success : 91.79176375694568
+Stage 2 Random Front-End: 128 Client(s) % Timeout : 8.20823624305431
+Stage 2 Random Front-End: 128 Client(s) Average Response Time (ms) : 13.0
+Stage 2 Random Front-End: 128 Client(s) CPU load (loadavg - last one minute) : 0.14
+Stage 2 Random Front-End: 128 Client(s) Goodput (Requests per Second) : 1346.0
+Stage 2 Random Front-End: 128 Client(s) Maximum Response Time (ms) : 291.0
+Stage 2 Random Front-End: 128 Client(s) STDEV Response Time (ms) : 11.0
+Stage 2 Random Front-End: 128 Client(s) Successful Responses : 81937
+Stage 2 Random Front-End: 128 Client(s) Throughput (Requests per Second) : 1466.0
+Stage 2 Random Front-End: 128 Client(s) Timeout Responses : 7327
 Stage 2 Random Front-End: 128 Client(s) Total Failed Responses : 0
-Stage 2 Random Front-End: 128 Client(s) Total Requests (including replies) : 1151408
-Stage 2 Random Front-End: 128 Client(s) Total Requests (without replies) : 1151404
+Stage 2 Random Front-End: 128 Client(s) Total Requests (including replies) : 122699
+Stage 2 Random Front-End: 128 Client(s) Total Requests (without replies) : 89264
 Stage 2 Random Front-End: 2 Client(s) % Failed : 0.0
-Stage 2 Random Front-End: 2 Client(s) % Success : 100.0
-Stage 2 Random Front-End: 2 Client(s) % Timeout : 0.0
-Stage 2 Random Front-End: 2 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Random Front-End: 2 Client(s) Goodput (Requests per Second) : 8898.0
-Stage 2 Random Front-End: 2 Client(s) Maximum Response Time (ms) : 10.0
-Stage 2 Random Front-End: 2 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Random Front-End: 2 Client(s) Successful Responses : 533877
-Stage 2 Random Front-End: 2 Client(s) Throughput (Requests per Second) : 8898.0
-Stage 2 Random Front-End: 2 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 2 Client(s) % Success : 92.82970550576185
+Stage 2 Random Front-End: 2 Client(s) % Timeout : 7.170294494238156
+Stage 2 Random Front-End: 2 Client(s) Average Response Time (ms) : 13.0
+Stage 2 Random Front-End: 2 Client(s) Goodput (Requests per Second) : 24.0
+Stage 2 Random Front-End: 2 Client(s) Maximum Response Time (ms) : 131.0
+Stage 2 Random Front-End: 2 Client(s) STDEV Response Time (ms) : 11.0
+Stage 2 Random Front-End: 2 Client(s) Successful Responses : 1450
+Stage 2 Random Front-End: 2 Client(s) Throughput (Requests per Second) : 26.0
+Stage 2 Random Front-End: 2 Client(s) Timeout Responses : 112
 Stage 2 Random Front-End: 2 Client(s) Total Failed Responses : 0
-Stage 2 Random Front-End: 2 Client(s) Total Requests (including replies) : 533877
-Stage 2 Random Front-End: 2 Client(s) Total Requests (without replies) : 533877
+Stage 2 Random Front-End: 2 Client(s) Total Requests (including replies) : 2083
+Stage 2 Random Front-End: 2 Client(s) Total Requests (without replies) : 1562
 Stage 2 Random Front-End: 32 Client(s) % Failed : 0.0
-Stage 2 Random Front-End: 32 Client(s) % Success : 100.0
-Stage 2 Random Front-End: 32 Client(s) % Timeout : 0.0
-Stage 2 Random Front-End: 32 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Random Front-End: 32 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
-Stage 2 Random Front-End: 32 Client(s) Goodput (Requests per Second) : 19640.0
-Stage 2 Random Front-End: 32 Client(s) Maximum Response Time (ms) : 32.0
-Stage 2 Random Front-End: 32 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Random Front-End: 32 Client(s) Successful Responses : 1178400
-Stage 2 Random Front-End: 32 Client(s) Throughput (Requests per Second) : 19640.0
-Stage 2 Random Front-End: 32 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 32 Client(s) % Success : 91.82288876986253
+Stage 2 Random Front-End: 32 Client(s) % Timeout : 8.177111230137475
+Stage 2 Random Front-End: 32 Client(s) Average Response Time (ms) : 12.0
+Stage 2 Random Front-End: 32 Client(s) CPU load (loadavg - last one minute) : 0.01
+Stage 2 Random Front-End: 32 Client(s) Goodput (Requests per Second) : 339.0
+Stage 2 Random Front-End: 32 Client(s) Maximum Response Time (ms) : 290.0
+Stage 2 Random Front-End: 32 Client(s) STDEV Response Time (ms) : 11.0
+Stage 2 Random Front-End: 32 Client(s) Successful Responses : 20572
+Stage 2 Random Front-End: 32 Client(s) Throughput (Requests per Second) : 369.0
+Stage 2 Random Front-End: 32 Client(s) Timeout Responses : 1832
 Stage 2 Random Front-End: 32 Client(s) Total Failed Responses : 0
-Stage 2 Random Front-End: 32 Client(s) Total Requests (including replies) : 1178400
-Stage 2 Random Front-End: 32 Client(s) Total Requests (without replies) : 1178400
+Stage 2 Random Front-End: 32 Client(s) Total Requests (including replies) : 30744
+Stage 2 Random Front-End: 32 Client(s) Total Requests (without replies) : 22404
 Stage 2 Random Front-End: 8 Client(s) % Failed : 0.0
-Stage 2 Random Front-End: 8 Client(s) % Success : 100.0
-Stage 2 Random Front-End: 8 Client(s) % Timeout : 0.0
-Stage 2 Random Front-End: 8 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Random Front-End: 8 Client(s) Goodput (Requests per Second) : 19626.0
-Stage 2 Random Front-End: 8 Client(s) Maximum Response Time (ms) : 9.0
-Stage 2 Random Front-End: 8 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Random Front-End: 8 Client(s) Successful Responses : 1177535
-Stage 2 Random Front-End: 8 Client(s) Throughput (Requests per Second) : 19626.0
-Stage 2 Random Front-End: 8 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 8 Client(s) % Success : 91.58261507427105
+Stage 2 Random Front-End: 8 Client(s) % Timeout : 8.417384925728957
+Stage 2 Random Front-End: 8 Client(s) Average Response Time (ms) : 13.0
+Stage 2 Random Front-End: 8 Client(s) Goodput (Requests per Second) : 83.0
+Stage 2 Random Front-End: 8 Client(s) Maximum Response Time (ms) : 131.0
+Stage 2 Random Front-End: 8 Client(s) STDEV Response Time (ms) : 10.0
+Stage 2 Random Front-End: 8 Client(s) Successful Responses : 4994
+Stage 2 Random Front-End: 8 Client(s) Throughput (Requests per Second) : 90.0
+Stage 2 Random Front-End: 8 Client(s) Timeout Responses : 459
 Stage 2 Random Front-End: 8 Client(s) Total Failed Responses : 0
-Stage 2 Random Front-End: 8 Client(s) Total Requests (including replies) : 1177535
-Stage 2 Random Front-End: 8 Client(s) Total Requests (without replies) : 1177535
+Stage 2 Random Front-End: 8 Client(s) Total Requests (including replies) : 7544
+Stage 2 Random Front-End: 8 Client(s) Total Requests (without replies) : 5453
 Stage 2 Single Front-End: 1 Client(s) % Failed : 0.0
-Stage 2 Single Front-End: 1 Client(s) % Success : 98.39378238341969
-Stage 2 Single Front-End: 1 Client(s) % Timeout : 1.6062176165803108
-Stage 2 Single Front-End: 1 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 63.0
-Stage 2 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 1.0
-Stage 2 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Single Front-End: 1 Client(s) Successful Responses : 3798
-Stage 2 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 64.0
-Stage 2 Single Front-End: 1 Client(s) Timeout Responses : 62
+Stage 2 Single Front-End: 1 Client(s) % Success : 92.2237380627558
+Stage 2 Single Front-End: 1 Client(s) % Timeout : 7.776261937244202
+Stage 2 Single Front-End: 1 Client(s) Average Response Time (ms) : 12.0
+Stage 2 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 12.0
+Stage 2 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 130.0
+Stage 2 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 11.0
+Stage 2 Single Front-End: 1 Client(s) Successful Responses : 676
+Stage 2 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 13.0
+Stage 2 Single Front-End: 1 Client(s) Timeout Responses : 57
 Stage 2 Single Front-End: 1 Client(s) Total Failed Responses : 0
-Stage 2 Single Front-End: 1 Client(s) Total Requests (including retries) : 4108
-Stage 2 Single Front-End: 1 Client(s) Total Requests (without retries) : 3860
+Stage 2 Single Front-End: 1 Client(s) Total Requests (including retries) : 994
+Stage 2 Single Front-End: 1 Client(s) Total Requests (without retries) : 733
 Stage 2 Single Front-End: 128 Client(s) % Failed : 0.0
-Stage 2 Single Front-End: 128 Client(s) % Success : 100.0
-Stage 2 Single Front-End: 128 Client(s) % Timeout : 0.0
-Stage 2 Single Front-End: 128 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Single Front-End: 128 Client(s) Goodput (Requests per Second) : 20129.0
-Stage 2 Single Front-End: 128 Client(s) Maximum Response Time (ms) : 20.0
-Stage 2 Single Front-End: 128 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Single Front-End: 128 Client(s) Successful Responses : 1207733
-Stage 2 Single Front-End: 128 Client(s) Throughput (Requests per Second) : 20129.0
-Stage 2 Single Front-End: 128 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 128 Client(s) % Success : 91.70965900824781
+Stage 2 Single Front-End: 128 Client(s) % Timeout : 8.290340991752185
+Stage 2 Single Front-End: 128 Client(s) Average Response Time (ms) : 12.0
+Stage 2 Single Front-End: 128 Client(s) Goodput (Requests per Second) : 1346.0
+Stage 2 Single Front-End: 128 Client(s) Maximum Response Time (ms) : 291.0
+Stage 2 Single Front-End: 128 Client(s) STDEV Response Time (ms) : 11.0
+Stage 2 Single Front-End: 128 Client(s) Successful Responses : 81949
+Stage 2 Single Front-End: 128 Client(s) Throughput (Requests per Second) : 1468.0
+Stage 2 Single Front-End: 128 Client(s) Timeout Responses : 7408
 Stage 2 Single Front-End: 128 Client(s) Total Failed Responses : 0
-Stage 2 Single Front-End: 128 Client(s) Total Requests (including retries) : 1207733
-Stage 2 Single Front-End: 128 Client(s) Total Requests (without retries) : 1207733
+Stage 2 Single Front-End: 128 Client(s) Total Requests (including retries) : 122838
+Stage 2 Single Front-End: 128 Client(s) Total Requests (without retries) : 89357
 Stage 2 Single Front-End: 2 Client(s) % Failed : 0.0
-Stage 2 Single Front-End: 2 Client(s) % Success : 99.99634796581697
-Stage 2 Single Front-End: 2 Client(s) % Timeout : 0.003652034183039953
-Stage 2 Single Front-End: 2 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Single Front-End: 2 Client(s) Goodput (Requests per Second) : 8215.0
-Stage 2 Single Front-End: 2 Client(s) Maximum Response Time (ms) : 7.0
-Stage 2 Single Front-End: 2 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Single Front-End: 2 Client(s) Successful Responses : 492858
-Stage 2 Single Front-End: 2 Client(s) Throughput (Requests per Second) : 8215.0
-Stage 2 Single Front-End: 2 Client(s) Timeout Responses : 18
+Stage 2 Single Front-End: 2 Client(s) % Success : 91.4327917282127
+Stage 2 Single Front-End: 2 Client(s) % Timeout : 8.567208271787297
+Stage 2 Single Front-End: 2 Client(s) Average Response Time (ms) : 11.0
+Stage 2 Single Front-End: 2 Client(s) Goodput (Requests per Second) : 21.0
+Stage 2 Single Front-End: 2 Client(s) Maximum Response Time (ms) : 130.0
+Stage 2 Single Front-End: 2 Client(s) STDEV Response Time (ms) : 9.0
+Stage 2 Single Front-End: 2 Client(s) Successful Responses : 1238
+Stage 2 Single Front-End: 2 Client(s) Throughput (Requests per Second) : 23.0
+Stage 2 Single Front-End: 2 Client(s) Timeout Responses : 116
 Stage 2 Single Front-End: 2 Client(s) Total Failed Responses : 0
-Stage 2 Single Front-End: 2 Client(s) Total Requests (including retries) : 492948
-Stage 2 Single Front-End: 2 Client(s) Total Requests (without retries) : 492876
+Stage 2 Single Front-End: 2 Client(s) Total Requests (including retries) : 1871
+Stage 2 Single Front-End: 2 Client(s) Total Requests (without retries) : 1354
 Stage 2 Single Front-End: 32 Client(s) % Failed : 0.0
-Stage 2 Single Front-End: 32 Client(s) % Success : 100.0
-Stage 2 Single Front-End: 32 Client(s) % Timeout : 0.0
-Stage 2 Single Front-End: 32 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Single Front-End: 32 Client(s) Goodput (Requests per Second) : 20221.0
-Stage 2 Single Front-End: 32 Client(s) Maximum Response Time (ms) : 13.0
-Stage 2 Single Front-End: 32 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Single Front-End: 32 Client(s) Successful Responses : 1213266
-Stage 2 Single Front-End: 32 Client(s) Throughput (Requests per Second) : 20221.0
-Stage 2 Single Front-End: 32 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 32 Client(s) % Success : 91.74843889384478
+Stage 2 Single Front-End: 32 Client(s) % Timeout : 8.251561106155219
+Stage 2 Single Front-End: 32 Client(s) Average Response Time (ms) : 12.0
+Stage 2 Single Front-End: 32 Client(s) Goodput (Requests per Second) : 338.0
+Stage 2 Single Front-End: 32 Client(s) Maximum Response Time (ms) : 530.0
+Stage 2 Single Front-End: 32 Client(s) STDEV Response Time (ms) : 11.0
+Stage 2 Single Front-End: 32 Client(s) Successful Responses : 20570
+Stage 2 Single Front-End: 32 Client(s) Throughput (Requests per Second) : 369.0
+Stage 2 Single Front-End: 32 Client(s) Timeout Responses : 1850
 Stage 2 Single Front-End: 32 Client(s) Total Failed Responses : 0
-Stage 2 Single Front-End: 32 Client(s) Total Requests (including retries) : 1213266
-Stage 2 Single Front-End: 32 Client(s) Total Requests (without retries) : 1213266
+Stage 2 Single Front-End: 32 Client(s) Total Requests (including retries) : 30799
+Stage 2 Single Front-End: 32 Client(s) Total Requests (without retries) : 22420
 Stage 2 Single Front-End: 8 Client(s) % Failed : 0.0
-Stage 2 Single Front-End: 8 Client(s) % Success : 100.0
-Stage 2 Single Front-End: 8 Client(s) % Timeout : 0.0
-Stage 2 Single Front-End: 8 Client(s) Average Response Time (ms) : 1.0
-Stage 2 Single Front-End: 8 Client(s) Goodput (Requests per Second) : 20146.0
-Stage 2 Single Front-End: 8 Client(s) Maximum Response Time (ms) : 11.0
-Stage 2 Single Front-End: 8 Client(s) STDEV Response Time (ms) : 1.0
-Stage 2 Single Front-End: 8 Client(s) Successful Responses : 1208741
-Stage 2 Single Front-End: 8 Client(s) Throughput (Requests per Second) : 20146.0
-Stage 2 Single Front-End: 8 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 8 Client(s) % Success : 91.75035868005739
+Stage 2 Single Front-End: 8 Client(s) % Timeout : 8.249641319942612
+Stage 2 Single Front-End: 8 Client(s) Average Response Time (ms) : 12.0
+Stage 2 Single Front-End: 8 Client(s) Goodput (Requests per Second) : 85.0
+Stage 2 Single Front-End: 8 Client(s) Maximum Response Time (ms) : 773.0
+Stage 2 Single Front-End: 8 Client(s) STDEV Response Time (ms) : 21.0
+Stage 2 Single Front-End: 8 Client(s) Successful Responses : 5116
+Stage 2 Single Front-End: 8 Client(s) Throughput (Requests per Second) : 92.0
+Stage 2 Single Front-End: 8 Client(s) Timeout Responses : 460
 Stage 2 Single Front-End: 8 Client(s) Total Failed Responses : 0
-Stage 2 Single Front-End: 8 Client(s) Total Requests (including retries) : 1208741
-Stage 2 Single Front-End: 8 Client(s) Total Requests (without retries) : 1208741
-Test Crash; % Keys Failed : 4.7
+Stage 2 Single Front-End: 8 Client(s) Total Requests (including retries) : 7665
+Stage 2 Single Front-End: 8 Client(s) Total Requests (without retries) : 5576
+Test Crash; % Keys Failed : 15.2
 Test Crash; Key Recovery : 2.0
-Test Start Time : Wed Mar 01 05:07:55 PST 2023
-Result Verification Code : 1DECD4264EA505B49BEEAF515848F972
+Test Start Time : Thu Mar 02 06:02:23 UTC 2023
+Result Verification Code : 6BEB6A6FFE3EA78D34D9E07ADEF98DC7
+[Info] Submission Successful!
+[Info] Results server is up. Secret is valid.
+[Info] Results successfully submitted.
 [Info] Completed A7 Tests.
-Testing completed in 1576.993s
+Testing completed in 1902.738s
