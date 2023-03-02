@@ -1,7 +1,7 @@
 CPEN 431 EVALUATION test Client
-Time: Wed Mar 01 22:10:04 PST 2023
+Time: Wed Mar 01 22:19:10 PST 2023
 Build Date: Mon Feb 27 19:58:12 PST 2023
-Java process ID: 20164
+Java process ID: 21388
 Client Version: 1
 
 [Info] A6 client running in TEST mode.
@@ -15,7 +15,7 @@ Client Version: 1
 [Info] The deployment has 20 server nodes.
 [Test isAlive] for 127.0.0.1:4445
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.319 seconds ]
+[ ... Completed in 0.135 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -31,7 +31,7 @@ TEST_PASSED
 [ TEST Basic PUT/GET (PUT -> GET). Value Length = 10000 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.099 seconds ]
+[ ... Completed in 0.055 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -51,49 +51,49 @@ TEST_PASSED
 [ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 10000 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.099 seconds ]
+[ ... Completed in 0.034 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.06 seconds ]
+[ ... Completed in 0.034 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.055 seconds ]
+[ ... Completed in 0.037 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Invalid Command. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.061 seconds ]
+[ ... Completed in 0.027 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.067 seconds ]
+[ ... Completed in 0.027 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.105 seconds ]
+[ ... Completed in 0.034 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.077 seconds ]
+[ ... Completed in 0.067 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -104,48 +104,48 @@ TEST_PASSED
 [ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.119 seconds ]
+[ ... Completed in 0.034 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [TEST Invalid Key ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.074 seconds ]
+[ ... Completed in 0.083 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [TEST Invalid Value ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.049 seconds ]
+[ ... Completed in 0.048 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
 [Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.002 seconds ]
+[ ... Completed in 0.005 seconds ]
 Single Front-End: Test Status: TEST_PASSED
 Clients: 1
-Total Requests (without replies): 149560
-Total Requests (including replies): 149560
-Successful Responses: 149560
+Total Requests (without replies): 123416
+Total Requests (including replies): 123416
+Successful Responses: 123416
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 8ms, [min] 0ms
-[avg] 0.27050682000534904 ms, [stdev] 0.46916918242478123ms
-Throughput: 2492.6251229146183 requests per second
-Goodput: 2492.6251229146183 requests per second
+[max] 15ms, [min] 0ms
+[avg] 0.3172360147792831 ms, [stdev] 0.5119114614605437ms
+Throughput: 2056.864771174294 requests per second
+Goodput: 2056.864771174294 requests per second
 Retry Rate (Successful requests): 1.0
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.073 seconds ]
+[ ... Completed in 0.135 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.275 seconds ]
+[ ... TEST Completed in 65.557 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
@@ -153,59 +153,453 @@ Waiting for 5 seconds for the cache to be cleared!
 [ ... Completed in 0.001 seconds ]
 Single Front-End: Test Status: TEST_PASSED
 Clients: 2
-Total Requests (without replies): 327272
-Total Requests (including replies): 327272
-Successful Responses: 327272
+Total Requests (without replies): 349123
+Total Requests (including replies): 349123
+Successful Responses: 349123
 Timeout Responses: 0
 Total Failed Responses: 0
 % Success: 100.0
 % Timeout: 0.0
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 14ms, [min] 0ms
-[avg] 0.23879525287833972 ms, [stdev] 0.45625885059747207ms
-Throughput: 5454.442425959567 requests per second
-Goodput: 5454.442425959567 requests per second
+[max] 10ms, [min] 0ms
+[avg] 0.22341696193032254 ms, [stdev] 0.4479395586991715ms
+Throughput: 5818.619689671838 requests per second
+Goodput: 5818.619689671838 requests per second
 Retry Rate (Successful requests): 1.0
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.092 seconds ]
+[ ... Completed in 0.063 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.293 seconds ]
+[ ... TEST Completed in 65.234 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
+[ ... Completed in 0.007 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.019 seconds ]
+[ ... Completed in 0.009 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.019 seconds ]
+[ ... Completed in 0.01 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
+[ ... Completed in 0.008 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
+[ ... Completed in 0.009 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.02 seconds ]
+[ ... Completed in 0.01 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
+[ ... Completed in 0.01 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.001 seconds ]
+Single Front-End: Test Status: TEST_PASSED
+Clients: 8
+Total Requests (without replies): 866880
+Total Requests (including replies): 866881
+Successful Responses: 866827
+Timeout Responses: 0
+Total Failed Responses: 53
+% Success: 99.99388612033961
+% Timeout: 0.0
+% Failed: 0.0061138796603912885
+Response Time (Successful requests):
+[max] 47ms, [min] 0ms
+[avg] 0.3432749556716623 ms, [stdev] 0.602784736894905ms
+Throughput: 14447.759204013266 requests per second
+Goodput: 14446.87588540191 requests per second
+Retry Rate (Successful requests): 1.0000011535622
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.057 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.457 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
@@ -213,215 +607,11 @@ Sending WIPE-OUT to all servers...
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
+[ ... Completed in 0.01 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.019 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.02 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.015 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.02 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.02 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.031 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.021 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.023 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.032 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.032 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.023 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.024 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.025 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.02 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.021 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.022 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.02 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.036 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.031 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.032 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.041 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.021 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.023 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.019 seconds ]
+[ ... Completed in 0.013 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
@@ -429,7 +619,11 @@ Sending WIPE-OUT to all servers...
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
+[ ... Completed in 0.013 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.024 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
@@ -437,67 +631,618 @@ Sending WIPE-OUT to all servers...
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.015 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.016 seconds ]
-[OK]
-[Warning] Received out-of-space error. Sending wipeout!
-Sending WIPE-OUT to all servers...
 [ ... Completed in 0.017 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
+[ ... Completed in 0.012 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
+[ ... Completed in 0.012 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.017 seconds ]
+[ ... Completed in 0.011 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.018 seconds ]
+[ ... Completed in 0.009 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.026 seconds ]
+[ ... Completed in 0.01 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.028 seconds ]
+[ ... Completed in 0.01 seconds ]
 [OK]
 [Warning] Received out-of-space error. Sending wipeout!
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.031 seconds ]
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
 [OK]
 [Test isAlive] for 127.0.0.1:4445
-[ ... Completed in 0.007 seconds ]
+[ ... Completed in 0.001 seconds ]
 Single Front-End: Test Status: TEST_PASSED
-Clients: 8
-Total Requests (without replies): 845523
-Total Requests (including replies): 845523
-Successful Responses: 845445
+Clients: 32
+Total Requests (without replies): 883260
+Total Requests (including replies): 883280
+Successful Responses: 883164
 Timeout Responses: 0
-Total Failed Responses: 78
-% Success: 99.99077494048062
+Total Failed Responses: 96
+% Success: 99.989131173154
 % Timeout: 0.0
-% Failed: 0.009225059519374398
+% Failed: 0.01086882684600231
 Response Time (Successful requests):
-[max] 24ms, [min] 0ms
-[avg] 0.3454997072547593 ms, [stdev] 0.5896598799537025ms
-Throughput: 14084.069027551055 requests per second
-Goodput: 14082.769763800514 requests per second
-Retry Rate (Successful requests): 1.0
+[max] 71ms, [min] 0ms
+[avg] 1.2745481020512612 ms, [stdev] 1.4851836393412616ms
+Throughput: 14720.26398680066 requests per second
+Goodput: 14718.66406679666 requests per second
+Retry Rate (Successful requests): 1.0000226433892625
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.104 seconds ]
+[ ... Completed in 0.069 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.678 seconds ]
+[ ... TEST Completed in 65.706 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
-[ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[ ... Completed in 0.002 seconds ]
+Single Front-End: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 868043
+Total Requests (including replies): 868657
+Successful Responses: 868003
+Timeout Responses: 0
+Total Failed Responses: 40
+% Success: 99.99539193334893
+% Timeout: 0.0
+% Failed: 0.004608066651076041
+Response Time (Successful requests):
+[max] 163ms, [min] 0ms
+[avg] 7.458751870673258 ms, [stdev] 4.167678161799673ms
+Throughput: 14465.213551300638 requests per second
+Goodput: 14464.546984618974 requests per second
+Retry Rate (Successful requests): 1.0007073382309402
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.063 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.518 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+[ ... TEST Completed in 77.214 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.036 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 2048 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 10000 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.013 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.035 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4464
+[ ... Completed in 0.011 seconds ]
+TEST_PASSED
+Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 139186
+Total Requests (including replies): 139186
+Successful Responses: 139186
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 31ms, [min] 0ms
+[avg] 0.30606526518471683 ms, [stdev] 0.5183097303046459ms
+Throughput: 2319.7280045332577 requests per second
+Goodput: 2319.7280045332577 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPEOUT to all servers... 
+[ ... Completed in 0.055 seconds ]
+[OK]
+[ ... TEST Completed in 60.158 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4464
+[ ... Completed in 0.017 seconds ]
+TEST_PASSED
+Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 2
+Total Requests (without replies): 269793
+Total Requests (including replies): 269793
+Successful Responses: 269793
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 18ms, [min] 0ms
+[avg] 0.3070465134380803 ms, [stdev] 0.5138678109295893ms
+Throughput: 4496.475058749021 requests per second
+Goodput: 4496.475058749021 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPEOUT to all servers... 
+[ ... Completed in 0.057 seconds ]
+[OK]
+[ ... TEST Completed in 60.251 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4461
+[ ... Completed in 0.041 seconds ]
+TEST_PASSED
+Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 8
+Total Requests (without replies): 817760
+Total Requests (including replies): 817760
+Successful Responses: 817760
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 33ms, [min] 0ms
+[avg] 0.38210355116415573 ms, [stdev] 0.6327353301996035ms
+Throughput: 13629.10618156364 requests per second
+Goodput: 13629.10618156364 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPEOUT to all servers... 
+[ ... Completed in 0.06 seconds ]
+[OK]
+[ ... TEST Completed in 60.519 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.078 seconds ]
+[OK]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4460
+[ ... Completed in 0.036 seconds ]
+TEST_PASSED
+Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 938160
+Total Requests (including replies): 938197
+Successful Responses: 938159
+Timeout Responses: 0
+Total Failed Responses: 1
+% Success: 99.99989340837384
+% Timeout: 0.0
+% Failed: 1.0659162616184873E-4
+Response Time (Successful requests):
+[max] 185ms, [min] 0ms
+[avg] 1.103368405568779 ms, [stdev] 1.4722519154262115ms
+Throughput: 15635.218239088046 requests per second
+Goodput: 15635.20157325467 requests per second
+Retry Rate (Successful requests): 1.0000394389016798
+Sending WIPEOUT to all servers... 
+[ ... Completed in 0.092 seconds ]
+[OK]
+[ ... TEST Completed in 60.618 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4453
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4462
+[ ... Completed in 0.038 seconds ]
+TEST_PASSED
+Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 817997
+Total Requests (including replies): 834413
+Successful Responses: 817997
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 370ms, [min] 0ms
+[avg] 6.978318991389944 ms, [stdev] 13.024349933242098ms
+Throughput: 13632.374508366109 requests per second
+Goodput: 13632.374508366109 requests per second
+Retry Rate (Successful requests): 1.0200685332586794
+Sending WIPEOUT to all servers... 
+[ ... Completed in 0.096 seconds ]
+[OK]
+[ ... TEST Completed in 60.602 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Concurrent Store/Load (Clients = 16, Value Size = 1000 bytes, Limit = 20000 PUTs, ~19.07 MiB) ]
+Issuing puts... 
+[DONE in 1.541s]
+Confirming... 
+[DONE in 1.383s]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.037 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+Sending GETPID to all servers... 
+[Info] Server node 127.0.0.14445 has process ID 8096.
+[Info] Server node 127.0.0.14446 has process ID 9952.
+[Info] Server node 127.0.0.14447 has process ID 4116.
+[Info] Server node 127.0.0.14448 has process ID 21052.
+[Info] Server node 127.0.0.14449 has process ID 6308.
+[Info] Server node 127.0.0.14450 has process ID 18104.
+[Info] Server node 127.0.0.14451 has process ID 2476.
+[Info] Server node 127.0.0.14452 has process ID 6324.
+[Info] Server node 127.0.0.14453 has process ID 11712.
+[Info] Server node 127.0.0.14454 has process ID 10668.
+[Info] Server node 127.0.0.14455 has process ID 16068.
+[Info] Server node 127.0.0.14456 has process ID 13564.
+[Info] Server node 127.0.0.14457 has process ID 7712.
+[Info] Server node 127.0.0.14458 has process ID 13848.
+[Info] Server node 127.0.0.14459 has process ID 22208.
+[Info] Server node 127.0.0.14460 has process ID 21488.
+[Info] Server node 127.0.0.14461 has process ID 19704.
+[Info] Server node 127.0.0.14462 has process ID 19632.
+[Info] Server node 127.0.0.14463 has process ID 13344.
+[Info] Server node 127.0.0.14464 has process ID 7276.
+[ ... Completed in 0.036 seconds ]
+[OK]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.078 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+Sending SHUTDOWN to 20 servers.
+[ ... Completed in 1.068 seconds ]
+[Test isAlive] for 127.0.0.1:4445
+[Test isAlive] for 127.0.0.1:4449
+[Test isAlive] for 127.0.0.1:4447
+[Test isAlive] for 127.0.0.1:4455
+[Test isAlive] for 127.0.0.1:4456
+[Test isAlive] for 127.0.0.1:4451
+[Test isAlive] for 127.0.0.1:4450
+[Test isAlive] for 127.0.0.1:4462
+[Test isAlive] for 127.0.0.1:4464
+[Test isAlive] for 127.0.0.1:4454
+[Test isAlive] for 127.0.0.1:4448
+[Test isAlive] for 127.0.0.1:4446
+[Test isAlive] for 127.0.0.1:4457
+[Test isAlive] for 127.0.0.1:4458
+[Test isAlive] for 127.0.0.1:4459
+[Test isAlive] for 127.0.0.1:4460
+[Test isAlive] for 127.0.0.1:4461
+[Test isAlive] for 127.0.0.1:4452
+[Test isAlive] for 127.0.0.1:4463
+[Test isAlive] for 127.0.0.1:4453
+[ ... Completed in 10.467 seconds ]
+
+Results Summary:
+Client Local Hostname : MSI
+Client Local IP : MSI/192.168.56.1
+Concurrent Store/Load (MiB) : 19.07
+Concurrent Store/Load Test : 2.0
+Distributed Shutdown Test : 2.0
+Random Front-End Performance: 1 Client(s) % Failed : 0.0
+Random Front-End Performance: 1 Client(s) % Success : 100.0
+Random Front-End Performance: 1 Client(s) % Timeout : 0.0
+Random Front-End Performance: 1 Client(s) Average Response Time (ms) : 1.0
+Random Front-End Performance: 1 Client(s) Goodput (Requests per Second) : 2320.0
+Random Front-End Performance: 1 Client(s) Maximum Response Time (ms) : 31.0
+Random Front-End Performance: 1 Client(s) STDEV Response Time (ms) : 1.0
+Random Front-End Performance: 1 Client(s) Successful Responses : 139186
+Random Front-End Performance: 1 Client(s) Throughput (Requests per Second) : 2320.0
+Random Front-End Performance: 1 Client(s) Timeout Responses : 0
+Random Front-End Performance: 1 Client(s) Total Failed Responses : 0
+Random Front-End Performance: 1 Client(s) Total Requests (including replies) : 139186
+Random Front-End Performance: 1 Client(s) Total Requests (without replies) : 139186
+Random Front-End Performance: 128 Client(s) % Failed : 0.0
+Random Front-End Performance: 128 Client(s) % Success : 100.0
+Random Front-End Performance: 128 Client(s) % Timeout : 0.0
+Random Front-End Performance: 128 Client(s) Average Response Time (ms) : 7.0
+Random Front-End Performance: 128 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
+Random Front-End Performance: 128 Client(s) Goodput (Requests per Second) : 13633.0
+Random Front-End Performance: 128 Client(s) Maximum Response Time (ms) : 370.0
+Random Front-End Performance: 128 Client(s) STDEV Response Time (ms) : 14.0
+Random Front-End Performance: 128 Client(s) Successful Responses : 817997
+Random Front-End Performance: 128 Client(s) Throughput (Requests per Second) : 13633.0
+Random Front-End Performance: 128 Client(s) Timeout Responses : 0
+Random Front-End Performance: 128 Client(s) Total Failed Responses : 0
+Random Front-End Performance: 128 Client(s) Total Requests (including replies) : 834413
+Random Front-End Performance: 128 Client(s) Total Requests (without replies) : 817997
+Random Front-End Performance: 2 Client(s) % Failed : 0.0
+Random Front-End Performance: 2 Client(s) % Success : 100.0
+Random Front-End Performance: 2 Client(s) % Timeout : 0.0
+Random Front-End Performance: 2 Client(s) Average Response Time (ms) : 1.0
+Random Front-End Performance: 2 Client(s) Goodput (Requests per Second) : 4497.0
+Random Front-End Performance: 2 Client(s) Maximum Response Time (ms) : 18.0
+Random Front-End Performance: 2 Client(s) STDEV Response Time (ms) : 1.0
+Random Front-End Performance: 2 Client(s) Successful Responses : 269793
+Random Front-End Performance: 2 Client(s) Throughput (Requests per Second) : 4497.0
+Random Front-End Performance: 2 Client(s) Timeout Responses : 0
+Random Front-End Performance: 2 Client(s) Total Failed Responses : 0
+Random Front-End Performance: 2 Client(s) Total Requests (including replies) : 269793
+Random Front-End Performance: 2 Client(s) Total Requests (without replies) : 269793
+Random Front-End Performance: 32 Client(s) % Failed : 1.0659162616184873E-4
+Random Front-End Performance: 32 Client(s) % Success : 99.99989340837384
+Random Front-End Performance: 32 Client(s) % Timeout : 0.0
+Random Front-End Performance: 32 Client(s) Average Response Time (ms) : 2.0
+Random Front-End Performance: 32 Client(s) CPU load (loadavg - last one minute) : Not a Linux System.
+Random Front-End Performance: 32 Client(s) Goodput (Requests per Second) : 15636.0
+Random Front-End Performance: 32 Client(s) Maximum Response Time (ms) : 185.0
+Random Front-End Performance: 32 Client(s) STDEV Response Time (ms) : 2.0
+Random Front-End Performance: 32 Client(s) Successful Responses : 938159
+Random Front-End Performance: 32 Client(s) Throughput (Requests per Second) : 15636.0
+Random Front-End Performance: 32 Client(s) Timeout Responses : 0
+Random Front-End Performance: 32 Client(s) Total Failed Responses : 1
+Random Front-End Performance: 32 Client(s) Total Requests (including replies) : 938197
+Random Front-End Performance: 32 Client(s) Total Requests (without replies) : 938160
+Random Front-End Performance: 8 Client(s) % Failed : 0.0
+Random Front-End Performance: 8 Client(s) % Success : 100.0
+Random Front-End Performance: 8 Client(s) % Timeout : 0.0
+Random Front-End Performance: 8 Client(s) Average Response Time (ms) : 1.0
+Random Front-End Performance: 8 Client(s) Goodput (Requests per Second) : 13630.0
+Random Front-End Performance: 8 Client(s) Maximum Response Time (ms) : 33.0
+Random Front-End Performance: 8 Client(s) STDEV Response Time (ms) : 1.0
+Random Front-End Performance: 8 Client(s) Successful Responses : 817760
+Random Front-End Performance: 8 Client(s) Throughput (Requests per Second) : 13630.0
+Random Front-End Performance: 8 Client(s) Timeout Responses : 0
+Random Front-End Performance: 8 Client(s) Total Failed Responses : 0
+Random Front-End Performance: 8 Client(s) Total Requests (including replies) : 817760
+Random Front-End Performance: 8 Client(s) Total Requests (without replies) : 817760
+Server Count : 20
+Server List : 127.0.0.1_4445_127.0.0.1_4446_127.0.0.1_4447_127.0.0.1_4448_127.0.0.1_4449_127.0.0.1_4450_127.0.0.1_4451_127.0.0.1_4452_127.0.0.1_4453_127.0.0.1_4454_127.0.0.1_4455_127.0.0.1_4456_127.0.0.1_4457_127.0.0.1_4458_127.0.0.1_4459_127.0.0.1_4460_127.0.0.1_4461_127.0.0.1_4462_127.0.0.1_4463_127.0.0.1_4464_
+Single Front Node (At-Most-Once) Policy : 2.0
+Single Front Node At-Most-Once Policy Empty REMs : 2.0
+Single Front Node At-Most-Once Policy Error Return Code : 2.0
+Single Front Node At-Most-Once Policy Full Test : 2.0
+Single Front Node Basic PUT GET  : 2.0
+Single Front Node Double PUT with version : 2.0
+Single Front Node Double Remove : 2.0
+Single Front Node Invalid Command : 2.0
+Single Front Node Invalid Key Test : 2.0
+Single Front Node Invalid Value Test : 2.0
+Single Front Node Multi-Client Crash : 2.0
+Single Front Node Remove Operation : 2.0
+Single Front-End: 1 Client(s) % Failed : 0.0
+Single Front-End: 1 Client(s) % Success : 100.0
+Single Front-End: 1 Client(s) % Timeout : 0.0
+Single Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Single Front-End: 1 Client(s) Goodput (Requests per Second) : 2057.0
+Single Front-End: 1 Client(s) Maximum Response Time (ms) : 15.0
+Single Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Single Front-End: 1 Client(s) Successful Responses : 123416
+Single Front-End: 1 Client(s) Throughput (Requests per Second) : 2057.0
+Single Front-End: 1 Client(s) Timeout Responses : 0
+Single Front-End: 1 Client(s) Total Failed Responses : 0
+Single Front-End: 1 Client(s) Total Requests (including retries) : 123416
+Single Front-End: 1 Client(s) Total Requests (without retries) : 123416
+Single Front-End: 128 Client(s) % Failed : 0.004608066651076041
+Single Front-End: 128 Client(s) % Success : 99.99539193334893
+Single Front-End: 128 Client(s) % Timeout : 0.0
+Single Front-End: 128 Client(s) Average Response Time (ms) : 8.0
+Single Front-End: 128 Client(s) Goodput (Requests per Second) : 14465.0
+Single Front-End: 128 Client(s) Maximum Response Time (ms) : 163.0
+Single Front-End: 128 Client(s) STDEV Response Time (ms) : 5.0
+Single Front-End: 128 Client(s) Successful Responses : 868003
+Single Front-End: 128 Client(s) Throughput (Requests per Second) : 14466.0
+Single Front-End: 128 Client(s) Timeout Responses : 0
+Single Front-End: 128 Client(s) Total Failed Responses : 40
+Single Front-End: 128 Client(s) Total Requests (including retries) : 868657
+Single Front-End: 128 Client(s) Total Requests (without retries) : 868043
+Single Front-End: 2 Client(s) % Failed : 0.0
+Single Front-End: 2 Client(s) % Success : 100.0
+Single Front-End: 2 Client(s) % Timeout : 0.0
+Single Front-End: 2 Client(s) Average Response Time (ms) : 1.0
+Single Front-End: 2 Client(s) Goodput (Requests per Second) : 5819.0
+Single Front-End: 2 Client(s) Maximum Response Time (ms) : 10.0
+Single Front-End: 2 Client(s) STDEV Response Time (ms) : 1.0
+Single Front-End: 2 Client(s) Successful Responses : 349123
+Single Front-End: 2 Client(s) Throughput (Requests per Second) : 5819.0
+Single Front-End: 2 Client(s) Timeout Responses : 0
+Single Front-End: 2 Client(s) Total Failed Responses : 0
+Single Front-End: 2 Client(s) Total Requests (including retries) : 349123
+Single Front-End: 2 Client(s) Total Requests (without retries) : 349123
+Single Front-End: 32 Client(s) % Failed : 0.01086882684600231
+Single Front-End: 32 Client(s) % Success : 99.989131173154
+Single Front-End: 32 Client(s) % Timeout : 0.0
+Single Front-End: 32 Client(s) Average Response Time (ms) : 2.0
+Single Front-End: 32 Client(s) Goodput (Requests per Second) : 14719.0
+Single Front-End: 32 Client(s) Maximum Response Time (ms) : 71.0
+Single Front-End: 32 Client(s) STDEV Response Time (ms) : 2.0
+Single Front-End: 32 Client(s) Successful Responses : 883164
+Single Front-End: 32 Client(s) Throughput (Requests per Second) : 14721.0
+Single Front-End: 32 Client(s) Timeout Responses : 0
+Single Front-End: 32 Client(s) Total Failed Responses : 96
+Single Front-End: 32 Client(s) Total Requests (including retries) : 883280
+Single Front-End: 32 Client(s) Total Requests (without retries) : 883260
+Single Front-End: 8 Client(s) % Failed : 0.0061138796603912885
+Single Front-End: 8 Client(s) % Success : 99.99388612033961
+Single Front-End: 8 Client(s) % Timeout : 0.0
+Single Front-End: 8 Client(s) Average Response Time (ms) : 1.0
+Single Front-End: 8 Client(s) Goodput (Requests per Second) : 14447.0
+Single Front-End: 8 Client(s) Maximum Response Time (ms) : 47.0
+Single Front-End: 8 Client(s) STDEV Response Time (ms) : 1.0
+Single Front-End: 8 Client(s) Successful Responses : 866827
+Single Front-End: 8 Client(s) Throughput (Requests per Second) : 14448.0
+Single Front-End: 8 Client(s) Timeout Responses : 0
+Single Front-End: 8 Client(s) Total Failed Responses : 53
+Single Front-End: 8 Client(s) Total Requests (including retries) : 866881
+Single Front-End: 8 Client(s) Total Requests (without retries) : 866880
+Test Random Front-End Basic : 2.0
+Test Start Time : Wed Mar 01 22:19:10 PST 2023
+Result Verification Code : 8EC300469BFB4633F546C5E1004CC824
+[Error] There are 54 missing from the results report. Cannot submit results. 
+[Info] Please include the log file for this run and make sure to include in the repository shared with the TAs.
+[Info] Completed A6 Tests.
+Testing completed in 812.928s
