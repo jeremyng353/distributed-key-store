@@ -8,25 +8,26 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.g2.CPEN431.A7.Server.GET_MS_LIST;
 
 public class MemberMonitor implements Runnable {
 
     // A HashMap to store node information
-    private final HashMap<AddressPair, Long> nodeStore;
+    private final ConcurrentHashMap<AddressPair, Long> nodeStore;
     private final Random random;
     private final UDPClient udpClient;
     private final AddressPair self;
     private final ConsistentHash consistentHash;
 
     //dummy time until we set the amount of nodes
-    public static final int DEFAULT_INTERVAL = 1000;
+    public static final int DEFAULT_INTERVAL = 100;
     final int NUM_NODES = 20;
-    final int SAFETY_MARGIN = 10;
+    final int SAFETY_MARGIN = 100;
 
     public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
-        this.nodeStore = new HashMap<>();
+        this.nodeStore = new ConcurrentHashMap<>();
         this.random = new Random();
         this.udpClient = new UDPClient();
         this.self = selfAddress;
@@ -46,12 +47,6 @@ public class MemberMonitor implements Runnable {
         Set<AddressPair> nodes = nodeStore.keySet();
         int index = random.nextInt(nodes.size());
         AddressPair node = (AddressPair) nodes.toArray()[index];
-//
-//        for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
-//            if (isDead(entry.getKey())) {
-//                consistentHash.removeNode(entry.getKey());
-//            }
-//        }
 
         // Make sure it's not trying to contact itself or a dead node
         while (node.equals(self)) {
@@ -86,9 +81,6 @@ public class MemberMonitor implements Runnable {
                         consistentHash.removeNode(entry.getKey());
                     }
                 }
-            } else {
-//                System.out.println("No response from node " + node + ", it may be dead?");
-                        consistentHash.removeNode(node);
             }
 
         } catch (UnknownHostException e) {
