@@ -77,24 +77,7 @@ public class ConsistentHash {
         }
     }
 
-    private static long buildChecksum(ByteString messageID, ByteString payload) {
-        CRC32 checksum = new CRC32();
-        ByteBuffer buf = ByteBuffer.allocate(messageID.size() + payload.size());
-
-        buf.put(messageID.toByteArray());
-        buf.put(payload.toByteArray());
-        checksum.update(buf.array());
-
-        return checksum.getValue();
-    }
-    private static void readRequest(DatagramPacket packet) throws InvalidProtocolBufferException, PacketCorruptionException {
-        // Truncate data to match correct data length
-        byte[] data = Arrays.copyOfRange(packet.getData(), 0, packet.getLength());
-        Message.Msg message = Message.Msg.parseFrom(data);
-
-        // Verify the messageID and the checksum is correct
-        if (message.getCheckSum() != buildChecksum(message.getMessageID(), message.getPayload())) {
-            throw new PacketCorruptionException();
-        }
+    public boolean containsNode(AddressPair addressPair){
+        return nodeRing.containsKey(Objects.hashCode(addressPair));
     }
 }
