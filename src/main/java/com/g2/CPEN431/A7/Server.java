@@ -37,6 +37,8 @@ public class Server {
     ConsistentHash consistentHash;
     private final MemberMonitor memberMonitor;
 
+    private final long pid;
+
     public Server(int port, ConsistentHash consistentHash, MemberMonitor memberMonitor) {
         // Adapted from https://www.baeldung.com/java-get-ip-address
         String urlString = "http://checkip.amazonaws.com/";
@@ -55,6 +57,7 @@ public class Server {
         this.port = port;
         this.consistentHash = consistentHash;
         this.memberMonitor = memberMonitor;
+        this.pid = ProcessHandle.current().pid();
     }
 
     /**
@@ -271,7 +274,6 @@ public class Server {
             }
             case GET_PID -> {
                 status = SUCCESS;
-                long pid = ProcessHandle.current().pid();
                 response = buildResPayload(status, pid);
                 RequestCache.put(message.getMessageID(), response);
                 return response;
