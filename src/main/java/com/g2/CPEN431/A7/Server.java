@@ -280,7 +280,7 @@ public class Server {
             }
             case GET_MS_ID -> {
                 status = SUCCESS;
-                int membershipCount = 1;
+                int membershipCount = consistentHash.membershipCount();
                 response = buildResPayload(status, membershipCount);
                 RequestCache.put(message.getMessageID(), response);
                 return response;

@@ -1,0 +1,359 @@
+CPEN 431 EVALUATION test Client
+Time: Wed Mar 08 21:53:05 PST 2023
+Build Date: Wed Dec 31 16:00:00 PST 1969
+Java process ID: 20052
+Assignment ID: 8
+Client Version: 1
+
+[Info] A8 client running in TEST mode.
+
+[Info] Starting A8 Tests
+
+
+[Info] Done building nodes' list.
+[Info] The deployment has 20 server nodes.
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+
+[Info] The deployment has 20 server nodes.
+Sending GETPID to all servers... 
+[Info] Server node 192.168.1.684445 has process ID 20024.
+[Info] Server node 192.168.1.684446 has process ID 20025.
+[Info] Server node 192.168.1.684447 has process ID 20026.
+[Info] Server node 192.168.1.684448 has process ID 20027.
+[Info] Server node 192.168.1.684449 has process ID 20028.
+[Info] Server node 192.168.1.684450 has process ID 20029.
+[Info] Server node 192.168.1.684451 has process ID 20030.
+[Info] Server node 192.168.1.684452 has process ID 20031.
+[Info] Server node 192.168.1.684453 has process ID 20032.
+[Info] Server node 192.168.1.684454 has process ID 20033.
+[Info] Server node 192.168.1.684455 has process ID 20034.
+[Info] Server node 192.168.1.684456 has process ID 20035.
+[Info] Server node 192.168.1.684457 has process ID 20036.
+[Info] Server node 192.168.1.684458 has process ID 20037.
+[Info] Server node 192.168.1.684459 has process ID 20038.
+[Info] Server node 192.168.1.684460 has process ID 20039.
+[Info] Server node 192.168.1.684461 has process ID 20040.
+[Info] Server node 192.168.1.684462 has process ID 20041.
+[Info] Server node 192.168.1.684463 has process ID 20042.
+[Info] Server node 192.168.1.684464 has process ID 20043.
+[ ... Completed in 0.054 seconds ]
+[OK]
+
+Sending GetMembershipCount to all servers... 
+[Info] Server 192.168.1.68:4452 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4453 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4455 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4456 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4447 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4451 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4446 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4454 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4458 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4449 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4445 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4450 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4457 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4448 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4459 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4460 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4461 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4462 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4463 replied with membership count = 20 (expected count = 20)
+[Info] Server 192.168.1.68:4464 replied with membership count = 20 (expected count = 20)
+[ ... Completed in 0.007 seconds ]
+[Ok] All servers returned the expected membership count (20)
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.036 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for 192.168.1.68:4445
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.027 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.033 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.032 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.03 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.025 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.032 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.029 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Key ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.045 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Value ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 192.168.1.68:4445
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 266644
+Total Requests (including replies): 266644
+Successful Responses: 266644
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 11ms, [min] 0ms
+[avg] 0.19862438307256117 ms, [stdev] 0.409970723708694ms
+Throughput: 4443.992600123332 requests per second
+Goodput: 4443.992600123332 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.033 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.283 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 192.168.1.68:4445
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 422358
+Total Requests (including replies): 422436
+Successful Responses: 422358
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 145ms, [min] 0ms
+[avg] 2.180122076532231 ms, [stdev] 1.8105885418576813ms
+Throughput: 7039.06536448785 requests per second
+Goodput: 7039.06536448785 requests per second
+Retry Rate (Successful requests): 1.0001846774537242
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.038 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.251 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 192.168.1.68:4445
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 381317
+Total Requests (including replies): 382272
+Successful Responses: 381297
+Timeout Responses: 20
+Total Failed Responses: 0
+% Success: 99.99475502010138
+% Timeout: 0.005244979898614539
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 198ms, [min] 0ms
+[avg] 4.88458603136138 ms, [stdev] 4.23573516694846ms
+Throughput: 6328.492714176652 requests per second
+Goodput: 6328.160786005908 requests per second
+Retry Rate (Successful requests): 1.0025044779015884
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.463 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 192.168.1.68:4445
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 373494
+Total Requests (including replies): 379975
+Successful Responses: 373479
+Timeout Responses: 15
+Total Failed Responses: 0
+% Success: 99.99598387122684
+% Timeout: 0.0040161287731529825
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 357ms, [min] 0ms
+[avg] 10.05700722128955 ms, [stdev] 11.327644909021744ms
+Throughput: 6220.338418493105 requests per second
+Goodput: 6220.088601692092 requests per second
+Retry Rate (Successful requests): 1.017352353719203
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.055 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.228 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 192.168.1.68:4445
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 355442
+Total Requests (including replies): 372568
+Successful Responses: 355428
+Timeout Responses: 13
+Total Failed Responses: 1
+% Success: 99.99606124205918
+% Timeout: 0.003657418087901824
+% Failed: 2.813398529155249E-4
+Response Time (Successful requests):
+[max] 428ms, [min] 4ms
+[avg] 21.385051262140294 ms, [stdev] 20.14008671467853ms
+Throughput: 5923.342276734381 requests per second
+Goodput: 5923.108970620095 requests per second
+Retry Rate (Successful requests): 1.0481822632103128
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.034 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.168 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 192.168.1.68:4445
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 288031
+Total Requests (including replies): 417581
+Successful Responses: 288015
+Timeout Responses: 13
+Total Failed Responses: 3
+% Success: 99.99444504237391
+% Timeout: 0.0045134030711971975
+% Failed: 0.001041554554891661
+Response Time (Successful requests):
+[max] 580ms, [min] 4ms
+[avg] 52.96966477440411 ms, [stdev] 47.345218813480585ms
+Throughput: 4767.541173549615 requests per second
+Goodput: 4767.276338657618 requests per second
+Retry Rate (Successful requests): 1.4497779752873823
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.04 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.597 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.036 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 82.189 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 1.046 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.044 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
