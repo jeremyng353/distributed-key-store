@@ -32,7 +32,7 @@ public class ConsistentHash {
      */
     public void addNode(AddressPair addressPair) {
         System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hashCode());
-        nodeRing.put(Objects.hashCode(addressPair), addressPair);
+        nodeRing.put(addressPair.hashCode(), addressPair);
     }
 
     /**
@@ -51,7 +51,7 @@ public class ConsistentHash {
     }
 
     public AddressPair removeNode(AddressPair addressPair) {
-        return nodeRing.remove(Objects.hashCode(addressPair));
+        return nodeRing.remove(addressPair.hashCode());
     }
 
     /**
@@ -81,6 +81,6 @@ public class ConsistentHash {
         return nodeRing.containsKey(Objects.hashCode(addressPair));
     }
     public int membershipCount(){
-        return nodeRing.size()+1;
+        return nodeRing.size()+2;
     }
 }
