@@ -21,6 +21,7 @@ public class ConsistentHash {
         this.port = port;
         try {
             socket = new DatagramSocket();
+            socket.setSoTimeout(2000);
         } catch (SocketException e) {
             throw new RuntimeException(e);
         }
@@ -46,7 +47,7 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()) % 256);
+        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(key.hashCode());
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
@@ -72,6 +73,8 @@ public class ConsistentHash {
                     InetAddress.getByName("localhost"),
                     nodeAddress.getPort());
             socket.send(forwardPacket);
+
+            // socket.receive();
         } catch (IOException | PacketCorruptionException e) {
             e.printStackTrace();
         }
@@ -81,6 +84,6 @@ public class ConsistentHash {
         return nodeRing.containsKey(addressPair.hashCode());
     }
     public int membershipCount(){
-        return nodeRing.size()+2;
+        return nodeRing.size();
     }
 }

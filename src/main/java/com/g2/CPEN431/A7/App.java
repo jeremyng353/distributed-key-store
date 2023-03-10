@@ -41,6 +41,9 @@ public class App
             initialNodes.add(addressPair);
         }
 
+        System.out.println("initialNodes size: " + initialNodes.size());
+        System.out.println("chash size: " + consistentHash.membershipCount());
+
         MemberMonitor memberMonitor = new MemberMonitor(port, initialNodes, new AddressPair(currentIp, port), consistentHash);
         //create a thread to monitor the other servers in the system
         TimerTask pullEpidemic = new TimerTask() {
