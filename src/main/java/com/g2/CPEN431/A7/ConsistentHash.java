@@ -9,7 +9,6 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.zip.CRC32;
-
 public class ConsistentHash {
     public int port;
     private final DatagramSocket socket;
@@ -46,7 +45,7 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()) % 256);
+        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()));
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
@@ -81,6 +80,6 @@ public class ConsistentHash {
         return nodeRing.containsKey(Objects.hashCode(addressPair));
     }
     public int membershipCount(){
-        return nodeRing.size()+1;
+        return nodeRing.size();
     }
 }
