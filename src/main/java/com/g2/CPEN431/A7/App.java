@@ -26,8 +26,6 @@ public class App
         int port = Integer.parseInt(args[1]);
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
-
-        // TODO: add nodes to consistentHash, maybe hardcode in a txt file?
         ConsistentHash consistentHash = new ConsistentHash(port);
 
         File nodeList = new File("nodes.txt");
@@ -40,9 +38,6 @@ public class App
             consistentHash.addNode(addressPair);
             initialNodes.add(addressPair);
         }
-
-        System.out.println("initialNodes size: " + initialNodes.size());
-        System.out.println("chash size: " + consistentHash.membershipCount());
 
         MemberMonitor memberMonitor = new MemberMonitor(port, initialNodes, new AddressPair(currentIp, port), consistentHash);
         //create a thread to monitor the other servers in the system
