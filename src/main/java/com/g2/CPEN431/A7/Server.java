@@ -6,9 +6,13 @@ import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import java.net.DatagramPacket;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -27,6 +31,39 @@ public class Server {
     private static final int IS_ALIVE = 0x06;
     private static final int GET_PID = 0x07;
     private static final int GET_MS_ID = 0x08;
+    public static final int GET_MS_LIST = 0x22;
+
+    private final String ip;
+    private final int port;
+    RequestCache requestCache;
+    Memory memory;
+    ConsistentHash consistentHash;
+    private final MemberMonitor memberMonitor;
+
+    private final long pid;
+
+    public Server(int port, RequestCache requestCache, ConsistentHash consistentHash, MemberMonitor memberMonitor) {
+        // Adapted from https://www.baeldung.com/java-get-ip-address
+        String urlString = "http://checkip.amazonaws.com/";
+        URL url = null;
+        try {
+            url = new URL(urlString);
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
+                ip = br.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+
+        this.port = port;
+        this.requestCache = requestCache;
+        this.memory = new Memory();
+        this.consistentHash = consistentHash;
+        this.memberMonitor = memberMonitor;
+        this.pid = ProcessHandle.current().pid();
+    }
 
     /**
      * This function builds the message to be sent back to the client.
@@ -118,6 +155,23 @@ public class Server {
     }
 
     /**
+     * This function builds the response payload following a getMembershipInfo operation
+     * @param errCode: Integer response code to add into the payload
+     * @param membershipInfo: The count of current active members
+     * @return A ByteString containing the response code and membershipCount
+     */
+    public static ByteString buildResPayload(int errCode, KeyValueResponse.KVResponse.MembershipInfo[] membershipInfo) {
+        KeyValueResponse.KVResponse.Builder resPayloadBuilder = KeyValueResponse.KVResponse.newBuilder()
+                .setErrCode(errCode);
+
+        for (int i = 0; i < membershipInfo.length; i++) {
+            resPayloadBuilder.addMembershipInfo(i, membershipInfo[i]);
+        }
+
+        return resPayloadBuilder.build().toByteString();
+    }
+
+    /**
      * This function builds and verifies the incoming packet into a message
      * @param packet: The incoming Datagram packet to be read
      * @return The message translation of the incoming Datagram packet
@@ -142,7 +196,7 @@ public class Server {
      * @return A ByteString containing the operation response payload to be sent back
      * @throws InvalidProtocolBufferException: This exception is thrown when an operation error occurs with parseFrom() function
      */
-    public static ByteString exeCommand(Message.Msg message) throws InvalidProtocolBufferException {
+    public Object exeCommand(Message.Msg message, DatagramPacket packet) throws InvalidProtocolBufferException, UnknownHostException {
         // get kvrequest from message
         KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.parseFrom(message.getPayload());
         int status;
@@ -151,65 +205,119 @@ public class Server {
         // for each command, run corresponding memory command, store response in cache and return response
         switch (kvRequest.getCommand()) {
             case PUT -> {
-                status = Memory.put(kvRequest.getKey(), kvRequest.getValue(), kvRequest.getVersion());
-                response = buildResPayload(status);
-                // only add to cache if runtime memory is not full
-                if (status != NO_MEM_ERR)
-                    RequestCache.put(message.getMessageID(), response);
-                return response;
+                // determine which node should handle request
+                ByteString key = kvRequest.getKey();
+                AddressPair nodeAddress = consistentHash.getNode(key);
+                // if this node should handle the request
+                if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    status = memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+                    response = buildResPayload(status);
+                    // only add to cache if runtime memory is not full
+                    if (status != NO_MEM_ERR)
+                        requestCache.put(message.getMessageID(), response);
+                    return response;
+                }
+
+                // call another node to handle the request
+                // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
+                consistentHash.callNode(packet, nodeAddress);
+                return null;
             }
             case GET -> {
-                status = Memory.isStored(kvRequest.getKey());
-                if (status == SUCCESS) {
-                    Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
-                    response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                } else {
-                    response = buildResPayload(status);
+                // determine which node should handle request
+                ByteString key = kvRequest.getKey();
+                AddressPair nodeAddress = consistentHash.getNode(key);
+                // if this node should handle the request
+                if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    status = memory.isStored(key);
+                    if (status == SUCCESS) {
+                        Pair<ByteString, Integer> keyValue = memory.get(kvRequest.getKey());
+                        response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    } else {
+                        response = buildResPayload(status);
+                    }
+                    return response;
                 }
-                return response;
+
+                // call another node to handle the request
+                consistentHash.callNode(packet, nodeAddress);
+                return null;
             }
             case REMOVE -> {
-                status = Memory.remove(kvRequest.getKey());
-                response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
-                return response;
+                // determine which node should handle request
+                ByteString key = kvRequest.getKey();
+                AddressPair nodeAddress = consistentHash.getNode(key);
+                // if this node should handle the request
+                if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    status = memory.remove(key);
+                    response = buildResPayload(status);
+                    requestCache.put(message.getMessageID(), response);
+                    return response;
+                }
+
+                // call another node to handle the request
+                consistentHash.callNode(packet, nodeAddress);
+                return null;
             }
             case SHUTDOWN -> {
-                status = Memory.shutdown();
+                status = memory.shutdown();
                 response = buildResPayload(status);
                 return response;
             }
             case WIPEOUT -> {
-                status = Memory.erase();
-                RequestCache.erase();
+                System.out.println("node " + port + " is receiving a wipeout from port " + packet.getPort());
+                status = memory.erase();
+                requestCache.erase();
+                /*
+                System.out.println("node " + port + " has the following values in its membership list");
+                for (AddressPair pair : memberMonitor.nodeStore.keySet()) {
+                    System.out.println("node " + port + " contains node " + pair.getPort());
+                }
+
+                 */
                 response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
                 return response;
             }
             case IS_ALIVE -> {
                 status = SUCCESS;
                 response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
             case GET_PID -> {
                 status = SUCCESS;
-                long pid = ProcessHandle.current().pid();
                 response = buildResPayload(status, pid);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
             case GET_MS_ID -> {
                 status = SUCCESS;
-                int membershipCount = 1;
+                int membershipCount = consistentHash.membershipCount();
                 response = buildResPayload(status, membershipCount);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
+                return response;
+            }
+            case GET_MS_LIST -> {
+                status = SUCCESS;
+                KeyValueResponse.KVResponse.MembershipInfo[] membershipInfos = memberMonitor
+                        .getMembershipInfo()
+                        .entrySet()
+                        .stream()
+                        .map((entry) -> KeyValueResponse.KVResponse.MembershipInfo.newBuilder()
+                                .setAddressPair(entry.getKey().toString())
+                                // TODO: Update this so that if the node refers to the current node, use the current time
+                                .setTime(entry.getKey().getPort() == port ? System.currentTimeMillis() : entry.getValue())
+                                .build())
+                        .toArray(KeyValueResponse.KVResponse.MembershipInfo[]::new);
+                response = buildResPayload(status, membershipInfos);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
             default -> {
                 status = UKN_CMD;
+                System.out.println("node " + port + " is receiving an unknown command " + kvRequest.getCommand() + " from port " + packet.getPort());
                 response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
         }

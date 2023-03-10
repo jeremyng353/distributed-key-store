@@ -1,0 +1,201 @@
+CPEN 431 EVALUATION test Client
+Time: Thu Mar 09 01:14:44 PST 2023
+Build Date: Thu Mar 09 00:32:50 PST 2023
+Java process ID: 26868
+Assignment ID: 8
+Client Version: 1
+
+[Info] A8 client running in TEST mode.
+
+[Info] Starting A8 Tests
+
+
+[Info] Done building nodes' list.
+[Info] The deployment has 20 server nodes.
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+
+[Info] The deployment has 20 server nodes.
+Sending GETPID to all servers... 
+[Info] Server node localhost4445 has process ID 18888.
+[Info] Server node localhost4446 has process ID 12232.
+[Info] Server node localhost4447 has process ID 21552.
+[Info] Server node localhost4448 has process ID 21660.
+[Info] Server node localhost4449 has process ID 24444.
+[Info] Server node localhost4450 has process ID 12428.
+[Info] Server node localhost4451 has process ID 25592.
+[Info] Server node localhost4452 has process ID 25976.
+[Info] Server node localhost4453 has process ID 24820.
+[Info] Server node localhost4454 has process ID 25700.
+[Info] Server node localhost4455 has process ID 3464.
+[Info] Server node localhost4456 has process ID 24268.
+[Info] Server node localhost4457 has process ID 18124.
+[Info] Server node localhost4458 has process ID 27176.
+[Info] Server node localhost4459 has process ID 18964.
+[Info] Server node localhost4460 has process ID 23672.
+[Info] Server node localhost4461 has process ID 21816.
+[Info] Server node localhost4462 has process ID 24568.
+[Info] Server node localhost4463 has process ID 10056.
+[Info] Server node localhost4464 has process ID 19540.
+[ ... Completed in 0.164 seconds ]
+[OK]
+
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4451 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4447 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4446 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4452 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4445 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4448 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4450 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4449 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4453 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4456 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4457 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4454 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4458 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4459 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4460 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4461 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4462 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4464 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4455 replied with membership count = 20 (expected count = 20)
+[Info] Server localhost:4463 replied with membership count = 20 (expected count = 20)
+[ ... Completed in 0.025 seconds ]
+[Ok] All servers returned the expected membership count (20)
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.165 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for localhost:4445
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.671 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.185 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.131 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.276 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.101 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.118 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.167 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.143 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.158 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Key ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.169 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Value ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.162 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4445
+[ ... Completed in 0.005 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 87403
+Total Requests (including replies): 87403
+Successful Responses: 87403
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 13ms, [min] 0ms
+[avg] 0.4353740718281981 ms, [stdev] 0.5772648236876322ms
+Throughput: 1456.6923884601924 requests per second
+Goodput: 1456.6923884601924 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.211 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.589 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
