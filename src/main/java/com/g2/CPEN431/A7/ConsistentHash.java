@@ -78,7 +78,7 @@ public class ConsistentHash {
     }
 
     public boolean containsNode(AddressPair addressPair){
-        return nodeRing.containsKey(Objects.hashCode(addressPair));
+        return nodeRing.containsKey(addressPair.hashCode());
     }
     public int membershipCount(){
         return nodeRing.size()+2;
