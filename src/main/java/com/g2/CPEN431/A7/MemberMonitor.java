@@ -15,7 +15,7 @@ import static com.g2.CPEN431.A7.Server.GET_MS_LIST;
 public class MemberMonitor implements Runnable {
 
     // A HashMap to store node information
-    private final ConcurrentHashMap<AddressPair, Long> nodeStore;
+    public ConcurrentHashMap<AddressPair, Long> nodeStore;
     private final Random random;
     private final UDPClient udpClient;
     private final AddressPair self;
@@ -26,12 +26,16 @@ public class MemberMonitor implements Runnable {
     final int NUM_NODES = 20;
     final int SAFETY_MARGIN = 100;
 
-    public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
+    int port;
+
+    public MemberMonitor(int port, ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new ConcurrentHashMap<>();
         this.random = new Random();
         this.udpClient = new UDPClient();
         this.self = selfAddress;
         this.consistentHash = consistentHash;
+
+        this.port = port;
 
         Long currentTime = System.currentTimeMillis();
         for (AddressPair addressPair : initialMembership) {
@@ -80,7 +84,7 @@ public class MemberMonitor implements Runnable {
 //                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
                         consistentHash.removeNode(entry.getKey());
                     } else if (!consistentHash.containsNode(entry.getKey())){ // If the consistent hash does not contain an alive node, then it needs to join the hash once again
-                        consistentHash.addNode(entry.getKey());
+                        // consistentHash.addNode(entry.getKey());
                     }
                 }
             }

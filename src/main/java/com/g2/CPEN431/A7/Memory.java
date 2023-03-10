@@ -24,7 +24,11 @@ public class Memory {
     private static final int MAX_VALUE_SIZE = 10000;
 
     // Memory store
-    private static final HashMap<ByteString, Pair<ByteString, Integer>> store = new HashMap<>();
+    private final HashMap<ByteString, Pair<ByteString, Integer>> store;
+
+    public Memory() {
+        store = new HashMap<>();
+    }
 
     /**
      * This function puts a key value pair into the memory store
@@ -33,7 +37,7 @@ public class Memory {
      * @param version: Integer version value associated with the key value pair
      * @return An Integer response code depending on the operations outcome
      */
-    public static int put(ByteString key, ByteString value, int version) {
+    public int put(ByteString key, ByteString value, int version) {
         // check memory is sufficient for a put operation
         long used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long totalFree = Runtime.getRuntime().maxMemory() - used;
@@ -53,7 +57,7 @@ public class Memory {
      * @param key: ByteString key to check for
      * @return An Integer response code depending on the operations outcome
      */
-    public static int isStored(ByteString key) {
+    public int isStored(ByteString key) {
         // check key size
         if (key.size() > MAX_KEY_SIZE) return BAD_KEY_ERR;
         if (store.containsKey(key)) return SUCCESS;
@@ -66,7 +70,7 @@ public class Memory {
      * @return Pair containing the value and version associated with the key
      * null is not a possibility of being returned since isStored(key) is called prior to this function
      */
-    public static Pair<ByteString, Integer> get(ByteString key) {
+    public Pair<ByteString, Integer> get(ByteString key) {
         if (store.containsKey(key)) {
             return store.get(key);
         }
@@ -78,7 +82,7 @@ public class Memory {
      * @param key: ByteString key to remove the key value pair for
      * @return An Integer response code depending on the operations outcome
      */
-    public static int remove(ByteString key) {
+    public int remove(ByteString key) {
         // check key size
         if (key.size() > MAX_KEY_SIZE) return BAD_KEY_ERR;
         if (store.containsKey(key)) {
@@ -92,9 +96,8 @@ public class Memory {
      * This function clears the memory store and the cache
      * @return An Integer response code depending on the operations outcome
      */
-    public static int erase() {
+    public int erase() {
         store.clear();
-        RequestCache.erase();
         return SUCCESS;
     }
 
@@ -102,7 +105,7 @@ public class Memory {
      * This function closes the server
      * @return An Integer response code depending on the operations outcome
      */
-    public static int shutdown() {
+    public int shutdown() {
         System.exit(SUCCESS);
         return SUCCESS;
     }

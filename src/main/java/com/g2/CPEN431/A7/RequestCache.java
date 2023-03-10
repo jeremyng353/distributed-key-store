@@ -7,21 +7,21 @@ import com.google.protobuf.ByteString;
 import java.util.concurrent.TimeUnit;
 
 public class RequestCache {
+    private final long ENTRY_TIMEOUT = 1000; // 1 seconds
+    private final Cache<ByteString, ByteString> cache;
 
-    // Timeout to wait before evicting
-    private static final long ENTRY_TIMEOUT = 1000; // 1 seconds
-
-    // Cache to store the messageID response pair
-    private static final Cache<ByteString, ByteString> cache = CacheBuilder.newBuilder()
-            .expireAfterAccess(ENTRY_TIMEOUT, TimeUnit.MILLISECONDS)
-            .build();
+    public RequestCache() {
+        cache = CacheBuilder.newBuilder()
+                .expireAfterAccess(ENTRY_TIMEOUT, TimeUnit.MILLISECONDS)
+                .build();
+    }
 
     /**
      * This function puts a messageID response pair into the cache for retries
      * @param key: This key represents the messageID of an incoming packet
      * @param response: The response to be 'cached' for possible retries
      */
-    public static void put(ByteString key, ByteString response) {
+    public void put(ByteString key, ByteString response) {
         cache.put(key, response);
     }
 
@@ -30,7 +30,7 @@ public class RequestCache {
      * @param key: This key represents the messageID of an incoming packet
      * @return A boolean for whether the key is stored or not
      */
-    public static boolean isStored(ByteString key) {
+    public boolean isStored(ByteString key) {
         return cache.asMap().containsKey(key);
     }
 
@@ -40,15 +40,16 @@ public class RequestCache {
      * @return A ByteString representing the response previously sent
      * null cannot be returned since isStored() is run prior to this function
      */
-    public static ByteString get(ByteString key) {
+    public ByteString get(ByteString key) {
         return cache.getIfPresent(key);
     }
 
     /**
      * This function removes all the mappings in the cache and garbage collects
      */
-    public static void erase() {
+    public void erase() {
         cache.invalidateAll();
+        cache.cleanUp();
         Runtime.getRuntime().gc();
     }
 }

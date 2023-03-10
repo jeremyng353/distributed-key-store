@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -34,12 +35,14 @@ public class Server {
 
     private final String ip;
     private final int port;
+    RequestCache requestCache;
+    Memory memory;
     ConsistentHash consistentHash;
     private final MemberMonitor memberMonitor;
 
     private final long pid;
 
-    public Server(int port, ConsistentHash consistentHash, MemberMonitor memberMonitor) {
+    public Server(int port, RequestCache requestCache, ConsistentHash consistentHash, MemberMonitor memberMonitor) {
         // Adapted from https://www.baeldung.com/java-get-ip-address
         String urlString = "http://checkip.amazonaws.com/";
         URL url = null;
@@ -55,6 +58,8 @@ public class Server {
         }
 
         this.port = port;
+        this.requestCache = requestCache;
+        this.memory = new Memory();
         this.consistentHash = consistentHash;
         this.memberMonitor = memberMonitor;
         this.pid = ProcessHandle.current().pid();
@@ -205,11 +210,11 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+                    status = memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR)
-                        RequestCache.put(message.getMessageID(), response);
+                        requestCache.put(message.getMessageID(), response);
                     return response;
                 }
 
@@ -224,9 +229,9 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    status = Memory.isStored(key);
+                    status = memory.isStored(key);
                     if (status == SUCCESS) {
-                        Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
+                        Pair<ByteString, Integer> keyValue = memory.get(kvRequest.getKey());
                         response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                     } else {
                         response = buildResPayload(status);
@@ -244,9 +249,9 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    status = Memory.remove(key);
+                    status = memory.remove(key);
                     response = buildResPayload(status);
-                    RequestCache.put(message.getMessageID(), response);
+                    requestCache.put(message.getMessageID(), response);
                     return response;
                 }
 
@@ -255,34 +260,41 @@ public class Server {
                 return null;
             }
             case SHUTDOWN -> {
-                status = Memory.shutdown();
+                status = memory.shutdown();
                 response = buildResPayload(status);
                 return response;
             }
             case WIPEOUT -> {
-                status = Memory.erase();
-                RequestCache.erase();
+                System.out.println("node " + port + " is receiving a wipeout from port " + packet.getPort());
+                status = memory.erase();
+                requestCache.erase();
+                /*
+                System.out.println("node " + port + " has the following values in its membership list");
+                for (AddressPair pair : memberMonitor.nodeStore.keySet()) {
+                    System.out.println("node " + port + " contains node " + pair.getPort());
+                }
+
+                 */
                 response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
                 return response;
             }
             case IS_ALIVE -> {
                 status = SUCCESS;
                 response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
             case GET_PID -> {
                 status = SUCCESS;
                 response = buildResPayload(status, pid);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
             case GET_MS_ID -> {
                 status = SUCCESS;
                 int membershipCount = consistentHash.membershipCount();
                 response = buildResPayload(status, membershipCount);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
             case GET_MS_LIST -> {
@@ -298,13 +310,14 @@ public class Server {
                                 .build())
                         .toArray(KeyValueResponse.KVResponse.MembershipInfo[]::new);
                 response = buildResPayload(status, membershipInfos);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
             default -> {
                 status = UKN_CMD;
+                System.out.println("node " + port + " is receiving an unknown command " + kvRequest.getCommand() + " from port " + packet.getPort());
                 response = buildResPayload(status);
-                RequestCache.put(message.getMessageID(), response);
+                requestCache.put(message.getMessageID(), response);
                 return response;
             }
         }

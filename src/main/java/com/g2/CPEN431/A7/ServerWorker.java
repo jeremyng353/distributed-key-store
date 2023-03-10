@@ -14,10 +14,13 @@ public class ServerWorker implements Runnable {
     private final DatagramSocket socket;
     private final DatagramPacket packet;
 
-    public ServerWorker(Server server, DatagramSocket socket, DatagramPacket packet) {
+    private RequestCache requestCache;
+
+    public ServerWorker(Server server, DatagramSocket socket, DatagramPacket packet, RequestCache requestCache) {
         this.server = server;
         this.socket = socket;
         this.packet = packet;
+        this.requestCache = requestCache;
     }
 
     @Override
@@ -28,8 +31,8 @@ public class ServerWorker implements Runnable {
             DatagramPacket responsePacket;
 
             // if message cached retrieved cached response otherwise execute command
-            if (RequestCache.isStored(message.getMessageID())) {
-                kvResponse = RequestCache.get(message.getMessageID());
+            if (requestCache.isStored(message.getMessageID())) {
+                kvResponse = requestCache.get(message.getMessageID());
             } else {
                 kvResponse = server.exeCommand(message, packet);
             }

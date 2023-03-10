@@ -41,7 +41,7 @@ public class App
             initialNodes.add(addressPair);
         }
 
-        MemberMonitor memberMonitor = new MemberMonitor(initialNodes, new AddressPair(currentIp, port), consistentHash);
+        MemberMonitor memberMonitor = new MemberMonitor(port, initialNodes, new AddressPair(currentIp, port), consistentHash);
         //create a thread to monitor the other servers in the system
         TimerTask pullEpidemic = new TimerTask() {
             @Override
@@ -57,7 +57,8 @@ public class App
         String localAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
 
-        Server server = new Server(port, consistentHash, memberMonitor);
+        RequestCache requestCache = new RequestCache();
+        Server server = new Server(port, requestCache, consistentHash, memberMonitor);
 
         while (true) {
             try {
@@ -70,8 +71,8 @@ public class App
 
                 Object kvResponse;
                 // if message cached retrieved cached response otherwise execute command
-                if (RequestCache.isStored(message.getMessageID())) {
-                    kvResponse = RequestCache.get(message.getMessageID());
+                if (requestCache.isStored(message.getMessageID())) {
+                    kvResponse = requestCache.get(message.getMessageID());
                 } else {
                     kvResponse = server.exeCommand(message, packet);
                 }
