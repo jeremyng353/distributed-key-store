@@ -5,8 +5,12 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.zip.CRC32;
 public class ConsistentHash {
@@ -45,7 +49,13 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(key.hashCode());
+        Map.Entry<Integer, AddressPair> nextEntry = null;
+        try {
+            nextEntry = nodeRing.higherEntry(
+                    new BigInteger(MessageDigest.getInstance("SHA-256").digest(key.toByteArray())).intValue());
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
