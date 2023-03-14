@@ -28,7 +28,7 @@ public class App
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
         // TODO: add nodes to consistentHash, maybe hardcode in a txt file?
-        ConsistentHash consistentHash = new ConsistentHash(port);
+        ConsistentHash consistentHash = new ConsistentHash(currentIp, port);
 
         File nodeList = new File("nodes.txt");
         Scanner myReader = new Scanner(nodeList);

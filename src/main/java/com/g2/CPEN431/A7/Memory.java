@@ -2,9 +2,9 @@ package com.g2.CPEN431.A7;
 
 import com.google.protobuf.ByteString;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.Map;
+import java.util.stream.Stream;
 
 public class Memory {
 
@@ -71,6 +71,15 @@ public class Memory {
             return store.get(key);
         }
         return null;
+    }
+
+    /**
+     * This function gets all entries in memory. This returns a stream in order to optimize
+     * memory overhead.
+     * @return Stream representing all the entries in memory.
+     */
+    public static Stream<Map.Entry<ByteString, Pair<ByteString, Integer>>> getAllEntries() {
+        return store.entrySet().parallelStream();
     }
 
     /**

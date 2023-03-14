@@ -23,8 +23,8 @@ public class MemberMonitor implements Runnable {
 
     //dummy time until we set the amount of nodes
     public static final int DEFAULT_INTERVAL = 100;
-    final int NUM_NODES = 20;
-    final int SAFETY_MARGIN = 150;
+    final int NUM_NODES = 40;
+    final int SAFETY_MARGIN = 300;
 
     public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new ConcurrentHashMap<>();
@@ -48,7 +48,7 @@ public class MemberMonitor implements Runnable {
         int index = random.nextInt(nodes.size());
         AddressPair node = (AddressPair) nodes.toArray()[index];
 
-        // Make sure it's not trying to contact itself or a dead node
+        // Make sure it's not trying to contact itself
         while (node.equals(self)) {
             index = random.nextInt(nodes.size());
             node = (AddressPair) nodes.toArray()[index];
@@ -60,7 +60,6 @@ public class MemberMonitor implements Runnable {
 
         try {
             Message.Msg nodeResponse = udpClient.request(
-                    // TODO: Replace this with the node IP
                     InetAddress.getByName("localhost"),
                     node.getPort(),
                     kvRequest.toByteArray());
@@ -77,7 +76,7 @@ public class MemberMonitor implements Runnable {
                         }));
                 for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
                     if (isDead(entry.getKey())) {
-//                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
+                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
                         consistentHash.removeNode(entry.getKey());
                     } else if (!consistentHash.containsNode(entry.getKey())){ // If the consistent hash does not contain an alive node, then it needs to join the hash once again
                         consistentHash.addNode(entry.getKey());

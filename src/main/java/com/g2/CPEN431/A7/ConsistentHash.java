@@ -10,13 +10,16 @@ import java.util.*;
 public class ConsistentHash {
     public int port;
     private final DatagramSocket socket;
+    private final AddressPair selfAddress;
 
     // Ring where key is hash cutoff for the node and value is the ip and port of the node
     private TreeMap<Integer, AddressPair> nodeRing = new TreeMap<>();
     private HashMap<AddressPair, Integer> savedHashes = new HashMap<>();
 
-    public ConsistentHash(int port) {
+    public ConsistentHash(String ip, int port) {
         this.port = port;
+        this.selfAddress = new AddressPair(ip, port);
+
         try {
             socket = new DatagramSocket();
         } catch (SocketException e) {
@@ -30,7 +33,18 @@ public class ConsistentHash {
      */
     public void addNode(AddressPair addressPair) {
         if (savedHashes.containsKey(addressPair)) {
-            nodeRing.put(savedHashes.get(addressPair), addressPair);
+            System.out.println("[" + port + "]: Detected a rejoin from " + addressPair.getPort());
+            int addressPairHash = savedHashes.get(addressPair);
+            int selfAddressPairHash = savedHashes.get(selfAddress);
+            nodeRing.put(addressPairHash, addressPair);
+
+            // If the current node has keys that may belong to the re-joined node, then transfer keys
+            if (isHigherThan(addressPairHash, addressPair)) {
+                System.out.println("[" + port + "]: Transferring nodes to " + addressPair.getPort());
+                Thread transferKeyThread = new Thread(new KeyTransferer(addressPair, selfAddressPairHash, addressPairHash));
+                transferKeyThread.start();
+            }
+
             return;
         }
 
@@ -39,7 +53,7 @@ public class ConsistentHash {
         while (nodeRing.containsKey(addressHash)) {
             addressHash = (addressHash + 1) % 256;
         }
-        System.out.println("[" + port + "]: Hashing addresspair: " + addressPair.toString() + " " + addressHash);
+//        System.out.println("[" + port + "]: Hashing addresspair: " + addressPair.toString() + " " + addressHash);
 
         // Save the address hash in case it rejoins, since the hash used may be different from the internal hashCode()
         savedHashes.put(addressPair, addressHash);
@@ -93,5 +107,10 @@ public class ConsistentHash {
     }
     public int membershipCount(){
         return nodeRing.size();
+    }
+
+    private boolean isHigherThan(int lowerAddressHash, AddressPair lowerAddressPair) {
+        return (nodeRing.higherEntry(lowerAddressHash) != null && nodeRing.higherEntry(lowerAddressHash).getValue().equals(selfAddress))
+                || (nodeRing.firstEntry().getValue().equals(selfAddress) && nodeRing.lastEntry().getValue().equals(lowerAddressPair));
     }
 }

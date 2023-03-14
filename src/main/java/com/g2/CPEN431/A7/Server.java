@@ -22,14 +22,14 @@ public class Server {
     private static final int UKN_CMD = 0x05;
 
     // command codes constant values
-    private static final int PUT = 0x01;
-    private static final int GET = 0x02;
-    private static final int REMOVE = 0x03;
-    private static final int SHUTDOWN = 0x04;
-    private static final int WIPEOUT = 0x05;
-    private static final int IS_ALIVE = 0x06;
-    private static final int GET_PID = 0x07;
-    private static final int GET_MS_ID = 0x08;
+    public static final int PUT = 0x01;
+    public static final int GET = 0x02;
+    public static final int REMOVE = 0x03;
+    public static final int SHUTDOWN = 0x04;
+    public static final int WIPEOUT = 0x05;
+    public static final int IS_ALIVE = 0x06;
+    public static final int GET_PID = 0x07;
+    public static final int GET_MS_ID = 0x08;
     public static final int GET_MS_LIST = 0x22;
 
     private final String ip;
