@@ -29,6 +29,11 @@ public class ConsistentHash {
      * @param addressPair: The ip and the port of the node
      */
     public void addNode(AddressPair addressPair) {
+        if (savedHashes.containsKey(addressPair)) {
+            nodeRing.put(savedHashes.get(addressPair), addressPair);
+            return;
+        }
+
         int addressHash = Objects.hashCode(addressPair);
 
         while (nodeRing.containsKey(addressHash)) {
