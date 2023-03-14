@@ -4,11 +4,14 @@ import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -91,5 +94,26 @@ public class ConsistentHash {
     }
     public int membershipCount(){
         return nodeRing.size();
+    }
+
+    public void printRing() {
+        File ring = new File("nodeRing.txt");
+        try {
+            Files.deleteIfExists(ring.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            if (ring.createNewFile()) {
+                FileWriter myWriter = new FileWriter("nodeRing.txt");
+                for (Map.Entry<Integer, AddressPair> e : nodeRing.entrySet()) {
+                    myWriter.write("Node " + e.getValue().getPort() + " has hash " + e.getValue().hashCode() + "\n");
+                }
+                myWriter.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

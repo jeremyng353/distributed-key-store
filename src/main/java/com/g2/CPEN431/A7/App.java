@@ -4,6 +4,7 @@ import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
@@ -58,6 +59,10 @@ public class App
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
 
         Server server = new Server(port, consistentHash, memberMonitor);
+
+        if (port == 4445) {
+            consistentHash.printRing();
+        }
 
         while (true) {
             try {

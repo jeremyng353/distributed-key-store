@@ -9,8 +9,11 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 
@@ -202,9 +205,16 @@ public class Server {
             case PUT -> {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
+                int hash = -123;
+                try {
+                    hash = new BigInteger(MessageDigest.getInstance("SHA-256").digest(key.toByteArray())).intValue();
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    // System.out.println("THIS NODE: \tkey hash " + hash + " is being PUT into node " + port);
                     status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
@@ -215,6 +225,7 @@ public class Server {
 
                 // call another node to handle the request
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
+                // System.out.println("ANOTHER NODE: \tkey hash " + hash + " is being PUT into node " + nodeAddress.getPort());
                 consistentHash.callNode(packet, nodeAddress);
                 return null;
             }
