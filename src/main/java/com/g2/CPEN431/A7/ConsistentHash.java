@@ -31,7 +31,7 @@ public class ConsistentHash {
      */
     public void addNode(AddressPair addressPair) {
         System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hashCode());
-        nodeRing.put(Objects.hashCode(addressPair), addressPair);
+        nodeRing.put(addressPair.hashCode(), addressPair);
     }
 
     /**
@@ -45,12 +45,12 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()));
+        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(key.hashCode());
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
     public AddressPair removeNode(AddressPair addressPair) {
-        return nodeRing.remove(Objects.hashCode(addressPair));
+        return nodeRing.remove(addressPair.hashCode());
     }
 
     /**
@@ -77,7 +77,7 @@ public class ConsistentHash {
     }
 
     public boolean containsNode(AddressPair addressPair){
-        return nodeRing.containsKey(Objects.hashCode(addressPair));
+        return nodeRing.containsKey(addressPair.hashCode());
     }
     public int membershipCount(){
         return nodeRing.size();
