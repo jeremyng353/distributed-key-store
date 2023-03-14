@@ -42,13 +42,12 @@ public class AddressPair {
         return port == that.port && Objects.equals(ip, that.ip);
     }
 
-    @Override
-    public int hashCode() {
+    public BigInteger myHashCode() {
         try {
-            return Math.abs(new BigInteger(MessageDigest.getInstance("SHA-256").digest((ip + port).getBytes(StandardCharsets.UTF_8))).intValue());
+            return new BigInteger(MessageDigest.getInstance("SHA-256").digest((ip + port).getBytes(StandardCharsets.UTF_8)));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return -1;
+            return null;
         }
     }
 }

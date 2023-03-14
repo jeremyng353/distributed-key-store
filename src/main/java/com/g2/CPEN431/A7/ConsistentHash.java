@@ -5,8 +5,12 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.zip.CRC32;
 public class ConsistentHash {
@@ -14,7 +18,7 @@ public class ConsistentHash {
     private final DatagramSocket socket;
 
     // Ring where key is hash cutoff for the node and value is the ip and port of the node
-    private TreeMap<Integer, AddressPair> nodeRing = new TreeMap<>();
+    private TreeMap<BigInteger, AddressPair> nodeRing = new TreeMap<>();
 
     public ConsistentHash(int port) {
         this.port = port;
@@ -30,8 +34,8 @@ public class ConsistentHash {
      * @param addressPair: The ip and the port of the node
      */
     public void addNode(AddressPair addressPair) {
-        System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hashCode());
-        nodeRing.put(Objects.hashCode(addressPair), addressPair);
+        // System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hashCode());
+        nodeRing.put(addressPair.myHashCode(), addressPair);
     }
 
     /**
@@ -45,12 +49,19 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()));
-        return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
+        BigInteger keyHash;
+        try {
+            // use SHA256 instead of the native ByteString hashcode to match hash algorithm of the nodes
+            keyHash = new BigInteger(MessageDigest.getInstance("SHA-256").digest(key.toByteArray()));
+            Map.Entry<BigInteger, AddressPair> nextEntry = nodeRing.higherEntry(keyHash);
+            return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public AddressPair removeNode(AddressPair addressPair) {
-        return nodeRing.remove(Objects.hashCode(addressPair));
+        return nodeRing.remove(addressPair.myHashCode());
     }
 
     /**
@@ -77,7 +88,7 @@ public class ConsistentHash {
     }
 
     public boolean containsNode(AddressPair addressPair){
-        return nodeRing.containsKey(Objects.hashCode(addressPair));
+        return nodeRing.containsKey(addressPair.myHashCode());
     }
     public int membershipCount(){
         return nodeRing.size();

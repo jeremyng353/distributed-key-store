@@ -205,6 +205,7 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    System.out.println("THIS NODE: key " + key.hashCode() + " is being stored at node " + port);
                     status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
@@ -215,6 +216,7 @@ public class Server {
 
                 // call another node to handle the request
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
+                System.out.println("ANOTHER NODE: key " + key.hashCode() + " is being stored at node " + nodeAddress.getPort());
                 consistentHash.callNode(packet, nodeAddress);
                 return null;
             }
