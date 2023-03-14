@@ -2,19 +2,18 @@ package com.g2.CPEN431.A7;
 
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.IOException;
 import java.net.*;
-import java.nio.ByteBuffer;
 import java.util.*;
-import java.util.zip.CRC32;
+
 public class ConsistentHash {
     public int port;
     private final DatagramSocket socket;
 
     // Ring where key is hash cutoff for the node and value is the ip and port of the node
     private TreeMap<Integer, AddressPair> nodeRing = new TreeMap<>();
+    private HashMap<AddressPair, Integer> savedHashes = new HashMap<>();
 
     public ConsistentHash(int port) {
         this.port = port;
@@ -30,8 +29,16 @@ public class ConsistentHash {
      * @param addressPair: The ip and the port of the node
      */
     public void addNode(AddressPair addressPair) {
-        System.out.println("Hashing addresspair: " + addressPair.toString() + " " + addressPair.hashCode());
-        nodeRing.put(Objects.hashCode(addressPair), addressPair);
+        int addressHash = Objects.hashCode(addressPair);
+
+        while (nodeRing.containsKey(addressHash)) {
+            addressHash = (addressHash + 1) % 256;
+        }
+        System.out.println("[" + port + "]: Hashing addresspair: " + addressPair.toString() + " " + addressHash);
+
+        // Save the address hash in case it rejoins, since the hash used may be different from the internal hashCode()
+        savedHashes.put(addressPair, addressHash);
+        nodeRing.put(addressHash, addressPair);
     }
 
     /**
@@ -45,12 +52,12 @@ public class ConsistentHash {
         }
 
         // match hash of key to the least entry that has a strictly greater key
-        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()));
+        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(Math.abs(key.hashCode()) % 256);
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
 
     public AddressPair removeNode(AddressPair addressPair) {
-        return nodeRing.remove(Objects.hashCode(addressPair));
+        return nodeRing.remove(savedHashes.get(addressPair));
     }
 
     /**
@@ -77,7 +84,7 @@ public class ConsistentHash {
     }
 
     public boolean containsNode(AddressPair addressPair){
-        return nodeRing.containsKey(Objects.hashCode(addressPair));
+        return nodeRing.containsValue(addressPair);
     }
     public int membershipCount(){
         return nodeRing.size();

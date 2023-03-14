@@ -45,7 +45,7 @@ public class AddressPair {
     @Override
     public int hashCode() {
         try {
-            return Math.abs(new BigInteger(MessageDigest.getInstance("SHA-256").digest((ip + port).getBytes(StandardCharsets.UTF_8))).intValue());
+            return (Math.abs(new BigInteger(MessageDigest.getInstance("SHA-256").digest((ip + port).getBytes(StandardCharsets.UTF_8))).intValue()) + (port % 256)) % 256;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return -1;

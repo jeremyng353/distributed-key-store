@@ -210,6 +210,9 @@ public class Server {
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR)
                         RequestCache.put(message.getMessageID(), response);
+                    if (status == NO_MEM_ERR) {
+                        System.out.println("[" + port + "]: Out of memory!");
+                    }
                     return response;
                 }
 
