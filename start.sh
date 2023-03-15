@@ -11,19 +11,22 @@ hupexit() {
 }
 
 trap hupexit HUP
-trap cleanup INT
+trap cleanup INT TERM
+
+NODE_BASE_PORT=4445
+NUM_NODES=$1
 # get public IP using curl and save it to a variable
 PUBLIC_IP=$(curl -s https://api.ipify.org/)
 truncate -s 0 nodes.txt
 
-for ((i = 4445; i < 4465; i++)); do
+for ((i = $NODE_BASE_PORT; i < $NODE_BASE_PORT + $NUM_NODES; i++)); do
     echo $PUBLIC_IP >> nodes.txt
     echo $i >> nodes.txt
 
 done
 
-for ((i = 4445; i < 4465; i++)); do
-    java -jar -Xmx64m A7.jar $PUBLIC_IP $i &
+for ((i = $NODE_BASE_PORT; i < $NODE_BASE_PORT + $NUM_NODES; i++)); do
+    java -jar -Xmx512m A9.jar $PUBLIC_IP $i &
 done
 
 wait

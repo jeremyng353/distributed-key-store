@@ -1,19 +1,14 @@
 **Group ID:** G2
 
-**Verification Code:** 
+**Verification Code:** 49BA1E46A3917B7A048D2911A7636940
 
-**Used Run Command:**
-./start.sh
+**Used Run Command:** `./start.sh <NUM_NODES>` where `<NUM_NODES>` is the number of nodes to launch
 
-**Brief Description:** 
+**Brief Description:** In order to allow node re-joins, we make sure to keep track of all its initial nodes as
+well as its associated hashes. When a node determines which node to pull its membership list from, we specifically
+allow nodes that were previously dead to allow them to re-join. Then, a node that re-joins will be re-added back to
+our consistent hash. 
 
-We use a TreeMap for consistent hashing to keep track of the hash of the address of each node. Using a TreeMap allows us to get the next entry that is naturally (alphabetically) higher than the hash of the key in the key/value.
-
-For group membership, we implement the pull epidemic protocol by creating a timer that runs every 0.5s which pulls membership info from a randomly selected node.
-Node status is represented by the time it was last seen alive, so a node is determined to be dead when the time
-it was last known to be alive has exceeded a threshold. A request for membership info to a node is handled similarly
-to a get/put/rem request. This was done by creating a new command with the code 0x22.
-
-**Proof of Immediate Crash/Termination Upon Shutdown Request:**
-/src/main/java/com/g2/CPEN431/A7/Memory.java
-Line 106
+In the event that a node re-joins but keys were added while it was down, we implement a method such that the next node
+in the consistent hash's node ring will transfer any keys that should belong to the re-joined node. This is done by
+issuing multiple PUT commands in a separate thread to avoid blocking the main server thread that handles requests.
