@@ -16,14 +16,14 @@ trap cleanup INT
 PUBLIC_IP=$(curl -s https://api.ipify.org/)
 truncate -s 0 nodes.txt
 
-for ((i = 4445; i < 4465; i++)); do
+for ((i = 4445; i < 4525; i++)); do
     echo $PUBLIC_IP >> nodes.txt
     echo $i >> nodes.txt
 
 done
 
-for ((i = 4445; i < 4465; i++)); do
-    java -jar -Xmx64m A8.jar $PUBLIC_IP $i &
+for ((i = 4445; i < 4525; i++)); do
+    java -jar -Xmx512m A9.jar $PUBLIC_IP $i &
 done
 
 wait
