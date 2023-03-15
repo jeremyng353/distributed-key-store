@@ -2,7 +2,7 @@
 
 **Verification Code:** 49BA1E46A3917B7A048D2911A7636940
 
-**Used Run Command:** ./start.sh
+**Used Run Command:** `./start.sh <NUM_NODES>` where `<NUM_NODES>` is the number of nodes to launch
 
 **Brief Description:** In order to allow node re-joins, we make sure to keep track of all its initial nodes as
 well as its associated hashes. When a node determines which node to pull its membership list from, we specifically
