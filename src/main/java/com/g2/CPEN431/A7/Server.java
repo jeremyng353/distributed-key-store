@@ -31,11 +31,13 @@ public class Server {
     public static final int GET_PID = 0x07;
     public static final int GET_MS_ID = 0x08;
     public static final int GET_MS_LIST = 0x22;
+    public static final int REPLICA_PUT = 0x23;
 
     private final String ip;
     private final int port;
     ConsistentHash consistentHash;
     private final MemberMonitor memberMonitor;
+    private final UDPClient udpClient = new UDPClient();
 
     private final long pid;
 
@@ -191,7 +193,7 @@ public class Server {
      * @return A ByteString containing the operation response payload to be sent back
      * @throws InvalidProtocolBufferException: This exception is thrown when an operation error occurs with parseFrom() function
      */
-    public Object exeCommand(Message.Msg message, DatagramPacket packet) throws InvalidProtocolBufferException, UnknownHostException {
+    public ByteString exeCommand(Message.Msg message, DatagramPacket packet) throws InvalidProtocolBufferException, UnknownHostException {
         // get kvrequest from message
         KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.parseFrom(message.getPayload());
         int status;
@@ -213,6 +215,7 @@ public class Server {
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
                     }
+                    requestReplica(0, response);
                     return response;
                 }
 
@@ -304,12 +307,45 @@ public class Server {
                 RequestCache.put(message.getMessageID(), response);
                 return response;
             }
+            case REPLICA_PUT -> {
+                ByteString key = kvRequest.getKey();
+                status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+
+                if (status == NO_MEM_ERR) {
+                    System.out.println("[" + port + "]: Out of memory!");
+                }
+
+                int replicaCounter = kvRequest.getReplicaCounter();
+                if (replicaCounter >= 2) {
+                    return kvRequest.getReplicaResponse();
+                } else {
+                    requestReplica(++replicaCounter, kvRequest.getReplicaResponse());
+                }
+
+                return null;
+            }
             default -> {
                 status = UKN_CMD;
                 response = buildResPayload(status);
                 RequestCache.put(message.getMessageID(), response);
                 return response;
             }
+        }
+    }
+
+    public void requestReplica(int replicaCounter, ByteString response) {
+        KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(REPLICA_PUT)
+                .setReplicaCounter(replicaCounter)
+                .setReplicaResponse(response)
+                .build();
+
+        AddressPair nextNode = consistentHash.getNextNode(new AddressPair(ip, port));
+
+        try {
+            udpClient.request(InetAddress.getByName(nextNode.getIp()), nextNode.getPort(), replicaRequest.toByteArray());
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
         }
     }
 }
