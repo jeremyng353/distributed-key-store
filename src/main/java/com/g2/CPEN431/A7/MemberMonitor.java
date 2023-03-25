@@ -41,8 +41,6 @@ public class MemberMonitor implements Runnable {
             replicas.add(curNode);
         }
 
-        System.out.println("REPLICAS: " + replicas);
-
         Long currentTime = System.currentTimeMillis();
         for (AddressPair addressPair : initialMembership) {
             nodeStore.put(addressPair, currentTime);
@@ -85,9 +83,15 @@ public class MemberMonitor implements Runnable {
                             nodeStore.put(checkAddressPair, checkLastAlive);
                         }));
                 for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
-                    if (isDead(entry.getKey())) {
-//                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!");
+                    AddressPair nsNode = entry.getKey();
+                    if (isDead(nsNode)) {
+//                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!")
                         consistentHash.removeNode(entry.getKey());
+                        if (replicas.contains(nsNode)) {
+                            // Remove dead node and add the node after the last node in replicas
+                            replicas.remove(nsNode);
+                            replicas.add(consistentHash.getNextNode(replicas.get(replicas.size()-1)));
+                        }
                     } else if (!consistentHash.containsNode(entry.getKey())){ // If the consistent hash does not contain an alive node, then it needs to join the hash once again
                         consistentHash.addNode(entry.getKey());
                     }
