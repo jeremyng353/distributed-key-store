@@ -32,6 +32,7 @@ public class Server {
     public static final int GET_MS_ID = 0x08;
     public static final int GET_MS_LIST = 0x22;
     public static final int REPLICA_PUT = 0x23;
+    public static final int REPLICA_REMOVE = 0x24;
 
     private final String ip;
     private final int port;
@@ -215,8 +216,8 @@ public class Server {
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
                     }
-                    requestReplica(0, response);
-                    return response;
+                    requestReplica(0, response, REPLICA_PUT);
+                    // return response;
                 }
 
                 // call another node to handle the request
@@ -237,6 +238,7 @@ public class Server {
                     } else {
                         response = buildResPayload(status);
                     }
+                    // TODO: replica
                     return response;
                 }
 
@@ -253,6 +255,7 @@ public class Server {
                     status = Memory.remove(key);
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
+                    requestReplica(0, response, REPLICA_REMOVE);
                     return response;
                 }
 
@@ -319,7 +322,20 @@ public class Server {
                 if (replicaCounter >= 2) {
                     return kvRequest.getReplicaResponse();
                 } else {
-                    requestReplica(++replicaCounter, kvRequest.getReplicaResponse());
+                    requestReplica(++replicaCounter, kvRequest.getReplicaResponse(), REPLICA_PUT);
+                }
+
+                return null;
+            }
+            case REPLICA_REMOVE -> {
+                ByteString key = kvRequest.getKey();
+                Memory.remove(key);
+
+                int replicaCounter = kvRequest.getReplicaCounter();
+                if (replicaCounter >= 2) {
+                    return kvRequest.getReplicaResponse();
+                } else {
+                    requestReplica(++replicaCounter, kvRequest.getReplicaResponse(), REPLICA_REMOVE);
                 }
 
                 return null;
@@ -333,9 +349,9 @@ public class Server {
         }
     }
 
-    public void requestReplica(int replicaCounter, ByteString response) {
+    public void requestReplica(int replicaCounter, ByteString response, int command) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
-                .setCommand(REPLICA_PUT)
+                .setCommand(command)
                 .setReplicaCounter(replicaCounter)
                 .setReplicaResponse(response)
                 .build();
