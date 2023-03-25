@@ -113,4 +113,9 @@ public class ConsistentHash {
         return (nodeRing.higherEntry(lowerAddressHash) != null && nodeRing.higherEntry(lowerAddressHash).getValue().equals(selfAddress))
                 || (nodeRing.firstEntry().getValue().equals(selfAddress) && nodeRing.lastEntry().getValue().equals(lowerAddressPair));
     }
+
+    public AddressPair getNextNode(AddressPair node) {
+        Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(node.hashCode());
+        return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
+    }
 }

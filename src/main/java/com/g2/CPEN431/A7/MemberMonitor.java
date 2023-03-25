@@ -20,6 +20,7 @@ public class MemberMonitor implements Runnable {
     private final UDPClient udpClient;
     private final AddressPair self;
     private final ConsistentHash consistentHash;
+    private ArrayList<AddressPair> replicas;
 
     //dummy time until we set the amount of nodes
     public static final int DEFAULT_INTERVAL = 100;
@@ -32,6 +33,15 @@ public class MemberMonitor implements Runnable {
         this.udpClient = new UDPClient();
         this.self = selfAddress;
         this.consistentHash = consistentHash;
+
+        this.replicas = new ArrayList<>();
+        AddressPair curNode = this.self;
+        for (int i = 0; i < 3; i++) {
+            curNode = consistentHash.getNextNode(curNode);
+            replicas.add(curNode);
+        }
+
+        System.out.println("REPLICAS: " + replicas);
 
         Long currentTime = System.currentTimeMillis();
         for (AddressPair addressPair : initialMembership) {

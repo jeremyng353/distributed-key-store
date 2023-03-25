@@ -23,7 +23,7 @@ for ((i = 4445; i < 4465; i++)); do
 done
 
 for ((i = 4445; i < 4465; i++)); do
-    java -jar -Xmx64m A8.jar $PUBLIC_IP $i &
+    java -jar -Xmx64m A9.jar $PUBLIC_IP $i &
 done
 
 wait
