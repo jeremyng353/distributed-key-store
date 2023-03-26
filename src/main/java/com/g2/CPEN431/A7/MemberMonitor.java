@@ -94,6 +94,7 @@ public class MemberMonitor implements Runnable {
                         }
                     } else if (!consistentHash.containsNode(entry.getKey())){ // If the consistent hash does not contain an alive node, then it needs to join the hash once again
                         consistentHash.addNode(entry.getKey());
+                        // TODO: add node back to replica list if it died and came back to life
                     }
                 }
             }

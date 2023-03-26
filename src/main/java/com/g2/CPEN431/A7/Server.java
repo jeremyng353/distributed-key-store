@@ -211,12 +211,14 @@ public class Server {
                     status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
-                    if (status != NO_MEM_ERR)
+                    if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
+                        requestReplica(0, response, REPLICA_PUT);
+                    }
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
                     }
-                    requestReplica(0, response, REPLICA_PUT);
+
                     // return response;
                 }
 
