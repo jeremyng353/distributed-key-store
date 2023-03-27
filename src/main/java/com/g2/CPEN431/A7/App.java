@@ -94,22 +94,6 @@ public class App
                     socket.send(packet);
                 }
 
-                /*
-                if (kvResponse instanceof DatagramPacket) {
-                    packet = new DatagramPacket(((DatagramPacket) kvResponse).getData(), ((DatagramPacket) kvResponse).getLength(), address, packetPort);
-                    socket.send(packet);
-                } else if (kvResponse instanceof ByteString) {
-                    // build checksum and response message
-                    long checksum = Server.buildChecksum(message.getMessageID(), (ByteString) kvResponse);
-                    byte[] resMessage = Server.buildMessage(message.getMessageID(), (ByteString) kvResponse, checksum);
-
-                    // load message into packet to send back to client
-                    packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
-                    socket.send(packet);
-                }
-
-                 */
-
             } catch (PacketCorruptionException e) {
                 System.out.println("the packet is corrupt");
             }
