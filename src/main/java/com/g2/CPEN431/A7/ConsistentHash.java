@@ -118,4 +118,9 @@ public class ConsistentHash {
         Map.Entry<Integer, AddressPair> nextEntry = nodeRing.higherEntry(node.hashCode());
         return nextEntry != null ? nextEntry.getValue() : nodeRing.firstEntry().getValue();
     }
+
+    public AddressPair getPreviousNode(AddressPair node) {
+        Map.Entry<Integer, AddressPair> previousEntry = nodeRing.lowerEntry(node.hashCode());
+        return previousEntry != null ? previousEntry.getValue() : nodeRing.lastEntry().getValue();
+    }
 }

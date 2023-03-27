@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 
@@ -33,6 +34,7 @@ public class Server {
     public static final int GET_MS_LIST = 0x22;
     public static final int REPLICA_PUT = 0x23;
     public static final int REPLICA_REMOVE = 0x24;
+    public static final int REPLICA_GET = 0x25;
 
     private final String ip;
     private final int port;
@@ -218,8 +220,6 @@ public class Server {
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
                     }
-
-                    // return response;
                 }
 
                 // call another node to handle the request
@@ -233,15 +233,8 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    status = Memory.isStored(key);
-                    if (status == SUCCESS) {
-                        Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
-                        response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                    } else {
-                        response = buildResPayload(status);
-                    }
-                    // TODO: replica
-                    return response;
+                    requestTailRead();
+                    return null;
                 }
 
                 // call another node to handle the request
@@ -342,6 +335,24 @@ public class Server {
 
                 return null;
             }
+            case REPLICA_GET -> {
+                ByteString key = kvRequest.getKey();
+                status = Memory.isStored(key);
+
+                if (status == SUCCESS) {
+                    Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
+                    return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                } else {
+                    // ASSUMPTION: iterating backwards through replicas is correct
+                    int replicaCounter = kvRequest.getReplicaCounter() - 1;
+                    if (replicaCounter > 0) {
+                        requestReplica(replicaCounter, null, REPLICA_GET);
+                    } else {
+                        return buildResPayload(status);
+                    }
+                    return null;
+                }
+            }
             default -> {
                 status = UKN_CMD;
                 response = buildResPayload(status);
@@ -362,6 +373,19 @@ public class Server {
 
         try {
             udpClient.request(InetAddress.getByName(nextNode.getIp()), nextNode.getPort(), replicaRequest.toByteArray());
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void requestTailRead() {
+        KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(REPLICA_GET)
+                .setReplicaCounter(2)
+                .build();
+        AddressPair tailNode = memberMonitor.getReplicas().get(memberMonitor.getReplicas().size()-1);
+        try {
+            udpClient.request(InetAddress.getByName(tailNode.getIp()), tailNode.getPort(), replicaRequest.toByteArray());
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }

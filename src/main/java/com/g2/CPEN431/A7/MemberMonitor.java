@@ -115,4 +115,8 @@ public class MemberMonitor implements Runnable {
     private boolean isDead(AddressPair addressPair) {
         return System.currentTimeMillis() - nodeStore.get(addressPair) > (DEFAULT_INTERVAL * (Math.log(NUM_NODES) / Math.log(2) + SAFETY_MARGIN));
     }
+
+    public ArrayList<AddressPair> getReplicas() {
+        return replicas;
+    }
 }
