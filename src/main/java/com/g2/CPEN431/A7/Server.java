@@ -391,7 +391,7 @@ public class Server {
                     // ASSUMPTION: iterating backwards through replicas is correct
                     int replicaCounter = kvRequest.getReplicaCounter();
                     ByteString payload = buildResPayload(status);
-                    if (replicaCounter > 0) {
+                    if (replicaCounter < 3) {
                         // Forward request to previous replica
                         requestReplica(
                                 ++replicaCounter,
@@ -445,7 +445,7 @@ public class Server {
     public void requestTailRead(String clientIp, int clientPort) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(REPLICA_GET)
-                .setReplicaCounter(2)
+                .setReplicaCounter(0)
                 .build();
         AddressPair tailNode = memberMonitor.getReplicas().get(memberMonitor.getReplicas().size()-1);
         try {
