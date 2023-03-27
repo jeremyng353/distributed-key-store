@@ -208,54 +208,67 @@ public class Server {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
-                // if this node should handle the request
+                // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    // if this node should handle the request, put and forward to next replica
                     status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
-                        requestReplica(0, response, REPLICA_PUT);
+                        requestReplica(
+                                0,
+                                response,
+                                REPLICA_PUT,
+                                packet.getAddress().getHostAddress(),
+                                packet.getPort()
+                        );
                     }
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
                     }
+                } else {
+                    // call another node to handle the request
+                    consistentHash.callNode(packet, nodeAddress);
                 }
 
-                // call another node to handle the request
-                // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
-                consistentHash.callNode(packet, nodeAddress);
                 return null;
             }
             case GET -> {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
-                // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    requestTailRead();
-                    return null;
+                    // if this node should handle the request, forward request to tail of replica chain
+                    requestTailRead(packet.getAddress().getHostAddress(), packet.getPort());
+                } else {
+                    // call another node to handle the request
+                    consistentHash.callNode(packet, nodeAddress);
                 }
 
-                // call another node to handle the request
-                consistentHash.callNode(packet, nodeAddress);
                 return null;
             }
             case REMOVE -> {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
-                // if this node should handle the request
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    // if this node should handle the request, remove and forward request to next replica
                     status = Memory.remove(key);
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
-                    requestReplica(0, response, REPLICA_REMOVE);
-                    return response;
+                    requestReplica(
+                            0,
+                            response,
+                            REPLICA_REMOVE,
+                            packet.getAddress().getHostAddress(),
+                            packet.getPort()
+                    );
+                } else {
+                    // call another node to handle the request
+                    consistentHash.callNode(packet, nodeAddress);
                 }
 
-                // call another node to handle the request
-                consistentHash.callNode(packet, nodeAddress);
                 return null;
             }
             case SHUTDOWN -> {
@@ -314,10 +327,24 @@ public class Server {
                 }
 
                 int replicaCounter = kvRequest.getReplicaCounter();
+                System.out.println("Received REPLICA_PUT, replicaCounter " + replicaCounter);
                 if (replicaCounter >= 2) {
-                    return kvRequest.getReplicaResponse();
+                    // Send client a response
+                    udpClient.sendClientResponse(
+                            kvRequest.getReplicaResponse().toByteArray(),
+                            message.getClientIp(),
+                            message.getClientPort()
+                    );
                 } else {
-                    requestReplica(++replicaCounter, kvRequest.getReplicaResponse(), REPLICA_PUT);
+                    // Forward request to next replica
+                    replicaCounter++;
+                    requestReplica(
+                            replicaCounter,
+                            kvRequest.getReplicaResponse(),
+                            REPLICA_PUT,
+                            message.getClientIp(),
+                            message.getClientPort()
+                    );
                 }
 
                 return null;
@@ -328,9 +355,21 @@ public class Server {
 
                 int replicaCounter = kvRequest.getReplicaCounter();
                 if (replicaCounter >= 2) {
-                    return kvRequest.getReplicaResponse();
+                    // Send client a response
+                    udpClient.sendClientResponse(
+                            kvRequest.getReplicaResponse().toByteArray(),
+                            message.getClientIp(),
+                            message.getClientPort()
+                    );
                 } else {
-                    requestReplica(++replicaCounter, kvRequest.getReplicaResponse(), REPLICA_REMOVE);
+                    // Forward request to next replica
+                    requestReplica(
+                            ++replicaCounter,
+                            kvRequest.getReplicaResponse(),
+                            REPLICA_REMOVE,
+                            message.getClientIp(),
+                            message.getClientPort()
+                    );
                 }
 
                 return null;
@@ -341,14 +380,33 @@ public class Server {
 
                 if (status == SUCCESS) {
                     Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
-                    return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    // Respond to client with key value
+                    udpClient.sendClientResponse(
+                            buildResPayload(status, keyValue.getFirst(), keyValue.getSecond()).toByteArray(),
+                            message.getClientIp(),
+                            message.getClientPort()
+                    );
+                    return null;
                 } else {
                     // ASSUMPTION: iterating backwards through replicas is correct
-                    int replicaCounter = kvRequest.getReplicaCounter() - 1;
+                    int replicaCounter = kvRequest.getReplicaCounter();
+                    ByteString payload = buildResPayload(status);
                     if (replicaCounter > 0) {
-                        requestReplica(replicaCounter, null, REPLICA_GET);
+                        // Forward request to previous replica
+                        requestReplica(
+                                ++replicaCounter,
+                                payload,
+                                REPLICA_GET,
+                                message.getClientIp(),
+                                message.getClientPort()
+                        );
                     } else {
-                        return buildResPayload(status);
+                        // Respond to client with no key value
+                        udpClient.sendClientResponse(
+                                payload.toByteArray(),
+                                message.getClientIp(),
+                                message.getClientPort()
+                        );
                     }
                     return null;
                 }
@@ -362,7 +420,7 @@ public class Server {
         }
     }
 
-    public void requestReplica(int replicaCounter, ByteString response, int command) {
+    public void requestReplica(int replicaCounter, ByteString response, int command, String clientIp, int clientPort) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(command)
                 .setReplicaCounter(replicaCounter)
@@ -370,22 +428,34 @@ public class Server {
                 .build();
 
         AddressPair nextNode = consistentHash.getNextNode(new AddressPair(ip, port));
+        System.out.println("requestReplica " + nextNode.getIp() + ":" + nextNode.getPort() + " replicaCounter: " + replicaCounter);
 
         try {
-            udpClient.request(InetAddress.getByName(nextNode.getIp()), nextNode.getPort(), replicaRequest.toByteArray());
+            udpClient.replicaRequest(InetAddress.getByName(nextNode.getIp()),
+                    nextNode.getPort(),
+                    replicaRequest.toByteArray(),
+                    clientIp,
+                    clientPort
+            );
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void requestTailRead() {
+    public void requestTailRead(String clientIp, int clientPort) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(REPLICA_GET)
                 .setReplicaCounter(2)
                 .build();
         AddressPair tailNode = memberMonitor.getReplicas().get(memberMonitor.getReplicas().size()-1);
         try {
-            udpClient.request(InetAddress.getByName(tailNode.getIp()), tailNode.getPort(), replicaRequest.toByteArray());
+            udpClient.replicaRequest(
+                    InetAddress.getByName(tailNode.getIp()),
+                    tailNode.getPort(),
+                    replicaRequest.toByteArray(),
+                    clientIp,
+                    clientPort
+            );
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }

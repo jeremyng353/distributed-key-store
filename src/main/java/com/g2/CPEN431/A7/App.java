@@ -68,7 +68,7 @@ public class App
 
                 Message.Msg message = Server.readRequest(packet);
 
-                Object kvResponse;
+                ByteString kvResponse;
                 // if message cached retrieved cached response otherwise execute command
                 if (RequestCache.isStored(message.getMessageID())) {
                     kvResponse = RequestCache.get(message.getMessageID());
@@ -86,8 +86,8 @@ public class App
 
                 if (kvResponse != null) {
                     // build checksum and response message
-                    long checksum = Server.buildChecksum(message.getMessageID(), (ByteString) kvResponse);
-                    byte[] resMessage = Server.buildMessage(message.getMessageID(), (ByteString) kvResponse, checksum);
+                    long checksum = Server.buildChecksum(message.getMessageID(), kvResponse);
+                    byte[] resMessage = Server.buildMessage(message.getMessageID(), kvResponse, checksum);
 
                     // load message into packet to send back to client
                     packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);

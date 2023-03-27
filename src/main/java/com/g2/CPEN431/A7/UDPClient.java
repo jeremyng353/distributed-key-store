@@ -145,4 +145,67 @@ public class UDPClient {
 
         return outputStream.toByteArray();
     }
+
+    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort) {
+        // TODO: no timeout for this function since we don't expect a response from replicas, but
+        // maybe we should have a response...
+
+        try {
+            byte[] uuid = generateUUID(replicaAddress, replicaPort);
+
+            byte[] checksumByteArray = concatenateByteArrays(uuid, payload);
+            long checksum = computeChecksum(checksumByteArray);
+
+            byte[] messageBuffer = Message.Msg.newBuilder().setMessageID(ByteString.copyFrom(uuid))
+                    .setPayload(ByteString.copyFrom(payload))
+                    .setCheckSum(checksum)
+                    .setClientIp(clientIp)
+                    .setClientPort(clientPort)
+                    .build()
+                    .toByteArray();
+
+            // If the buffer is larger than 16 KB, then truncate
+            int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+            DatagramPacket replicaPacket = new DatagramPacket(
+                    messageBuffer,
+                    messageBufferSize,
+                    InetAddress.getByName("localhost"),
+                    replicaPort
+            );
+
+            socket.send(replicaPacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void sendClientResponse(byte[] payload, String clientIp, int clientPort) {
+        byte[] uuid = new byte[0];
+        byte[] checksumByteArray = new byte[0];
+        try {
+            uuid = generateUUID(InetAddress.getByName(clientIp), clientPort);
+            checksumByteArray = concatenateByteArrays(uuid, payload);
+            long checksum = computeChecksum(checksumByteArray);
+
+            byte[] messageBuffer = Message.Msg.newBuilder().setMessageID(ByteString.copyFrom(uuid))
+                    .setPayload(ByteString.copyFrom(payload))
+                    .setCheckSum(checksum)
+                    .build()
+                    .toByteArray();
+
+            int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+            DatagramPacket clientPacket = new DatagramPacket(
+                    messageBuffer,
+                    messageBufferSize,
+                    InetAddress.getByName(clientIp),
+                    clientPort
+            );
+
+            socket.send(clientPacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 }
