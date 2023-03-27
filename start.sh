@@ -15,15 +15,17 @@ trap cleanup INT
 # get public IP using curl and save it to a variable
 PUBLIC_IP=$(curl -s https://api.ipify.org/)
 truncate -s 0 nodes.txt
+truncate -s 0 servers.txt
 
-for ((i = 4445; i < 4465; i++)); do
+for ((i = 4445; i < 4475; i++)); do
     echo $PUBLIC_IP >> nodes.txt
     echo $i >> nodes.txt
+    echo "localhost:$i" >> servers.txt
 
 done
 
-for ((i = 4445; i < 4465; i++)); do
-    java -jar -Xmx64m A9.jar $PUBLIC_IP $i &
+for ((i = 4445; i < 4475; i++)); do
+    java -jar -Xmx64m A10.jar $PUBLIC_IP $i &
 done
 
 wait
