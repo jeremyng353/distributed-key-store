@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cpen431_2023_project_g2" />
         <module name="CPEN431_2023_PROJECT_G2" />
         <module name="CPEN431_2023_A7" />
       </profile>

@@ -19,6 +19,7 @@ public class Server {
 
     // response code constant values
     private static final int SUCCESS = 0x00;
+    private static final int NO_KEY_ERR = 0x01;
     private static final int NO_MEM_ERR = 0x02;
     private static final int UKN_CMD = 0x05;
 
@@ -207,6 +208,7 @@ public class Server {
             case PUT -> {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
+                ByteString value = kvRequest.getValue();
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
@@ -217,6 +219,8 @@ public class Server {
                     if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
                         requestReplica(
+                                key,
+                                value,
                                 0,
                                 response,
                                 REPLICA_PUT,
@@ -240,7 +244,7 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
                     // if this node should handle the request, forward request to tail of replica chain
-                    requestTailRead(packet.getAddress().getHostAddress(), packet.getPort());
+                    requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
                 } else {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
@@ -258,6 +262,7 @@ public class Server {
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
                     requestReplica(
+                            key,
                             0,
                             response,
                             REPLICA_REMOVE,
@@ -320,6 +325,7 @@ public class Server {
             }
             case REPLICA_PUT -> {
                 ByteString key = kvRequest.getKey();
+                ByteString value = kvRequest.getValue();
                 status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
 
                 if (status == NO_MEM_ERR) {
@@ -339,6 +345,8 @@ public class Server {
                     // Forward request to next replica
                     replicaCounter++;
                     requestReplica(
+                            key,
+                            value,
                             replicaCounter,
                             kvRequest.getReplicaResponse(),
                             REPLICA_PUT,
@@ -364,6 +372,7 @@ public class Server {
                 } else {
                     // Forward request to next replica
                     requestReplica(
+                            key,
                             ++replicaCounter,
                             kvRequest.getReplicaResponse(),
                             REPLICA_REMOVE,
@@ -375,7 +384,10 @@ public class Server {
                 return null;
             }
             case REPLICA_GET -> {
+                System.out.println("Received Replica get with counter");
+                System.out.println(kvRequest.getReplicaCounter());
                 ByteString key = kvRequest.getKey();
+                System.out.println(key);
                 status = Memory.isStored(key);
 
                 if (status == SUCCESS) {
@@ -386,14 +398,17 @@ public class Server {
                             message.getClientIp(),
                             message.getClientPort()
                     );
+                    System.out.println("status was success?");
                     return null;
-                } else {
+                } else if (status == NO_KEY_ERR) {
                     // ASSUMPTION: iterating backwards through replicas is correct
+                    System.out.println("iteration back in replica get");
                     int replicaCounter = kvRequest.getReplicaCounter();
                     ByteString payload = buildResPayload(status);
                     if (replicaCounter < 3) {
                         // Forward request to previous replica
                         requestReplica(
+                                key,
                                 ++replicaCounter,
                                 payload,
                                 REPLICA_GET,
@@ -407,9 +422,14 @@ public class Server {
                                 message.getClientIp(),
                                 message.getClientPort()
                         );
+
+                        System.out.println("sending back to client");
+                        System.out.print(message.getClientIp());
+                        System.out.println(message.getClientPort());
                     }
                     return null;
                 }
+                return null;
             }
             default -> {
                 status = UKN_CMD;
@@ -420,9 +440,19 @@ public class Server {
         }
     }
 
-    public void requestReplica(int replicaCounter, ByteString response, int command, String clientIp, int clientPort) {
+    public void requestReplica(ByteString key, int replicaCounter, ByteString response, int command, String clientIp, int clientPort) {
+        try{
+            requestReplica(key, null, replicaCounter, response, command, clientIp, clientPort);
+        } catch(RuntimeException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void requestReplica(ByteString key, ByteString value, int replicaCounter, ByteString response, int command, String clientIp, int clientPort) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(command)
+                .setKey(key)
+                .setValue(value)
                 .setReplicaCounter(replicaCounter)
                 .setReplicaResponse(response)
                 .build();
@@ -442,9 +472,10 @@ public class Server {
         }
     }
 
-    public void requestTailRead(String clientIp, int clientPort) {
+    public void requestTailRead(ByteString key, String clientIp, int clientPort) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(REPLICA_GET)
+                .setKey(key)
                 .setReplicaCounter(0)
                 .build();
         AddressPair tailNode = memberMonitor.getReplicas().get(memberMonitor.getReplicas().size()-1);

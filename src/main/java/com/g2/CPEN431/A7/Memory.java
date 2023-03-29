@@ -55,7 +55,7 @@ public class Memory {
      */
     public static int isStored(ByteString key) {
         // check key size
-        if (key.size() > MAX_KEY_SIZE) return BAD_KEY_ERR;
+        if (key.size() > MAX_KEY_SIZE || key.size() == 0) return BAD_KEY_ERR;
         if (store.containsKey(key)) return SUCCESS;
         return NO_KEY_ERR;
     }

@@ -200,7 +200,8 @@ public class UDPClient {
                     InetAddress.getByName(clientIp),
                     clientPort
             );
-
+            System.out.println("sending back to client from UDPClient at port:");
+            System.out.println(clientPort);
             socket.send(clientPacket);
         } catch (IOException e) {
             throw new RuntimeException(e);
