@@ -244,7 +244,14 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
                     // if this node should handle the request, forward request to tail of replica chain
-                    requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
+                    status = Memory.isStored(key);
+
+                    if (status == SUCCESS) {
+                        Pair<ByteString, Integer> keyValue = Memory.get(key);
+                        return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    }
+                    //requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
+
                 } else {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
@@ -341,11 +348,9 @@ public class Server {
                 System.out.println("Received REPLICA_PUT, replicaCounter " + replicaCounter);
                 if (replicaCounter >= 2) {
                     // Send client a response
-                    udpClient.sendClientResponse(
-                            kvRequest.getReplicaResponse().toByteArray(),
-                            message.getClientIp(),
-                            message.getClientPort()
-                    );
+                    
+                    return kvRequest.getReplicaResponse();
+                            
                 } else {
                     // Forward request to next replica
                     replicaCounter++;
@@ -400,12 +405,7 @@ public class Server {
                     System.out.println(port + ": " + key);
                     System.out.println(port + ": " + keyValue.getFirst());
                     System.out.println(port + ": " + "-----------------------------------------------");
-                    udpClient.sendClientResponse(
-                            buildResPayload(status, keyValue.getFirst(), keyValue.getSecond()).toByteArray(),
-                            message.getClientIp(),
-                            message.getClientPort()
-                    );
-                    return null;
+                    return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                 } else if (status == NO_KEY_ERR) {
                     // ASSUMPTION: iterating backwards through replicas is correct
                     int replicaCounter = kvRequest.getReplicaCounter();
@@ -422,14 +422,7 @@ public class Server {
                         );
                     } else {
                         // Respond to client with no key value
-                        udpClient.sendClientResponse(
-                                payload.toByteArray(),
-                                message.getClientIp(),
-                                message.getClientPort()
-                        );
-
-                        System.out.print(message.getClientIp());
-                        System.out.println(message.getClientPort());
+                        return payload;
                     }
                     return null;
                 }
