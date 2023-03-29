@@ -224,14 +224,16 @@ public class Server {
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
+                        String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                        int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
                         requestReplica(
                                 key,
                                 value,
                                 0,
                                 response,
                                 REPLICA_PUT,
-                                packet.getAddress().getHostAddress(),
-                                packet.getPort()
+                                clientIp,
+                                clientPort
                         );
                     }
                     if (status == NO_MEM_ERR) {
@@ -283,13 +285,16 @@ public class Server {
                     System.out.println(port + ": " + key);
                     System.out.println(port + ": " + "-----------------------------------------------");
 
+                    String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                    int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+
                     requestReplica(
                             key,
                             0,
                             response,
                             REPLICA_REMOVE,
-                            packet.getAddress().getHostAddress(),
-                            packet.getPort()
+                            clientIp,
+                            clientPort
                     );
                 } else {
                     // call another node to handle the request
