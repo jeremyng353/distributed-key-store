@@ -328,6 +328,11 @@ public class Server {
                 ByteString value = kvRequest.getValue();
                 status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
 
+                System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
+                System.out.println(port + ": " + key);
+                System.out.println(port + ": " + value);
+                System.out.println(port + ": " + "-----------------------------------------------");
+
                 if (status == NO_MEM_ERR) {
                     System.out.println("[" + port + "]: Out of memory!");
                 }
@@ -384,25 +389,25 @@ public class Server {
                 return null;
             }
             case REPLICA_GET -> {
-                System.out.println("Received Replica get with counter");
-                System.out.println(kvRequest.getReplicaCounter());
+
                 ByteString key = kvRequest.getKey();
-                System.out.println(key);
                 status = Memory.isStored(key);
 
                 if (status == SUCCESS) {
-                    Pair<ByteString, Integer> keyValue = Memory.get(kvRequest.getKey());
+                    Pair<ByteString, Integer> keyValue = Memory.get(key);
                     // Respond to client with key value
+                    System.out.println(port + ": " +  "------------ GET KEY AND VALUE ----------------");
+                    System.out.println(port + ": " + key);
+                    System.out.println(port + ": " + keyValue.getFirst());
+                    System.out.println(port + ": " + "-----------------------------------------------");
                     udpClient.sendClientResponse(
                             buildResPayload(status, keyValue.getFirst(), keyValue.getSecond()).toByteArray(),
                             message.getClientIp(),
                             message.getClientPort()
                     );
-                    System.out.println("status was success?");
                     return null;
                 } else if (status == NO_KEY_ERR) {
                     // ASSUMPTION: iterating backwards through replicas is correct
-                    System.out.println("iteration back in replica get");
                     int replicaCounter = kvRequest.getReplicaCounter();
                     ByteString payload = buildResPayload(status);
                     if (replicaCounter < 3) {
@@ -423,7 +428,6 @@ public class Server {
                                 message.getClientPort()
                         );
 
-                        System.out.println("sending back to client");
                         System.out.print(message.getClientIp());
                         System.out.println(message.getClientPort());
                     }
