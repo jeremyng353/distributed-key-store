@@ -209,9 +209,14 @@ public class Server {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
                 ByteString value = kvRequest.getValue();
+                
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
+                    System.out.println(port + ": " + key);
+                    System.out.println(port + ": " + value);
+                    System.out.println(port + ": " + "-----------------------------------------------");
                     // if this node should handle the request, put and forward to next replica
                     status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
@@ -246,11 +251,11 @@ public class Server {
                     // if this node should handle the request, forward request to tail of replica chain
                     status = Memory.isStored(key);
 
-                    if (status == SUCCESS) {
-                        Pair<ByteString, Integer> keyValue = Memory.get(key);
-                        return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                    }
-                    //requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
+                    // if (status == SUCCESS) {
+                    //     Pair<ByteString, Integer> keyValue = Memory.get(key);
+                    //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    // }
+                    requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
 
                 } else {
                     // call another node to handle the request
@@ -335,7 +340,7 @@ public class Server {
                 ByteString value = kvRequest.getValue();
                 status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
 
-                System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
+                System.out.println(port + ": " + "------------ REP PUT KEY AND VALUE ----------------");
                 System.out.println(port + ": " + key);
                 System.out.println(port + ": " + value);
                 System.out.println(port + ": " + "-----------------------------------------------");
@@ -345,7 +350,7 @@ public class Server {
                 }
 
                 int replicaCounter = kvRequest.getReplicaCounter();
-                System.out.println("Received REPLICA_PUT, replicaCounter " + replicaCounter);
+                System.out.println(port + ": Received REPLICA_PUT, replicaCounter " + replicaCounter);
                 if (replicaCounter >= 2) {
                     // Send client a response
                     
@@ -401,7 +406,7 @@ public class Server {
                 if (status == SUCCESS) {
                     Pair<ByteString, Integer> keyValue = Memory.get(key);
                     // Respond to client with key value
-                    System.out.println(port + ": " +  "------------ GET KEY AND VALUE ----------------");
+                    System.out.println(port + ": " +  "------------ REP GET KEY AND VALUE ----------------");
                     System.out.println(port + ": " + key);
                     System.out.println(port + ": " + keyValue.getFirst());
                     System.out.println(port + ": " + "-----------------------------------------------");
@@ -455,8 +460,6 @@ public class Server {
                 .build();
 
         AddressPair nextNode = consistentHash.getNextNode(new AddressPair(ip, port));
-        System.out.println("requestReplica " + nextNode.getIp() + ":" + nextNode.getPort() + " replicaCounter: " + replicaCounter);
-
         try {
             udpClient.replicaRequest(InetAddress.getByName(nextNode.getIp()),
                     nextNode.getPort(),
