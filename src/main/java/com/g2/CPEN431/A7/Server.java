@@ -293,7 +293,7 @@ public class Server {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
                 }
-                System.out.println(port + ": Returning null");
+                System.out.println(port + ": Returning null from original get");
                 return null;
             }
             case REMOVE -> {
