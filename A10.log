@@ -1,7 +1,7 @@
 CPEN 431 EVALUATION test Client
-Time: Tue Mar 28 19:01:40 PDT 2023
+Time: Tue Mar 28 22:24:29 PDT 2023
 Build Date: Tue Mar 28 16:36:02 PDT 2023
-Java process ID: 60276
+Java process ID: 76653
 Assignment ID: 10
 Client Version: 1
 
@@ -16,74 +16,74 @@ Client Version: 1
 
 [Info] The deployment has 30 server nodes.
 Sending GETPID to all servers... 
-[Info] Server node localhost4445 has process ID 60234.
-[Info] Server node localhost4446 has process ID 60235.
-[Info] Server node localhost4447 has process ID 60236.
-[Info] Server node localhost4448 has process ID 60237.
-[Info] Server node localhost4449 has process ID 60238.
-[Info] Server node localhost4450 has process ID 60239.
-[Info] Server node localhost4451 has process ID 60240.
-[Info] Server node localhost4452 has process ID 60241.
-[Info] Server node localhost4453 has process ID 60242.
-[Info] Server node localhost4454 has process ID 60243.
-[Info] Server node localhost4455 has process ID 60244.
-[Info] Server node localhost4456 has process ID 60245.
-[Info] Server node localhost4457 has process ID 60246.
-[Info] Server node localhost4458 has process ID 60247.
-[Info] Server node localhost4459 has process ID 60248.
-[Info] Server node localhost4460 has process ID 60249.
-[Info] Server node localhost4461 has process ID 60250.
-[Info] Server node localhost4462 has process ID 60251.
-[Info] Server node localhost4463 has process ID 60252.
-[Info] Server node localhost4464 has process ID 60253.
-[Info] Server node localhost4465 has process ID 60254.
-[Info] Server node localhost4466 has process ID 60255.
-[Info] Server node localhost4467 has process ID 60256.
-[Info] Server node localhost4468 has process ID 60257.
-[Info] Server node localhost4469 has process ID 60258.
-[Info] Server node localhost4470 has process ID 60259.
-[Info] Server node localhost4471 has process ID 60260.
-[Info] Server node localhost4472 has process ID 60261.
-[Info] Server node localhost4473 has process ID 60262.
-[Info] Server node localhost4474 has process ID 60263.
-[ ... Completed in 0.064 seconds ]
+[Info] Server node localhost4445 has process ID 76622.
+[Info] Server node localhost4446 has process ID 76623.
+[Info] Server node localhost4447 has process ID 76624.
+[Info] Server node localhost4448 has process ID 76625.
+[Info] Server node localhost4449 has process ID 76626.
+[Info] Server node localhost4450 has process ID 76627.
+[Info] Server node localhost4451 has process ID 76628.
+[Info] Server node localhost4452 has process ID 76629.
+[Info] Server node localhost4453 has process ID 76630.
+[Info] Server node localhost4454 has process ID 76631.
+[Info] Server node localhost4455 has process ID 76632.
+[Info] Server node localhost4456 has process ID 76633.
+[Info] Server node localhost4457 has process ID 76634.
+[Info] Server node localhost4458 has process ID 76635.
+[Info] Server node localhost4459 has process ID 76636.
+[Info] Server node localhost4460 has process ID 76637.
+[Info] Server node localhost4461 has process ID 76638.
+[Info] Server node localhost4462 has process ID 76639.
+[Info] Server node localhost4463 has process ID 76640.
+[Info] Server node localhost4464 has process ID 76641.
+[Info] Server node localhost4465 has process ID 76642.
+[Info] Server node localhost4466 has process ID 76643.
+[Info] Server node localhost4467 has process ID 76644.
+[Info] Server node localhost4468 has process ID 76645.
+[Info] Server node localhost4469 has process ID 76646.
+[Info] Server node localhost4470 has process ID 76647.
+[Info] Server node localhost4471 has process ID 76648.
+[Info] Server node localhost4472 has process ID 76649.
+[Info] Server node localhost4473 has process ID 76650.
+[Info] Server node localhost4474 has process ID 76651.
+[ ... Completed in 0.06 seconds ]
 [OK]
 
 Sending GetMembershipCount to all servers... 
-[Info] Server localhost:4453 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4449 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4445 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4448 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4452 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4451 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4446 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4449 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4452 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4450 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4448 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4453 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4451 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4447 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4455 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4457 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4458 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4459 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4460 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4455 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4456 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4466 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4459 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4454 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4463 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4458 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4460 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4461 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4467 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4462 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4465 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4463 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4464 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4470 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4469 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4465 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4466 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4468 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4474 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4467 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4469 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4470 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4471 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4472 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4473 replied with membership count = 30 (expected count = 30)
-[ ... Completed in 0.015 seconds ]
+[Info] Server localhost:4472 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4474 replied with membership count = 30 (expected count = 30)
+[ ... Completed in 0.009 seconds ]
 [Ok] All servers returned the expected membership count (30)
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.059 seconds ]
+[ ... Completed in 0.09 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 [Test isAlive] for localhost:4445
@@ -91,4 +91,4 @@ Waiting for 5 seconds for the cache to be cleared!
 [ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
 TEST_UNDECIDED
 [Error] Failed in single front-end basic put-get. Potentially buggy implementation. Aborting!
-Testing completed in 15.673s
+Testing completed in 5.412s

@@ -213,25 +213,38 @@ public class Server {
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
+                    System.out.println(" ");
                     System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
                     System.out.println(port + ": " + key);
                     System.out.println(port + ": " + value);
-                    System.out.println(port + ": " + "-----------------------------------------------");
+
                     // if this node should handle the request, put and forward to next replica
                     status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
-                        requestReplica(
-                                key,
-                                value,
-                                0,
-                                response,
-                                REPLICA_PUT,
-                                packet.getAddress().getHostAddress(),
-                                packet.getPort()
-                        );
+                        if(message.hasClientIp() && message.hasClientPort()){
+                            requestReplica(
+                                    key,
+                                    value,
+                                    0,
+                                    response,
+                                    REPLICA_PUT,
+                                    message.getClientIp(),
+                                    message.getClientPort()
+                            );
+                        } else{
+                            requestReplica(
+                                    key,
+                                    value,
+                                    0,
+                                    response,
+                                    REPLICA_PUT,
+                                    packet.getAddress().getHostAddress(),
+                                    packet.getPort()
+                            );
+                        }
                     }
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
@@ -252,16 +265,35 @@ public class Server {
                     status = Memory.isStored(key);
 
                     // if (status == SUCCESS) {
+                        
                     //     Pair<ByteString, Integer> keyValue = Memory.get(key);
+
+                    //     System.out.println(" ");
+                    //     System.out.println(port + ": " +  "------------ GET KEY AND VALUE ----------------");
+                    //     System.out.println(port + ": " + key);
+                    //     System.out.println(port + ": " + keyValue.getFirst());
                     //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                     // }
-                    requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
+
+                    System.out.println(" ");
+                    System.out.println(port + ": ------------------------- GET ----------------------");
+                    System.out.println(port + ": Checksum: " + message.getCheckSum());
+                    
+                    if(message.hasClientIp() && message.hasClientPort()){
+                        System.out.println(port + ": Sending Tail request with client port " + message.getClientPort());
+                        requestTailRead(key, message.getClientIp(), message.getClientPort());
+                    }
+                    else{
+                        System.out.println(port + ": Sending Tail request with client port " + packet.getPort());
+                        requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
+                    }
+                    
 
                 } else {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
                 }
-
+                System.out.println(port + ": Returning null");
                 return null;
             }
             case REMOVE -> {
@@ -273,14 +305,26 @@ public class Server {
                     status = Memory.remove(key);
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
-                    requestReplica(
+                    if(message.hasClientIp() && message.hasClientPort()){
+                        requestReplica(
+                            key,
+                            0,
+                            response,
+                            REPLICA_REMOVE,
+                            message.getClientIp(),
+                            message.getClientPort()
+                        );
+                    }
+                    else{
+                        requestReplica(
                             key,
                             0,
                             response,
                             REPLICA_REMOVE,
                             packet.getAddress().getHostAddress(),
                             packet.getPort()
-                    );
+                        );
+                    }
                 } else {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
@@ -340,10 +384,10 @@ public class Server {
                 ByteString value = kvRequest.getValue();
                 status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
 
+                System.out.println(" ");
                 System.out.println(port + ": " + "------------ REP PUT KEY AND VALUE ----------------");
                 System.out.println(port + ": " + key);
                 System.out.println(port + ": " + value);
-                System.out.println(port + ": " + "-----------------------------------------------");
 
                 if (status == NO_MEM_ERR) {
                     System.out.println("[" + port + "]: Out of memory!");
@@ -400,21 +444,25 @@ public class Server {
             }
             case REPLICA_GET -> {
 
+                ByteString payload;
                 ByteString key = kvRequest.getKey();
                 status = Memory.isStored(key);
 
                 if (status == SUCCESS) {
                     Pair<ByteString, Integer> keyValue = Memory.get(key);
                     // Respond to client with key value
+                    System.out.println(" ");
                     System.out.println(port + ": " +  "------------ REP GET KEY AND VALUE ----------------");
                     System.out.println(port + ": " + key);
                     System.out.println(port + ": " + keyValue.getFirst());
-                    System.out.println(port + ": " + "-----------------------------------------------");
-                    return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                } else if (status == NO_KEY_ERR) {
+                    
+                    payload = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    
+                } else {
                     // ASSUMPTION: iterating backwards through replicas is correct
+
                     int replicaCounter = kvRequest.getReplicaCounter();
-                    ByteString payload = buildResPayload(status);
+                    payload = buildResPayload(status);
                     if (replicaCounter < 3) {
                         // Forward request to previous replica
                         requestReplica(
@@ -431,7 +479,8 @@ public class Server {
                     }
                     return null;
                 }
-                return null;
+                System.out.println(port + ": Returning Payload: " + payload);
+                return payload;
             }
             default -> {
                 status = UKN_CMD;

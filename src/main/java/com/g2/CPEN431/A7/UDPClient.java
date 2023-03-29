@@ -172,7 +172,6 @@ public class UDPClient {
                     InetAddress.getByName("localhost"),
                     replicaPort
             );
-
             socket.send(replicaPacket);
         } catch (IOException e) {
             throw new RuntimeException(e);

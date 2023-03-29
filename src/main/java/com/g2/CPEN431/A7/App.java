@@ -75,13 +75,22 @@ public class App
                     kvResponse = server.exeCommand(message, packet);
                 }
 
-                int packetPort = packet.getPort();
-                InetAddress address = packet.getAddress();
+                int packetPort;
+                InetAddress address;
 
                 if (message.hasClientPort() && message.hasClientIp()) {
-
+                    System.out.println(port + ": Client Port (App.java): " + message.getClientPort());
+                    
                     packetPort = message.getClientPort();
                     address = InetAddress.getByName(message.getClientIp());
+                    System.out.println(port + ": Sending Port (App.java): " + packetPort);
+                    System.out.println(port + ": Sending Address (App.java): " + address);
+                    System.out.println(port + ": " + "-------------------------------------");
+                    System.out.println(" ");
+                    
+                } else{
+                    packetPort = packet.getPort();
+                    address = packet.getAddress();
                 }
 
                 if (kvResponse != null) {
@@ -92,6 +101,9 @@ public class App
                     // load message into packet to send back to client
                     packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
                     socket.send(packet);
+                }
+                else {
+                    System.out.println(port + ": kvResponse is null!");
                 }
 
             } catch (PacketCorruptionException e) {
