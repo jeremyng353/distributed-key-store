@@ -65,7 +65,6 @@ public class App
 
                 // listen for next packet
                 socket.receive(packet);
-
                 Message.Msg message = Server.readRequest(packet);
 
                 ByteString kvResponse;
@@ -80,6 +79,7 @@ public class App
                 InetAddress address = packet.getAddress();
 
                 if (message.hasClientPort() && message.hasClientIp()) {
+
                     packetPort = message.getClientPort();
                     address = InetAddress.getByName(message.getClientIp());
                 }
