@@ -224,27 +224,19 @@ public class Server {
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
-                        if(message.hasClientIp() && message.hasClientPort()){
-                            requestReplica(
-                                    key,
-                                    value,
-                                    0,
-                                    response,
-                                    REPLICA_PUT,
-                                    message.getClientIp(),
-                                    message.getClientPort()
-                            );
-                        } else{
-                            requestReplica(
-                                    key,
-                                    value,
-                                    0,
-                                    response,
-                                    REPLICA_PUT,
-                                    packet.getAddress().getHostAddress(),
-                                    packet.getPort()
-                            );
-                        }
+                        String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                        int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+                        
+                        requestReplica(
+                                key,
+                                value,
+                                0,
+                                response,
+                                REPLICA_PUT,
+                                clientIp,
+                                clientPort
+                        );
+                      
                     }
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
@@ -279,18 +271,18 @@ public class Server {
                     System.out.println(port + ": ------------------------- GET ----------------------");
                     System.out.println(port + ": Checksum: " + message.getCheckSum());
                     
-                    if(message.hasClientIp() && message.hasClientPort()){
-                        System.out.println(port + ": Sending Tail request with client port " + message.getClientPort());
-                        requestTailRead(key, message.getClientIp(), message.getClientPort());
-                    }
-                    else{
-                        System.out.println(port + ": Sending Tail request with client port " + packet.getPort());
-                        requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
-                    }
+                    String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                    int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+                    System.out.println(port + ": Sending Tail request with client port " + message.getClientPort());
+                    requestTailRead(key, clientIp, clientPort);
+                    
                     
 
                 } else {
                     // call another node to handle the request
+                    System.out.println(" ");
+                    System.out.println(port + ": ------------------------- GET ----------------------");
+                    System.out.println(port + ": Calling Consistent Hash");
                     consistentHash.callNode(packet, nodeAddress);
                 }
                 System.out.println(port + ": Returning null from original get");
@@ -300,31 +292,25 @@ public class Server {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
+                
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
                     // if this node should handle the request, remove and forward request to next replica
                     status = Memory.remove(key);
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
-                    if(message.hasClientIp() && message.hasClientPort()){
-                        requestReplica(
-                            key,
-                            0,
-                            response,
-                            REPLICA_REMOVE,
-                            message.getClientIp(),
-                            message.getClientPort()
-                        );
-                    }
-                    else{
-                        requestReplica(
-                            key,
-                            0,
-                            response,
-                            REPLICA_REMOVE,
-                            packet.getAddress().getHostAddress(),
-                            packet.getPort()
-                        );
-                    }
+                    String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                    int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+
+                
+                    requestReplica(
+                        key,
+                        0,
+                        response,
+                        REPLICA_REMOVE,
+                        clientIp,
+                        clientPort
+                    );
+                    
                 } else {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
@@ -462,6 +448,8 @@ public class Server {
                     // ASSUMPTION: iterating backwards through replicas is correct
 
                     int replicaCounter = kvRequest.getReplicaCounter();
+                    String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                    int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
                     payload = buildResPayload(status);
                     if (replicaCounter < 3) {
                         // Forward request to previous replica
@@ -470,8 +458,8 @@ public class Server {
                                 ++replicaCounter,
                                 payload,
                                 REPLICA_GET,
-                                message.getClientIp(),
-                                message.getClientPort()
+                                clientIp,
+                                clientPort
                         );
                     } else {
                         // Respond to client with no key value
