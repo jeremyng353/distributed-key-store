@@ -1,4 +1,4 @@
-package com.g2.CPEN431.A7;
+package com.g2.CPEN431.A10;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
 import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 
@@ -236,7 +235,8 @@ public class Server {
                                 response,
                                 REPLICA_PUT,
                                 clientIp,
-                                clientPort
+                                clientPort,
+                                message.getMessageID()
                         );
                     }
                     if (status == NO_MEM_ERR) {
@@ -262,15 +262,15 @@ public class Server {
                     System.out.println(port + ": Status: " + status);
                     System.out.println(port + ": " + "-----------------------------------------------");
 
-                    if (status == SUCCESS) {
-                        Pair<ByteString, Integer> keyValue = Memory.get(key);
-                        return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                    }
+//                    if (status == SUCCESS) {
+//                        Pair<ByteString, Integer> keyValue = Memory.get(key);
+//                        return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+//                    }
 
                     String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
                     int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
 
-                    requestTailRead(key, clientIp, clientPort);
+                    requestTailRead(key, clientIp, clientPort, message.getMessageID());
 
                     // return buildResPayload(status);
 
@@ -305,7 +305,8 @@ public class Server {
                             response,
                             REPLICA_REMOVE,
                             clientIp,
-                            clientPort
+                            clientPort,
+                            message.getMessageID()
                     );
                 } else {
                     // call another node to handle the request
@@ -392,7 +393,8 @@ public class Server {
                             kvRequest.getReplicaResponse(),
                             REPLICA_PUT,
                             message.getClientIp(),
-                            message.getClientPort()
+                            message.getClientPort(),
+                            message.getMessageID()
                     );
                 }
 
@@ -421,7 +423,8 @@ public class Server {
                             kvRequest.getReplicaResponse(),
                             REPLICA_REMOVE,
                             message.getClientIp(),
-                            message.getClientPort()
+                            message.getClientPort(),
+                            message.getMessageID()
                     );
                 }
 
@@ -437,7 +440,7 @@ public class Server {
                     // Respond to client with key value
                     System.out.println(port + ": " +  "------------ REP GET KEY AND VALUE ----------------");
                     System.out.println(port + ": " + key);
-                    System.out.println(port + ": " + keyValue.getFirst());
+                    System.out.println(port + ": " + keyValue.getFirst() + " with version: " + keyValue.getSecond());
                     System.out.println(port + ": Status: " + status);
                     System.out.println(port + ": " + "-----------------------------------------------");
                     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
@@ -453,7 +456,8 @@ public class Server {
                                 payload,
                                 REPLICA_GET,
                                 message.getClientIp(),
-                                message.getClientPort()
+                                message.getClientPort(),
+                                message.getMessageID()
                         );
                     } else {
                         // Respond to client with no key value
@@ -471,7 +475,7 @@ public class Server {
         }
     }
 
-    public void requestReplica(ByteString key, int replicaCounter, ByteString response, int command, String clientIp, int clientPort) {
+    public void requestReplica(ByteString key, int replicaCounter, ByteString response, int command, String clientIp, int clientPort, ByteString messageId) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(command)
                 .setKey(key)
@@ -486,14 +490,15 @@ public class Server {
                     nextNode.getPort(),
                     replicaRequest.toByteArray(),
                     clientIp,
-                    clientPort
+                    clientPort,
+                    messageId
             );
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void requestReplica(ByteString key, ByteString value, int replicaCounter, ByteString response, int command, String clientIp, int clientPort) {
+    public void requestReplica(ByteString key, ByteString value, int replicaCounter, ByteString response, int command, String clientIp, int clientPort, ByteString messageId) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(command)
                 .setKey(key)
@@ -510,14 +515,15 @@ public class Server {
                     nextNode.getPort(),
                     replicaRequest.toByteArray(),
                     clientIp,
-                    clientPort
+                    clientPort,
+                    messageId
             );
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void requestTailRead(ByteString key, String clientIp, int clientPort) {
+    public void requestTailRead(ByteString key, String clientIp, int clientPort, ByteString messageId) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(REPLICA_GET)
                 .setKey(key)
@@ -530,7 +536,8 @@ public class Server {
                     tailNode.getPort(),
                     replicaRequest.toByteArray(),
                     clientIp,
-                    clientPort
+                    clientPort,
+                    messageId
             );
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);

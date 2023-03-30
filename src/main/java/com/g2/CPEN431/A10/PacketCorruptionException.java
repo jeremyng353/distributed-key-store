@@ -1,4 +1,4 @@
-package com.g2.CPEN431.A7;
+package com.g2.CPEN431.A10;
 
 public class PacketCorruptionException extends Exception {
     /**

@@ -1,8 +1,8 @@
-package com.g2.CPEN431.A7;
+package com.g2.CPEN431.A10;
 
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
-import com.g2.CPEN431.A7.util.ByteOrder;
+import com.g2.CPEN431.A10.util.ByteOrder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -146,12 +146,12 @@ public class UDPClient {
         return outputStream.toByteArray();
     }
 
-    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort) {
+    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort, ByteString messageId) {
         // TODO: no timeout for this function since we don't expect a response from replicas, but
         // maybe we should have a response...
 
         try {
-            byte[] uuid = generateUUID(replicaAddress, replicaPort);
+            byte[] uuid = messageId.toByteArray();
 
             byte[] checksumByteArray = concatenateByteArrays(uuid, payload);
             long checksum = computeChecksum(checksumByteArray);

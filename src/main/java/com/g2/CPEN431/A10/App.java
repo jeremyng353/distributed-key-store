@@ -1,4 +1,4 @@
-package com.g2.CPEN431.A7;
+package com.g2.CPEN431.A10;
 
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.g2.CPEN431.A7.MemberMonitor.DEFAULT_INTERVAL;
+import static com.g2.CPEN431.A10.MemberMonitor.DEFAULT_INTERVAL;
 
 public class App
 {
