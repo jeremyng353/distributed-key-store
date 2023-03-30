@@ -1,6 +1,7 @@
 package com.g2.CPEN431.A7;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
+import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.g2.CPEN431.A7.util.ByteOrder;
 import com.google.protobuf.ByteString;
@@ -10,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.zip.CRC32;
 
@@ -17,31 +19,59 @@ public class Test {
     private static final int MAX_PACKET_SIZE = 16384;
     public static void main( String[] args ) throws SocketException {
         DatagramSocket socket = new DatagramSocket();
+        ArrayList<KeyValueRequest.KVRequest> reqList = new ArrayList<>();
 
-        KeyValueRequest.KVRequest kvRequest = buildPut(
+        reqList.add(buildPut(
                 ByteString.copyFrom(new byte[]{1}),
                 ByteString.copyFrom(new byte[]{0}),
                 1
-        );
-        byte[] messageBuffer = buildMessage(kvRequest.toByteArray()).toByteArray();
+        ));
 
-        // If the buffer is larger than 16 KB, then truncate
-        int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
-        DatagramPacket packet = null;
-        try {
-            packet = new DatagramPacket(messageBuffer, messageBufferSize, InetAddress.getLocalHost(), 4445);
-            socket.send(packet);
+        reqList.add(buildGet(
+                ByteString.copyFrom(new byte[]{1})
+        ));
 
-            byte[] rcvBuf = new byte[MAX_PACKET_SIZE];
-            packet = new DatagramPacket(rcvBuf, rcvBuf.length);
-            socket.receive(packet);
+        reqList.add(buildRemove(
+                ByteString.copyFrom(new byte[]{1})
+        ));
 
-            // TODO: print everything out
-            System.out.println("----- RECEIVE PACKET FROM PUT -----");
-            System.out.println("Node " + packet.getPort());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        reqList.add(buildGet(
+                ByteString.copyFrom(new byte[]{1})
+        ));
+
+        for (KeyValueRequest.KVRequest kvRequest : reqList) {
+            byte[] messageBuffer = buildMessage(kvRequest.toByteArray()).toByteArray();
+
+            // If the buffer is larger than 16 KB, then truncate
+            int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+            DatagramPacket packet = null;
+            try {
+                packet = new DatagramPacket(messageBuffer, messageBufferSize, InetAddress.getLocalHost(), 4445);
+                socket.send(packet);
+
+                byte[] rcvBuf = new byte[MAX_PACKET_SIZE];
+                packet = new DatagramPacket(rcvBuf, rcvBuf.length);
+                socket.receive(packet);
+
+                Message.Msg message = Server.readRequest(packet);
+                KeyValueResponse.KVResponse kvResponse = KeyValueResponse.KVResponse.parseFrom(message.getPayload());
+
+                // TODO: print everything out
+                System.out.println("----- RECEIVE PACKET -----");
+                System.out.println("Node: " + packet.getPort());
+                System.out.println("Status: " + kvResponse.getErrCode());
+
+                if (kvRequest.getCommand() == Server.GET) {
+                    System.out.println("Get value: " + kvResponse.getValue());
+                }
+
+            } catch (IOException | PacketCorruptionException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+
+
     }
 
     private static byte[] generateUUID(InetAddress address, int port) throws IOException {
@@ -97,6 +127,15 @@ public class Test {
     public static KeyValueRequest.KVRequest buildGet(ByteString key) {
         KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(Server.GET)
+                .setKey(key)
+                .build();
+
+        return kvRequest;
+    }
+
+    public static KeyValueRequest.KVRequest buildRemove(ByteString key) {
+        KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(Server.REMOVE)
                 .setKey(key)
                 .build();
 

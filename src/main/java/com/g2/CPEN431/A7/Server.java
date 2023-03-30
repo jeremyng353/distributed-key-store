@@ -214,13 +214,16 @@ public class Server {
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
 
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
-                    System.out.println(port + ": " + key);
-                    System.out.println(port + ": " + value);
-                    System.out.println(port + ": " + "-----------------------------------------------");
                     // if this node should handle the request, put and forward to next replica
                     status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                     response = buildResPayload(status);
+
+                    System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
+                    System.out.println(port + ": " + key);
+                    System.out.println(port + ": " + value);
+                    System.out.println(port + ": Status: " + status);
+                    System.out.println(port + ": " + "-----------------------------------------------");
+
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
@@ -256,13 +259,20 @@ public class Server {
 
                     System.out.println(port + ": " + "------------------- GET KEY -------------------");
                     System.out.println(port + ": " + key);
+                    System.out.println(port + ": Status: " + status);
                     System.out.println(port + ": " + "-----------------------------------------------");
 
                     if (status == SUCCESS) {
                         Pair<ByteString, Integer> keyValue = Memory.get(key);
                         return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                     }
-                    // requestTailRead(key, packet.getAddress().getHostAddress(), packet.getPort());
+
+                    String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                    int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+
+                    requestTailRead(key, clientIp, clientPort);
+
+                    // return buildResPayload(status);
 
                 } else {
                     // call another node to handle the request
@@ -283,6 +293,7 @@ public class Server {
 
                     System.out.println(port + ": " + "----------------- REMOVE KEY ------------------");
                     System.out.println(port + ": " + key);
+                    System.out.println(port + ": Status: " + status);
                     System.out.println(port + ": " + "-----------------------------------------------");
 
                     String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
@@ -358,6 +369,7 @@ public class Server {
                 System.out.println(port + ": " + "------------ REP PUT KEY AND VALUE ----------------");
                 System.out.println(port + ": " + key);
                 System.out.println(port + ": " + value);
+                System.out.println(port + ": Status: " + status);
                 System.out.println(port + ": " + "-----------------------------------------------");
 
                 if (status == NO_MEM_ERR) {
@@ -388,13 +400,14 @@ public class Server {
             }
             case REPLICA_REMOVE -> {
                 ByteString key = kvRequest.getKey();
-                Memory.remove(key);
+                status = Memory.remove(key);
 
                 int replicaCounter = kvRequest.getReplicaCounter();
 
                 System.out.println(port + ": " + "--------------- REP REMOVE KEY ----------------");
                 System.out.println(port + ": " + key);
                 System.out.println(port + ": Replica Counter: " + replicaCounter);
+                System.out.println(port + ": Status: " + status);
                 System.out.println(port + ": " + "-----------------------------------------------");
 
                 if (replicaCounter >= 2) {
@@ -425,6 +438,7 @@ public class Server {
                     System.out.println(port + ": " +  "------------ REP GET KEY AND VALUE ----------------");
                     System.out.println(port + ": " + key);
                     System.out.println(port + ": " + keyValue.getFirst());
+                    System.out.println(port + ": Status: " + status);
                     System.out.println(port + ": " + "-----------------------------------------------");
                     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                 } else if (status == NO_KEY_ERR) {
@@ -445,7 +459,6 @@ public class Server {
                         // Respond to client with no key value
                         return payload;
                     }
-                    return null;
                 }
                 return null;
             }
@@ -492,7 +505,8 @@ public class Server {
         AddressPair nextNode = command == REPLICA_GET ? consistentHash.getPreviousNode(new AddressPair(ip, port)) : consistentHash.getNextNode(new AddressPair(ip, port));
         System.out.println("requestReplica " + nextNode.getIp() + ":" + nextNode.getPort() + " replicaCounter: " + replicaCounter);
         try {
-            udpClient.replicaRequest(InetAddress.getByName(nextNode.getIp()),
+            udpClient.replicaRequest(
+                    InetAddress.getByName(nextNode.getIp()),
                     nextNode.getPort(),
                     replicaRequest.toByteArray(),
                     clientIp,
