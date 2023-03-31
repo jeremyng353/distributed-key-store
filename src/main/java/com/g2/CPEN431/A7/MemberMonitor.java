@@ -26,7 +26,7 @@ public class MemberMonitor implements Runnable {
     //dummy time until we set the amount of nodes
     public static final int DEFAULT_INTERVAL = 100;
     final int NUM_NODES = 40;
-    final int SAFETY_MARGIN = 300;
+    final int SAFETY_MARGIN = 250;
 
     public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
         this.nodeStore = new ConcurrentHashMap<>();
@@ -93,13 +93,16 @@ public class MemberMonitor implements Runnable {
                         if (replicas.contains(nsNode)) {
                             // Remove dead node and add the node after the last node in replicas
                             aliveReplicas.remove(nsNode);
+                            aliveReplicas.ensureCapacity(3);
                             // replicas.add(consistentHash.getNextNode(replicas.get(replicas.size()-1)));
                         }
                     } else if (!consistentHash.containsNode(nsNode)){ // If the consistent hash does not contain an alive node, then it needs to join the hash once again
                         consistentHash.addNode(entry.getKey());
                         // TODO: add node back to replica list if it died and came back to life
-                        if (replicas.contains(nsNode) && aliveReplicas.contains(nsNode)) {
-                            aliveReplicas.add(replicas.indexOf(nsNode), nsNode);
+                        if (replicas.contains(nsNode) && !aliveReplicas.contains(nsNode)) {
+//                            aliveReplicas.add(replicas.indexOf(nsNode), nsNode);
+                            aliveReplicas.add(nsNode);
+                            aliveReplicas.sort((a, b) -> replicas.indexOf(a) - replicas.indexOf(b));
                         }
                     }
                 }
@@ -123,6 +126,6 @@ public class MemberMonitor implements Runnable {
     }
 
     public ArrayList<AddressPair> getReplicas() {
-        return replicas;
+        return aliveReplicas;
     }
 }

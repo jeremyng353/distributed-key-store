@@ -272,6 +272,15 @@ public class Server {
                     String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
                     int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
 
+                    if (memberMonitor.getReplicas().size() == 0) {
+                        if (status == SUCCESS) {
+                            Pair<ByteString, Integer> keyValue = Memory.get(key);
+                            return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                        } else {
+                            return buildResPayload(status);
+                        }
+                    }
+
                     requestTailRead(key, clientIp, clientPort, message.getMessageID());
 
                     // return buildResPayload(status);
