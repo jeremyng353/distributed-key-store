@@ -57,12 +57,15 @@ public class Test {
                 KeyValueResponse.KVResponse kvResponse = KeyValueResponse.KVResponse.parseFrom(message.getPayload());
 
                 // TODO: print everything out
+                /*
                 System.out.println("----- RECEIVE PACKET -----");
                 System.out.println("Node: " + packet.getPort());
                 System.out.println("Status: " + kvResponse.getErrCode());
 
+
+                 */
                 if (kvRequest.getCommand() == Server.GET) {
-                    System.out.println("Get value: " + kvResponse.getValue());
+                    // System.out.println("Get value: " + kvResponse.getValue());
                 }
 
             } catch (IOException | PacketCorruptionException e) {
