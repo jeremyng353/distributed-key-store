@@ -1,0 +1,4004 @@
+CPEN 431 EVALUATION test Client
+Time: Fri Mar 31 01:47:39 PDT 2023
+Build Date: Wed Dec 31 16:00:00 PST 1969
+Java process ID: 8722
+Assignment ID: 11
+Client Version: 1
+
+[Info] A11 client running in TEST mode.
+
+[Info] Starting A11 Tests
+
+[Info] Done building nodes' list.
+
+[Info] The deployment has 40 server nodes.
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+Sending GETPID to all servers... 
+[Info] Server node localhost4445 has process ID 7864.
+[Info] Server node localhost4446 has process ID 7865.
+[Info] Server node localhost4447 has process ID 7866.
+[Info] Server node localhost4448 has process ID 7867.
+[Info] Server node localhost4449 has process ID 7868.
+[Info] Server node localhost4450 has process ID 7869.
+[Info] Server node localhost4451 has process ID 7870.
+[Info] Server node localhost4452 has process ID 7871.
+[Info] Server node localhost4453 has process ID 7872.
+[Info] Server node localhost4454 has process ID 7873.
+[Info] Server node localhost4455 has process ID 7874.
+[Info] Server node localhost4456 has process ID 7875.
+[Info] Server node localhost4457 has process ID 7876.
+[Info] Server node localhost4458 has process ID 7877.
+[Info] Server node localhost4459 has process ID 7878.
+[Info] Server node localhost4460 has process ID 7879.
+[Info] Server node localhost4461 has process ID 7880.
+[Info] Server node localhost4462 has process ID 7881.
+[Info] Server node localhost4463 has process ID 7882.
+[Info] Server node localhost4464 has process ID 7883.
+[Info] Server node localhost4465 has process ID 7884.
+[Info] Server node localhost4466 has process ID 7885.
+[Info] Server node localhost4467 has process ID 7886.
+[Info] Server node localhost4468 has process ID 7887.
+[Info] Server node localhost4469 has process ID 7888.
+[Info] Server node localhost4470 has process ID 7889.
+[Info] Server node localhost4471 has process ID 7890.
+[Info] Server node localhost4472 has process ID 7891.
+[Info] Server node localhost4473 has process ID 7892.
+[Info] Server node localhost4474 has process ID 7893.
+[Info] Server node localhost4475 has process ID 7894.
+[Info] Server node localhost4476 has process ID 7895.
+[Info] Server node localhost4477 has process ID 7896.
+[Info] Server node localhost4478 has process ID 7897.
+[Info] Server node localhost4479 has process ID 7898.
+[Info] Server node localhost4480 has process ID 7899.
+[Info] Server node localhost4481 has process ID 7900.
+[Info] Server node localhost4482 has process ID 7901.
+[Info] Server node localhost4483 has process ID 7902.
+[Info] Server node localhost4484 has process ID 7913.
+[ ... Completed in 0.093 seconds ]
+[OK]
+
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4454 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4449 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4445 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4448 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4452 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4451 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4453 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4446 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4450 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4447 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4455 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4457 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4456 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4458 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4459 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4460 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4461 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4462 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4463 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4464 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4466 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4465 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4468 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4467 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4469 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4470 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4471 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4472 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4473 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4477 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4474 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4476 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4478 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4479 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4475 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4480 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4483 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4482 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4484 replied with membership count = 40 (expected count = 40)
+[Info] Server localhost:4481 replied with membership count = 40 (expected count = 40)
+[ ... Completed in 0.011 seconds ]
+[Ok] All servers returned the expected membership count (40)
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.086 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for localhost:4445
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.061 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.067 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.055 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.054 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.053 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.055 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.055 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.072 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.058 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Key ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.078 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Value ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.055 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.058 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 77.052 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.013 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.062 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.011 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 396211
+Total Requests (including replies): 396211
+Successful Responses: 396211
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 11ms, [min] 0ms
+[avg] 0.14048827518670606 ms, [stdev] 0.35140032423287504ms
+Throughput: 6603.406609889835 requests per second
+Goodput: 6603.406609889835 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.101 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.351 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 765922
+Total Requests (including replies): 769196
+Successful Responses: 765257
+Timeout Responses: 665
+Total Failed Responses: 0
+% Success: 99.91317653755866
+% Timeout: 0.0868234624413452
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 533ms, [min] 0ms
+[avg] 0.37971426592634894 ms, [stdev] 4.562195450482743ms
+Throughput: 12559.59857665251 requests per second
+Goodput: 12548.693898299525 requests per second
+Retry Rate (Successful requests): 1.0042745867072627
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.092 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.345 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 5.53 ]
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 938229
+Total Requests (including replies): 994750
+Successful Responses: 925619
+Timeout Responses: 12610
+Total Failed Responses: 0
+% Success: 98.65597844449489
+% Timeout: 1.3440215555051058
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 560ms, [min] 0ms
+[avg] 3.0760042738967113 ms, [stdev] 9.671284698103646ms
+Throughput: 15382.31629340591 requests per second
+Goodput: 15175.574646686558 requests per second
+Retry Rate (Successful requests): 1.0602422223145949
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.09 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.342 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1024 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.013 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 16.78 ]
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 1024
+Total Requests (without replies): 1354699
+Total Requests (including replies): 1654884
+Successful Responses: 1308781
+Timeout Responses: 45915
+Total Failed Responses: 3
+% Success: 96.61046476006847
+% Timeout: 3.3893137885242406
+% Failed: 2.2145140728678473E-4
+Response Time (Successful requests):
+[max] 655ms, [min] 0ms
+[avg] 11.648579861718654 ms, [stdev] 30.180988430527506ms
+Throughput: 22211.457428145135 requests per second
+Goodput: 21458.592251315767 requests per second
+Retry Rate (Successful requests): 1.221587968987945
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.099 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.546 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (2048 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.005 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 40.93 ]
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 2048
+Total Requests (without replies): 1493211
+Total Requests (including replies): 2198360
+Successful Responses: 1418126
+Timeout Responses: 75039
+Total Failed Responses: 46
+% Success: 94.97157468033653
+% Timeout: 5.025344710158176
+% Failed: 0.0030806095052875984
+Response Time (Successful requests):
+[max] 938ms, [min] 0ms
+[avg] 31.164433202691438 ms, [stdev] 65.58280399051655ms
+Throughput: 24478.06629290843 requests per second
+Goodput: 23247.205009671816 requests per second
+Retry Rate (Successful requests): 1.472236676531314
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.094 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.565 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Concurrent Store/Load v2; Stage 0; (Clients = 64, Limit = 40000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 0.665s]
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Total Value Size (MiB): 18.984511375427246 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.359s]
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Total Value Size (MiB): 18.984511375427246 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 40 nodes are alive
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 1.036 seconds ]
+
+[Info] Preparing for Stage 1 of the Suspend Test
+[Info] To suspend 24 node(s) in Stage 1.
+[Info] Will suspend localhost:4481
+[Info] Will suspend localhost:4475
+[Info] Will suspend localhost:4466
+[Info] Will suspend localhost:4460
+[Info] Will keep alive localhost:4471
+[Info] Will keep alive localhost:4465
+[Info] Will keep alive localhost:4459
+[Info] Will keep alive localhost:4461
+[Info] Will keep alive localhost:4450
+[Info] Will keep alive localhost:4455
+[Info] Will keep alive localhost:4457
+[Info] Will keep alive localhost:4449
+[Info] Will keep alive localhost:4458
+[Info] Will keep alive localhost:4470
+[Info] Will keep alive localhost:4456
+[Info] Will keep alive localhost:4473
+[Info] Will keep alive localhost:4476
+[Info] Will keep alive localhost:4447
+[Info] Will keep alive localhost:4482
+[Info] Will keep alive localhost:4448
+[Info] Will keep alive localhost:4469
+[Info] Will keep alive localhost:4462
+[Info] Will keep alive localhost:4480
+[Info] Will keep alive localhost:4445
+[Info] Will keep alive localhost:4446
+[Info] Will keep alive localhost:4451
+[Info] Will keep alive localhost:4477
+[Info] Will keep alive localhost:4452
+[Info] Will keep alive localhost:4463
+[Info] Will keep alive localhost:4483
+[Info] Will keep alive localhost:4453
+[Info] Will keep alive localhost:4474
+[Info] Will keep alive localhost:4464
+[Info] Will keep alive localhost:4454
+[Info] Will keep alive localhost:4484
+[Info] Will keep alive localhost:4467
+[Info] Will keep alive localhost:4468
+[Info] Will keep alive localhost:4478
+[Info] Will keep alive localhost:4479
+[Info] Will keep alive localhost:4472
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 36. Dead Nodes: 4
+[Info] Will suspend localhost:4471
+[Info] Will suspend localhost:4465
+[Info] Will suspend localhost:4459
+[Info] Will suspend localhost:4461
+[Info] Will keep alive localhost:4450
+[Info] Will keep alive localhost:4455
+[Info] Will keep alive localhost:4457
+[Info] Will keep alive localhost:4449
+[Info] Will keep alive localhost:4458
+[Info] Will keep alive localhost:4470
+[Info] Will keep alive localhost:4456
+[Info] Will keep alive localhost:4473
+[Info] Will keep alive localhost:4476
+[Info] Will keep alive localhost:4447
+[Info] Will keep alive localhost:4482
+[Info] Will keep alive localhost:4448
+[Info] Will keep alive localhost:4469
+[Info] Will keep alive localhost:4462
+[Info] Will keep alive localhost:4480
+[Info] Will keep alive localhost:4445
+[Info] Will keep alive localhost:4446
+[Info] Will keep alive localhost:4451
+[Info] Will keep alive localhost:4477
+[Info] Will keep alive localhost:4452
+[Info] Will keep alive localhost:4463
+[Info] Will keep alive localhost:4483
+[Info] Will keep alive localhost:4453
+[Info] Will keep alive localhost:4474
+[Info] Will keep alive localhost:4464
+[Info] Will keep alive localhost:4454
+[Info] Will keep alive localhost:4484
+[Info] Will keep alive localhost:4467
+[Info] Will keep alive localhost:4468
+[Info] Will keep alive localhost:4478
+[Info] Will keep alive localhost:4479
+[Info] Will keep alive localhost:4472
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 32. Dead Nodes: 8
+[Info] Will suspend localhost:4450
+[Info] Will suspend localhost:4455
+[Info] Will suspend localhost:4457
+[Info] Will suspend localhost:4449
+[Info] Will keep alive localhost:4458
+[Info] Will keep alive localhost:4470
+[Info] Will keep alive localhost:4456
+[Info] Will keep alive localhost:4473
+[Info] Will keep alive localhost:4476
+[Info] Will keep alive localhost:4447
+[Info] Will keep alive localhost:4482
+[Info] Will keep alive localhost:4448
+[Info] Will keep alive localhost:4469
+[Info] Will keep alive localhost:4462
+[Info] Will keep alive localhost:4480
+[Info] Will keep alive localhost:4445
+[Info] Will keep alive localhost:4446
+[Info] Will keep alive localhost:4451
+[Info] Will keep alive localhost:4477
+[Info] Will keep alive localhost:4452
+[Info] Will keep alive localhost:4463
+[Info] Will keep alive localhost:4483
+[Info] Will keep alive localhost:4453
+[Info] Will keep alive localhost:4474
+[Info] Will keep alive localhost:4464
+[Info] Will keep alive localhost:4454
+[Info] Will keep alive localhost:4484
+[Info] Will keep alive localhost:4467
+[Info] Will keep alive localhost:4468
+[Info] Will keep alive localhost:4478
+[Info] Will keep alive localhost:4479
+[Info] Will keep alive localhost:4472
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 28. Dead Nodes: 12
+[Info] Will suspend localhost:4458
+[Info] Will suspend localhost:4470
+[Info] Will suspend localhost:4456
+[Info] Will suspend localhost:4473
+[Info] Will keep alive localhost:4476
+[Info] Will keep alive localhost:4447
+[Info] Will keep alive localhost:4482
+[Info] Will keep alive localhost:4448
+[Info] Will keep alive localhost:4469
+[Info] Will keep alive localhost:4462
+[Info] Will keep alive localhost:4480
+[Info] Will keep alive localhost:4445
+[Info] Will keep alive localhost:4446
+[Info] Will keep alive localhost:4451
+[Info] Will keep alive localhost:4477
+[Info] Will keep alive localhost:4452
+[Info] Will keep alive localhost:4463
+[Info] Will keep alive localhost:4483
+[Info] Will keep alive localhost:4453
+[Info] Will keep alive localhost:4474
+[Info] Will keep alive localhost:4464
+[Info] Will keep alive localhost:4454
+[Info] Will keep alive localhost:4484
+[Info] Will keep alive localhost:4467
+[Info] Will keep alive localhost:4468
+[Info] Will keep alive localhost:4478
+[Info] Will keep alive localhost:4479
+[Info] Will keep alive localhost:4472
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 24. Dead Nodes: 16
+[Info] Will suspend localhost:4476
+[Info] Will suspend localhost:4447
+[Info] Will suspend localhost:4482
+[Info] Will suspend localhost:4448
+[Info] Will keep alive localhost:4469
+[Info] Will keep alive localhost:4462
+[Info] Will keep alive localhost:4480
+[Info] Will keep alive localhost:4445
+[Info] Will keep alive localhost:4446
+[Info] Will keep alive localhost:4451
+[Info] Will keep alive localhost:4477
+[Info] Will keep alive localhost:4452
+[Info] Will keep alive localhost:4463
+[Info] Will keep alive localhost:4483
+[Info] Will keep alive localhost:4453
+[Info] Will keep alive localhost:4474
+[Info] Will keep alive localhost:4464
+[Info] Will keep alive localhost:4454
+[Info] Will keep alive localhost:4484
+[Info] Will keep alive localhost:4467
+[Info] Will keep alive localhost:4468
+[Info] Will keep alive localhost:4478
+[Info] Will keep alive localhost:4479
+[Info] Will keep alive localhost:4472
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 20. Dead Nodes: 20
+[Info] Will suspend localhost:4469
+[Info] Will suspend localhost:4462
+[Info] Will suspend localhost:4480
+[Info] Will suspend localhost:4445
+[Info] Will keep alive localhost:4446
+[Info] Will keep alive localhost:4451
+[Info] Will keep alive localhost:4477
+[Info] Will keep alive localhost:4452
+[Info] Will keep alive localhost:4463
+[Info] Will keep alive localhost:4483
+[Info] Will keep alive localhost:4453
+[Info] Will keep alive localhost:4474
+[Info] Will keep alive localhost:4464
+[Info] Will keep alive localhost:4454
+[Info] Will keep alive localhost:4484
+[Info] Will keep alive localhost:4467
+[Info] Will keep alive localhost:4468
+[Info] Will keep alive localhost:4478
+[Info] Will keep alive localhost:4479
+[Info] Will keep alive localhost:4472
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 16. Dead Nodes: 24
+
+
+[ TEST Suspend Verify v2; Stage 1; Key Recovery; ]
+Checking that 24 nodes are suspended
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4445
+[ ... Completed in 10.004 seconds ]
+Checking that 16 nodes are alive
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4472
+[ ... Completed in 0.001 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4446 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4451 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4477 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4452 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4463 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4483 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4453 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4474 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4464 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4454 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4484 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4467 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4468 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4478 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4479 replied with membership count = 16 (expected count = 16)
+[Info] Server localhost:4472 replied with membership count = 16 (expected count = 16)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (16)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.49s]
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Of 40000 stored keys: 36875 SUCCESS, 0 TIMEOUT, 3125 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Expected Key Loss: 60.0%. Actual Key Loss: 7.8125%
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Total Value Size (MiB): 17.52006721496582 MiB.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; SUCCESS Response Count: 36875.0.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % SUCCESS: 92.1875%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % FAILED (Not SUCCESS): 7.8125%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % KEY-NOT-FOUND: 7.8125%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 92.1875% Success.(40.0% SUCCESS expected, 20.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 10.5 seconds ]
+
+[Info] Preparing for Stage 2a of the Suspend/Resume Test
+[Info] Stage 2a Scenario: Alive Nodes: 16. Dead Nodes: 24
+
+[ TEST Concurrent Store/Load v2; Stage 2a; (Clients = 64, Limit = 20000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 0.41s]
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Total Value Size (MiB): 9.525839805603027 MiB.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.23s]
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Total Value Size (MiB): 9.525839805603027 MiB.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 16 nodes are alive
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4472
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.642 seconds ]
+
+[Info] Preparing for Stage 2b of the Suspend/Resume Test
+[Info] To resume 21 node(s) in Stage 2a.
+[Info] Will resume localhost:4447
+[Info] Will resume localhost:4476
+[Info] Will resume localhost:4458
+[Info] Will resume localhost:4455
+[Info] Will resume localhost:4450
+[Info] Will resume localhost:4459
+[Info] Will resume localhost:4482
+[Info] Will resume localhost:4460
+[Info] Will resume localhost:4462
+[Info] Will resume localhost:4470
+[Info] Will resume localhost:4480
+[Info] Will resume localhost:4465
+[Info] Will resume localhost:4456
+[Info] Will resume localhost:4475
+[Info] Will resume localhost:4471
+[Info] Will resume localhost:4469
+[Info] Will resume localhost:4449
+[Info] Will resume localhost:4473
+[Info] Will resume localhost:4448
+[Info] Will resume localhost:4481
+[Info] Will resume localhost:4457
+[Info] Will keep suspended localhost:4461
+[Info] Will keep suspended localhost:4466
+[Info] Will keep suspended localhost:4445
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 21 servers.
+[ ... Completed in 0.11 seconds ]
+Waiting 60 seconds after resuming nodes
+[Info] Stage 2b Scenario: Alive Nodes: 37. Dead Nodes: 3
+
+
+[ TEST Suspend Verify v2; Stage 2b; Key Recovery; ]
+Checking that 3 nodes are suspended
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4445
+[ ... Completed in 10.003 seconds ]
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4483
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4447 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4476 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4458 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4455 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4450 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4482 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4459 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4460 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4462 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4470 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4480 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4465 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4456 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4475 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4471 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4469 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4473 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4449 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4448 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4481 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4478 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4457 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4467 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4463 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4464 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4446 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4477 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4479 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4454 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4468 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4474 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4472 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4453 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4452 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4451 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4484 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4483 replied with membership count = 37 (expected count = 37)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (37)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.572s]
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Expected Key Loss: 7.5%. Actual Key Loss: 0.0%
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Total Value Size (MiB): 18.984511375427246 MiB.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; SUCCESS Response Count: 40000.0.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % SUCCESS: 100.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % FAILED (Not SUCCESS): 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % KEY-NOT-FOUND: 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 100.0% Success.(92.5% SUCCESS expected, 46.25% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 10.581 seconds ]
+
+[Info] Preparing for Stage 2c of the Suspend/Resume Test
+[Info] Stage 2c Scenario: Alive Nodes: 37. Dead Nodes: 3
+
+
+[ TEST Suspend Verify v2; Stage 2c; Key Recovery; ]
+Checking that 3 nodes are suspended
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4445
+[ ... Completed in 10.002 seconds ]
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4483
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4447 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4476 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4458 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4455 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4450 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4459 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4482 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4460 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4462 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4470 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4480 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4465 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4456 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4475 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4471 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4469 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4449 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4473 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4448 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4478 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4481 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4457 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4467 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4464 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4446 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4479 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4463 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4454 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4477 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4468 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4474 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4453 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4452 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4472 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4451 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4484 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4483 replied with membership count = 37 (expected count = 37)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (37)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.356s]
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Of 20000 stored keys: 18434 SUCCESS, 0 TIMEOUT, 1566 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Expected Key Loss: 0.0%. Actual Key Loss: 7.83%
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Total Value Size (MiB): 8.790620803833008 MiB.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; SUCCESS Response Count: 18434.0.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % SUCCESS: 92.17%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % FAILED (Not SUCCESS): 7.83%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % KEY-NOT-FOUND: 7.83%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 92.17% Success.(100.0% SUCCESS expected, 50.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 10.364 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.073 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 5.073 seconds ]
+Pausing for 6 seconds to wait for the cache to be cleared!
+
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4458 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4447 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4476 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4455 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4450 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4482 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4459 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4460 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4462 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4470 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4480 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4465 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4456 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4475 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4471 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4469 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4449 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4473 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4448 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4481 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4457 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4478 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4467 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4464 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4463 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4479 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4474 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4468 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4484 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4477 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4446 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4453 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4454 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4452 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4451 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4483 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4472 replied with membership count = 37 (expected count = 37)
+[ ... Completed in 0.004 seconds ]
+[Ok] All servers returned the expected membership count (37)
+[ ... TEST Completed in 0.004 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.004 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.069 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4483
+[ ... Completed in 0.005 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 462321
+Total Requests (including replies): 462322
+Successful Responses: 462321
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 192ms, [min] 0ms
+[avg] 0.11968091434306467 ms, [stdev] 0.4471911901219935ms
+Throughput: 7705.22157964034 requests per second
+Goodput: 7705.22157964034 requests per second
+Retry Rate (Successful requests): 1.0000021629993014
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.073 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.184 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4483
+[ ... Completed in 0.006 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 725137
+Total Requests (including replies): 728494
+Successful Responses: 724404
+Timeout Responses: 733
+Total Failed Responses: 0
+% Success: 99.89891565318003
+% Timeout: 0.10108434681998023
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 532ms, [min] 0ms
+[avg] 0.3090430201931519 ms, [stdev] 4.4778480654392565ms
+Throughput: 11896.462906454048 requests per second
+Goodput: 11884.437444630377 requests per second
+Retry Rate (Successful requests): 1.00462947001739
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.08 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.206 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4483
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 6.86 ]
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 898412
+Total Requests (including replies): 955393
+Successful Responses: 885528
+Timeout Responses: 12884
+Total Failed Responses: 0
+% Success: 98.56591407950918
+% Timeout: 1.4340859204908216
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 553ms, [min] 0ms
+[avg] 2.9219640711530297 ms, [stdev] 8.570388652139648ms
+Throughput: 14728.065573770491 requests per second
+Goodput: 14516.852459016394 requests per second
+Retry Rate (Successful requests): 1.0634241305770626
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.085 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.319 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (512 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4483
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 9.12 ]
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 512
+Total Requests (without replies): 1051278
+Total Requests (including replies): 1178328
+Successful Responses: 1025932
+Timeout Responses: 25346
+Total Failed Responses: 0
+% Success: 97.5890297333341
+% Timeout: 2.4109702666659056
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 556ms, [min] 0ms
+[avg] 5.394646038918759 ms, [stdev] 14.270587190421274ms
+Throughput: 17234.06557377049 requests per second
+Goodput: 16818.55737704918 requests per second
+Retry Rate (Successful requests): 1.1208529047502183
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.082 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.355 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4445
+[ ... Completed in 10.002 seconds ]
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.006 seconds ]
+Waiting 60 seconds after resuming nodes
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.07 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Concurrent Store/Load v2; Stage 3; (Clients = 128, Limit = 40000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 0.58s]
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; Total Value Size (MiB): 19.02239418029785 MiB.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 40 nodes are alive
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.585 seconds ]
+
+[Info] Preparing for the sequential consistency Test (Stage 3)
+[Info] To suspend 12 total node(s) in sequential consistency test.
+
+[ TEST Concurrent Store/Load v2; Stage 3a; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.321s]
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; Total Value Size (MiB): 9.493536949157715 MiB.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 40 nodes are alive
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.005 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.326 seconds ]
+[Info] Will suspend localhost:4472
+[Info] Will suspend localhost:4456
+[Info] Will suspend localhost:4463
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 37. Dead Nodes: 3
+[ ... TEST Completed in 40.328 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3a; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 3 nodes are suspended
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4463
+[ ... Completed in 10.003 seconds ]
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4467 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4455 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4462 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4465 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4445 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4470 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4447 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4453 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4464 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4449 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4459 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4458 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4478 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4469 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4452 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4450 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4466 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4473 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4448 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4457 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4454 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4481 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4446 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4479 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4483 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4471 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4461 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4460 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4476 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4475 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4477 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4484 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4474 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4468 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4482 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4480 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4451 replied with membership count = 37 (expected count = 37)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (37)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.394s]
+[Info] Sequential Consistency; Stage 3a; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3a; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Sequential Consistency; Stage 3a; GET Phase; Total Value Size (MiB): 19.042168617248535 MiB.
+[Info] Sequential Consistency; Stage 3a; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % SUCCESS: 100.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3b; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.382s]
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; Total Value Size (MiB): 9.588479995727539 MiB.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.384 seconds ]
+[Info] Will suspend localhost:4467
+[Info] Will suspend localhost:4455
+[Info] Will suspend localhost:4462
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 34. Dead Nodes: 6
+[ ... TEST Completed in 40.386 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3b; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 6 nodes are suspended
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[ ... Completed in 10.003 seconds ]
+Checking that 34 nodes are alive
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4465 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4445 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4447 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4470 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4453 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4449 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4464 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4459 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4458 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4478 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4469 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4452 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4466 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4450 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4473 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4448 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4457 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4454 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4481 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4446 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4479 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4483 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4461 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4471 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4476 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4475 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4460 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4477 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4484 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4474 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4482 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4468 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4480 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4451 replied with membership count = 34 (expected count = 34)
+[ ... Completed in 0.005 seconds ]
+[Ok] All servers returned the expected membership count (34)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.415s]
+[Info] Sequential Consistency; Stage 3b; GET Phase; Of 40000 stored keys: 39848 SUCCESS, 0 TIMEOUT, 152 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3b; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.38%
+[Info] Sequential Consistency; Stage 3b; GET Phase; Total Value Size (MiB): 18.964258193969727 MiB.
+[Info] Sequential Consistency; Stage 3b; GET Phase; SUCCESS Response Count: 39848.0.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % SUCCESS: 99.62%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % FAILED (Not SUCCESS): 0.38%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % KEY-NOT-FOUND: 0.38%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 34 nodes are alive
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3c; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.321s]
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; Total Value Size (MiB): 9.554875373840332 MiB.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 34 nodes are alive
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.325 seconds ]
+[Info] Will suspend localhost:4465
+[Info] Will suspend localhost:4445
+[Info] Will suspend localhost:4447
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 31. Dead Nodes: 9
+[ ... TEST Completed in 40.326 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3c; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 9 nodes are suspended
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[ ... Completed in 10.003 seconds ]
+Checking that 31 nodes are alive
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4470 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4453 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4464 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4449 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4459 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4458 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4478 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4469 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4452 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4466 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4450 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4473 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4454 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4448 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4481 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4457 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4446 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4479 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4461 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4483 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4471 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4460 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4476 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4475 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4477 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4484 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4474 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4482 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4468 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4480 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4451 replied with membership count = 31 (expected count = 31)
+[ ... Completed in 0.004 seconds ]
+[Ok] All servers returned the expected membership count (31)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.38s]
+[Info] Sequential Consistency; Stage 3c; GET Phase; Of 40000 stored keys: 39910 SUCCESS, 0 TIMEOUT, 90 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3c; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.225%
+[Info] Sequential Consistency; Stage 3c; GET Phase; Total Value Size (MiB): 19.019800186157227 MiB.
+[Info] Sequential Consistency; Stage 3c; GET Phase; SUCCESS Response Count: 39910.0.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % SUCCESS: 99.775%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % FAILED (Not SUCCESS): 0.225%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % KEY-NOT-FOUND: 0.225%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 31 nodes are alive
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3d; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.328s]
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; Total Value Size (MiB): 9.569262504577637 MiB.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 31 nodes are alive
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.331 seconds ]
+[Info] Will suspend localhost:4470
+[Info] Will suspend localhost:4453
+[Info] Will suspend localhost:4464
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 28. Dead Nodes: 12
+[ ... TEST Completed in 40.333 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3d; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 12 nodes are suspended
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4464
+[ ... Completed in 10.003 seconds ]
+Checking that 28 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.002 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4449 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4459 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4458 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4478 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4469 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4452 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4466 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4450 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4473 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4448 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4457 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4454 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4481 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4446 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4479 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4483 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4461 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4471 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4460 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4476 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4475 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4477 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4484 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4474 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4482 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4468 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4480 replied with membership count = 28 (expected count = 28)
+[Info] Server localhost:4451 replied with membership count = 28 (expected count = 28)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (28)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.338s]
+[Info] Sequential Consistency; Stage 3d; GET Phase; Of 40000 stored keys: 39945 SUCCESS, 0 TIMEOUT, 55 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3d; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.1375%
+[Info] Sequential Consistency; Stage 3d; GET Phase; Total Value Size (MiB): 19.092062950134277 MiB.
+[Info] Sequential Consistency; Stage 3d; GET Phase; SUCCESS Response Count: 39945.0.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % SUCCESS: 99.8625%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % FAILED (Not SUCCESS): 0.1375%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % KEY-NOT-FOUND: 0.1375%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 28 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3e; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.291s]
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; Total Value Size (MiB): 9.620538711547852 MiB.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 28 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.294 seconds ]
+[Info] Will resume localhost:4456
+[Info] Will resume localhost:4470
+[Info] Will resume localhost:4465
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3e Scenario: Alive Nodes: 31. Dead Nodes: 9
+[ ... TEST Completed in 40.298 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3e; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 9 nodes are suspended
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4445
+[ ... Completed in 10.003 seconds ]
+Checking that 31 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[ ... Completed in 0.002 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4449 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4459 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4458 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4478 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4469 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4452 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4466 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4450 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4473 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4448 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4457 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4481 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4454 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4446 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4479 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4483 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4461 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4471 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4460 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4476 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4475 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4477 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4484 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4474 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4482 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4468 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4480 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4451 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4456 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4470 replied with membership count = 31 (expected count = 31)
+[Info] Server localhost:4465 replied with membership count = 31 (expected count = 31)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (31)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.36s]
+[Info] Sequential Consistency; Stage 3e; GET Phase; Of 40000 stored keys: 37319 SUCCESS, 0 TIMEOUT, 32 KEY-NOT-FOUND, 0 ERROR-UID, 2649 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3e; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 6.7025%
+[Info] Sequential Consistency; Stage 3e; GET Phase; Total Value Size (MiB): 17.868568420410156 MiB.
+[Info] Sequential Consistency; Stage 3e; GET Phase; SUCCESS Response Count: 37319.0.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % SUCCESS: 93.2975%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % FAILED (Not SUCCESS): 6.7025%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % KEY-NOT-FOUND: 0.08%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % ERROR-INVALID-GET (value or version): 6.6225%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 31 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3f; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.311s]
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; Total Value Size (MiB): 9.511622428894043 MiB.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 31 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.314 seconds ]
+[Info] Will resume localhost:4464
+[Info] Will resume localhost:4472
+[Info] Will resume localhost:4467
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3f Scenario: Alive Nodes: 34. Dead Nodes: 6
+[ ... TEST Completed in 40.316 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3f; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 6 nodes are suspended
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4445
+[ ... Completed in 10.003 seconds ]
+Checking that 34 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4449 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4459 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4458 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4478 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4469 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4452 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4466 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4473 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4450 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4448 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4457 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4454 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4481 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4446 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4479 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4483 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4461 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4471 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4460 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4476 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4475 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4477 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4474 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4484 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4482 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4468 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4480 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4456 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4451 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4465 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4470 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4464 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4472 replied with membership count = 34 (expected count = 34)
+[Info] Server localhost:4467 replied with membership count = 34 (expected count = 34)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (34)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.348s]
+[Info] Sequential Consistency; Stage 3f; GET Phase; Of 40000 stored keys: 33195 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 6805 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3f; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 17.0125%
+[Info] Sequential Consistency; Stage 3f; GET Phase; Total Value Size (MiB): 15.853442192077637 MiB.
+[Info] Sequential Consistency; Stage 3f; GET Phase; SUCCESS Response Count: 33195.0.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % SUCCESS: 82.9875%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % FAILED (Not SUCCESS): 17.0125%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % ERROR-INVALID-GET (value or version): 17.0125%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 34 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3g; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.328s]
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; Total Value Size (MiB): 9.611113548278809 MiB.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 34 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.331 seconds ]
+[Info] Will resume localhost:4455
+[Info] Will resume localhost:4463
+[Info] Will resume localhost:4453
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3g Scenario: Alive Nodes: 37. Dead Nodes: 3
+[ ... TEST Completed in 40.334 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3g; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 3 nodes are suspended
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4445
+[ ... Completed in 10.003 seconds ]
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4453
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4449 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4459 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4458 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4478 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4469 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4452 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4466 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4450 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4457 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4473 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4448 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4454 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4481 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4446 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4479 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4483 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4461 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4471 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4460 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4476 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4475 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4477 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4484 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4474 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4482 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4468 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4480 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4451 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4456 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4470 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4465 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4464 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4472 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4467 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4455 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4453 replied with membership count = 37 (expected count = 37)
+[Info] Server localhost:4463 replied with membership count = 37 (expected count = 37)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (37)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.319s]
+[Info] Sequential Consistency; Stage 3g; GET Phase; Of 40000 stored keys: 35017 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 4983 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3g; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 12.4575%
+[Info] Sequential Consistency; Stage 3g; GET Phase; Total Value Size (MiB): 16.73937225341797 MiB.
+[Info] Sequential Consistency; Stage 3g; GET Phase; SUCCESS Response Count: 35017.0.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % SUCCESS: 87.5425%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % FAILED (Not SUCCESS): 12.4575%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % ERROR-INVALID-GET (value or version): 12.4575%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4453
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3h; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.336s]
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; Total Value Size (MiB): 9.59549331665039 MiB.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 37 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4453
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.339 seconds ]
+[Info] Will resume localhost:4462
+[Info] Will resume localhost:4445
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 2 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3h Scenario: Alive Nodes: 39. Dead Nodes: 1
+[ ... TEST Completed in 40.342 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3h; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 1 nodes are suspended
+[Test isAlive] for localhost:4447
+[ ... Completed in 10.003 seconds ]
+Checking that 39 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4445
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server localhost:4449 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4458 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4478 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4459 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4469 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4452 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4466 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4450 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4473 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4448 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4457 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4454 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4481 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4446 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4479 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4483 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4461 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4471 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4460 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4476 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4475 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4477 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4484 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4474 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4482 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4468 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4480 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4451 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4456 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4470 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4465 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4464 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4472 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4467 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4455 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4463 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4453 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4462 replied with membership count = 39 (expected count = 39)
+[Info] Server localhost:4445 replied with membership count = 39 (expected count = 39)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (39)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.305s]
+[Info] Sequential Consistency; Stage 3h; GET Phase; Of 40000 stored keys: 33182 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 6818 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3h; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 17.045%
+[Info] Sequential Consistency; Stage 3h; GET Phase; Total Value Size (MiB): 15.882340431213379 MiB.
+[Info] Sequential Consistency; Stage 3h; GET Phase; SUCCESS Response Count: 33182.0.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % SUCCESS: 82.955%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % FAILED (Not SUCCESS): 17.045%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % ERROR-INVALID-GET (value or version): 17.045%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 39 nodes are alive
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4484
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4445
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 1 servers.
+[ ... Completed in 0.001 seconds ]
+
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.131 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+Waiting 60 seconds
+
+[ TEST Concurrent Store/Load v3; Stage 4; (Clients = 128, Limit = 5000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 0.065s]
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.069s]
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 40 nodes are alive
+[Test isAlive] for localhost:4445
+[Test isAlive] for localhost:4446
+[Test isAlive] for localhost:4447
+[Test isAlive] for localhost:4448
+[Test isAlive] for localhost:4449
+[Test isAlive] for localhost:4450
+[Test isAlive] for localhost:4451
+[Test isAlive] for localhost:4452
+[Test isAlive] for localhost:4453
+[Test isAlive] for localhost:4454
+[Test isAlive] for localhost:4455
+[Test isAlive] for localhost:4456
+[Test isAlive] for localhost:4457
+[Test isAlive] for localhost:4458
+[Test isAlive] for localhost:4459
+[Test isAlive] for localhost:4460
+[Test isAlive] for localhost:4461
+[Test isAlive] for localhost:4462
+[Test isAlive] for localhost:4463
+[Test isAlive] for localhost:4464
+[Test isAlive] for localhost:4465
+[Test isAlive] for localhost:4466
+[Test isAlive] for localhost:4467
+[Test isAlive] for localhost:4468
+[Test isAlive] for localhost:4469
+[Test isAlive] for localhost:4470
+[Test isAlive] for localhost:4471
+[Test isAlive] for localhost:4472
+[Test isAlive] for localhost:4473
+[Test isAlive] for localhost:4474
+[Test isAlive] for localhost:4475
+[Test isAlive] for localhost:4476
+[Test isAlive] for localhost:4477
+[Test isAlive] for localhost:4478
+[Test isAlive] for localhost:4479
+[Test isAlive] for localhost:4480
+[Test isAlive] for localhost:4481
+[Test isAlive] for localhost:4482
+[Test isAlive] for localhost:4483
+[Test isAlive] for localhost:4484
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.138 seconds ]
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.016s]
+Sequential Consistency 2; Update values stage 4a Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.019s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4a Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.021s]
+TEST_PASSED
+[ ... TEST Completed in 0.062 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend localhost:4484
+[Info] Will suspend localhost:4461
+[Info] Will suspend localhost:4460
+[Info] Suspending 3 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.001 seconds ]
+[Info] Stage 4a Scenario: Alive Nodes: 37. Dead Nodes: 3
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 2.008s]
+Sequential Consistency 2; Update values stage 4b Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.131s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4b Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.13s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4b Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.131s]
+TEST_PASSED
+[ ... TEST Completed in 2.402 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend localhost:4482
+[Info] Will suspend localhost:4475
+[Info] Will suspend localhost:4448
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4b Scenario: Alive Nodes: 34. Dead Nodes: 6
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 2.007s]
+Sequential Consistency 2; Update values stage 4c Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.09s]
+TEST_PASSED
+[ ... TEST Completed in 2.098 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will resume localhost:4484
+[Info] Will resume localhost:4461
+[Info] Will resume localhost:4460
+[Info] Resuming 3 servers.
+[ ... Completed in 0.004 seconds ]
+Waiting 15 seconds after resume
+[ ... TEST Completed in 15.007 seconds ]
+[Info] Stage 4c Scenario: Alive Nodes: 37. Dead Nodes: 3
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.013s]
+Sequential Consistency 2; Update values stage 4d Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.015s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4d Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.016s]
+TEST_PASSED
+[ ... TEST Completed in 0.047 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will resume localhost:4482
+[Info] Will resume localhost:4475
+[Info] Will resume localhost:4448
+[Info] Resuming 3 servers.
+[ ... Completed in 0.007 seconds ]
+Waiting 15 seconds after resume
+[ ... TEST Completed in 15.007 seconds ]
+[Info] Stage 4d Scenario: Alive Nodes: 40. Dead Nodes: 0
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 1.005s]
+Sequential Consistency 2; Update values stage 4e Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 1.015s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4e Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 1.015s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4e Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.017s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4e Increment 4;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 1.016s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4e Increment 5;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 1.01s]
+TEST_PASSED
+[ ... TEST Completed in 5.083 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend localhost:4479
+[Info] Will suspend localhost:4472
+[Info] Will suspend localhost:4480
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4e Scenario: Alive Nodes: 37. Dead Nodes: 3
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 3.009s]
+Sequential Consistency 2; Update values stage 4f Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.131s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4f Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.132s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4f Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.131s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4f Increment 4;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.132s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4f Increment 5;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.131s]
+TEST_PASSED
+[ ... TEST Completed in 3.668 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will resume localhost:4479
+[Info] Will resume localhost:4472
+[Info] Will resume localhost:4480
+[Info] Resuming 3 servers.
+[ ... Completed in 0.011 seconds ]
+Waiting 15 seconds after resume
+[ ... TEST Completed in 15.011 seconds ]
+[Info] Stage 4f Scenario: Alive Nodes: 40. Dead Nodes: 0
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.012s]
+Sequential Consistency 2; Update values stage 4g Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+[ ... TEST Completed in 0.033 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend localhost:4473
+[Info] Will suspend localhost:4477
+[Info] Will suspend localhost:4457
+[Info] Suspending 3 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.001 seconds ]
+[Info] Stage 4g Scenario: Alive Nodes: 37. Dead Nodes: 3
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 1.009s]
+Sequential Consistency 2; Update values stage 4h Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 1.013s]
+TEST_PASSED
+[ ... TEST Completed in 2.024 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend localhost:4467
+[Info] Will suspend localhost:4478
+[Info] Will suspend localhost:4450
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4h Scenario: Alive Nodes: 34. Dead Nodes: 6
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 3.013s]
+Sequential Consistency 2; Update values stage 4i Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.083s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4i Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.083s]
+TEST_PASSED
+[ ... TEST Completed in 3.182 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend localhost:4476
+[Info] Will suspend localhost:4483
+[Info] Will suspend localhost:4462
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4i Scenario: Alive Nodes: 31. Dead Nodes: 9
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 4.004s]
+Sequential Consistency 2; Update values stage 4j Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.091s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4j Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.091s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4j Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.091s]
+TEST_PASSED
+[ ... TEST Completed in 4.28 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend localhost:4447
+[Info] Will suspend localhost:4470
+[Info] Will suspend localhost:4449
+[Info] Suspending 3 servers.
+[ ... Completed in 0.001 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.001 seconds ]
+[Info] Stage 4j Scenario: Alive Nodes: 28. Dead Nodes: 12
+
+
+[ TEST Stage 4; Verify Sequential Consistency 2; (Clients = 128, Limit = 5000 GETS) ]
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 7.021s]
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Of 4647 stored keys: 3846 SUCCESS, 529 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 272 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 17.23692704970949%
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Total Value Size (MiB): 2.0107421875 MiB.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SUCCESS Response Count: 3846.0.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SUCCESS: 82.7630729502905%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % FAILED (Not SUCCESS): 17.23692704970949%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % TIMEOUT: 11.383688401119002%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-UID: 0.0%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-INVALID-GET (value or version): 5.853238648590488%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; NOT-STORED keys Count:                      353.0.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Retrieved Increments Count (tr):            8595.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Timed Out Increments Count (tt):            5.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Successful Increments Count (ts):           9463.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SC Violations Count (tr<ts):                272.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SC Compliant Count (ts<=tr<=ts+tt):         3846.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SC Buggy-Implementation Count (tr>tt+ts):   0.0
+
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Compliant:                     93.39485186983973
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Violations:                    6.605148130160272
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Buggy-Implementation:          0.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % Retrieved Increments (tr/ts):     90.82743316073127
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % Timed Out Increments (tt/ts):     0.05283736658564937
+Error: too many timeouts during GETs! 11.383688401119002% Timeout.(10.0% maximum allowed).
+TEST_FAILED
+[Error] Sequential consistency 2 test failed.
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 12 servers.
+[ ... Completed in 0.061 seconds ]
+
+Results Summary:
+Client Local Hostname : DESKTOP-482AJRL
+Client Local IP : DESKTOP-482AJRL/127.0.1.1
+Concurrent Store/Load v2; Stage 0; : 2.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 0; GET Phase; Total Value Size (MiB) : 18.984511375427246
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; Total Value Size (MiB) : 18.984511375427246
+Concurrent Store/Load v2; Stage 2a; : 2.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; Total Value Size (MiB) : 9.525839805603027
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; Total Value Size (MiB) : 9.525839805603027
+Concurrent Store/Load v2; Stage 3; : 2.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; Total Value Size (MiB) : 19.02239418029785
+Concurrent Store/Load v2; Stage 3a; : 2.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; Total Value Size (MiB) : 9.493536949157715
+Concurrent Store/Load v2; Stage 3b; : 2.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; Total Value Size (MiB) : 9.588479995727539
+Concurrent Store/Load v2; Stage 3c; : 2.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; Total Value Size (MiB) : 9.554875373840332
+Concurrent Store/Load v2; Stage 3d; : 2.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; Total Value Size (MiB) : 9.569262504577637
+Concurrent Store/Load v2; Stage 3e; : 2.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; Total Value Size (MiB) : 9.620538711547852
+Concurrent Store/Load v2; Stage 3f; : 2.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; Total Value Size (MiB) : 9.511622428894043
+Concurrent Store/Load v2; Stage 3g; : 2.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; Total Value Size (MiB) : 9.611113548278809
+Concurrent Store/Load v2; Stage 3h; : 2.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; Total Value Size (MiB) : 9.59549331665039
+Sequential Consistency; Stage 3a; : 2.0
+Sequential Consistency; Stage 3a; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % SUCCESS : 100.0
+Sequential Consistency; Stage 3a; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3a; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3a; GET Phase; SUCCESS Response Count : 40000.0
+Sequential Consistency; Stage 3a; GET Phase; Total Value Size (MiB) : 19.042168617248535
+Sequential Consistency; Stage 3b; : 2.0
+Sequential Consistency; Stage 3b; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % FAILED (Not SUCCESS) : 0.38
+Sequential Consistency; Stage 3b; GET Phase; % KEY-NOT-FOUND : 0.38
+Sequential Consistency; Stage 3b; GET Phase; % SUCCESS : 99.62
+Sequential Consistency; Stage 3b; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3b; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3b; GET Phase; SUCCESS Response Count : 39848.0
+Sequential Consistency; Stage 3b; GET Phase; Total Value Size (MiB) : 18.964258193969727
+Sequential Consistency; Stage 3c; : 2.0
+Sequential Consistency; Stage 3c; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % FAILED (Not SUCCESS) : 0.225
+Sequential Consistency; Stage 3c; GET Phase; % KEY-NOT-FOUND : 0.225
+Sequential Consistency; Stage 3c; GET Phase; % SUCCESS : 99.775
+Sequential Consistency; Stage 3c; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3c; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3c; GET Phase; SUCCESS Response Count : 39910.0
+Sequential Consistency; Stage 3c; GET Phase; Total Value Size (MiB) : 19.019800186157227
+Sequential Consistency; Stage 3d; : 2.0
+Sequential Consistency; Stage 3d; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % FAILED (Not SUCCESS) : 0.1375
+Sequential Consistency; Stage 3d; GET Phase; % KEY-NOT-FOUND : 0.1375
+Sequential Consistency; Stage 3d; GET Phase; % SUCCESS : 99.8625
+Sequential Consistency; Stage 3d; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3d; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3d; GET Phase; SUCCESS Response Count : 39945.0
+Sequential Consistency; Stage 3d; GET Phase; Total Value Size (MiB) : 19.092062950134277
+Sequential Consistency; Stage 3e; : 2.0
+Sequential Consistency; Stage 3e; GET Phase; % ERROR-INVALID-GET (value or version) : 6.6225
+Sequential Consistency; Stage 3e; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3e; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3e; GET Phase; % FAILED (Not SUCCESS) : 6.7025
+Sequential Consistency; Stage 3e; GET Phase; % KEY-NOT-FOUND : 0.08
+Sequential Consistency; Stage 3e; GET Phase; % SUCCESS : 93.2975
+Sequential Consistency; Stage 3e; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3e; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3e; GET Phase; SUCCESS Response Count : 37319.0
+Sequential Consistency; Stage 3e; GET Phase; Total Value Size (MiB) : 17.868568420410156
+Sequential Consistency; Stage 3f; : 2.0
+Sequential Consistency; Stage 3f; GET Phase; % ERROR-INVALID-GET (value or version) : 17.0125
+Sequential Consistency; Stage 3f; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3f; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3f; GET Phase; % FAILED (Not SUCCESS) : 17.0125
+Sequential Consistency; Stage 3f; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3f; GET Phase; % SUCCESS : 82.9875
+Sequential Consistency; Stage 3f; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3f; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3f; GET Phase; SUCCESS Response Count : 33195.0
+Sequential Consistency; Stage 3f; GET Phase; Total Value Size (MiB) : 15.853442192077637
+Sequential Consistency; Stage 3g; : 2.0
+Sequential Consistency; Stage 3g; GET Phase; % ERROR-INVALID-GET (value or version) : 12.4575
+Sequential Consistency; Stage 3g; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3g; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3g; GET Phase; % FAILED (Not SUCCESS) : 12.4575
+Sequential Consistency; Stage 3g; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3g; GET Phase; % SUCCESS : 87.5425
+Sequential Consistency; Stage 3g; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3g; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3g; GET Phase; SUCCESS Response Count : 35017.0
+Sequential Consistency; Stage 3g; GET Phase; Total Value Size (MiB) : 16.73937225341797
+Sequential Consistency; Stage 3h; : 2.0
+Sequential Consistency; Stage 3h; GET Phase; % ERROR-INVALID-GET (value or version) : 17.045
+Sequential Consistency; Stage 3h; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3h; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3h; GET Phase; % FAILED (Not SUCCESS) : 17.045
+Sequential Consistency; Stage 3h; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3h; GET Phase; % SUCCESS : 82.955
+Sequential Consistency; Stage 3h; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3h; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3h; GET Phase; SUCCESS Response Count : 33182.0
+Sequential Consistency; Stage 3h; GET Phase; Total Value Size (MiB) : 15.882340431213379
+Sequential consistency test Suspend Node Count : 12
+Server Count : 40
+Server List : localhost_4445_localhost_4446_localhost_4447_localhost_4448_localhost_4449_localhost_4450_localhost_4451_localhost_4452_localhost_4453_localhost_4454_localhost_4455_localhost_4456_localhost_4457_localhost_4458_localhost_4459_localhost_4460_localhost_4461_localhost_4462_localhost_4463_localhost_4464_localhost_4465_localhost_4466_localhost_4467_localhost_4468_localhost_4469_localhost_4470_localhost_4471_localhost_4472_localhost_4473_localhost_4474_localhost_4475_localhost_4476_localhost_4477_localhost_4478_localhost_4479_localhost_4480_localhost_4481_localhost_4482_localhost_4483_localhost_4484_
+Single Front Node (At-Most-Once) Policy : 2.0
+Single Front Node At-Most-Once Policy Empty REMs : 2.0
+Single Front Node At-Most-Once Policy Error Return Code : 2.0
+Single Front Node At-Most-Once Policy Full Test : 2.0
+Single Front Node Basic PUT GET  : 2.0
+Single Front Node Double PUT with version : 2.0
+Single Front Node Double Remove : 2.0
+Single Front Node Invalid Command : 2.0
+Single Front Node Invalid Key Test : 2.0
+Single Front Node Invalid Value Test : 2.0
+Single Front Node Multi-Client Crash : 2.0
+Single Front Node Remove Operation : 2.0
+Stage 1 Random Front-End Basic : 2.0
+Stage 1 Random Front-End: 1 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 1 Client(s) % Success : 100.0
+Stage 1 Random Front-End: 1 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 6604.0
+Stage 1 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 11.0
+Stage 1 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End: 1 Client(s) Successful Responses : 396211
+Stage 1 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 6604.0
+Stage 1 Random Front-End: 1 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End: 1 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 1 Client(s) Total Requests (including replies) : 396211
+Stage 1 Random Front-End: 1 Client(s) Total Requests (without replies) : 396211
+Stage 1 Random Front-End: 1024 Client(s) % Failed : 2.2145140728678473E-4
+Stage 1 Random Front-End: 1024 Client(s) % Success : 96.61046476006847
+Stage 1 Random Front-End: 1024 Client(s) % Timeout : 3.3893137885242406
+Stage 1 Random Front-End: 1024 Client(s) Average Response Time (ms) : 12.0
+Stage 1 Random Front-End: 1024 Client(s) CPU load (loadavg - last one minute) : 16.78
+Stage 1 Random Front-End: 1024 Client(s) Goodput (Requests per Second) : 21459.0
+Stage 1 Random Front-End: 1024 Client(s) Maximum Response Time (ms) : 655.0
+Stage 1 Random Front-End: 1024 Client(s) STDEV Response Time (ms) : 31.0
+Stage 1 Random Front-End: 1024 Client(s) Successful Responses : 1308781
+Stage 1 Random Front-End: 1024 Client(s) Throughput (Requests per Second) : 22212.0
+Stage 1 Random Front-End: 1024 Client(s) Timeout Responses : 45915
+Stage 1 Random Front-End: 1024 Client(s) Total Failed Responses : 3
+Stage 1 Random Front-End: 1024 Client(s) Total Requests (including replies) : 1654884
+Stage 1 Random Front-End: 1024 Client(s) Total Requests (without replies) : 1354699
+Stage 1 Random Front-End: 16 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 16 Client(s) % Success : 99.91317653755866
+Stage 1 Random Front-End: 16 Client(s) % Timeout : 0.0868234624413452
+Stage 1 Random Front-End: 16 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End: 16 Client(s) Goodput (Requests per Second) : 12549.0
+Stage 1 Random Front-End: 16 Client(s) Maximum Response Time (ms) : 533.0
+Stage 1 Random Front-End: 16 Client(s) STDEV Response Time (ms) : 5.0
+Stage 1 Random Front-End: 16 Client(s) Successful Responses : 765257
+Stage 1 Random Front-End: 16 Client(s) Throughput (Requests per Second) : 12560.0
+Stage 1 Random Front-End: 16 Client(s) Timeout Responses : 665
+Stage 1 Random Front-End: 16 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 16 Client(s) Total Requests (including replies) : 769196
+Stage 1 Random Front-End: 16 Client(s) Total Requests (without replies) : 765922
+Stage 1 Random Front-End: 2048 Client(s) % Failed : 0.0030806095052875984
+Stage 1 Random Front-End: 2048 Client(s) % Success : 94.97157468033653
+Stage 1 Random Front-End: 2048 Client(s) % Timeout : 5.025344710158176
+Stage 1 Random Front-End: 2048 Client(s) Average Response Time (ms) : 32.0
+Stage 1 Random Front-End: 2048 Client(s) CPU load (loadavg - last one minute) : 40.93
+Stage 1 Random Front-End: 2048 Client(s) Goodput (Requests per Second) : 23248.0
+Stage 1 Random Front-End: 2048 Client(s) Maximum Response Time (ms) : 938.0
+Stage 1 Random Front-End: 2048 Client(s) STDEV Response Time (ms) : 66.0
+Stage 1 Random Front-End: 2048 Client(s) Successful Responses : 1418126
+Stage 1 Random Front-End: 2048 Client(s) Throughput (Requests per Second) : 24479.0
+Stage 1 Random Front-End: 2048 Client(s) Timeout Responses : 75039
+Stage 1 Random Front-End: 2048 Client(s) Total Failed Responses : 46
+Stage 1 Random Front-End: 2048 Client(s) Total Requests (including replies) : 2198360
+Stage 1 Random Front-End: 2048 Client(s) Total Requests (without replies) : 1493211
+Stage 1 Random Front-End: 256 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 256 Client(s) % Success : 98.65597844449489
+Stage 1 Random Front-End: 256 Client(s) % Timeout : 1.3440215555051058
+Stage 1 Random Front-End: 256 Client(s) Average Response Time (ms) : 4.0
+Stage 1 Random Front-End: 256 Client(s) CPU load (loadavg - last one minute) : 5.53
+Stage 1 Random Front-End: 256 Client(s) Goodput (Requests per Second) : 15176.0
+Stage 1 Random Front-End: 256 Client(s) Maximum Response Time (ms) : 560.0
+Stage 1 Random Front-End: 256 Client(s) STDEV Response Time (ms) : 10.0
+Stage 1 Random Front-End: 256 Client(s) Successful Responses : 925619
+Stage 1 Random Front-End: 256 Client(s) Throughput (Requests per Second) : 15383.0
+Stage 1 Random Front-End: 256 Client(s) Timeout Responses : 12610
+Stage 1 Random Front-End: 256 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 256 Client(s) Total Requests (including replies) : 994750
+Stage 1 Random Front-End: 256 Client(s) Total Requests (without replies) : 938229
+Stage 1 Suspend Node Count : 24
+Stage 2 Distributed Shutdown Honoured : 2.0
+Stage 2 Random Front-End Basic : 2.0
+Stage 2 Random Front-End: 1 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 1 Client(s) % Success : 100.0
+Stage 2 Random Front-End: 1 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 7706.0
+Stage 2 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 192.0
+Stage 2 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 1 Client(s) Successful Responses : 462321
+Stage 2 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 7706.0
+Stage 2 Random Front-End: 1 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 1 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 1 Client(s) Total Requests (including replies) : 462322
+Stage 2 Random Front-End: 1 Client(s) Total Requests (without replies) : 462321
+Stage 2 Random Front-End: 16 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 16 Client(s) % Success : 99.89891565318003
+Stage 2 Random Front-End: 16 Client(s) % Timeout : 0.10108434681998023
+Stage 2 Random Front-End: 16 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 16 Client(s) Goodput (Requests per Second) : 11885.0
+Stage 2 Random Front-End: 16 Client(s) Maximum Response Time (ms) : 532.0
+Stage 2 Random Front-End: 16 Client(s) STDEV Response Time (ms) : 5.0
+Stage 2 Random Front-End: 16 Client(s) Successful Responses : 724404
+Stage 2 Random Front-End: 16 Client(s) Throughput (Requests per Second) : 11897.0
+Stage 2 Random Front-End: 16 Client(s) Timeout Responses : 733
+Stage 2 Random Front-End: 16 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 16 Client(s) Total Requests (including replies) : 728494
+Stage 2 Random Front-End: 16 Client(s) Total Requests (without replies) : 725137
+Stage 2 Random Front-End: 256 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 256 Client(s) % Success : 98.56591407950918
+Stage 2 Random Front-End: 256 Client(s) % Timeout : 1.4340859204908216
+Stage 2 Random Front-End: 256 Client(s) Average Response Time (ms) : 3.0
+Stage 2 Random Front-End: 256 Client(s) CPU load (loadavg - last one minute) : 6.86
+Stage 2 Random Front-End: 256 Client(s) Goodput (Requests per Second) : 14517.0
+Stage 2 Random Front-End: 256 Client(s) Maximum Response Time (ms) : 553.0
+Stage 2 Random Front-End: 256 Client(s) STDEV Response Time (ms) : 9.0
+Stage 2 Random Front-End: 256 Client(s) Successful Responses : 885528
+Stage 2 Random Front-End: 256 Client(s) Throughput (Requests per Second) : 14729.0
+Stage 2 Random Front-End: 256 Client(s) Timeout Responses : 12884
+Stage 2 Random Front-End: 256 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 256 Client(s) Total Requests (including replies) : 955393
+Stage 2 Random Front-End: 256 Client(s) Total Requests (without replies) : 898412
+Stage 2 Random Front-End: 512 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 512 Client(s) % Success : 97.5890297333341
+Stage 2 Random Front-End: 512 Client(s) % Timeout : 2.4109702666659056
+Stage 2 Random Front-End: 512 Client(s) Average Response Time (ms) : 6.0
+Stage 2 Random Front-End: 512 Client(s) CPU load (loadavg - last one minute) : 9.12
+Stage 2 Random Front-End: 512 Client(s) Goodput (Requests per Second) : 16819.0
+Stage 2 Random Front-End: 512 Client(s) Maximum Response Time (ms) : 556.0
+Stage 2 Random Front-End: 512 Client(s) STDEV Response Time (ms) : 15.0
+Stage 2 Random Front-End: 512 Client(s) Successful Responses : 1025932
+Stage 2 Random Front-End: 512 Client(s) Throughput (Requests per Second) : 17235.0
+Stage 2 Random Front-End: 512 Client(s) Timeout Responses : 25346
+Stage 2 Random Front-End: 512 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 512 Client(s) Total Requests (including replies) : 1178328
+Stage 2 Random Front-End: 512 Client(s) Total Requests (without replies) : 1051278
+Stage 2 Resumed Node Count : 21
+Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-INVALID-GET (value or version) : 5.853238648590488
+Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-OTHER : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-UID : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % FAILED (Not SUCCESS) : 17.23692704970949
+Stage 4; Verify Sequential Consistency 2; GET Phase; % KEY-NOT-FOUND : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % Retrieved Increments (tr/ts) : 90.82743316073127
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Buggy-Implementation : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Compliant : 93.39485186983973
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Violations : 6.605148130160272
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SUCCESS : 82.7630729502905
+Stage 4; Verify Sequential Consistency 2; GET Phase; % TIMEOUT : 11.383688401119002
+Stage 4; Verify Sequential Consistency 2; GET Phase; % Timed Out Increments (tt/ts) : 0.05283736658564937
+Stage 4; Verify Sequential Consistency 2; GET Phase; NOT-STORED keys Count : 353.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Retrieved Increments Count Sum (tr) : 8595.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SC Buggy-Implementation Count (tr>tt+ts) : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SC Compliant Count (ts<=tr<=ts+tt) : 3846.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SC Violations Count (tr<ts) : 272.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SUCCESS Response Count : 3846.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Successful Increments Count Sum (ts) : 9463.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Timed-out Increments Count Sum (tt) : 5.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Total Value Size (MiB) : 2.0107421875
+Suspend Verify v2; Stage 1; Key Recovery; : 2.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % FAILED (Not SUCCESS) : 7.8125
+Suspend Verify v2; Stage 1; Key Recovery; % KEY-NOT-FOUND : 7.8125
+Suspend Verify v2; Stage 1; Key Recovery; % SUCCESS : 92.1875
+Suspend Verify v2; Stage 1; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; SUCCESS Response Count : 36875.0
+Suspend Verify v2; Stage 1; Key Recovery; Total Value Size (MiB) : 17.52006721496582
+Suspend Verify v2; Stage 2b; Key Recovery; : 2.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % FAILED (Not SUCCESS) : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % KEY-NOT-FOUND : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % SUCCESS : 100.0
+Suspend Verify v2; Stage 2b; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; SUCCESS Response Count : 40000.0
+Suspend Verify v2; Stage 2b; Key Recovery; Total Value Size (MiB) : 18.984511375427246
+Suspend Verify v2; Stage 2c; Key Recovery; : 2.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % FAILED (Not SUCCESS) : 7.83
+Suspend Verify v2; Stage 2c; Key Recovery; % KEY-NOT-FOUND : 7.83
+Suspend Verify v2; Stage 2c; Key Recovery; % SUCCESS : 92.17
+Suspend Verify v2; Stage 2c; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; SUCCESS Response Count : 18434.0
+Suspend Verify v2; Stage 2c; Key Recovery; Total Value Size (MiB) : 8.790620803833008
+Test Start Time : Fri Mar 31 01:47:39 PDT 2023
+Result Verification Code : 7235B50260FB0AAE5A0474CB02461F18
+[Info] Number of collected result fields: 413
+[Info] Completed A11 Tests.
+
+[TA-Note] Resuming any remaining dead nodes (so you do not have to redeploy your service)!
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 1 servers.
+[ ... Completed in 0.001 seconds ]
+
+Testing completed in 1868.79s
