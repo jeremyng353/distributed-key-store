@@ -1,7 +1,7 @@
 CPEN 431 EVALUATION test Client
-Time: Thu Mar 30 21:35:10 PDT 2023
+Time: Thu Mar 30 23:05:57 PDT 2023
 Build Date: Tue Mar 28 16:36:02 PDT 2023
-Java process ID: 5329
+Java process ID: 2362
 Assignment ID: 10
 Client Version: 1
 
@@ -16,74 +16,74 @@ Client Version: 1
 
 [Info] The deployment has 30 server nodes.
 Sending GETPID to all servers... 
-[Info] Server node localhost4445 has process ID 5299.
-[Info] Server node localhost4446 has process ID 5300.
-[Info] Server node localhost4447 has process ID 5301.
-[Info] Server node localhost4448 has process ID 5302.
-[Info] Server node localhost4449 has process ID 5303.
-[Info] Server node localhost4450 has process ID 5304.
-[Info] Server node localhost4451 has process ID 5305.
-[Info] Server node localhost4452 has process ID 5306.
-[Info] Server node localhost4453 has process ID 5307.
-[Info] Server node localhost4454 has process ID 5308.
-[Info] Server node localhost4455 has process ID 5309.
-[Info] Server node localhost4456 has process ID 5310.
-[Info] Server node localhost4457 has process ID 5311.
-[Info] Server node localhost4458 has process ID 5312.
-[Info] Server node localhost4459 has process ID 5313.
-[Info] Server node localhost4460 has process ID 5314.
-[Info] Server node localhost4461 has process ID 5315.
-[Info] Server node localhost4462 has process ID 5316.
-[Info] Server node localhost4463 has process ID 5317.
-[Info] Server node localhost4464 has process ID 5318.
-[Info] Server node localhost4465 has process ID 5319.
-[Info] Server node localhost4466 has process ID 5320.
-[Info] Server node localhost4467 has process ID 5321.
-[Info] Server node localhost4468 has process ID 5322.
-[Info] Server node localhost4469 has process ID 5323.
-[Info] Server node localhost4470 has process ID 5324.
-[Info] Server node localhost4471 has process ID 5325.
-[Info] Server node localhost4472 has process ID 5326.
-[Info] Server node localhost4473 has process ID 5327.
-[Info] Server node localhost4474 has process ID 5328.
-[ ... Completed in 0.061 seconds ]
+[Info] Server node localhost4445 has process ID 2330.
+[Info] Server node localhost4446 has process ID 2331.
+[Info] Server node localhost4447 has process ID 2332.
+[Info] Server node localhost4448 has process ID 2333.
+[Info] Server node localhost4449 has process ID 2334.
+[Info] Server node localhost4450 has process ID 2335.
+[Info] Server node localhost4451 has process ID 2336.
+[Info] Server node localhost4452 has process ID 2337.
+[Info] Server node localhost4453 has process ID 2338.
+[Info] Server node localhost4454 has process ID 2339.
+[Info] Server node localhost4455 has process ID 2340.
+[Info] Server node localhost4456 has process ID 2341.
+[Info] Server node localhost4457 has process ID 2342.
+[Info] Server node localhost4458 has process ID 2343.
+[Info] Server node localhost4459 has process ID 2344.
+[Info] Server node localhost4460 has process ID 2345.
+[Info] Server node localhost4461 has process ID 2346.
+[Info] Server node localhost4462 has process ID 2347.
+[Info] Server node localhost4463 has process ID 2348.
+[Info] Server node localhost4464 has process ID 2349.
+[Info] Server node localhost4465 has process ID 2350.
+[Info] Server node localhost4466 has process ID 2351.
+[Info] Server node localhost4467 has process ID 2352.
+[Info] Server node localhost4468 has process ID 2353.
+[Info] Server node localhost4469 has process ID 2354.
+[Info] Server node localhost4470 has process ID 2355.
+[Info] Server node localhost4471 has process ID 2356.
+[Info] Server node localhost4472 has process ID 2357.
+[Info] Server node localhost4473 has process ID 2358.
+[Info] Server node localhost4474 has process ID 2359.
+[ ... Completed in 0.072 seconds ]
 [OK]
 
 Sending GetMembershipCount to all servers... 
 [Info] Server localhost:4448 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4447 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4445 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4446 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4453 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4452 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4450 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4449 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4450 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4445 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4451 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4456 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4446 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4452 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4453 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4457 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4455 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4454 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4456 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4455 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4459 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4458 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4460 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4459 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4461 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4462 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4463 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4464 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4461 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4465 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4466 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4467 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4468 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4469 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4471 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4470 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4472 replied with membership count = 30 (expected count = 30)
-[Info] Server localhost:4473 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4471 replied with membership count = 30 (expected count = 30)
 [Info] Server localhost:4474 replied with membership count = 30 (expected count = 30)
-[ ... Completed in 0.01 seconds ]
+[Info] Server localhost:4473 replied with membership count = 30 (expected count = 30)
+[Info] Server localhost:4472 replied with membership count = 30 (expected count = 30)
+[ ... Completed in 0.008 seconds ]
 [Ok] All servers returned the expected membership count (30)
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.053 seconds ]
+[ ... Completed in 0.059 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 [Test isAlive] for localhost:4445
@@ -100,7 +100,7 @@ TEST_PASSED
 [ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.091 seconds ]
+[ ... Completed in 0.037 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -120,73 +120,44 @@ TEST_PASSED
 [ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.055 seconds ]
+[ ... Completed in 0.039 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.045 seconds ]
+[ ... Completed in 0.046 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.047 seconds ]
+[ ... Completed in 0.054 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Invalid Command. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.065 seconds ]
+[ ... Completed in 0.069 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.045 seconds ]
+[ ... Completed in 0.055 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.056 seconds ]
+[ ... Completed in 0.048 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
 Pausing for 10 seconds to wait for the cache to be cleared!
-TEST_PASSED
-
-[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
-TEST_PASSED
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.056 seconds ]
-[OK]
-Waiting for 5 seconds for the cache to be cleared!
-
-[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
-TEST_PASSED
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.051 seconds ]
-[OK]
-Waiting for 5 seconds for the cache to be cleared!
-
-[TEST Invalid Key ]
-TEST_PASSED
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.073 seconds ]
-[OK]
-Waiting for 5 seconds for the cache to be cleared!
-
-[TEST Invalid Value ]
-TEST_PASSED
-Sending WIPE-OUT to all servers...
-[ ... Completed in 0.059 seconds ]
-[OK]
-Waiting for 5 seconds for the cache to be cleared!
