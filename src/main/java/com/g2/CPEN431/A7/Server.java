@@ -233,6 +233,7 @@ public class Server {
                                 key,
                                 value,
                                 0,
+                                kvRequest.getVersion(),
                                 response,
                                 REPLICA_PUT,
                                 clientIp,
@@ -263,10 +264,10 @@ public class Server {
                     System.out.println(port + ": Status: " + status);
                     System.out.println(port + ": " + "-----------------------------------------------");
 
-                    if (status == SUCCESS) {
-                        Pair<ByteString, Integer> keyValue = Memory.get(key);
-                        return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                    }
+                    // if (status == SUCCESS) {
+                    //     Pair<ByteString, Integer> keyValue = Memory.get(key);
+                    //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    // }
 
                     String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
                     int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
@@ -391,6 +392,7 @@ public class Server {
                             key,
                             value,
                             replicaCounter,
+                            kvRequest.getVersion(),
                             kvRequest.getReplicaResponse(),
                             REPLICA_PUT,
                             message.getClientIp(),
@@ -499,11 +501,12 @@ public class Server {
         }
     }
 
-    public void requestReplica(ByteString key, ByteString value, int replicaCounter, ByteString response, int command, String clientIp, int clientPort, ByteString messageID) {
+    public void requestReplica(ByteString key, ByteString value, int replicaCounter, int version, ByteString response, int command, String clientIp, int clientPort, ByteString messageID) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(command)
                 .setKey(key)
                 .setValue(value)
+                .setVersion(version)
                 .setReplicaCounter(replicaCounter)
                 .setReplicaResponse(response)
                 .build();
