@@ -146,21 +146,22 @@ public class UDPClient {
         return outputStream.toByteArray();
     }
 
-    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort) {
+    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort, ByteString messageID) {
         // TODO: no timeout for this function since we don't expect a response from replicas, but
         // maybe we should have a response...
 
         try {
-            byte[] uuid = generateUUID(replicaAddress, replicaPort);
+            
 
-            byte[] checksumByteArray = concatenateByteArrays(uuid, payload);
+            byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload);
             long checksum = computeChecksum(checksumByteArray);
 
-            byte[] messageBuffer = Message.Msg.newBuilder().setMessageID(ByteString.copyFrom(uuid))
+            byte[] messageBuffer = Message.Msg.newBuilder()
                     .setPayload(ByteString.copyFrom(payload))
                     .setCheckSum(checksum)
                     .setClientIp(clientIp)
                     .setClientPort(clientPort)
+                    .setMessageID(messageID)
                     .build()
                     .toByteArray();
 
