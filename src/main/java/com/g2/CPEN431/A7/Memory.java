@@ -4,6 +4,7 @@ import com.google.protobuf.ByteString;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 public class Memory {
@@ -24,7 +25,7 @@ public class Memory {
     private static final int MAX_VALUE_SIZE = 10000;
 
     // Memory store
-    private static final HashMap<ByteString, Pair<ByteString, Integer>> store = new HashMap<>();
+    private static final ConcurrentHashMap<ByteString, Pair<ByteString, Integer>> store = new ConcurrentHashMap<>();
 
     /**
      * This function puts a key value pair into the memory store
