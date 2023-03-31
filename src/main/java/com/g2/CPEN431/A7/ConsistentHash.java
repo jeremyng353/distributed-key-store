@@ -81,23 +81,18 @@ public class ConsistentHash {
 
     /**
      * This function forwards a request from this node to another node
-     * @param packet: The packet to be forwarded to another node
+     * // @param packet: The packet to be forwarded to another node
      * @param nodeAddress: The address of the node to forward the packet to
      */
-    public void callNode(DatagramPacket packet, AddressPair nodeAddress) {
+    public void callNode(AddressPair nodeAddress, Message.Msg message) {
         try {
-            Message.Msg message = Server.readRequest(packet);
-            Message.Msg forwardMessage = Message.Msg.newBuilder(message)
-                    .setClientIp(packet.getAddress().getHostAddress())
-                    .setClientPort(packet.getPort())
-                    .build();
             DatagramPacket forwardPacket = new DatagramPacket(
-                    forwardMessage.toByteArray(),
-                    forwardMessage.toByteArray().length,
+                    message.toByteArray(),
+                    message.toByteArray().length,
                     InetAddress.getByName("localhost"),
                     nodeAddress.getPort());
             socket.send(forwardPacket);
-        } catch (IOException | PacketCorruptionException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -17,7 +17,7 @@ public class Memory {
     private static final int BAD_VALUE_ERR = 0x07;
 
     // Memory buffer to look for out of memory error
-    private static final int MIN_MEMORY_BUFFER = 2250000;   // 2.25 mb buffer
+    private static final int MIN_MEMORY_BUFFER = 3000000;   // 3 mb buffer
 
     // Max key and value sizes
     private static final int MAX_KEY_SIZE = 32;
