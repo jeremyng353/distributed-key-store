@@ -31,7 +31,7 @@ public class ServerWorker implements Runnable {
             if (RequestCache.isStored(message.getMessageID())) {
                 kvResponse = RequestCache.get(message.getMessageID());
             } else {
-                kvResponse = server.exeCommand(message, packet);
+                kvResponse = server.exeCommand(message);
             }
 
             int packetPort = packet.getPort();

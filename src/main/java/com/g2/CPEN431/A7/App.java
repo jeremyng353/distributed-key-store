@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.*;
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 
 import static com.g2.CPEN431.A7.MemberMonitor.DEFAULT_INTERVAL;
@@ -109,7 +107,7 @@ public class App
                     if (RequestCache.isStored(message.getMessageID())) {
                         kvResponse = RequestCache.get(message.getMessageID());
                     } else {
-                        kvResponse = server.exeCommand(message, parsePacket);
+                        kvResponse = server.exeCommand(message);
                     }
 
                     int packetPort = parsePacket.getPort();

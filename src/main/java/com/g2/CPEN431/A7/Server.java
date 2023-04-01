@@ -197,7 +197,7 @@ public class Server {
      * @return A ByteString containing the operation response payload to be sent back
      * @throws InvalidProtocolBufferException: This exception is thrown when an operation error occurs with parseFrom() function
      */
-    public ByteString exeCommand(Message.Msg message, DatagramPacket packet) throws InvalidProtocolBufferException, UnknownHostException {
+    public ByteString exeCommand(Message.Msg message) throws InvalidProtocolBufferException, UnknownHostException {
         // get kvrequest from message
         KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.parseFrom(message.getPayload());
         int status;
@@ -227,8 +227,14 @@ public class Server {
                     // only add to cache if runtime memory is not full
                     if (status != NO_MEM_ERR) {
                         RequestCache.put(message.getMessageID(), response);
+                        /*
                         String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
                         int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+
+                         */
+
+                        String clientIp = message.getClientIp();
+                        int clientPort = message.getClientPort();
                         requestReplica(
                                 key,
                                 value,
@@ -246,7 +252,7 @@ public class Server {
                     }
                 } else {
                     // call another node to handle the request
-                    consistentHash.callNode(packet, nodeAddress);
+                    consistentHash.callNode(message, nodeAddress);
                 }
 
                 return null;
@@ -269,8 +275,14 @@ public class Server {
                     //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                     // }
 
+                    /*
                     String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
                     int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+
+                     */
+
+                    String clientIp = message.getClientIp();
+                    int clientPort = message.getClientPort();
 
                     if (memberMonitor.getReplicas().size() == 0) {
                         if (status == SUCCESS) {
@@ -287,7 +299,7 @@ public class Server {
 
                 } else {
                     // call another node to handle the request
-                    consistentHash.callNode(packet, nodeAddress);
+                    consistentHash.callNode(message, nodeAddress);
                 }
 
                 return null;
@@ -307,8 +319,14 @@ public class Server {
                     // System.out.println(port + ": Status: " + status);
                     // System.out.println(port + ": " + "-----------------------------------------------");
 
+                    /*
                     String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
                     int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+
+                     */
+
+                    String clientIp = message.getClientIp();
+                    int clientPort = message.getClientPort();
 
                     requestReplica(
                             key,
@@ -321,7 +339,7 @@ public class Server {
                     );
                 } else {
                     // call another node to handle the request
-                    consistentHash.callNode(packet, nodeAddress);
+                    consistentHash.callNode(message, nodeAddress);
                 }
 
                 return null;
