@@ -59,7 +59,8 @@ public class App
 
         Server server = new Server(port, consistentHash, memberMonitor);
 
-        PriorityBlockingQueue<DatagramPacket> packetQueue = new PriorityBlockingQueue<>(25, new PairComparator());
+        // PriorityBlockingQueue<DatagramPacket> packetQueue = new PriorityBlockingQueue<>(25, new PairComparator());
+        PriorityBlockingQueue<Message.Msg> messageQueue = new PriorityBlockingQueue<>(25, new PairComparator());
 
         // Thread to receive all incoming packets
         new Thread(() -> {
@@ -78,10 +79,11 @@ public class App
                                 .build();
                     }
 
-                    byte[] payload = message.toByteArray();
+                    // byte[] payload = message.toByteArray();
 
-                    packet = new DatagramPacket(payload, payload.length, packet.getAddress(), packet.getPort());
-                    packetQueue.put(packet);
+                    // packet = new DatagramPacket(payload, payload.length, packet.getAddress(), packet.getPort());
+                    // packetQueue.put(packet);
+                    messageQueue.put(message);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -98,9 +100,10 @@ public class App
                 DatagramSocket clientOutputSocket = new DatagramSocket();
 
                 while (true) {
-                    DatagramPacket parsePacket = packetQueue.take();
+                    // DatagramPacket parsePacket = packetQueue.take();
+                    Message.Msg message = messageQueue.take();
 
-                    Message.Msg message = Server.readRequest(parsePacket);
+                    // Message.Msg message = Server.readRequest(parsePacket);
 
                     ByteString kvResponse;
                     // if message cached retrieved cached response otherwise execute command
@@ -110,6 +113,8 @@ public class App
                         kvResponse = server.exeCommand(message);
                     }
 
+                    /*
+
                     int packetPort = parsePacket.getPort();
                     InetAddress address = parsePacket.getAddress();
 
@@ -118,34 +123,33 @@ public class App
                         address = InetAddress.getByName(message.getClientIp());
                     }
 
+                     */
+
                     if (kvResponse != null) {
                         // build checksum and response message
                         long checksum = Server.buildChecksum(message.getMessageID(), kvResponse);
                         byte[] resMessage = Server.buildMessage(message.getMessageID(), kvResponse, checksum);
 
                         // load message into packet to send back to client
-                        parsePacket = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
-                        clientOutputSocket.send(parsePacket);
+                        clientOutputSocket.send(new DatagramPacket(
+                                resMessage,
+                                resMessage.length,
+                                InetAddress.getByName(message.getClientIp()),
+                                message.getClientPort()
+                        ));
                     }
                 }
 
-            } catch (InterruptedException | PacketCorruptionException | IOException e) {
+            } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }).start();
     }
 
-    private static class PairComparator implements Comparator<DatagramPacket> {
-        public int compare(DatagramPacket packet1, DatagramPacket packet2) {
-            try {
-                Message.Msg msg1 = Server.readRequest(packet1);
-                Message.Msg msg2 = Server.readRequest(packet2);
-
-                return (int) (msg1.getTimestamp() - msg2.getTimestamp());
-            } catch (InvalidProtocolBufferException | PacketCorruptionException e) {
-                throw new RuntimeException(e);
-            }
+    private static class PairComparator implements Comparator<Message.Msg> {
+        public int compare(Message.Msg msg1, Message.Msg msg2) {
+            return (int) (msg1.getTimestamp() - msg2.getTimestamp());
         }
     }
 }
