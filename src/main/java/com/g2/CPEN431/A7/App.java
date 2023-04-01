@@ -74,6 +74,8 @@ public class App
                     Message.Msg message = Server.readRequest(packet);
                     if (!message.hasTimestamp()) {
                         message = Message.Msg.newBuilder(message)
+                                .setClientIp(message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress())
+                                .setClientPort(message.hasClientPort() ? message.getClientPort() : packet.getPort())
                                 .setTimestamp(System.currentTimeMillis())
                                 .build();
                     }
