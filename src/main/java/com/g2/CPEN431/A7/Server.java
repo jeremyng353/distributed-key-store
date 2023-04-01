@@ -37,6 +37,8 @@ public class Server {
     public static final int REPLICA_REMOVE = 0x24;
     public static final int REPLICA_GET = 0x25;
 
+    public static final int TRANSFER = 0x26;
+
     private final String ip;
     private final int port;
     ConsistentHash consistentHash;

@@ -123,4 +123,8 @@ public class ConsistentHash {
         Map.Entry<Integer, AddressPair> previousEntry = nodeRing.lowerEntry(node.hashCode());
         return previousEntry != null ? previousEntry.getValue() : nodeRing.lastEntry().getValue();
     }
+
+    public int getNodeHash(AddressPair node) {
+        return savedHashes.get(node);
+    }
 }

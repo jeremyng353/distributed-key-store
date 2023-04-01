@@ -87,22 +87,42 @@ public class MemberMonitor implements Runnable {
                         }));
                 for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
                     AddressPair nsNode = entry.getKey();
+                    boolean isNextNode = consistentHash.getNextNode(self).equals(nsNode);
+
                     if (isDead(nsNode)) {
 //                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!")
                         consistentHash.removeNode(entry.getKey());
                         if (replicas.contains(nsNode)) {
                             // Remove dead node and add the node after the last node in replicas
                             aliveReplicas.remove(nsNode);
-                            aliveReplicas.ensureCapacity(3);
-                            // replicas.add(consistentHash.getNextNode(replicas.get(replicas.size()-1)));
+
+                            // Add the next node
+                            AddressPair newTail = consistentHash.getNextNode(replicas.get(replicas.size()-1));
+                            int newTailHash = consistentHash.getNodeHash(newTail);
+                            int selfNodeHash = consistentHash.getNodeHash(self);
+
+                            AddressPair nextNode = consistentHash.getNextNode(self);
+                            int nextNodeHash = consistentHash.getNodeHash(nextNode);
+
+                            aliveReplicas.add(newTail);
+
+                            if (isNextNode) {
+                                Thread transferKeyThread = new Thread(new KeyTransferer(nextNode, selfNodeHash, nextNodeHash, true));
+                                transferKeyThread.start();
+
+                                // TODO: Also send a request to the (now third) node in the chain to transfer its keys to the new replica
+                            }
                         }
                     } else if (!consistentHash.containsNode(nsNode)){ // If the consistent hash does not contain an alive node, then it needs to join the hash once again
                         consistentHash.addNode(entry.getKey());
                         // TODO: add node back to replica list if it died and came back to life
                         if (replicas.contains(nsNode) && !aliveReplicas.contains(nsNode)) {
-//                            aliveReplicas.add(replicas.indexOf(nsNode), nsNode);
-                            aliveReplicas.add(nsNode);
-                            aliveReplicas.sort((a, b) -> replicas.indexOf(a) - replicas.indexOf(b));
+                            aliveReplicas.add(replicas.indexOf(nsNode), nsNode);
+                            aliveReplicas.remove(aliveReplicas.size() - 1);
+
+                            // TODO: Also send a request to the removed replica to transfer its keys to
+//                            aliveReplicas.add(nsNode);
+//                            aliveReplicas.sort((a, b) -> replicas.indexOf(a) - replicas.indexOf(b));
                         }
                     }
                 }
