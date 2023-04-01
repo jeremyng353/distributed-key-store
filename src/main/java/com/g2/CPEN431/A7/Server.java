@@ -480,6 +480,15 @@ public class Server {
                 }
                 return null;
             }
+            case TRANSFER -> {
+                AddressPair destination = new AddressPair(kvRequest.getDestinationAddress());
+                int destinationHash = kvRequest.getDestinationHash();
+
+                Thread t = new Thread(new KeyTransferer(destination, consistentHash.getNodeHash(new AddressPair(ip, port)), destinationHash, true));
+                t.start();
+
+                return buildResPayload(SUCCESS);
+            }
             default -> {
                 status = UKN_CMD;
                 response = buildResPayload(status);

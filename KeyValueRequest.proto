@@ -9,4 +9,6 @@ message KVRequest {
     optional int32 version = 4;
     optional int32 replicaCounter = 5;
     optional bytes replicaResponse = 6;
+    optional string destinationAddress = 7;
+    optional int32 destinationHash = 8;
 }

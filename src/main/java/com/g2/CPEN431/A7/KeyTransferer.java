@@ -36,7 +36,7 @@ public class KeyTransferer implements Runnable {
     public void run() {
         Stream<Map.Entry<ByteString, Pair<ByteString, Integer>>> memory = Memory.getAllEntries();
 
-        if (transferAll) {
+        if (!transferAll) {
             memory = memory.filter(entry -> {
                 int keyHash = Math.abs(entry.getKey().hashCode()) % 256;
                 if (sourceNodeHash < destinationNodeHash) {

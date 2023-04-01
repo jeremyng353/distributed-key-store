@@ -6,17 +6,17 @@ package ca.NetSysLab.ProtocolBuffers;
 public final class KeyValueRequest {
   private KeyValueRequest() {}
   public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistryLite registry) {
+      com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
   public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistry registry) {
+      com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
-            (com.google.protobuf.ExtensionRegistryLite) registry);
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface KVRequestOrBuilder extends
-          // @@protoc_insertion_point(interface_extends:KVRequest)
-          com.google.protobuf.MessageOrBuilder {
+      // @@protoc_insertion_point(interface_extends:KVRequest)
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>uint32 command = 1;</code>
@@ -78,15 +78,43 @@ public final class KeyValueRequest {
      * @return The replicaResponse.
      */
     com.google.protobuf.ByteString getReplicaResponse();
+
+    /**
+     * <code>optional string destinationAddress = 7;</code>
+     * @return Whether the destinationAddress field is set.
+     */
+    boolean hasDestinationAddress();
+    /**
+     * <code>optional string destinationAddress = 7;</code>
+     * @return The destinationAddress.
+     */
+    java.lang.String getDestinationAddress();
+    /**
+     * <code>optional string destinationAddress = 7;</code>
+     * @return The bytes for destinationAddress.
+     */
+    com.google.protobuf.ByteString
+        getDestinationAddressBytes();
+
+    /**
+     * <code>optional int32 destinationHash = 8;</code>
+     * @return Whether the destinationHash field is set.
+     */
+    boolean hasDestinationHash();
+    /**
+     * <code>optional int32 destinationHash = 8;</code>
+     * @return The destinationHash.
+     */
+    int getDestinationHash();
   }
   /**
    * Protobuf type {@code KVRequest}
    */
   public static final class KVRequest extends
-          com.google.protobuf.GeneratedMessageV3 implements
-          // @@protoc_insertion_point(message_implements:KVRequest)
-          KVRequestOrBuilder {
-    private static final long serialVersionUID = 0L;
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:KVRequest)
+      KVRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use KVRequest.newBuilder() to construct.
     private KVRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -95,12 +123,13 @@ public final class KeyValueRequest {
       key_ = com.google.protobuf.ByteString.EMPTY;
       value_ = com.google.protobuf.ByteString.EMPTY;
       replicaResponse_ = com.google.protobuf.ByteString.EMPTY;
+      destinationAddress_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
-            UnusedPrivateParameter unused) {
+        UnusedPrivateParameter unused) {
       return new KVRequest();
     }
 
@@ -110,16 +139,16 @@ public final class KeyValueRequest {
       return this.unknownFields;
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+        getDescriptor() {
       return ca.NetSysLab.ProtocolBuffers.KeyValueRequest.internal_static_KVRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+        internalGetFieldAccessorTable() {
       return ca.NetSysLab.ProtocolBuffers.KeyValueRequest.internal_static_KVRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.class, ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.Builder.class);
+          .ensureFieldAccessorsInitialized(
+              ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.class, ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.Builder.class);
     }
 
     private int bitField0_;
@@ -229,6 +258,72 @@ public final class KeyValueRequest {
       return replicaResponse_;
     }
 
+    public static final int DESTINATIONADDRESS_FIELD_NUMBER = 7;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object destinationAddress_ = "";
+    /**
+     * <code>optional string destinationAddress = 7;</code>
+     * @return Whether the destinationAddress field is set.
+     */
+    @java.lang.Override
+    public boolean hasDestinationAddress() {
+      return ((bitField0_ & 0x00000020) != 0);
+    }
+    /**
+     * <code>optional string destinationAddress = 7;</code>
+     * @return The destinationAddress.
+     */
+    @java.lang.Override
+    public java.lang.String getDestinationAddress() {
+      java.lang.Object ref = destinationAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        destinationAddress_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string destinationAddress = 7;</code>
+     * @return The bytes for destinationAddress.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDestinationAddressBytes() {
+      java.lang.Object ref = destinationAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        destinationAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DESTINATIONHASH_FIELD_NUMBER = 8;
+    private int destinationHash_ = 0;
+    /**
+     * <code>optional int32 destinationHash = 8;</code>
+     * @return Whether the destinationHash field is set.
+     */
+    @java.lang.Override
+    public boolean hasDestinationHash() {
+      return ((bitField0_ & 0x00000040) != 0);
+    }
+    /**
+     * <code>optional int32 destinationHash = 8;</code>
+     * @return The destinationHash.
+     */
+    @java.lang.Override
+    public int getDestinationHash() {
+      return destinationHash_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -242,7 +337,7 @@ public final class KeyValueRequest {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+                        throws java.io.IOException {
       if (command_ != 0) {
         output.writeUInt32(1, command_);
       }
@@ -261,6 +356,12 @@ public final class KeyValueRequest {
       if (((bitField0_ & 0x00000010) != 0)) {
         output.writeBytes(6, replicaResponse_);
       }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, destinationAddress_);
+      }
+      if (((bitField0_ & 0x00000040) != 0)) {
+        output.writeInt32(8, destinationHash_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -272,27 +373,34 @@ public final class KeyValueRequest {
       size = 0;
       if (command_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-                .computeUInt32Size(1, command_);
+          .computeUInt32Size(1, command_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-                .computeBytesSize(2, key_);
+          .computeBytesSize(2, key_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-                .computeBytesSize(3, value_);
+          .computeBytesSize(3, value_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(4, version_);
+          .computeInt32Size(4, version_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(5, replicaCounter_);
+          .computeInt32Size(5, replicaCounter_);
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-                .computeBytesSize(6, replicaResponse_);
+          .computeBytesSize(6, replicaResponse_);
+      }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, destinationAddress_);
+      }
+      if (((bitField0_ & 0x00000040) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, destinationHash_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -302,7 +410,7 @@ public final class KeyValueRequest {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-        return true;
+       return true;
       }
       if (!(obj instanceof ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest)) {
         return super.equals(obj);
@@ -310,31 +418,41 @@ public final class KeyValueRequest {
       ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest other = (ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest) obj;
 
       if (getCommand()
-              != other.getCommand()) return false;
+          != other.getCommand()) return false;
       if (hasKey() != other.hasKey()) return false;
       if (hasKey()) {
         if (!getKey()
-                .equals(other.getKey())) return false;
+            .equals(other.getKey())) return false;
       }
       if (hasValue() != other.hasValue()) return false;
       if (hasValue()) {
         if (!getValue()
-                .equals(other.getValue())) return false;
+            .equals(other.getValue())) return false;
       }
       if (hasVersion() != other.hasVersion()) return false;
       if (hasVersion()) {
         if (getVersion()
-                != other.getVersion()) return false;
+            != other.getVersion()) return false;
       }
       if (hasReplicaCounter() != other.hasReplicaCounter()) return false;
       if (hasReplicaCounter()) {
         if (getReplicaCounter()
-                != other.getReplicaCounter()) return false;
+            != other.getReplicaCounter()) return false;
       }
       if (hasReplicaResponse() != other.hasReplicaResponse()) return false;
       if (hasReplicaResponse()) {
         if (!getReplicaResponse()
-                .equals(other.getReplicaResponse())) return false;
+            .equals(other.getReplicaResponse())) return false;
+      }
+      if (hasDestinationAddress() != other.hasDestinationAddress()) return false;
+      if (hasDestinationAddress()) {
+        if (!getDestinationAddress()
+            .equals(other.getDestinationAddress())) return false;
+      }
+      if (hasDestinationHash() != other.hasDestinationHash()) return false;
+      if (hasDestinationHash()) {
+        if (getDestinationHash()
+            != other.getDestinationHash()) return false;
       }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
@@ -369,79 +487,87 @@ public final class KeyValueRequest {
         hash = (37 * hash) + REPLICARESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getReplicaResponse().hashCode();
       }
+      if (hasDestinationAddress()) {
+        hash = (37 * hash) + DESTINATIONADDRESS_FIELD_NUMBER;
+        hash = (53 * hash) + getDestinationAddress().hashCode();
+      }
+      if (hasDestinationHash()) {
+        hash = (37 * hash) + DESTINATIONHASH_FIELD_NUMBER;
+        hash = (53 * hash) + getDestinationHash();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          .parseWithIOException(PARSER, input);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          .parseWithIOException(PARSER, input);
     }
     public static ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -455,12 +581,12 @@ public final class KeyValueRequest {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -468,20 +594,20 @@ public final class KeyValueRequest {
      * Protobuf type {@code KVRequest}
      */
     public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:KVRequest)
-            ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequestOrBuilder {
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:KVRequest)
+        ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+          getDescriptor() {
         return ca.NetSysLab.ProtocolBuffers.KeyValueRequest.internal_static_KVRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+          internalGetFieldAccessorTable() {
         return ca.NetSysLab.ProtocolBuffers.KeyValueRequest.internal_static_KVRequest_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.class, ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.Builder.class);
+            .ensureFieldAccessorsInitialized(
+                ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.class, ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.Builder.class);
       }
 
       // Construct using ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest.newBuilder()
@@ -490,7 +616,7 @@ public final class KeyValueRequest {
       }
 
       private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
 
       }
@@ -504,12 +630,14 @@ public final class KeyValueRequest {
         version_ = 0;
         replicaCounter_ = 0;
         replicaResponse_ = com.google.protobuf.ByteString.EMPTY;
+        destinationAddress_ = "";
+        destinationHash_ = 0;
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
+          getDescriptorForType() {
         return ca.NetSysLab.ProtocolBuffers.KeyValueRequest.internal_static_KVRequest_descriptor;
       }
 
@@ -561,6 +689,14 @@ public final class KeyValueRequest {
           result.replicaResponse_ = replicaResponse_;
           to_bitField0_ |= 0x00000010;
         }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.destinationAddress_ = destinationAddress_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.destinationHash_ = destinationHash_;
+          to_bitField0_ |= 0x00000040;
+        }
         result.bitField0_ |= to_bitField0_;
       }
 
@@ -570,30 +706,30 @@ public final class KeyValueRequest {
       }
       @java.lang.Override
       public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
         return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -626,6 +762,14 @@ public final class KeyValueRequest {
         if (other.hasReplicaResponse()) {
           setReplicaResponse(other.getReplicaResponse());
         }
+        if (other.hasDestinationAddress()) {
+          destinationAddress_ = other.destinationAddress_;
+          bitField0_ |= 0x00000040;
+          onChanged();
+        }
+        if (other.hasDestinationHash()) {
+          setDestinationHash(other.getDestinationHash());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -638,9 +782,9 @@ public final class KeyValueRequest {
 
       @java.lang.Override
       public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
@@ -682,6 +826,16 @@ public final class KeyValueRequest {
                 bitField0_ |= 0x00000020;
                 break;
               } // case 50
+              case 58: {
+                destinationAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 58
+              case 64: {
+                destinationHash_ = input.readInt32();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -714,7 +868,7 @@ public final class KeyValueRequest {
        * @return This builder for chaining.
        */
       public Builder setCommand(int value) {
-
+        
         command_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
@@ -834,7 +988,7 @@ public final class KeyValueRequest {
        * @return This builder for chaining.
        */
       public Builder setVersion(int value) {
-
+        
         version_ = value;
         bitField0_ |= 0x00000008;
         onChanged();
@@ -874,7 +1028,7 @@ public final class KeyValueRequest {
        * @return This builder for chaining.
        */
       public Builder setReplicaCounter(int value) {
-
+        
         replicaCounter_ = value;
         bitField0_ |= 0x00000010;
         onChanged();
@@ -930,15 +1084,134 @@ public final class KeyValueRequest {
         onChanged();
         return this;
       }
+
+      private java.lang.Object destinationAddress_ = "";
+      /**
+       * <code>optional string destinationAddress = 7;</code>
+       * @return Whether the destinationAddress field is set.
+       */
+      public boolean hasDestinationAddress() {
+        return ((bitField0_ & 0x00000040) != 0);
+      }
+      /**
+       * <code>optional string destinationAddress = 7;</code>
+       * @return The destinationAddress.
+       */
+      public java.lang.String getDestinationAddress() {
+        java.lang.Object ref = destinationAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          destinationAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string destinationAddress = 7;</code>
+       * @return The bytes for destinationAddress.
+       */
+      public com.google.protobuf.ByteString
+          getDestinationAddressBytes() {
+        java.lang.Object ref = destinationAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          destinationAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string destinationAddress = 7;</code>
+       * @param value The destinationAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestinationAddress(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        destinationAddress_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string destinationAddress = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDestinationAddress() {
+        destinationAddress_ = getDefaultInstance().getDestinationAddress();
+        bitField0_ = (bitField0_ & ~0x00000040);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string destinationAddress = 7;</code>
+       * @param value The bytes for destinationAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestinationAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        destinationAddress_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+
+      private int destinationHash_ ;
+      /**
+       * <code>optional int32 destinationHash = 8;</code>
+       * @return Whether the destinationHash field is set.
+       */
+      @java.lang.Override
+      public boolean hasDestinationHash() {
+        return ((bitField0_ & 0x00000080) != 0);
+      }
+      /**
+       * <code>optional int32 destinationHash = 8;</code>
+       * @return The destinationHash.
+       */
+      @java.lang.Override
+      public int getDestinationHash() {
+        return destinationHash_;
+      }
+      /**
+       * <code>optional int32 destinationHash = 8;</code>
+       * @param value The destinationHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestinationHash(int value) {
+        
+        destinationHash_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 destinationHash = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDestinationHash() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        destinationHash_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
-              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -957,12 +1230,12 @@ public final class KeyValueRequest {
     }
 
     private static final com.google.protobuf.Parser<KVRequest>
-            PARSER = new com.google.protobuf.AbstractParser<KVRequest>() {
+        PARSER = new com.google.protobuf.AbstractParser<KVRequest>() {
       @java.lang.Override
       public KVRequest parsePartialFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws com.google.protobuf.InvalidProtocolBufferException {
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
         Builder builder = newBuilder();
         try {
           builder.mergeFrom(input, extensionRegistry);
@@ -972,7 +1245,7 @@ public final class KeyValueRequest {
           throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                  .setUnfinishedMessage(builder.buildPartial());
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -995,38 +1268,41 @@ public final class KeyValueRequest {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_KVRequest_descriptor;
-  private static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_KVRequest_fieldAccessorTable;
+    internal_static_KVRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_KVRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
+      getDescriptor() {
     return descriptor;
   }
   private static  com.google.protobuf.Descriptors.FileDescriptor
-          descriptor;
+      descriptor;
   static {
     java.lang.String[] descriptorData = {
-            "\n\025KeyValueRequest.proto\"\330\001\n\tKVRequest\022\017\n" +
-                    "\007command\030\001 \001(\r\022\020\n\003key\030\002 \001(\014H\000\210\001\001\022\022\n\005valu" +
-                    "e\030\003 \001(\014H\001\210\001\001\022\024\n\007version\030\004 \001(\005H\002\210\001\001\022\033\n\016re" +
-                    "plicaCounter\030\005 \001(\005H\003\210\001\001\022\034\n\017replicaRespon" +
-                    "se\030\006 \001(\014H\004\210\001\001B\006\n\004_keyB\010\n\006_valueB\n\n\010_vers" +
-                    "ionB\021\n\017_replicaCounterB\022\n\020_replicaRespon" +
-                    "seB/\n\034ca.NetSysLab.ProtocolBuffersB\017KeyV" +
-                    "alueRequestb\006proto3"
+      "\n\025KeyValueRequest.proto\"\302\002\n\tKVRequest\022\017\n" +
+      "\007command\030\001 \001(\r\022\020\n\003key\030\002 \001(\014H\000\210\001\001\022\022\n\005valu" +
+      "e\030\003 \001(\014H\001\210\001\001\022\024\n\007version\030\004 \001(\005H\002\210\001\001\022\033\n\016re" +
+      "plicaCounter\030\005 \001(\005H\003\210\001\001\022\034\n\017replicaRespon" +
+      "se\030\006 \001(\014H\004\210\001\001\022\037\n\022destinationAddress\030\007 \001(" +
+      "\tH\005\210\001\001\022\034\n\017destinationHash\030\010 \001(\005H\006\210\001\001B\006\n\004" +
+      "_keyB\010\n\006_valueB\n\n\010_versionB\021\n\017_replicaCo" +
+      "unterB\022\n\020_replicaResponseB\025\n\023_destinatio" +
+      "nAddressB\022\n\020_destinationHashB/\n\034ca.NetSy" +
+      "sLab.ProtocolBuffersB\017KeyValueRequestb\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
-            .internalBuildGeneratedFileFrom(descriptorData,
-                    new com.google.protobuf.Descriptors.FileDescriptor[] {
-                    });
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        });
     internal_static_KVRequest_descriptor =
-            getDescriptor().getMessageTypes().get(0);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_KVRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_KVRequest_descriptor,
-            new java.lang.String[] { "Command", "Key", "Value", "Version", "ReplicaCounter", "ReplicaResponse", "Key", "Value", "Version", "ReplicaCounter", "ReplicaResponse", });
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_KVRequest_descriptor,
+        new java.lang.String[] { "Command", "Key", "Value", "Version", "ReplicaCounter", "ReplicaResponse", "DestinationAddress", "DestinationHash", "Key", "Value", "Version", "ReplicaCounter", "ReplicaResponse", "DestinationAddress", "DestinationHash", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

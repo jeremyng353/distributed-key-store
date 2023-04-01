@@ -88,6 +88,7 @@ public class MemberMonitor implements Runnable {
                 for (Map.Entry<AddressPair, Long> entry : nodeStore.entrySet()) {
                     AddressPair nsNode = entry.getKey();
                     boolean isNextNode = consistentHash.getNextNode(self).equals(nsNode);
+                    int selfNodeHash = consistentHash.getNodeHash(self);
 
                     if (isDead(nsNode)) {
 //                        System.out.println("[" + self.getPort() + "]: Detected node " + entry.getKey() + " to be dead!")
@@ -99,7 +100,6 @@ public class MemberMonitor implements Runnable {
                             // Add the next node
                             AddressPair newTail = consistentHash.getNextNode(replicas.get(replicas.size()-1));
                             int newTailHash = consistentHash.getNodeHash(newTail);
-                            int selfNodeHash = consistentHash.getNodeHash(self);
 
                             AddressPair nextNode = consistentHash.getNextNode(self);
                             int nextNodeHash = consistentHash.getNodeHash(nextNode);
@@ -111,6 +111,12 @@ public class MemberMonitor implements Runnable {
                                 transferKeyThread.start();
 
                                 // TODO: Also send a request to the (now third) node in the chain to transfer its keys to the new replica
+//                                KeyValueRequest.KVRequest transferRequest = KeyValueRequest.KVRequest.newBuilder()
+//                                        .setCommand(Server.TRANSFER)
+//                                        .setDestinationAddress(newTail.toString())
+//                                        .setDestinationHash(newTailHash)
+//                                        .build();
+//                                udpClient.request(InetAddress.getByName(aliveReplicas.get(1).getIp()), aliveReplicas.get(1).getPort(), transferRequest.toByteArray());
                             }
                         }
                     } else if (!consistentHash.containsNode(nsNode)){ // If the consistent hash does not contain an alive node, then it needs to join the hash once again
@@ -121,6 +127,10 @@ public class MemberMonitor implements Runnable {
                             aliveReplicas.remove(aliveReplicas.size() - 1);
 
                             // TODO: Also send a request to the removed replica to transfer its keys to
+//                            if (isNextNode) {
+//                                Thread transferKeyThread = new Thread(new KeyTransferer(nsNode, selfNodeHash, consistentHash.getNodeHash(nsNode), true));
+//                                transferKeyThread.start();
+//                            }
 //                            aliveReplicas.add(nsNode);
 //                            aliveReplicas.sort((a, b) -> replicas.indexOf(a) - replicas.indexOf(b));
                         }
