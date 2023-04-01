@@ -345,6 +345,7 @@ public class Server {
                 return null;
             }
             case SHUTDOWN -> {
+                System.out.println(port + ": SHUTDOWN");
                 status = Memory.shutdown();
                 response = buildResPayload(status);
                 return response;

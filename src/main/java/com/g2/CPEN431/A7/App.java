@@ -1,5 +1,6 @@
 package com.g2.CPEN431.A7;
 
+import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -71,11 +72,12 @@ public class App
                     inputSocket.receive(packet);
 
                     Message.Msg message = Server.readRequest(packet);
-                    if (!message.hasTimestamp()) {
+                    KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.parseFrom(message.getPayload());
+                    if (!message.hasTimestamp() || !message.hasClientIp() || !message.hasClientPort()) {
                         message = Message.Msg.newBuilder(message)
                                 .setClientIp(message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress())
                                 .setClientPort(message.hasClientPort() ? message.getClientPort() : packet.getPort())
-                                .setTimestamp(System.currentTimeMillis())
+                                .setTimestamp(kvRequest.getCommand() == Server.SHUTDOWN ? 0 : System.currentTimeMillis())
                                 .build();
                     }
 
@@ -84,6 +86,16 @@ public class App
                     // packet = new DatagramPacket(payload, payload.length, packet.getAddress(), packet.getPort());
                     // packetQueue.put(packet);
                     messageQueue.put(message);
+                    if (kvRequest.getCommand() == Server.SHUTDOWN) {
+                        System.out.println("SHUTDOWN message id: " + message.getMessageID());
+                        for (Message.Msg msg : messageQueue) {
+                            System.out.println("-----------------------------------");
+                            System.out.println("messageQueue command: " + KeyValueRequest.KVRequest.parseFrom(msg.getPayload()).getCommand());
+                            System.out.println("messageQueue timestamp: " + msg.getTimestamp());
+                            System.out.println("messageQueue message id: " + msg.getMessageID());
+                            System.out.println("-----------------------------------");
+                        }
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
