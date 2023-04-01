@@ -63,6 +63,17 @@ public final class Message {
      * @return The clientPort.
      */
     int getClientPort();
+
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     * @return Whether the timestamp field is set.
+     */
+    boolean hasTimestamp();
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     * @return The timestamp.
+     */
+    long getTimestamp();
   }
   /**
    * Protobuf type {@code Msg}
@@ -207,6 +218,25 @@ public final class Message {
       return clientPort_;
     }
 
+    public static final int TIMESTAMP_FIELD_NUMBER = 6;
+    private long timestamp_ = 0L;
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     * @return Whether the timestamp field is set.
+     */
+    @java.lang.Override
+    public boolean hasTimestamp() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>optional int64 timestamp = 6;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -236,6 +266,9 @@ public final class Message {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeInt32(5, clientPort_);
       }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        output.writeInt64(6, timestamp_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -263,6 +296,10 @@ public final class Message {
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
                 .computeInt32Size(5, clientPort_);
+      }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeInt64Size(6, timestamp_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -295,6 +332,11 @@ public final class Message {
         if (getClientPort()
                 != other.getClientPort()) return false;
       }
+      if (hasTimestamp() != other.hasTimestamp()) return false;
+      if (hasTimestamp()) {
+        if (getTimestamp()
+                != other.getTimestamp()) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -320,6 +362,11 @@ public final class Message {
       if (hasClientPort()) {
         hash = (37 * hash) + CLIENTPORT_FIELD_NUMBER;
         hash = (53 * hash) + getClientPort();
+      }
+      if (hasTimestamp()) {
+        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                getTimestamp());
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -455,6 +502,7 @@ public final class Message {
         checkSum_ = 0L;
         clientIp_ = "";
         clientPort_ = 0;
+        timestamp_ = 0L;
         return this;
       }
 
@@ -505,6 +553,10 @@ public final class Message {
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.clientPort_ = clientPort_;
           to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.timestamp_ = timestamp_;
+          to_bitField0_ |= 0x00000004;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -570,6 +622,9 @@ public final class Message {
         if (other.hasClientPort()) {
           setClientPort(other.getClientPort());
         }
+        if (other.hasTimestamp()) {
+          setTimestamp(other.getTimestamp());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -621,6 +676,11 @@ public final class Message {
                 bitField0_ |= 0x00000010;
                 break;
               } // case 40
+              case 48: {
+                timestamp_ = input.readInt64();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -852,6 +912,46 @@ public final class Message {
         onChanged();
         return this;
       }
+
+      private long timestamp_ ;
+      /**
+       * <code>optional int64 timestamp = 6;</code>
+       * @return Whether the timestamp field is set.
+       */
+      @java.lang.Override
+      public boolean hasTimestamp() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <code>optional int64 timestamp = 6;</code>
+       * @return The timestamp.
+       */
+      @java.lang.Override
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <code>optional int64 timestamp = 6;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimestamp(long value) {
+
+        timestamp_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -930,12 +1030,12 @@ public final class Message {
           descriptor;
   static {
     java.lang.String[] descriptorData = {
-            "\n\rMessage.proto\"\207\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
+            "\n\rMessage.proto\"\255\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
                     "(\014\022\017\n\007payload\030\002 \001(\014\022\020\n\010checkSum\030\003 \001(\006\022\025\n" +
                     "\010clientIp\030\004 \001(\tH\000\210\001\001\022\027\n\nclientPort\030\005 \001(\005" +
-                    "H\001\210\001\001B\013\n\t_clientIpB\r\n\013_clientPortB\'\n\034ca." +
-                    "NetSysLab.ProtocolBuffersB\007Messageb\006prot" +
-                    "o3"
+                    "H\001\210\001\001\022\026\n\ttimestamp\030\006 \001(\003H\002\210\001\001B\013\n\t_client" +
+                    "IpB\r\n\013_clientPortB\014\n\n_timestampB\'\n\034ca.Ne" +
+                    "tSysLab.ProtocolBuffersB\007Messageb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
             .internalBuildGeneratedFileFrom(descriptorData,
@@ -946,7 +1046,7 @@ public final class Message {
     internal_static_Msg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_Msg_descriptor,
-            new java.lang.String[] { "MessageID", "Payload", "CheckSum", "ClientIp", "ClientPort", "ClientIp", "ClientPort", });
+            new java.lang.String[] { "MessageID", "Payload", "CheckSum", "ClientIp", "ClientPort", "Timestamp", "ClientIp", "ClientPort", "Timestamp", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
