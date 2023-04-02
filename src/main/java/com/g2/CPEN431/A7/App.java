@@ -80,22 +80,7 @@ public class App
                                 .setTimestamp(kvRequest.getCommand() == Server.SHUTDOWN ? 0 : System.currentTimeMillis())
                                 .build();
                     }
-
-                    // byte[] payload = message.toByteArray();
-
-                    // packet = new DatagramPacket(payload, payload.length, packet.getAddress(), packet.getPort());
-                    // packetQueue.put(packet);
                     messageQueue.put(message);
-                    if (kvRequest.getCommand() == Server.SHUTDOWN) {
-                        System.out.println("SHUTDOWN message id: " + message.getMessageID());
-                        for (Message.Msg msg : messageQueue) {
-                            System.out.println("-----------------------------------");
-                            System.out.println("messageQueue command: " + KeyValueRequest.KVRequest.parseFrom(msg.getPayload()).getCommand());
-                            System.out.println("messageQueue timestamp: " + msg.getTimestamp());
-                            System.out.println("messageQueue message id: " + msg.getMessageID());
-                            System.out.println("-----------------------------------");
-                        }
-                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
