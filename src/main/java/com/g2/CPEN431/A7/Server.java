@@ -249,6 +249,8 @@ public class Server {
                     }
                     if (status == NO_MEM_ERR) {
                         System.out.println("[" + port + "]: Out of memory!");
+                        RequestCache.put(message.getMessageID(), response);
+                        return response;
                     }
                 } else {
                     // call another node to handle the request

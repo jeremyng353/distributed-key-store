@@ -40,8 +40,10 @@ public class MemberMonitor implements Runnable {
         AddressPair curNode = this.self;
         for (int i = 0; i < 3; i++) {
             curNode = consistentHash.getNextNode(curNode);
-            replicas.add(curNode);
-            aliveReplicas.add(curNode);
+            if (!curNode.equals(this.self)) {
+                replicas.add(curNode);
+                aliveReplicas.add(curNode);
+            }
         }
 
         Long currentTime = System.currentTimeMillis();
