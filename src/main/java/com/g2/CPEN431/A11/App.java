@@ -59,6 +59,15 @@ public class App
 
         Server server = new Server(port, consistentHash, memberMonitor);
 
+        ZooKeeperClient znode = new ZooKeeperClient(port);
+
+        while (true) {
+            if (memberMonitor.getMembershipInfo().size() == 40) {
+                znode.registerAllWatchers();
+                break;
+            }
+        }
+
         while (true) {
             try {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
