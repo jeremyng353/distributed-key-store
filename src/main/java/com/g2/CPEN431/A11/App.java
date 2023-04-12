@@ -27,7 +27,7 @@ public class App
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
-        // TODO: add nodes to consistentHash, maybe hardcode in a txt file?
+        // TODO: refactor into multithreaded
         ConsistentHash consistentHash = new ConsistentHash(currentIp, port);
 
         File nodeList = new File("nodes.txt");
@@ -58,15 +58,6 @@ public class App
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
 
         Server server = new Server(port, consistentHash, memberMonitor);
-
-        ZooKeeperClient znode = new ZooKeeperClient(port);
-
-        while (true) {
-            if (memberMonitor.getMembershipInfo().size() == 40) {
-                znode.registerAllWatchers();
-                break;
-            }
-        }
 
         while (true) {
             try {

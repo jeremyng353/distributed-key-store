@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 
@@ -35,6 +36,7 @@ public class Server {
     public static final int REPLICA_PUT = 0x23;
     public static final int REPLICA_REMOVE = 0x24;
     public static final int REPLICA_GET = 0x25;
+    public static final int TAIL_DONE = 0x26;
 
     private final String ip;
     private final int port;
@@ -213,35 +215,40 @@ public class Server {
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
 
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    // if this node should handle the request, put and forward to next replica
-                    status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
-                    response = buildResPayload(status);
+                    if (Memory.isAvailable(key)) {
+                        Memory.lockKey(key);
+                        // if this node should handle the request, put and forward to next replica
+                        status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+                        response = buildResPayload(status);
 
-                    // System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
-                    // System.out.println(port + ": " + key);
-                    // System.out.println(port + ": " + value);
-                    // System.out.println(port + ": Status: " + status);
-                    // System.out.println(port + ": " + "-----------------------------------------------");
+                        // System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
+                        // System.out.println(port + ": " + key);
+                        // System.out.println(port + ": " + value);
+                        // System.out.println(port + ": Status: " + status);
+                        // System.out.println(port + ": " + "-----------------------------------------------");
 
-                    // only add to cache if runtime memory is not full
-                    if (status != NO_MEM_ERR) {
-                        RequestCache.put(message.getMessageID(), response);
-                        String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
-                        int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
-                        requestReplica(
-                                key,
-                                value,
-                                0,
-                                kvRequest.getVersion(),
-                                response,
-                                REPLICA_PUT,
-                                clientIp,
-                                clientPort,
-                                message.getMessageID()
-                        );
-                    }
-                    if (status == NO_MEM_ERR) {
-                        System.out.println("[" + port + "]: Out of memory!");
+                        // only add to cache if runtime memory is not full
+                        if (status != NO_MEM_ERR) {
+                            RequestCache.put(message.getMessageID(), response);
+                            String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                            int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+                            requestReplica(
+                                    key,
+                                    value,
+                                    0,
+                                    kvRequest.getVersion(),
+                                    response,
+                                    REPLICA_PUT,
+                                    clientIp,
+                                    clientPort,
+                                    message.getMessageID()
+                            );
+                        }
+                        if (status == NO_MEM_ERR) {
+                            System.out.println("[" + port + "]: Out of memory!");
+                        }
+                    } else {
+                        // TODO: move packet to end of queue
                     }
                 } else {
                     // call another node to handle the request
@@ -255,35 +262,38 @@ public class Server {
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    // if this node should handle the request, forward request to tail of replica chain
-                    status = Memory.isStored(key);
+                    if (Memory.isAvailable(key)) {
+                        // if this node should handle the request, forward request to tail of replica chain
+                        status = Memory.isStored(key);
 
-                    // System.out.println(port + ": " + "------------------- GET KEY -------------------");
-                    // System.out.println(port + ": " + key);
-                    // System.out.println(port + ": Status: " + status);
-                    // System.out.println(port + ": " + "-----------------------------------------------");
+                        // System.out.println(port + ": " + "------------------- GET KEY -------------------");
+                        // System.out.println(port + ": " + key);
+                        // System.out.println(port + ": Status: " + status);
+                        // System.out.println(port + ": " + "-----------------------------------------------");
 
-                    // if (status == SUCCESS) {
-                    //     Pair<ByteString, Integer> keyValue = Memory.get(key);
-                    //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                    // }
+                        // if (status == SUCCESS) {
+                        //     Pair<ByteString, Integer> keyValue = Memory.get(key);
+                        //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                        // }
 
-                    String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
-                    int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+                        String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                        int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
 
-                    if (memberMonitor.getReplicas().size() == 0) {
-                        if (status == SUCCESS) {
-                            Pair<ByteString, Integer> keyValue = Memory.get(key);
-                            return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                        } else {
-                            return buildResPayload(status);
+                        if (memberMonitor.getReplicas().size() == 0) {
+                            if (status == SUCCESS) {
+                                Pair<ByteString, Integer> keyValue = Memory.get(key);
+                                return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                            } else {
+                                return buildResPayload(status);
+                            }
                         }
+
+                        requestTailRead(key, clientIp, clientPort, message.getMessageID());
+
+                        // return buildResPayload(status);
+                    } else {
+                        // TODO: move packet to end of queue
                     }
-
-                    requestTailRead(key, clientIp, clientPort, message.getMessageID());
-
-                    // return buildResPayload(status);
-
                 } else {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
@@ -296,28 +306,32 @@ public class Server {
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    // if this node should handle the request, remove and forward request to next replica
-                    status = Memory.remove(key);
-                    response = buildResPayload(status);
-                    RequestCache.put(message.getMessageID(), response);
+                    if (Memory.isAvailable(key)) {
+                        // if this node should handle the request, remove and forward request to next replica
+                        status = Memory.remove(key);
+                        response = buildResPayload(status);
+                        RequestCache.put(message.getMessageID(), response);
 
-                    // System.out.println(port + ": " + "----------------- REMOVE KEY ------------------");
-                    // System.out.println(port + ": " + key);
-                    // System.out.println(port + ": Status: " + status);
-                    // System.out.println(port + ": " + "-----------------------------------------------");
+                        // System.out.println(port + ": " + "----------------- REMOVE KEY ------------------");
+                        // System.out.println(port + ": " + key);
+                        // System.out.println(port + ": Status: " + status);
+                        // System.out.println(port + ": " + "-----------------------------------------------");
 
-                    String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
-                    int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
+                        String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
+                        int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
 
-                    requestReplica(
-                            key,
-                            0,
-                            response,
-                            REPLICA_REMOVE,
-                            clientIp,
-                            clientPort,
-                            message.getMessageID()
-                    );
+                        requestReplica(
+                                key,
+                                0,
+                                response,
+                                REPLICA_REMOVE,
+                                clientIp,
+                                clientPort,
+                                message.getMessageID()
+                        );
+                    } else {
+                        // TODO: move packet to end of queue
+                    }
                 } else {
                     // call another node to handle the request
                     consistentHash.callNode(packet, nodeAddress);
@@ -475,6 +489,16 @@ public class Server {
                         return payload;
                     }
                 }
+                return null;
+            }
+            case TAIL_DONE -> {
+                ByteString key = kvRequest.getKey();
+                ArrayList<Message.Msg> msgs = Memory.getStoredMessages(key);
+                for (Message.Msg msg : msgs) {
+                    // TODO: execute command after refactoring..?
+                    // this.exeCommand(msg, )
+                }
+                Memory.removeLock(key);
                 return null;
             }
             default -> {

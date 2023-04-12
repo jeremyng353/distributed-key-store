@@ -1,7 +1,9 @@
 package com.g2.CPEN431.A11;
 
+import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Stream;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,6 +27,8 @@ public class Memory {
 
     // Memory store
     private static final ConcurrentHashMap<ByteString, Pair<ByteString, Integer>> store = new ConcurrentHashMap<>();
+
+    private static final ConcurrentHashMap<ByteString, ArrayList<Message.Msg>> keyLocks= new ConcurrentHashMap<>();
 
     /**
      * This function puts a key value pair into the memory store
@@ -114,5 +118,26 @@ public class Memory {
     public static int shutdown() {
         System.exit(SUCCESS);
         return SUCCESS;
+    }
+
+    public static void lockKey(ByteString key) {
+        // might want to add a version number to ensure correctness?
+        keyLocks.put(key, new ArrayList<>());
+    }
+
+    public static void removeLock(ByteString key) {
+        keyLocks.remove(key);
+    }
+
+    public static boolean isAvailable(ByteString key) {
+        return keyLocks.containsKey(key);
+    }
+
+    public static void storeMessage(ByteString key, Message.Msg msg) {
+        keyLocks.get(key).add(msg);
+    }
+
+    public static ArrayList<Message.Msg> getStoredMessages(ByteString key) {
+        return keyLocks.get(key);
     }
 }
