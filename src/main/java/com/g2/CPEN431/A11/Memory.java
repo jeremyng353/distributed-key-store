@@ -130,7 +130,7 @@ public class Memory {
     }
 
     public static boolean isAvailable(ByteString key) {
-        return keyLocks.containsKey(key);
+        return !keyLocks.containsKey(key);
     }
 
     public static void storeMessage(ByteString key, Message.Msg msg) {

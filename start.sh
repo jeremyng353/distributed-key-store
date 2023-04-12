@@ -26,7 +26,7 @@ for ((i = $NODE_BASE_PORT; i < $NODE_BASE_PORT + $NUM_NODES; i++)); do
 done
 
 for ((i = $NODE_BASE_PORT; i < $NODE_BASE_PORT + $NUM_NODES; i++)); do
-    java -jar -Xmx512m A10.jar $PUBLIC_IP $i &
+    java -jar -Xmx64m A11.jar $PUBLIC_IP $i &
 done
 
 wait

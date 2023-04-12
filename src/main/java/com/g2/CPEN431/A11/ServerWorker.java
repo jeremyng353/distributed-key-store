@@ -26,12 +26,14 @@ public class ServerWorker implements Runnable {
             Message.Msg message = Server.readRequest(packet);
             Object kvResponse;
             DatagramPacket responsePacket;
+            kvResponse = RequestCache.get(message.getMessageID());
+
 
             // if message cached retrieved cached response otherwise execute command
             if (RequestCache.isStored(message.getMessageID())) {
                 kvResponse = RequestCache.get(message.getMessageID());
             } else {
-                kvResponse = server.exeCommand(message, packet);
+                // kvResponse = server.exeCommand(message, packet);
             }
 
             int packetPort = packet.getPort();

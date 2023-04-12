@@ -1,5 +1,6 @@
 package com.g2.CPEN431.A11;
 
+import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 
@@ -21,15 +22,14 @@ public class App
     // public static ArrayList<AddressPair> nodeList = new ArrayList<>();
 
     public static void main( String[] args ) throws IOException {
-        // multiple nodes on one ec2 instance --> create multiple sockets, do in another branch
         String currentIp = args[0];
         int port = Integer.parseInt(args[1]);
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
-        // TODO: refactor into multithreaded
         ConsistentHash consistentHash = new ConsistentHash(currentIp, port);
 
+        // read list of nodes from nodes.txt
         File nodeList = new File("nodes.txt");
         Scanner myReader = new Scanner(nodeList);
         ArrayList<AddressPair> initialNodes = new ArrayList<>();
@@ -41,8 +41,8 @@ public class App
             initialNodes.add(addressPair);
         }
 
+        // create a thread to monitor the other servers in the system
         MemberMonitor memberMonitor = new MemberMonitor(initialNodes, new AddressPair(currentIp, port), consistentHash);
-        //create a thread to monitor the other servers in the system
         TimerTask pullEpidemic = new TimerTask() {
             @Override
             public void run() {
@@ -67,12 +67,20 @@ public class App
                 socket.receive(packet);
                 Message.Msg message = Server.readRequest(packet);
 
+                // set clientIp, clientPort so every message has the values set
+                if (!message.hasClientIp() || !message.hasClientPort()) {
+                    message = Message.Msg.newBuilder(message)
+                            .setClientIp(message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress())
+                            .setClientPort(message.hasClientPort() ? message.getClientPort() : packet.getPort())
+                            .build();
+                }
+
                 ByteString kvResponse;
                 // if message cached retrieved cached response otherwise execute command
                 if (RequestCache.isStored(message.getMessageID())) {
                     kvResponse = RequestCache.get(message.getMessageID());
                 } else {
-                    kvResponse = server.exeCommand(message, packet);
+                    kvResponse = server.exeCommand(message);
                 }
 
                 int packetPort = packet.getPort();
