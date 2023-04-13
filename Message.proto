@@ -9,4 +9,6 @@ message Msg {
     fixed64 checkSum = 3;
     optional string clientIp = 4;
     optional int32 clientPort = 5;
+    optional string headIp = 6;
+    optional int32 headPort = 7;
 }

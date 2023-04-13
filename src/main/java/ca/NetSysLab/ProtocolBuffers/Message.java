@@ -63,6 +63,34 @@ public final class Message {
      * @return The clientPort.
      */
     int getClientPort();
+
+    /**
+     * <code>optional string headIp = 6;</code>
+     * @return Whether the headIp field is set.
+     */
+    boolean hasHeadIp();
+    /**
+     * <code>optional string headIp = 6;</code>
+     * @return The headIp.
+     */
+    java.lang.String getHeadIp();
+    /**
+     * <code>optional string headIp = 6;</code>
+     * @return The bytes for headIp.
+     */
+    com.google.protobuf.ByteString
+    getHeadIpBytes();
+
+    /**
+     * <code>optional int32 headPort = 7;</code>
+     * @return Whether the headPort field is set.
+     */
+    boolean hasHeadPort();
+    /**
+     * <code>optional int32 headPort = 7;</code>
+     * @return The headPort.
+     */
+    int getHeadPort();
   }
   /**
    * Protobuf type {@code Msg}
@@ -80,6 +108,7 @@ public final class Message {
       messageID_ = com.google.protobuf.ByteString.EMPTY;
       payload_ = com.google.protobuf.ByteString.EMPTY;
       clientIp_ = "";
+      headIp_ = "";
     }
 
     @java.lang.Override
@@ -207,6 +236,72 @@ public final class Message {
       return clientPort_;
     }
 
+    public static final int HEADIP_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object headIp_ = "";
+    /**
+     * <code>optional string headIp = 6;</code>
+     * @return Whether the headIp field is set.
+     */
+    @java.lang.Override
+    public boolean hasHeadIp() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>optional string headIp = 6;</code>
+     * @return The headIp.
+     */
+    @java.lang.Override
+    public java.lang.String getHeadIp() {
+      java.lang.Object ref = headIp_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        headIp_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string headIp = 6;</code>
+     * @return The bytes for headIp.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+    getHeadIpBytes() {
+      java.lang.Object ref = headIp_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b =
+                com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
+        headIp_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int HEADPORT_FIELD_NUMBER = 7;
+    private int headPort_ = 0;
+    /**
+     * <code>optional int32 headPort = 7;</code>
+     * @return Whether the headPort field is set.
+     */
+    @java.lang.Override
+    public boolean hasHeadPort() {
+      return ((bitField0_ & 0x00000008) != 0);
+    }
+    /**
+     * <code>optional int32 headPort = 7;</code>
+     * @return The headPort.
+     */
+    @java.lang.Override
+    public int getHeadPort() {
+      return headPort_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -236,6 +331,12 @@ public final class Message {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeInt32(5, clientPort_);
       }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, headIp_);
+      }
+      if (((bitField0_ & 0x00000008) != 0)) {
+        output.writeInt32(7, headPort_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -263,6 +364,13 @@ public final class Message {
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
                 .computeInt32Size(5, clientPort_);
+      }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, headIp_);
+      }
+      if (((bitField0_ & 0x00000008) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeInt32Size(7, headPort_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -295,6 +403,16 @@ public final class Message {
         if (getClientPort()
                 != other.getClientPort()) return false;
       }
+      if (hasHeadIp() != other.hasHeadIp()) return false;
+      if (hasHeadIp()) {
+        if (!getHeadIp()
+                .equals(other.getHeadIp())) return false;
+      }
+      if (hasHeadPort() != other.hasHeadPort()) return false;
+      if (hasHeadPort()) {
+        if (getHeadPort()
+                != other.getHeadPort()) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -320,6 +438,14 @@ public final class Message {
       if (hasClientPort()) {
         hash = (37 * hash) + CLIENTPORT_FIELD_NUMBER;
         hash = (53 * hash) + getClientPort();
+      }
+      if (hasHeadIp()) {
+        hash = (37 * hash) + HEADIP_FIELD_NUMBER;
+        hash = (53 * hash) + getHeadIp().hashCode();
+      }
+      if (hasHeadPort()) {
+        hash = (37 * hash) + HEADPORT_FIELD_NUMBER;
+        hash = (53 * hash) + getHeadPort();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -455,6 +581,8 @@ public final class Message {
         checkSum_ = 0L;
         clientIp_ = "";
         clientPort_ = 0;
+        headIp_ = "";
+        headPort_ = 0;
         return this;
       }
 
@@ -505,6 +633,14 @@ public final class Message {
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.clientPort_ = clientPort_;
           to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.headIp_ = headIp_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.headPort_ = headPort_;
+          to_bitField0_ |= 0x00000008;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -570,6 +706,14 @@ public final class Message {
         if (other.hasClientPort()) {
           setClientPort(other.getClientPort());
         }
+        if (other.hasHeadIp()) {
+          headIp_ = other.headIp_;
+          bitField0_ |= 0x00000020;
+          onChanged();
+        }
+        if (other.hasHeadPort()) {
+          setHeadPort(other.getHeadPort());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -621,6 +765,16 @@ public final class Message {
                 bitField0_ |= 0x00000010;
                 break;
               } // case 40
+              case 50: {
+                headIp_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 56: {
+                headPort_ = input.readInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -852,6 +1006,125 @@ public final class Message {
         onChanged();
         return this;
       }
+
+      private java.lang.Object headIp_ = "";
+      /**
+       * <code>optional string headIp = 6;</code>
+       * @return Whether the headIp field is set.
+       */
+      public boolean hasHeadIp() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <code>optional string headIp = 6;</code>
+       * @return The headIp.
+       */
+      public java.lang.String getHeadIp() {
+        java.lang.Object ref = headIp_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          headIp_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string headIp = 6;</code>
+       * @return The bytes for headIp.
+       */
+      public com.google.protobuf.ByteString
+      getHeadIpBytes() {
+        java.lang.Object ref = headIp_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
+          headIp_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string headIp = 6;</code>
+       * @param value The headIp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHeadIp(
+              java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        headIp_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string headIp = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHeadIp() {
+        headIp_ = getDefaultInstance().getHeadIp();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string headIp = 6;</code>
+       * @param value The bytes for headIp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHeadIpBytes(
+              com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        headIp_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+
+      private int headPort_ ;
+      /**
+       * <code>optional int32 headPort = 7;</code>
+       * @return Whether the headPort field is set.
+       */
+      @java.lang.Override
+      public boolean hasHeadPort() {
+        return ((bitField0_ & 0x00000040) != 0);
+      }
+      /**
+       * <code>optional int32 headPort = 7;</code>
+       * @return The headPort.
+       */
+      @java.lang.Override
+      public int getHeadPort() {
+        return headPort_;
+      }
+      /**
+       * <code>optional int32 headPort = 7;</code>
+       * @param value The headPort to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHeadPort(int value) {
+
+        headPort_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 headPort = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHeadPort() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        headPort_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -930,12 +1203,13 @@ public final class Message {
           descriptor;
   static {
     java.lang.String[] descriptorData = {
-            "\n\rMessage.proto\"\207\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
+            "\n\rMessage.proto\"\313\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
                     "(\014\022\017\n\007payload\030\002 \001(\014\022\020\n\010checkSum\030\003 \001(\006\022\025\n" +
                     "\010clientIp\030\004 \001(\tH\000\210\001\001\022\027\n\nclientPort\030\005 \001(\005" +
-                    "H\001\210\001\001B\013\n\t_clientIpB\r\n\013_clientPortB\'\n\034ca." +
-                    "NetSysLab.ProtocolBuffersB\007Messageb\006prot" +
-                    "o3"
+                    "H\001\210\001\001\022\023\n\006headIp\030\006 \001(\tH\002\210\001\001\022\025\n\010headPort\030\007" +
+                    " \001(\005H\003\210\001\001B\013\n\t_clientIpB\r\n\013_clientPortB\t\n" +
+                    "\007_headIpB\013\n\t_headPortB\'\n\034ca.NetSysLab.Pr" +
+                    "otocolBuffersB\007Messageb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
             .internalBuildGeneratedFileFrom(descriptorData,
@@ -946,7 +1220,7 @@ public final class Message {
     internal_static_Msg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_Msg_descriptor,
-            new java.lang.String[] { "MessageID", "Payload", "CheckSum", "ClientIp", "ClientPort", "ClientIp", "ClientPort", });
+            new java.lang.String[] { "MessageID", "Payload", "CheckSum", "ClientIp", "ClientPort", "HeadIp", "HeadPort", "ClientIp", "ClientPort", "HeadIp", "HeadPort", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
