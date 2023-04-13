@@ -19,6 +19,7 @@ public class UDPClient {
 
     private DatagramSocket socket = null;
 
+
     public UDPClient() {
         try {
             this.socket = new DatagramSocket();
@@ -146,7 +147,7 @@ public class UDPClient {
         return outputStream.toByteArray();
     }
 
-    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort, ByteString messageID) {
+    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort, ByteString messageID, String headIp, int headPort) {
         // TODO: no timeout for this function since we don't expect a response from replicas, but
         // maybe we should have a response...
 
@@ -162,6 +163,8 @@ public class UDPClient {
                     .setClientIp(clientIp)
                     .setClientPort(clientPort)
                     .setMessageID(messageID)
+                    .setHeadIp(headIp)
+                    .setHeadPort(headPort)
                     .build()
                     .toByteArray();
 
@@ -188,7 +191,8 @@ public class UDPClient {
             checksumByteArray = concatenateByteArrays(uuid, payload);
             long checksum = computeChecksum(checksumByteArray);
 
-            byte[] messageBuffer = Message.Msg.newBuilder().setMessageID(ByteString.copyFrom(uuid))
+            byte[] messageBuffer = Message.Msg.newBuilder()
+                    .setMessageID(ByteString.copyFrom(uuid))
                     .setPayload(ByteString.copyFrom(payload))
                     .setCheckSum(checksum)
                     .build()
@@ -209,5 +213,36 @@ public class UDPClient {
         }
 
 
+    }
+
+    public void sendTailDone(String headIp, int headPort, byte[] payload) {
+        byte[] uuid = new byte[0];
+        byte[] checksumByteArray = new byte[0];
+        try {
+            uuid = generateUUID(InetAddress.getByName(headIp), headPort);
+            checksumByteArray = concatenateByteArrays(uuid, payload);
+            long checksum = computeChecksum(checksumByteArray);
+
+            byte[] messageBuffer = Message.Msg.newBuilder()
+                .setMessageID(ByteString.copyFrom(uuid))
+                .setPayload(ByteString.copyFrom(payload))
+                .setCheckSum(checksum)
+                .build()
+                .toByteArray();
+
+            int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+            DatagramPacket tailDonePacket = new DatagramPacket(
+                    messageBuffer,
+                    messageBufferSize,
+                    InetAddress.getByName("localhost"),
+                    headPort
+            );
+
+            socket.send(tailDonePacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
     }
 }
