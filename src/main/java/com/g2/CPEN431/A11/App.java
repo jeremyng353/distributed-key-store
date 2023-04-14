@@ -59,6 +59,11 @@ public class App
 
         Server server = new Server(port, consistentHash, memberMonitor);
 
+        // initialize different components
+
+        UDPClient udpClient = new UDPClient();
+        Memory memory = new Memory(server, udpClient);
+
         while (true) {
             try {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);

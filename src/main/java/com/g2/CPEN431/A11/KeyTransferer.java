@@ -11,17 +11,19 @@ public class KeyTransferer implements Runnable {
     private final int sourceNodeHash;
     private final int destinationNodeHash;
     private final UDPClient udpClient;
+    private Memory memory;
 
-    public KeyTransferer(AddressPair destinationAddress, int sourceNodeHash, int destinationNodeHash) {
+    public KeyTransferer(AddressPair destinationAddress, int sourceNodeHash, int destinationNodeHash, Memory memory) {
         this.sourceNodeHash =sourceNodeHash;
         this.destinationAddress = destinationAddress;
         this.destinationNodeHash = destinationNodeHash;
         this.udpClient = new UDPClient();
+        this.memory = memory;
     }
 
     @Override
     public void run() {
-        Memory.getAllEntries()
+        memory.getAllEntries()
                 .filter(entry -> {
                     int keyHash = Math.abs(entry.getKey().hashCode()) % 256;
                     if (sourceNodeHash < destinationNodeHash) {

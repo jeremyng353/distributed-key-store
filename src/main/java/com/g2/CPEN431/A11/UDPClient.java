@@ -152,8 +152,6 @@ public class UDPClient {
         // maybe we should have a response...
 
         try {
-            
-
             byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload);
             long checksum = computeChecksum(checksumByteArray);
 
@@ -211,8 +209,6 @@ public class UDPClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public void sendTailDone(String headIp, int headPort, byte[] payload) {
@@ -242,7 +238,5 @@ public class UDPClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        
-        
     }
 }

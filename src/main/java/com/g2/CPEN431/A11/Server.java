@@ -45,6 +45,7 @@ public class Server {
     private final UDPClient udpClient = new UDPClient();
 
     private final long pid;
+    private Memory memory;
 
     public Server(int port, ConsistentHash consistentHash, MemberMonitor memberMonitor) {
         // Adapted from https://www.baeldung.com/java-get-ip-address
@@ -65,6 +66,8 @@ public class Server {
         this.consistentHash = consistentHash;
         this.memberMonitor = memberMonitor;
         this.pid = ProcessHandle.current().pid();
+
+        this.memory = new Memory(this, udpClient);
     }
 
     /**
@@ -215,10 +218,10 @@ public class Server {
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
 
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    if (Memory.isAvailable(key)) {
-                        Memory.lockKey(key);
+                    if (memory.get(key) != null) {
+                        memory.lockKey(key, this, udpClient);
                         // if this node should handle the request, put and forward to next replica
-                        status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+                        status = memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
                         response = buildResPayload(status);
 
                         // System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
@@ -246,7 +249,7 @@ public class Server {
                             System.out.println("[" + port + "]: Out of memory!");
                         }
                     } else {
-                        Memory.storeMessage(key, message);
+                        memory.storeMessage(key, message);
                     }
                 } else {
                     // call another node to handle the request
@@ -260,21 +263,21 @@ public class Server {
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    if (Memory.isAvailable(key)) {
+                    if (memory.get(key) != null) {
                         // if this node should handle the request, forward request to tail of replica chain
-                        status = Memory.isStored(key);
+                        status = memory.isStored(key);
 
                         // System.out.println(port + ": " + "------------------- GET KEY -------------------");
 
                         // if (status == SUCCESS) {
-                        //     Pair<ByteString, Integer> keyValue = Memory.get(key);
+                        //     Pair<ByteString, Integer> keyValue = memory.get(key);
                         //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                         // }
 
                         /*
                         if (memberMonitor.getReplicas().size() == 0) {
                             if (status == SUCCESS) {
-                                Pair<ByteString, Integer> keyValue = Memory.get(key);
+                                Pair<ByteString, Integer> keyValue = memory.get(key);
                                 return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
                             } else {
                                 return buildResPayload(status);
@@ -284,7 +287,7 @@ public class Server {
 
                         requestTailRead(key, message.getClientIp(), message.getClientPort(), message.getMessageID());
                     } else {
-                        Memory.storeMessage(key, message);
+                        memory.storeMessage(key, message);
                     }
                 } else {
                     // call another node to handle the request
@@ -298,9 +301,9 @@ public class Server {
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    if (Memory.isAvailable(key)) {
+                    if (memory.get(key) != null) {
                         // if this node should handle the request, remove and forward request to next replica
-                        status = Memory.remove(key);
+                        status = memory.remove(key);
                         response = buildResPayload(status);
                         RequestCache.put(message.getMessageID(), response);
 
@@ -320,7 +323,7 @@ public class Server {
                                 message.getMessageID()
                         );
                     } else {
-                        Memory.storeMessage(key, message);
+                        memory.storeMessage(key, message);
                     }
                 } else {
                     // call another node to handle the request
@@ -330,12 +333,12 @@ public class Server {
                 return null;
             }
             case SHUTDOWN -> {
-                status = Memory.shutdown();
+                status = memory.shutdown();
                 response = buildResPayload(status);
                 return response;
             }
             case WIPEOUT -> {
-                status = Memory.erase();
+                status = memory.erase();
                 RequestCache.erase();
                 response = buildResPayload(status);
                 RequestCache.put(message.getMessageID(), response);
@@ -379,7 +382,7 @@ public class Server {
             case REPLICA_PUT -> {
                 ByteString key = kvRequest.getKey();
                 ByteString value = kvRequest.getValue();
-                status = Memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+                status = memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
 
                 // System.out.println(port + ": " + "------------ REP PUT KEY AND VALUE ----------------");
 
@@ -417,7 +420,7 @@ public class Server {
             }
             case REPLICA_REMOVE -> {
                 ByteString key = kvRequest.getKey();
-                status = Memory.remove(key);
+                status = memory.remove(key);
 
                 int replicaCounter = kvRequest.getReplicaCounter();
 
@@ -454,10 +457,10 @@ public class Server {
             case REPLICA_GET -> {
                 // System.out.println("REPLICA_GET");
                 ByteString key = kvRequest.getKey();
-                status = Memory.isStored(key);
+                status = memory.isStored(key);
 
                 if (status == SUCCESS) {
-                    Pair<ByteString, Integer> keyValue = Memory.get(key);
+                    Pair<ByteString, Integer> keyValue = memory.get(key);
 
                     // Respond to client with key value
                     // System.out.println(port + ": " +  "------------ REP GET KEY AND VALUE ----------------");
@@ -489,11 +492,10 @@ public class Server {
             }
             case TAIL_DONE -> {
                 ByteString key = kvRequest.getKey();
-                ArrayList<Message.Msg> storedMessages = Memory.getStoredMessages(key);
+                ArrayList<Message.Msg> storedMessages = memory.getStoredMessages(key);
                 if (storedMessages != null){
-                    Memory.removeLock(key);
+                    memory.removeLock(key);
                     for (Message.Msg msg : storedMessages) {
-
                         response = this.exeCommand(msg);
                         if (response != null) {
                             udpClient.sendClientResponse(response.toByteArray(), msg.getClientIp(), msg.getClientPort());

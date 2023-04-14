@@ -1,12 +1,25 @@
 package com.g2.CPEN431.A11;
 
+import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
 import ca.NetSysLab.ProtocolBuffers.Message;
+import com.google.common.cache.RemovalListener;
+import com.google.common.cache.RemovalNotification;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+
+import static com.g2.CPEN431.A11.MemberMonitor.DEFAULT_INTERVAL;
 
 public class Memory {
 
@@ -28,7 +41,31 @@ public class Memory {
     // Memory store
     private static final ConcurrentHashMap<ByteString, Pair<ByteString, Integer>> store = new ConcurrentHashMap<>();
 
-    private static final ConcurrentHashMap<ByteString, ArrayList<Message.Msg>> keyLocks= new ConcurrentHashMap<>();
+    private Cache<ByteString, ArrayList<Message.Msg>> keyLocks;
+
+    public Memory(Server server, UDPClient udpClient) {
+        keyLocks = CacheBuilder.newBuilder()
+                .expireAfterWrite(5, TimeUnit.MINUTES) // set expiration time to 5 minutes
+                .removalListener(new RemovalListener<ByteString, ArrayList<Message.Msg>>() {
+                    public void onRemoval(RemovalNotification<ByteString, ArrayList<Message.Msg>> notification) {
+                        ArrayList<Message.Msg> storedMessages = notification.getValue();
+
+                        for (Message.Msg msg : storedMessages) {
+                            try {
+                                ByteString response = server.exeCommand(msg);
+                                if (response != null) {
+                                    udpClient.sendClientResponse(response.toByteArray(), msg.getClientIp(), msg.getClientPort());
+                                }
+                            } catch (InvalidProtocolBufferException | UnknownHostException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                        }
+
+                    }
+                })
+                .build();
+    }
 
     /**
      * This function puts a key value pair into the memory store
@@ -37,7 +74,7 @@ public class Memory {
      * @param version: Integer version value associated with the key value pair
      * @return An Integer response code depending on the operations outcome
      */
-    public static int put(ByteString key, ByteString value, int version) {
+    public int put(ByteString key, ByteString value, int version) {
         // check memory is sufficient for a put operation
         long used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long totalFree = Runtime.getRuntime().maxMemory() - used;
@@ -57,7 +94,7 @@ public class Memory {
      * @param key: ByteString key to check for
      * @return An Integer response code depending on the operations outcome
      */
-    public static int isStored(ByteString key) {
+    public int isStored(ByteString key) {
         // check key size
         if (key.size() > MAX_KEY_SIZE || key.size() == 0) return BAD_KEY_ERR;
         if (store.containsKey(key)) return SUCCESS;
@@ -70,7 +107,7 @@ public class Memory {
      * @return Pair containing the value and version associated with the key
      * null is not a possibility of being returned since isStored(key) is called prior to this function
      */
-    public static Pair<ByteString, Integer> get(ByteString key) {
+    public Pair<ByteString, Integer> get(ByteString key) {
         if (store.containsKey(key)) {
             return store.get(key);
         }
@@ -82,7 +119,7 @@ public class Memory {
      * memory overhead.
      * @return Stream representing all the entries in memory.
      */
-    public static Stream<Map.Entry<ByteString, Pair<ByteString, Integer>>> getAllEntries() {
+    public Stream<Map.Entry<ByteString, Pair<ByteString, Integer>>> getAllEntries() {
         return store.entrySet().parallelStream();
     }
 
@@ -91,7 +128,7 @@ public class Memory {
      * @param key: ByteString key to remove the key value pair for
      * @return An Integer response code depending on the operations outcome
      */
-    public static int remove(ByteString key) {
+    public int remove(ByteString key) {
         // check key size
         if (key.size() > MAX_KEY_SIZE) return BAD_KEY_ERR;
         if (store.containsKey(key)) {
@@ -105,7 +142,7 @@ public class Memory {
      * This function clears the memory store and the cache
      * @return An Integer response code depending on the operations outcome
      */
-    public static int erase() {
+    public int erase() {
         store.clear();
         RequestCache.erase();
         return SUCCESS;
@@ -115,29 +152,24 @@ public class Memory {
      * This function closes the server
      * @return An Integer response code depending on the operations outcome
      */
-    public static int shutdown() {
+    public int shutdown() {
         System.exit(SUCCESS);
         return SUCCESS;
     }
 
-    public static void lockKey(ByteString key) {
-        // might want to add a version number to ensure correctness?
+    public void lockKey(ByteString key, Server server, UDPClient udpClient) {
         keyLocks.put(key, new ArrayList<>());
     }
 
-    public static void removeLock(ByteString key) {
-        keyLocks.remove(key);
+    public void removeLock(ByteString key) {
+        keyLocks.invalidate(key);
     }
 
-    public static boolean isAvailable(ByteString key) {
-        return !keyLocks.containsKey(key);
+    public void storeMessage(ByteString key, Message.Msg msg) {
+        keyLocks.getIfPresent(key).add(msg);
     }
 
-    public static void storeMessage(ByteString key, Message.Msg msg) {
-        keyLocks.get(key).add(msg);
-    }
-
-    public static ArrayList<Message.Msg> getStoredMessages(ByteString key) {
-        return keyLocks.get(key);
+    public ArrayList<Message.Msg> getStoredMessages(ByteString key) {
+        return keyLocks.getIfPresent(key);
     }
 }
