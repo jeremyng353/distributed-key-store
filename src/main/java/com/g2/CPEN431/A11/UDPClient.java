@@ -160,7 +160,7 @@ public class UDPClient {
                     e.printStackTrace();
                 }
 
-                byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload);
+                    byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload);
                 long checksum = computeChecksum(checksumByteArray);
 
                 Message.Msg.Builder messageBufferBuilder = Message.Msg.newBuilder()
@@ -187,18 +187,20 @@ public class UDPClient {
 
                 socket.send(replicaPacket);
 
-                byte[] rcvBuf = new byte[MAX_PACKET_SIZE];
-                DatagramPacket rcvPacket = new DatagramPacket(rcvBuf, rcvBuf.length);
-                socket.receive(rcvPacket);
+                if (command != Server.GET && command != Server.REPLICA_GET) {
+                    byte[] rcvBuf = new byte[MAX_PACKET_SIZE];
+                    DatagramPacket rcvPacket = new DatagramPacket(rcvBuf, rcvBuf.length);
+                    socket.receive(rcvPacket);
 
-                // Trim packet and parse into Message object
-                byte[] trimmedResponse = new byte[rcvPacket.getLength()];
-                System.arraycopy(rcvBuf, 0, trimmedResponse, 0, rcvPacket.getLength());
-                Message.Msg rcvMessage = Message.Msg.parseFrom(trimmedResponse);
-                byte[] receivedUUID = rcvMessage.getMessageID().toByteArray();
+                    // Trim packet and parse into Message object
+                    byte[] trimmedResponse = new byte[rcvPacket.getLength()];
+                    System.arraycopy(rcvBuf, 0, trimmedResponse, 0, rcvPacket.getLength());
+                    Message.Msg rcvMessage = Message.Msg.parseFrom(trimmedResponse);
+                    byte[] receivedUUID = rcvMessage.getMessageID().toByteArray();
 
-                if (validateChecksum(rcvMessage) && Arrays.equals(receivedUUID, messageID.toByteArray())) {
-                    return;
+                    if (validateChecksum(rcvMessage) && Arrays.equals(receivedUUID, messageID.toByteArray())) {
+                        return;
+                    }
                 }
             } catch (SocketTimeoutException e) {
 //                System.out.println(socket.getLocalPort() + ": Socket timed out. Retrying " + (i + 1) + " of " + MAX_RETRIES);
