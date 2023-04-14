@@ -13,6 +13,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -36,13 +37,14 @@ public class Server {
     public static final int REPLICA_PUT = 0x23;
     public static final int REPLICA_REMOVE = 0x24;
     public static final int REPLICA_GET = 0x25;
-    public static final int TAIL_DONE = 0x26;
+    public static final int TAIL_DONE_PUT = 0x26;
+    public static final int TAIL_DONE_REMOVE = 0x26;
 
     private final String ip;
     private final int port;
     ConsistentHash consistentHash;
     private final MemberMonitor memberMonitor;
-    private final UDPClient udpClient = new UDPClient();
+    private final UDPClient udpClient;
 
     private final long pid;
 
@@ -65,6 +67,7 @@ public class Server {
         this.consistentHash = consistentHash;
         this.memberMonitor = memberMonitor;
         this.pid = ProcessHandle.current().pid();
+        this.udpClient = new UDPClient(port);
     }
 
     /**
@@ -413,7 +416,8 @@ public class Server {
                             REPLICA_PUT,
                             message.getClientIp(),
                             message.getClientPort(),
-                            message.getMessageID()
+                            message.getMessageID(),
+                            message.getChainPortsList()
                     );
                 }
 
@@ -446,7 +450,8 @@ public class Server {
                             REPLICA_REMOVE,
                             message.getClientIp(),
                             message.getClientPort(),
-                            message.getMessageID()
+                            message.getMessageID(),
+                            message.getChainPortsList()
                     );
                 }
 
@@ -490,13 +495,16 @@ public class Server {
                 }
                 return null;
             }
-            case TAIL_DONE -> {
+            case TAIL_DONE_PUT -> {
                 ByteString key = kvRequest.getKey();
-                ArrayList<Message.Msg> storedMessages = Memory.getStoredMessages(key);
-                for (Message.Msg msg : storedMessages) {
-                    this.exeCommand(msg);
-                }
-                Memory.removeLock(key);
+                ByteString value = kvRequest.getValue();
+                int version = kvRequest.getVersion();
+                Memory.put(key, value, version);
+
+                return null;
+            }
+            case TAIL_DONE_REMOVE -> {
+                ByteString key = kvRequest.getKey();
                 return null;
             }
             default -> {
@@ -534,6 +542,20 @@ public class Server {
         sendRequest(command, clientIp, clientPort, messageID, replicaRequest);
     }
 
+    public void requestReplica(ByteString key, ByteString value, int replicaCounter, int version, ByteString response, int command, String clientIp, int clientPort, ByteString messageID, List<Integer> portList) {
+        KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(command)
+                .setKey(key)
+                .setValue(value)
+                .setVersion(version)
+                .setReplicaCounter(replicaCounter)
+                .setReplicaResponse(response)
+                .build();
+
+        sendRequest(command, clientIp, clientPort, messageID, replicaRequest, portList);
+    }
+
+    //
     private void sendRequest(int command, String clientIp, int clientPort, ByteString messageID, KeyValueRequest.KVRequest replicaRequest) {
         AddressPair nextNode = command == REPLICA_GET ? consistentHash.getPreviousNode(new AddressPair(ip, port)) : consistentHash.getNextNode(new AddressPair(ip, port));
 
@@ -541,10 +563,29 @@ public class Server {
             udpClient.replicaRequest(
                     InetAddress.getByName(nextNode.getIp()),
                     nextNode.getPort(),
-                    replicaRequest.toByteArray(),
+                    replicaRequest,
                     clientIp,
                     clientPort,
                     messageID
+            );
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // sendRequest with portList for PUT/REMOVEs
+    private void sendRequest(int command, String clientIp, int clientPort, ByteString messageID, KeyValueRequest.KVRequest replicaRequest, List<Integer> portList) {
+        AddressPair nextNode = command == REPLICA_GET ? consistentHash.getPreviousNode(new AddressPair(ip, port)) : consistentHash.getNextNode(new AddressPair(ip, port));
+
+        try {
+            udpClient.replicaRequest(
+                    InetAddress.getByName(nextNode.getIp()),
+                    nextNode.getPort(),
+                    replicaRequest,
+                    clientIp,
+                    clientPort,
+                    messageID,
+                    portList
             );
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
@@ -562,7 +603,7 @@ public class Server {
             udpClient.replicaRequest(
                     InetAddress.getByName(tailNode.getIp()),
                     tailNode.getPort(),
-                    replicaRequest.toByteArray(),
+                    replicaRequest,
                     clientIp,
                     clientPort,
                     messageID

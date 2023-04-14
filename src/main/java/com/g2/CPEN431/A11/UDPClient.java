@@ -1,5 +1,6 @@
 package com.g2.CPEN431.A11;
 
+import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
 import ca.NetSysLab.ProtocolBuffers.Message;
 import com.google.protobuf.ByteString;
 import com.g2.CPEN431.A11.util.ByteOrder;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.zip.CRC32;
 
@@ -18,8 +20,9 @@ public class UDPClient {
     private static final int DEFAULT_TIMEOUT = 100;
 
     private DatagramSocket socket = null;
+    private int port;
 
-    public UDPClient() {
+    public UDPClient(int port) {
         try {
             this.socket = new DatagramSocket();
             socket.setSoTimeout(DEFAULT_TIMEOUT);
@@ -27,6 +30,8 @@ public class UDPClient {
             System.err.println("Couldn't open socket!");
             e.printStackTrace();
         }
+
+        this.port = port;
     }
 
     public Message.Msg request(InetAddress address, int port, byte[] buf) {
@@ -146,18 +151,57 @@ public class UDPClient {
         return outputStream.toByteArray();
     }
 
-    public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort, ByteString messageID) {
+    public void replicaRequest(InetAddress replicaAddress, int replicaPort, KeyValueRequest.KVRequest payload, String clientIp, int clientPort, ByteString messageID) {
         // TODO: no timeout for this function since we don't expect a response from replicas, but
         // maybe we should have a response...
 
         try {
-            
-
-            byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload);
+            byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload.toByteArray());
             long checksum = computeChecksum(checksumByteArray);
 
             byte[] messageBuffer = Message.Msg.newBuilder()
-                    .setPayload(ByteString.copyFrom(payload))
+                    .setPayload(payload.toByteString())
+                    .setCheckSum(checksum)
+                    .setClientIp(clientIp)
+                    .setClientPort(clientPort)
+                    .setMessageID(messageID)
+                    .build()
+                    .toByteArray();
+
+            // If the buffer is larger than 16 KB, then truncate
+            int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+            DatagramPacket replicaPacket = new DatagramPacket(
+                    messageBuffer,
+                    messageBufferSize,
+                    InetAddress.getByName("localhost"),
+                    replicaPort
+            );
+
+            socket.send(replicaPacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // replicaRequest for PUT/GETs
+    public void replicaRequest(InetAddress replicaAddress, int replicaPort, KeyValueRequest.KVRequest payload, String clientIp, int clientPort, ByteString messageID, List<Integer> portList) {
+        // TODO: no timeout for this function since we don't expect a response from replicas, but
+        // maybe we should have a response...
+
+        try {
+            byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload.toByteArray());
+            long checksum = computeChecksum(checksumByteArray);
+
+            Message.Msg.Builder builder = Message.Msg.newBuilder();
+
+            for (int i = 0; i < portList.size(); i++) {
+                builder.setChainPorts(i, portList.get(i));
+            }
+
+            builder.setChainPorts(portList.size(), port);
+
+            byte[] messageBuffer = builder
+                    .setPayload(payload.toByteString())
                     .setCheckSum(checksum)
                     .setClientIp(clientIp)
                     .setClientPort(clientPort)
