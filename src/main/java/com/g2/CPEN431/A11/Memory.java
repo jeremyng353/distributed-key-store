@@ -45,26 +45,34 @@ public class Memory {
 
     public Memory(Server server, UDPClient udpClient) {
         keyLocks = CacheBuilder.newBuilder()
-                .expireAfterWrite(5, TimeUnit.MINUTES) // set expiration time to 5 minutes
-                .removalListener(new RemovalListener<ByteString, ArrayList<Message.Msg>>() {
-                    public void onRemoval(RemovalNotification<ByteString, ArrayList<Message.Msg>> notification) {
-                        ArrayList<Message.Msg> storedMessages = notification.getValue();
+                .expireAfterWrite(5, TimeUnit.SECONDS)
+                .removalListener((RemovalListener<ByteString, ArrayList<Message.Msg>>) notification -> {
+                    ArrayList<Message.Msg> storedMessages = notification.getValue();
 
-                        for (Message.Msg msg : storedMessages) {
-                            try {
-                                ByteString response = server.exeCommand(msg);
-                                if (response != null) {
-                                    udpClient.sendClientResponse(response.toByteArray(), msg.getClientIp(), msg.getClientPort());
-                                }
-                            } catch (InvalidProtocolBufferException | UnknownHostException e) {
-                                throw new RuntimeException(e);
+                    for (Message.Msg msg : storedMessages) {
+                        try {
+                            ByteString response;
+                            if (RequestCache.isStored(msg.getMessageID())) {
+                                response = RequestCache.get(msg.getMessageID());
+                            } else {
+                                response = server.exeCommand(msg);
                             }
 
+                            if (response != null) {
+                                udpClient.sendClientResponse(response.toByteArray(), msg.getClientIp(), msg.getClientPort());
+                            }
+                        } catch (InvalidProtocolBufferException | UnknownHostException e) {
+                            throw new RuntimeException(e);
                         }
-
                     }
                 })
                 .build();
+    }
+
+    public int hasSpace() {
+        long used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long totalFree = Runtime.getRuntime().maxMemory() - used;
+        return totalFree < MIN_MEMORY_BUFFER ? NO_MEM_ERR : SUCCESS;
     }
 
     /**
@@ -76,9 +84,9 @@ public class Memory {
      */
     public int put(ByteString key, ByteString value, int version) {
         // check memory is sufficient for a put operation
-        long used = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        long totalFree = Runtime.getRuntime().maxMemory() - used;
-        if (totalFree < MIN_MEMORY_BUFFER) return NO_MEM_ERR;
+        if (hasSpace() != SUCCESS) {
+            return hasSpace();
+        }
 
         // check key and value sizes
         if (key.size() > MAX_KEY_SIZE) return BAD_KEY_ERR;
@@ -157,7 +165,7 @@ public class Memory {
         return SUCCESS;
     }
 
-    public void lockKey(ByteString key, Server server, UDPClient udpClient) {
+    public void lockKey(ByteString key) {
         keyLocks.put(key, new ArrayList<>());
     }
 

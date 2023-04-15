@@ -15,10 +15,12 @@ public class ConsistentHash {
     // Ring where key is hash cutoff for the node and value is the ip and port of the node
     private TreeMap<Integer, AddressPair> nodeRing = new TreeMap<>();
     private HashMap<AddressPair, Integer> savedHashes = new HashMap<>();
+    private Memory memory;
 
-    public ConsistentHash(String ip, int port) {
+    public ConsistentHash(String ip, int port, Memory memory) {
         this.port = port;
         this.selfAddress = new AddressPair(ip, port);
+        this.memory = memory;
 
         try {
             socket = new DatagramSocket();
@@ -41,7 +43,7 @@ public class ConsistentHash {
             // If the current node has keys that may belong to the re-joined node, then transfer keys
             if (isHigherThan(addressPairHash, addressPair)) {
 //                System.out.println("[" + port + "]: Transferring nodes to " + addressPair.getPort());
-                Thread transferKeyThread = new Thread(new KeyTransferer(addressPair, selfAddressPairHash, addressPairHash));
+                Thread transferKeyThread = new Thread(new KeyTransferer(addressPair, selfAddressPairHash, addressPairHash, memory));
                 transferKeyThread.start();
             }
 

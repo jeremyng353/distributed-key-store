@@ -13,6 +13,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.zip.CRC32;
 
 public class Server {
@@ -35,19 +36,26 @@ public class Server {
     public static final int GET_MS_LIST = 0x22;
     public static final int REPLICA_PUT = 0x23;
     public static final int REPLICA_REMOVE = 0x24;
-    public static final int REPLICA_GET = 0x25;
-    public static final int TAIL_DONE = 0x26;
+    public static final int TAIL_GET = 0x25;
+    public static final int ACK_PUT = 0x27;
+    public static final int ACK_REMOVE = 0x28;
+    public static final int ACK_GET = 0x29;
+    public static final int REPLICA_ACK_PUT = 0x30;
+    public static final int REPLICA_ACK_REMOVE = 0x31;
+    public static final int TAIL_ACK_PUT = 0x33;
+    public static final int TAIL_ACK_REMOVE = 0x34;
 
     private final String ip;
     private final int port;
     ConsistentHash consistentHash;
-    private final MemberMonitor memberMonitor;
+    private MemberMonitor memberMonitor;
     private final UDPClient udpClient = new UDPClient();
 
     private final long pid;
     private Memory memory;
+    private HashMap<ByteString, Integer> keyAck = new HashMap<>();
 
-    public Server(int port, ConsistentHash consistentHash, MemberMonitor memberMonitor) {
+    public Server(int port) {
         // Adapted from https://www.baeldung.com/java-get-ip-address
         String urlString = "http://checkip.amazonaws.com/";
         URL url = null;
@@ -63,11 +71,19 @@ public class Server {
         }
 
         this.port = port;
-        this.consistentHash = consistentHash;
-        this.memberMonitor = memberMonitor;
         this.pid = ProcessHandle.current().pid();
+    }
 
-        this.memory = new Memory(this, udpClient);
+    public void setMemory(Memory memory) {
+        this.memory = memory;
+    }
+
+    public void setConsistentHash(ConsistentHash consistentHash) {
+        this.consistentHash = consistentHash;
+    }
+
+    public void setMemoryMonitor(MemberMonitor memberMonitor) {
+        this.memberMonitor = memberMonitor;
     }
 
     /**
@@ -208,48 +224,40 @@ public class Server {
         ByteString response;
         // parse which command to execute
         // for each command, run corresponding memory command, store response in cache and return response
+        if (kvRequest.getCommand() != GET_MS_LIST) {
+            System.out.println(port + ": " + String.format("0x%08X", kvRequest.getCommand()));
+        }
+
         switch (kvRequest.getCommand()) {
             case PUT -> {
                 // determine which node should handle request
                 ByteString key = kvRequest.getKey();
-                ByteString value = kvRequest.getValue();        // TODO: can be moved to inside the if statement later
 
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 // System.out.println("Sending request from node at ip: " + ip + ", port: " + port);
 
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    if (memory.get(key) != null) {
-                        memory.lockKey(key, this, udpClient);
-                        // if this node should handle the request, put and forward to next replica
-                        status = memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
-                        response = buildResPayload(status);
+                    if (memory.hasSpace() == NO_MEM_ERR) {
+                        return buildResPayload(NO_MEM_ERR);
+                    } else {
+                        ArrayList<Message.Msg> storedMessages = memory.getStoredMessages(key);
+                        if (memory.getStoredMessages(key) == null || storedMessages.isEmpty()) {
+                            memory.lockKey(key);
 
-                        // System.out.println(port + ": " + "------------ PUT KEY AND VALUE ----------------");
-                        // System.out.println(port + ": " + key);
-                        // System.out.println(port + ": " + value);
-                        // System.out.println(port + ": Status: " + status);
-                        // System.out.println(port + ": " + "-----------------------------------------------");
-
-                        // only add to cache if runtime memory is not full
-                        if (status != NO_MEM_ERR) {
-                            RequestCache.put(message.getMessageID(), response);
-                            requestReplica(
+                            ByteString value = kvRequest.getValue();
+                            int version = kvRequest.getVersion();
+                            requestReplicas(
                                     key,
                                     value,
-                                    0,
-                                    kvRequest.getVersion(),
-                                    response,
+                                    version,
                                     REPLICA_PUT,
                                     message.getClientIp(),
                                     message.getClientPort(),
                                     message.getMessageID()
                             );
+                        } else {
+                            memory.storeMessage(key, message);
                         }
-                        if (status == NO_MEM_ERR) {
-                            System.out.println("[" + port + "]: Out of memory!");
-                        }
-                    } else {
-                        memory.storeMessage(key, message);
                     }
                 } else {
                     // call another node to handle the request
@@ -263,28 +271,9 @@ public class Server {
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    if (memory.get(key) != null) {
-                        // if this node should handle the request, forward request to tail of replica chain
-                        status = memory.isStored(key);
-
-                        // System.out.println(port + ": " + "------------------- GET KEY -------------------");
-
-                        // if (status == SUCCESS) {
-                        //     Pair<ByteString, Integer> keyValue = memory.get(key);
-                        //     return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                        // }
-
-                        /*
-                        if (memberMonitor.getReplicas().size() == 0) {
-                            if (status == SUCCESS) {
-                                Pair<ByteString, Integer> keyValue = memory.get(key);
-                                return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                            } else {
-                                return buildResPayload(status);
-                            }
-                        }
-                        */
-
+                    ArrayList<Message.Msg> storedMessages = memory.getStoredMessages(key);
+                    if (memory.getStoredMessages(key) == null || storedMessages.isEmpty()) {
+                        memory.lockKey(key);
                         requestTailRead(key, message.getClientIp(), message.getClientPort(), message.getMessageID());
                     } else {
                         memory.storeMessage(key, message);
@@ -301,22 +290,12 @@ public class Server {
                 ByteString key = kvRequest.getKey();
                 AddressPair nodeAddress = consistentHash.getNode(key);
                 if (nodeAddress.getIp().equals(ip) && nodeAddress.getPort() == port) {
-                    if (memory.get(key) != null) {
-                        // if this node should handle the request, remove and forward request to next replica
-                        status = memory.remove(key);
-                        response = buildResPayload(status);
-                        RequestCache.put(message.getMessageID(), response);
+                    ArrayList<Message.Msg> storedMessages = memory.getStoredMessages(key);
+                    if (memory.getStoredMessages(key) == null || storedMessages.isEmpty()) {
+                        memory.lockKey(key);
 
-                        // System.out.println(port + ": " + "----------------- REMOVE KEY ------------------");
-                        // System.out.println(port + ": " + key);
-                        // System.out.println(port + ": Status: " + status);
-                        // System.out.println(port + ": " + "-----------------------------------------------");
-
-
-                        requestReplica(
+                        requestReplicas(
                                 key,
-                                0,
-                                response,
                                 REPLICA_REMOVE,
                                 message.getClientIp(),
                                 message.getClientPort(),
@@ -381,129 +360,161 @@ public class Server {
             }
             case REPLICA_PUT -> {
                 ByteString key = kvRequest.getKey();
-                ByteString value = kvRequest.getValue();
-                status = memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
-
-                // System.out.println(port + ": " + "------------ REP PUT KEY AND VALUE ----------------");
-
-                if (status == NO_MEM_ERR) {
-                    System.out.println("[" + port + "]: Out of memory!");
-                }
-
-                int replicaCounter = kvRequest.getReplicaCounter();
-                // System.out.println(port + ": Received REPLICA_PUT, replicaCounter " + replicaCounter);
-                if (replicaCounter >= 2) {
-                    tailDone(message.getHeadIp(), message.getHeadPort(), key);
-
-                    // Send client a response
-                    return kvRequest.getReplicaResponse();
-                            
-                } else {
-                    // Forward request to next replica
-                    replicaCounter++;
-                    requestReplica(
+                // TODO: if NO_MEM_ERR, don't send ACK
+                ArrayList<Message.Msg> storedMessages = memory.getStoredMessages(key);
+                if (memory.getStoredMessages(key) == null || storedMessages.isEmpty()) {
+                    memory.lockKey(key);
+                    ByteString value = kvRequest.getValue();
+                    int version = kvRequest.getVersion();
+                    ackHead(
                             key,
                             value,
-                            replicaCounter,
-                            kvRequest.getVersion(),
-                            kvRequest.getReplicaResponse(),
-                            REPLICA_PUT,
+                            version,
+                            ACK_PUT,
                             message.getClientIp(),
                             message.getClientPort(),
                             message.getMessageID(),
-                            message.getHeadIp(),
                             message.getHeadPort()
                     );
+                } else {
+                    memory.storeMessage(key, message);
                 }
 
                 return null;
             }
             case REPLICA_REMOVE -> {
                 ByteString key = kvRequest.getKey();
-                status = memory.remove(key);
-
-                int replicaCounter = kvRequest.getReplicaCounter();
-
-                // System.out.println(port + ": " + "--------------- REP REMOVE KEY ----------------");
-                // System.out.println(port + ": " + key);
-                // System.out.println(port + ": Replica Counter: " + replicaCounter);
-                // System.out.println(port + ": Status: " + status);
-                // System.out.println(port + ": " + "-----------------------------------------------");
-
-                if (replicaCounter >= 2) {
-                    tailDone(message.getHeadIp(), message.getHeadPort(), key);
-                    
-
-
-                    // Send client a response
-                    return kvRequest.getReplicaResponse();
-                } else {
-                    // Forward request to next replica
-                    requestReplica(
+                ArrayList<Message.Msg> storedMessages = memory.getStoredMessages(key);
+                if (memory.getStoredMessages(key) == null || storedMessages.isEmpty()) {
+                    memory.lockKey(key);
+                    ackHead(
                             key,
-                            ++replicaCounter,
-                            kvRequest.getReplicaResponse(),
-                            REPLICA_REMOVE,
+                            ACK_REMOVE,
                             message.getClientIp(),
                             message.getClientPort(),
                             message.getMessageID(),
-                            message.getHeadIp(),
                             message.getHeadPort()
                     );
+                } else {
+                    memory.storeMessage(key, message);
                 }
 
                 return null;
             }
-            case REPLICA_GET -> {
-                // System.out.println("REPLICA_GET");
+            case TAIL_GET -> {
                 ByteString key = kvRequest.getKey();
-                status = memory.isStored(key);
 
-                if (status == SUCCESS) {
-                    Pair<ByteString, Integer> keyValue = memory.get(key);
-
-                    // Respond to client with key value
-                    // System.out.println(port + ": " +  "------------ REP GET KEY AND VALUE ----------------");
-
-                    return buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
-                } else if (status == NO_KEY_ERR) {
-                    // ASSUMPTION: iterating backwards through replicas is correct
-                    int replicaCounter = kvRequest.getReplicaCounter();
-                    ByteString payload = buildResPayload(status);
-                    if (replicaCounter < 3) {
-                        // Forward request to previous replica
-                        requestReplica(
-                                key,
-                                ++replicaCounter,
-                                payload,
-                                REPLICA_GET,
-                                message.getClientIp(),
-                                message.getClientPort(),
-                                message.getMessageID(),
-                                message.getHeadIp(),
-                                message.getHeadPort()
-                        );
-                    } else {
-                        // Respond to client with no key value
-                        return payload;
-                    }
-                }
-                return null;
-            }
-            case TAIL_DONE -> {
-                ByteString key = kvRequest.getKey();
                 ArrayList<Message.Msg> storedMessages = memory.getStoredMessages(key);
-                if (storedMessages != null){
-                    memory.removeLock(key);
-                    for (Message.Msg msg : storedMessages) {
-                        response = this.exeCommand(msg);
-                        if (response != null) {
-                            udpClient.sendClientResponse(response.toByteArray(), msg.getClientIp(), msg.getClientPort());
-                        }
+                if (memory.getStoredMessages(key) == null || storedMessages.isEmpty()) {
+                    status = memory.isStored(key);
+                    if (status == SUCCESS) {
+                        Pair<ByteString, Integer> keyValue = memory.get(kvRequest.getKey());
+                        response = buildResPayload(status, keyValue.getFirst(), keyValue.getSecond());
+                    } else {
+                        response = buildResPayload(status);
                     }
+                    ackHead(
+                            key,
+                            ACK_GET,
+                            message.getClientIp(),
+                            message.getClientPort(),
+                            message.getMessageID(),
+                            message.getHeadPort()
+                    );
+
+                    RequestCache.put(message.getMessageID(), response);
+                    return response;
+                } else {
+                    memory.storeMessage(key, message);
+                }
+                return null;
+            }
+            case ACK_PUT -> {
+                ByteString key = kvRequest.getKey();
+
+                int counter = 1;
+                if (keyAck.containsKey(key)) {
+                    counter = keyAck.get(key) + 1;
+                }
+
+                // TODO: what happens if doesn't hit 3 ACKs? timeout?
+                if (counter == memberMonitor.getReplicas().size()) {
+                    ByteString value = kvRequest.getValue();
+                    int version = kvRequest.getVersion();
+                    sendFinalAck(
+                            key,
+                            value,
+                            version,
+                            message.getClientIp(),
+                            message.getClientPort(),
+                            message.getMessageID()
+                    );
+
+                    memory.put(key, value, version);
+                    keyAck.remove(key);
+                } else {
+                    keyAck.put(key, counter);
                 }
 
                 return null;
+            }
+            case ACK_REMOVE -> {
+                ByteString key = kvRequest.getKey();
+
+                int counter = 1;
+                if (keyAck.containsKey(key)) {
+                    counter = keyAck.get(key) + 1;
+                }
+
+                // TODO: what happens if doesn't hit 3 ACKs? timeout?
+                if (counter == memberMonitor.getReplicas().size()) {
+                    sendFinalAck(
+                            key,
+                            message.getClientIp(),
+                            message.getClientPort(),
+                            message.getMessageID()
+                    );
+
+                    memory.remove(key);
+                    keyAck.remove(key);
+                } else {
+                    keyAck.put(key, counter);
+                }
+
+                return null;
+            }
+            case ACK_GET -> {
+                ByteString key = kvRequest.getKey();
+                memory.removeLock(key);
+                return null;
+            }
+            case REPLICA_ACK_PUT -> {
+                ByteString key = kvRequest.getKey();
+                memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+                memory.removeLock(key);
+                return null;
+            }
+            case REPLICA_ACK_REMOVE -> {
+                ByteString key = kvRequest.getKey();
+                memory.remove(key);
+                memory.removeLock(key);
+                return null;
+            }
+            case TAIL_ACK_PUT -> {
+                ByteString key = kvRequest.getKey();
+                status = memory.put(key, kvRequest.getValue(), kvRequest.getVersion());
+                response = buildResPayload(status);
+                memory.removeLock(key);
+                RequestCache.put(message.getMessageID(), response);
+                return response;
+            }
+            case TAIL_ACK_REMOVE -> {
+                ByteString key = kvRequest.getKey();
+                status = memory.remove(key);
+                response = buildResPayload(status);
+                memory.removeLock(key);
+                RequestCache.put(message.getMessageID(), response);
+                return response;
             }
             default -> {
                 status = UKN_CMD;
@@ -515,71 +526,66 @@ public class Server {
     }
 
     // requestReplica for GET/REMOVEs
-    public void requestReplica(ByteString key, int replicaCounter, ByteString response, int command, String clientIp, int clientPort, ByteString messageID, String headIp, int headPort) {
+    public void requestReplicas(ByteString key, int command, String clientIp, int clientPort, ByteString messageID, String headIp, int headPort) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(command)
                 .setKey(key)
-                .setReplicaCounter(replicaCounter)
-                .setReplicaResponse(response)
                 .build();
 
-        sendRequest(command, clientIp, clientPort, messageID, replicaRequest, headIp, headPort);
+        sendRequest(clientIp, clientPort, messageID, replicaRequest, headIp, headPort);
     }
 
-    // requestReplica for GET/REMOVEs from the head node
-    public void requestReplica(ByteString key, int replicaCounter, ByteString response, int command, String clientIp, int clientPort, ByteString messageID){
-        requestReplica(key, replicaCounter, response, command, clientIp, clientPort, messageID, this.ip, this.port);
+    // requestReplica for head GET/REMOVEs from the head node
+    public void requestReplicas(ByteString key, int command, String clientIp, int clientPort, ByteString messageID) {
+        requestReplicas(key, command, clientIp, clientPort, messageID, this.ip, this.port);
     }
 
     // requestReplica for PUTs
-    public void requestReplica(ByteString key, ByteString value, int replicaCounter, int version, ByteString response, int command, String clientIp, int clientPort, ByteString messageID, String headIp, int headPort) {
+    public void requestReplicas(ByteString key, ByteString value, int version, int command, String clientIp, int clientPort, ByteString messageID, String headIp, int headPort) {
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
                 .setCommand(command)
                 .setKey(key)
                 .setValue(value)
                 .setVersion(version)
-                .setReplicaCounter(replicaCounter)
-                .setReplicaResponse(response)
                 .build();
 
-        sendRequest(command, clientIp, clientPort, messageID, replicaRequest, headIp, headPort);
+        sendRequest(clientIp, clientPort, messageID, replicaRequest, headIp, headPort);
     }
 
     // requestReplica for PUTs from the head node
-    public void requestReplica(ByteString key, ByteString value, int replicaCounter, int version, ByteString response, int command, String clientIp, int clientPort, ByteString messageID){
-        requestReplica(key, value, replicaCounter, version, response, command, clientIp, clientPort, messageID, this.ip, this.port);
+    public void requestReplicas(ByteString key, ByteString value, int version, int command, String clientIp, int clientPort, ByteString messageID){
+        requestReplicas(key, value, version, command, clientIp, clientPort, messageID, this.ip, this.port);
     }
 
-    private void sendRequest(int command, String clientIp, int clientPort, ByteString messageID, KeyValueRequest.KVRequest replicaRequest, String headIp, int headPort) {
-        AddressPair nextNode = command == REPLICA_GET ? consistentHash.getPreviousNode(new AddressPair(ip, port)) : consistentHash.getNextNode(new AddressPair(ip, port));
-
+    private void sendRequest(String clientIp, int clientPort, ByteString messageID, KeyValueRequest.KVRequest replicaRequest, String headIp, int headPort) {
         try {
-            udpClient.replicaRequest(
-                    InetAddress.getByName(nextNode.getIp()),
-                    nextNode.getPort(),
-                    replicaRequest.toByteArray(),
-                    clientIp,
-                    clientPort,
-                    messageID,
-                    headIp,
-                    headPort
-            );
+            for (AddressPair node : memberMonitor.getReplicas()) {
+                udpClient.replicaRequest(
+                        InetAddress.getByName("localhost"),/*node.getIp()),*/
+                        node.getPort(),
+                        replicaRequest.toByteArray(),
+                        clientIp,
+                        clientPort,
+                        messageID,
+                        headIp,
+                        headPort
+                );
+            }
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void requestTailRead(ByteString key, String clientIp, int clientPort, ByteString messageID) {
-        //System.out.println("------------ requestTailRead ----------------");
         KeyValueRequest.KVRequest replicaRequest = KeyValueRequest.KVRequest.newBuilder()
-                .setCommand(REPLICA_GET)
+                .setCommand(TAIL_GET)
                 .setKey(key)
-                .setReplicaCounter(0)
                 .build();
         AddressPair tailNode = memberMonitor.getReplicas().get(memberMonitor.getReplicas().size()-1);
+
         try {
             udpClient.replicaRequest(
-                    InetAddress.getByName(tailNode.getIp()),
+                    InetAddress.getByName("localhost"),
                     tailNode.getPort(),
                     replicaRequest.toByteArray(),
                     clientIp,
@@ -593,14 +599,150 @@ public class Server {
         }
     }
 
-    private void tailDone(String headIp, int headPort, ByteString key) {
-        // System.out.println("--------------Sending tail done--------------");
-        // System.out.println(this.port + ": Head Port is: " + headPort);
-        KeyValueRequest.KVRequest tailDoneRequest = KeyValueRequest.KVRequest.newBuilder()
-                .setCommand(TAIL_DONE)
+    public void ackHead(ByteString key, ByteString value, int version, int command, String clientIp, int clientPort, ByteString messageID, int headPort) {
+        KeyValueRequest.KVRequest request = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(command)
+                .setKey(key)
+                .setValue(value)
+                .setVersion(version)
+                .build();
+
+        try {
+            udpClient.replicaRequest(
+                    InetAddress.getByName("localhost"),
+                    headPort,
+                    request.toByteArray(),
+                    clientIp,
+                    clientPort,
+                    messageID,
+                    this.ip,
+                    this.port
+            );
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void ackHead(ByteString key, int command, String clientIp, int clientPort, ByteString messageID, int headPort) {
+        KeyValueRequest.KVRequest request = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(command)
                 .setKey(key)
                 .build();
-            
-        udpClient.sendTailDone(headIp, headPort, tailDoneRequest.toByteArray());
+
+        try {
+            udpClient.replicaRequest(
+                    InetAddress.getByName("localhost"),
+                    headPort,
+                    request.toByteArray(),
+                    clientIp,
+                    clientPort,
+                    messageID,
+                    this.ip,
+                    this.port
+            );
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // for PUT
+    public void sendFinalAck(ByteString key, ByteString value, int version, String clientIp, int clientPort, ByteString messageID) {
+        // send REPLICA_ACK_PUT to replicas (not tail)
+        KeyValueRequest.KVRequest request = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(REPLICA_ACK_PUT)
+                .setKey(key)
+                .setValue(value)
+                .setVersion(version)
+                .build();
+
+        ArrayList<AddressPair> replicaList = memberMonitor.getReplicas();
+        for (int i = 0; i < replicaList.size()-1; i++) {
+            try {
+                udpClient.replicaRequest(
+                        InetAddress.getByName("localhost"),
+                        replicaList.get(i).getPort(),
+                        request.toByteArray(),
+                        clientIp,
+                        clientPort,
+                        messageID,
+                        ip,
+                        port
+                );
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        // send TAIL_ACK_PUT to tail
+        KeyValueRequest.KVRequest tailRequest = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(TAIL_ACK_PUT)
+                .setKey(key)
+                .setValue(value)
+                .setVersion(version)
+                .build();
+
+
+        try {
+            udpClient.replicaRequest(
+                    InetAddress.getByName("localhost"),
+                    replicaList.get(replicaList.size()-1).getPort(),
+                    tailRequest.toByteArray(),
+                    clientIp,
+                    clientPort,
+                    messageID,
+                    this.ip,
+                    this.port
+            );
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // for REMOVE
+    public void sendFinalAck(ByteString key, String clientIp, int clientPort, ByteString messageID) {
+        // send REPLICA_ACK_PUT to replicas (not tail)
+        KeyValueRequest.KVRequest request = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(REPLICA_ACK_REMOVE)
+                .setKey(key)
+                .build();
+
+        ArrayList<AddressPair> replicaList = memberMonitor.getReplicas();
+        for (int i = 0; i < replicaList.size()-1; i++) {
+            try {
+                udpClient.replicaRequest(
+                        InetAddress.getByName("localhost"),
+                        replicaList.get(i).getPort(),
+                        request.toByteArray(),
+                        clientIp,
+                        clientPort,
+                        messageID,
+                        ip,
+                        port
+                );
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        // send TAIL_ACK_PUT to tail
+        KeyValueRequest.KVRequest tailRequest = KeyValueRequest.KVRequest.newBuilder()
+                .setCommand(TAIL_ACK_REMOVE)
+                .setKey(key)
+                .build();
+
+        try {
+            udpClient.replicaRequest(
+                    InetAddress.getByName("localhost"),
+                    replicaList.get(replicaList.size()-1).getPort(),
+                    tailRequest.toByteArray(),
+                    clientIp,
+                    clientPort,
+                    messageID,
+                    this.ip,
+                    this.port
+            );
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

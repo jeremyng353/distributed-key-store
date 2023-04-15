@@ -19,7 +19,7 @@ public class MemberMonitor implements Runnable {
     private final Random random;
     private final UDPClient udpClient;
     private final AddressPair self;
-    private final ConsistentHash consistentHash;
+    private ConsistentHash consistentHash;
     private ArrayList<AddressPair> replicas;
     private ArrayList<AddressPair> aliveReplicas;
 
@@ -28,25 +28,30 @@ public class MemberMonitor implements Runnable {
     final int NUM_NODES = 40;
     final int SAFETY_MARGIN = 250;
 
-    public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress, ConsistentHash consistentHash) {
+    public MemberMonitor(ArrayList<AddressPair> initialMembership, AddressPair selfAddress) {
         this.nodeStore = new ConcurrentHashMap<>();
         this.random = new Random();
         this.udpClient = new UDPClient();
         this.self = selfAddress;
-        this.consistentHash = consistentHash;
+
 
         this.replicas = new ArrayList<>();
         this.aliveReplicas = new ArrayList<>();
+
+        Long currentTime = System.currentTimeMillis();
+        for (AddressPair addressPair : initialMembership) {
+            nodeStore.put(addressPair, currentTime);
+        }
+    }
+
+    public void setConsistentHash(ConsistentHash consistentHash) {
+        this.consistentHash = consistentHash;
+
         AddressPair curNode = this.self;
         for (int i = 0; i < 3; i++) {
             curNode = consistentHash.getNextNode(curNode);
             replicas.add(curNode);
             aliveReplicas.add(curNode);
-        }
-
-        Long currentTime = System.currentTimeMillis();
-        for (AddressPair addressPair : initialMembership) {
-            nodeStore.put(addressPair, currentTime);
         }
     }
 

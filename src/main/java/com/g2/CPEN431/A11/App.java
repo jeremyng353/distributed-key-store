@@ -27,7 +27,11 @@ public class App
         DatagramSocket socket = new DatagramSocket(port);
         byte[] buf = new byte[MAX_INCOMING_PACKET_SIZE];
 
-        ConsistentHash consistentHash = new ConsistentHash(currentIp, port);
+        UDPClient udpClient = new UDPClient();
+        Server server = new Server(port);
+        Memory memory = new Memory(server, udpClient);
+
+        ConsistentHash consistentHash = new ConsistentHash(currentIp, port, memory);
 
         // read list of nodes from nodes.txt
         File nodeList = new File("nodes.txt");
@@ -41,8 +45,11 @@ public class App
             initialNodes.add(addressPair);
         }
 
+        MemberMonitor memberMonitor = new MemberMonitor(initialNodes, new AddressPair(currentIp, port));
+
+        memberMonitor.setConsistentHash(consistentHash);
+
         // create a thread to monitor the other servers in the system
-        MemberMonitor memberMonitor = new MemberMonitor(initialNodes, new AddressPair(currentIp, port), consistentHash);
         TimerTask pullEpidemic = new TimerTask() {
             @Override
             public void run() {
@@ -52,17 +59,14 @@ public class App
         Timer timer = new Timer("Send Timer");
         timer.scheduleAtFixedRate(pullEpidemic, DEFAULT_INTERVAL, DEFAULT_INTERVAL);
 
+        server.setMemory(memory);
+        server.setConsistentHash(consistentHash);
+        server.setMemoryMonitor(memberMonitor);
+
         // print listening port to console
         int localPort = socket.getLocalPort();
         String localAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println("Server is Listening at " + localAddress + " on port " + localPort + "...");
-
-        Server server = new Server(port, consistentHash, memberMonitor);
-
-        // initialize different components
-
-        UDPClient udpClient = new UDPClient();
-        Memory memory = new Memory(server, udpClient);
 
         while (true) {
             try {
@@ -88,22 +92,13 @@ public class App
                     kvResponse = server.exeCommand(message);
                 }
 
-                int packetPort = packet.getPort();
-                InetAddress address = packet.getAddress();
-
-                if (message.hasClientPort() && message.hasClientIp()) {
-
-                    packetPort = message.getClientPort();
-                    address = InetAddress.getByName(message.getClientIp());
-                }
-
                 if (kvResponse != null) {
                     // build checksum and response message
                     long checksum = Server.buildChecksum(message.getMessageID(), kvResponse);
                     byte[] resMessage = Server.buildMessage(message.getMessageID(), kvResponse, checksum);
 
                     // load message into packet to send back to client
-                    packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
+                    packet = new DatagramPacket(resMessage, resMessage.length, InetAddress.getByName(message.getClientIp()), message.getClientPort());
                     socket.send(packet);
                 }
 
