@@ -1,9 +1,9 @@
-package com.g2.CPEN431.A11;
+package com.g2.CPEN431.A12;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
 import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
 import ca.NetSysLab.ProtocolBuffers.Message;
-import com.g2.CPEN431.A11.util.ByteOrder;
+import com.g2.CPEN431.A12.util.ByteOrder;
 import com.google.protobuf.ByteString;
 
 import java.io.ByteArrayOutputStream;

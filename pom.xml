@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.g2.CPEN431.A7</groupId>
-  <artifactId>CPEN431_2023_A7</artifactId>
+  <groupId>com.g2.CPEN431.A12</groupId>
+  <artifactId>CPEN431_2023_A12</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -29,7 +29,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.g2.CPEN431.A11.App</mainClass>
+              <mainClass>com.g2.CPEN431.A12.App</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>

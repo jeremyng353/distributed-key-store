@@ -1,4 +1,4 @@
-package com.g2.CPEN431.A11;
+package com.g2.CPEN431.A12;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
 import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.g2.CPEN431.A11.Server.GET_MS_LIST;
+import static com.g2.CPEN431.A12.Server.GET_MS_LIST;
 
 public class MemberMonitor implements Runnable {
 
