@@ -6,17 +6,17 @@ package ca.NetSysLab.ProtocolBuffers;
 public final class Message {
   private Message() {}
   public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistryLite registry) {
+      com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
   public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistry registry) {
+      com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
-            (com.google.protobuf.ExtensionRegistryLite) registry);
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface MsgOrBuilder extends
-          // @@protoc_insertion_point(interface_extends:Msg)
-          com.google.protobuf.MessageOrBuilder {
+      // @@protoc_insertion_point(interface_extends:Msg)
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>bytes messageID = 1;</code>
@@ -51,7 +51,7 @@ public final class Message {
      * @return The bytes for clientIp.
      */
     com.google.protobuf.ByteString
-    getClientIpBytes();
+        getClientIpBytes();
 
     /**
      * <code>optional int32 clientPort = 5;</code>
@@ -63,15 +63,43 @@ public final class Message {
      * @return The clientPort.
      */
     int getClientPort();
+
+    /**
+     * <code>optional string primaryIp = 6;</code>
+     * @return Whether the primaryIp field is set.
+     */
+    boolean hasPrimaryIp();
+    /**
+     * <code>optional string primaryIp = 6;</code>
+     * @return The primaryIp.
+     */
+    java.lang.String getPrimaryIp();
+    /**
+     * <code>optional string primaryIp = 6;</code>
+     * @return The bytes for primaryIp.
+     */
+    com.google.protobuf.ByteString
+        getPrimaryIpBytes();
+
+    /**
+     * <code>optional int32 primaryPort = 7;</code>
+     * @return Whether the primaryPort field is set.
+     */
+    boolean hasPrimaryPort();
+    /**
+     * <code>optional int32 primaryPort = 7;</code>
+     * @return The primaryPort.
+     */
+    int getPrimaryPort();
   }
   /**
    * Protobuf type {@code Msg}
    */
   public static final class Msg extends
-          com.google.protobuf.GeneratedMessageV3 implements
-          // @@protoc_insertion_point(message_implements:Msg)
-          MsgOrBuilder {
-    private static final long serialVersionUID = 0L;
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Msg)
+      MsgOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Msg.newBuilder() to construct.
     private Msg(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -80,12 +108,13 @@ public final class Message {
       messageID_ = com.google.protobuf.ByteString.EMPTY;
       payload_ = com.google.protobuf.ByteString.EMPTY;
       clientIp_ = "";
+      primaryIp_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
-            UnusedPrivateParameter unused) {
+        UnusedPrivateParameter unused) {
       return new Msg();
     }
 
@@ -95,16 +124,16 @@ public final class Message {
       return this.unknownFields;
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+        getDescriptor() {
       return ca.NetSysLab.ProtocolBuffers.Message.internal_static_Msg_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+        internalGetFieldAccessorTable() {
       return ca.NetSysLab.ProtocolBuffers.Message.internal_static_Msg_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      ca.NetSysLab.ProtocolBuffers.Message.Msg.class, ca.NetSysLab.ProtocolBuffers.Message.Msg.Builder.class);
+          .ensureFieldAccessorsInitialized(
+              ca.NetSysLab.ProtocolBuffers.Message.Msg.class, ca.NetSysLab.ProtocolBuffers.Message.Msg.Builder.class);
     }
 
     private int bitField0_;
@@ -162,8 +191,8 @@ public final class Message {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clientIp_ = s;
         return s;
@@ -175,12 +204,12 @@ public final class Message {
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-    getClientIpBytes() {
+        getClientIpBytes() {
       java.lang.Object ref = clientIp_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         clientIp_ = b;
         return b;
       } else {
@@ -207,6 +236,72 @@ public final class Message {
       return clientPort_;
     }
 
+    public static final int PRIMARYIP_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object primaryIp_ = "";
+    /**
+     * <code>optional string primaryIp = 6;</code>
+     * @return Whether the primaryIp field is set.
+     */
+    @java.lang.Override
+    public boolean hasPrimaryIp() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>optional string primaryIp = 6;</code>
+     * @return The primaryIp.
+     */
+    @java.lang.Override
+    public java.lang.String getPrimaryIp() {
+      java.lang.Object ref = primaryIp_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        primaryIp_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string primaryIp = 6;</code>
+     * @return The bytes for primaryIp.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPrimaryIpBytes() {
+      java.lang.Object ref = primaryIp_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        primaryIp_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PRIMARYPORT_FIELD_NUMBER = 7;
+    private int primaryPort_ = 0;
+    /**
+     * <code>optional int32 primaryPort = 7;</code>
+     * @return Whether the primaryPort field is set.
+     */
+    @java.lang.Override
+    public boolean hasPrimaryPort() {
+      return ((bitField0_ & 0x00000008) != 0);
+    }
+    /**
+     * <code>optional int32 primaryPort = 7;</code>
+     * @return The primaryPort.
+     */
+    @java.lang.Override
+    public int getPrimaryPort() {
+      return primaryPort_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -220,7 +315,7 @@ public final class Message {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+                        throws java.io.IOException {
       if (!messageID_.isEmpty()) {
         output.writeBytes(1, messageID_);
       }
@@ -236,6 +331,12 @@ public final class Message {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeInt32(5, clientPort_);
       }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, primaryIp_);
+      }
+      if (((bitField0_ & 0x00000008) != 0)) {
+        output.writeInt32(7, primaryPort_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -247,22 +348,29 @@ public final class Message {
       size = 0;
       if (!messageID_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-                .computeBytesSize(1, messageID_);
+          .computeBytesSize(1, messageID_);
       }
       if (!payload_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-                .computeBytesSize(2, payload_);
+          .computeBytesSize(2, payload_);
       }
       if (checkSum_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-                .computeFixed64Size(3, checkSum_);
+          .computeFixed64Size(3, checkSum_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, clientIp_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(5, clientPort_);
+          .computeInt32Size(5, clientPort_);
+      }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, primaryIp_);
+      }
+      if (((bitField0_ & 0x00000008) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, primaryPort_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -272,7 +380,7 @@ public final class Message {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-        return true;
+       return true;
       }
       if (!(obj instanceof ca.NetSysLab.ProtocolBuffers.Message.Msg)) {
         return super.equals(obj);
@@ -280,20 +388,30 @@ public final class Message {
       ca.NetSysLab.ProtocolBuffers.Message.Msg other = (ca.NetSysLab.ProtocolBuffers.Message.Msg) obj;
 
       if (!getMessageID()
-              .equals(other.getMessageID())) return false;
+          .equals(other.getMessageID())) return false;
       if (!getPayload()
-              .equals(other.getPayload())) return false;
+          .equals(other.getPayload())) return false;
       if (getCheckSum()
-              != other.getCheckSum()) return false;
+          != other.getCheckSum()) return false;
       if (hasClientIp() != other.hasClientIp()) return false;
       if (hasClientIp()) {
         if (!getClientIp()
-                .equals(other.getClientIp())) return false;
+            .equals(other.getClientIp())) return false;
       }
       if (hasClientPort() != other.hasClientPort()) return false;
       if (hasClientPort()) {
         if (getClientPort()
-                != other.getClientPort()) return false;
+            != other.getClientPort()) return false;
+      }
+      if (hasPrimaryIp() != other.hasPrimaryIp()) return false;
+      if (hasPrimaryIp()) {
+        if (!getPrimaryIp()
+            .equals(other.getPrimaryIp())) return false;
+      }
+      if (hasPrimaryPort() != other.hasPrimaryPort()) return false;
+      if (hasPrimaryPort()) {
+        if (getPrimaryPort()
+            != other.getPrimaryPort()) return false;
       }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
@@ -312,7 +430,7 @@ public final class Message {
       hash = (53 * hash) + getPayload().hashCode();
       hash = (37 * hash) + CHECKSUM_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getCheckSum());
+          getCheckSum());
       if (hasClientIp()) {
         hash = (37 * hash) + CLIENTIP_FIELD_NUMBER;
         hash = (53 * hash) + getClientIp().hashCode();
@@ -321,79 +439,87 @@ public final class Message {
         hash = (37 * hash) + CLIENTPORT_FIELD_NUMBER;
         hash = (53 * hash) + getClientPort();
       }
+      if (hasPrimaryIp()) {
+        hash = (37 * hash) + PRIMARYIP_FIELD_NUMBER;
+        hash = (53 * hash) + getPrimaryIp().hashCode();
+      }
+      if (hasPrimaryPort()) {
+        hash = (37 * hash) + PRIMARYPORT_FIELD_NUMBER;
+        hash = (53 * hash) + getPrimaryPort();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          .parseWithIOException(PARSER, input);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          .parseWithIOException(PARSER, input);
     }
     public static ca.NetSysLab.ProtocolBuffers.Message.Msg parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -407,12 +533,12 @@ public final class Message {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -420,20 +546,20 @@ public final class Message {
      * Protobuf type {@code Msg}
      */
     public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:Msg)
-            ca.NetSysLab.ProtocolBuffers.Message.MsgOrBuilder {
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Msg)
+        ca.NetSysLab.ProtocolBuffers.Message.MsgOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+          getDescriptor() {
         return ca.NetSysLab.ProtocolBuffers.Message.internal_static_Msg_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+          internalGetFieldAccessorTable() {
         return ca.NetSysLab.ProtocolBuffers.Message.internal_static_Msg_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        ca.NetSysLab.ProtocolBuffers.Message.Msg.class, ca.NetSysLab.ProtocolBuffers.Message.Msg.Builder.class);
+            .ensureFieldAccessorsInitialized(
+                ca.NetSysLab.ProtocolBuffers.Message.Msg.class, ca.NetSysLab.ProtocolBuffers.Message.Msg.Builder.class);
       }
 
       // Construct using ca.NetSysLab.ProtocolBuffers.Message.Msg.newBuilder()
@@ -442,7 +568,7 @@ public final class Message {
       }
 
       private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
 
       }
@@ -455,12 +581,14 @@ public final class Message {
         checkSum_ = 0L;
         clientIp_ = "";
         clientPort_ = 0;
+        primaryIp_ = "";
+        primaryPort_ = 0;
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
+          getDescriptorForType() {
         return ca.NetSysLab.ProtocolBuffers.Message.internal_static_Msg_descriptor;
       }
 
@@ -506,6 +634,14 @@ public final class Message {
           result.clientPort_ = clientPort_;
           to_bitField0_ |= 0x00000002;
         }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.primaryIp_ = primaryIp_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.primaryPort_ = primaryPort_;
+          to_bitField0_ |= 0x00000008;
+        }
         result.bitField0_ |= to_bitField0_;
       }
 
@@ -515,30 +651,30 @@ public final class Message {
       }
       @java.lang.Override
       public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
         return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -570,6 +706,14 @@ public final class Message {
         if (other.hasClientPort()) {
           setClientPort(other.getClientPort());
         }
+        if (other.hasPrimaryIp()) {
+          primaryIp_ = other.primaryIp_;
+          bitField0_ |= 0x00000020;
+          onChanged();
+        }
+        if (other.hasPrimaryPort()) {
+          setPrimaryPort(other.getPrimaryPort());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -582,9 +726,9 @@ public final class Message {
 
       @java.lang.Override
       public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
@@ -621,6 +765,16 @@ public final class Message {
                 bitField0_ |= 0x00000010;
                 break;
               } // case 40
+              case 50: {
+                primaryIp_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 56: {
+                primaryPort_ = input.readInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -717,7 +871,7 @@ public final class Message {
        * @return This builder for chaining.
        */
       public Builder setCheckSum(long value) {
-
+        
         checkSum_ = value;
         bitField0_ |= 0x00000004;
         onChanged();
@@ -750,7 +904,7 @@ public final class Message {
         java.lang.Object ref = clientIp_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
-                  (com.google.protobuf.ByteString) ref;
+              (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           clientIp_ = s;
           return s;
@@ -763,12 +917,12 @@ public final class Message {
        * @return The bytes for clientIp.
        */
       public com.google.protobuf.ByteString
-      getClientIpBytes() {
+          getClientIpBytes() {
         java.lang.Object ref = clientIp_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
           clientIp_ = b;
           return b;
         } else {
@@ -781,7 +935,7 @@ public final class Message {
        * @return This builder for chaining.
        */
       public Builder setClientIp(
-              java.lang.String value) {
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         clientIp_ = value;
         bitField0_ |= 0x00000008;
@@ -804,7 +958,7 @@ public final class Message {
        * @return This builder for chaining.
        */
       public Builder setClientIpBytes(
-              com.google.protobuf.ByteString value) {
+          com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         clientIp_ = value;
@@ -836,7 +990,7 @@ public final class Message {
        * @return This builder for chaining.
        */
       public Builder setClientPort(int value) {
-
+        
         clientPort_ = value;
         bitField0_ |= 0x00000010;
         onChanged();
@@ -852,15 +1006,134 @@ public final class Message {
         onChanged();
         return this;
       }
+
+      private java.lang.Object primaryIp_ = "";
+      /**
+       * <code>optional string primaryIp = 6;</code>
+       * @return Whether the primaryIp field is set.
+       */
+      public boolean hasPrimaryIp() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <code>optional string primaryIp = 6;</code>
+       * @return The primaryIp.
+       */
+      public java.lang.String getPrimaryIp() {
+        java.lang.Object ref = primaryIp_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          primaryIp_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string primaryIp = 6;</code>
+       * @return The bytes for primaryIp.
+       */
+      public com.google.protobuf.ByteString
+          getPrimaryIpBytes() {
+        java.lang.Object ref = primaryIp_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          primaryIp_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string primaryIp = 6;</code>
+       * @param value The primaryIp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPrimaryIp(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        primaryIp_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string primaryIp = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPrimaryIp() {
+        primaryIp_ = getDefaultInstance().getPrimaryIp();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string primaryIp = 6;</code>
+       * @param value The bytes for primaryIp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPrimaryIpBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        primaryIp_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+
+      private int primaryPort_ ;
+      /**
+       * <code>optional int32 primaryPort = 7;</code>
+       * @return Whether the primaryPort field is set.
+       */
+      @java.lang.Override
+      public boolean hasPrimaryPort() {
+        return ((bitField0_ & 0x00000040) != 0);
+      }
+      /**
+       * <code>optional int32 primaryPort = 7;</code>
+       * @return The primaryPort.
+       */
+      @java.lang.Override
+      public int getPrimaryPort() {
+        return primaryPort_;
+      }
+      /**
+       * <code>optional int32 primaryPort = 7;</code>
+       * @param value The primaryPort to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPrimaryPort(int value) {
+        
+        primaryPort_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 primaryPort = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPrimaryPort() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        primaryPort_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
-              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -879,12 +1152,12 @@ public final class Message {
     }
 
     private static final com.google.protobuf.Parser<Msg>
-            PARSER = new com.google.protobuf.AbstractParser<Msg>() {
+        PARSER = new com.google.protobuf.AbstractParser<Msg>() {
       @java.lang.Override
       public Msg parsePartialFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws com.google.protobuf.InvalidProtocolBufferException {
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
         Builder builder = newBuilder();
         try {
           builder.mergeFrom(input, extensionRegistry);
@@ -894,7 +1167,7 @@ public final class Message {
           throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
           throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                  .setUnfinishedMessage(builder.buildPartial());
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -917,36 +1190,38 @@ public final class Message {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_Msg_descriptor;
-  private static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_Msg_fieldAccessorTable;
+    internal_static_Msg_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Msg_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
+      getDescriptor() {
     return descriptor;
   }
   private static  com.google.protobuf.Descriptors.FileDescriptor
-          descriptor;
+      descriptor;
   static {
     java.lang.String[] descriptorData = {
-            "\n\rMessage.proto\"\207\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
-                    "(\014\022\017\n\007payload\030\002 \001(\014\022\020\n\010checkSum\030\003 \001(\006\022\025\n" +
-                    "\010clientIp\030\004 \001(\tH\000\210\001\001\022\027\n\nclientPort\030\005 \001(\005" +
-                    "H\001\210\001\001B\013\n\t_clientIpB\r\n\013_clientPortB\'\n\034ca." +
-                    "NetSysLab.ProtocolBuffersB\007Messageb\006prot" +
-                    "o3"
+      "\n\rMessage.proto\"\327\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
+      "(\014\022\017\n\007payload\030\002 \001(\014\022\020\n\010checkSum\030\003 \001(\006\022\025\n" +
+      "\010clientIp\030\004 \001(\tH\000\210\001\001\022\027\n\nclientPort\030\005 \001(\005" +
+      "H\001\210\001\001\022\026\n\tprimaryIp\030\006 \001(\tH\002\210\001\001\022\030\n\013primary" +
+      "Port\030\007 \001(\005H\003\210\001\001B\013\n\t_clientIpB\r\n\013_clientP" +
+      "ortB\014\n\n_primaryIpB\016\n\014_primaryPortB\'\n\034ca." +
+      "NetSysLab.ProtocolBuffersB\007Messageb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
-            .internalBuildGeneratedFileFrom(descriptorData,
-                    new com.google.protobuf.Descriptors.FileDescriptor[] {
-                    });
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        });
     internal_static_Msg_descriptor =
-            getDescriptor().getMessageTypes().get(0);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_Msg_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_Msg_descriptor,
-            new java.lang.String[] { "MessageID", "Payload", "CheckSum", "ClientIp", "ClientPort", "ClientIp", "ClientPort", });
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Msg_descriptor,
+        new java.lang.String[] { "MessageID", "Payload", "CheckSum", "ClientIp", "ClientPort", "PrimaryIp", "PrimaryPort", "ClientIp", "ClientPort", "PrimaryIp", "PrimaryPort", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

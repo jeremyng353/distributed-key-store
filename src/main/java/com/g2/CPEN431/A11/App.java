@@ -67,6 +67,13 @@ public class App
                 socket.receive(packet);
                 Message.Msg message = Server.readRequest(packet);
 
+                if (!message.hasClientIp() || !message.hasClientPort()) {
+                    message = Message.Msg.newBuilder(message)
+                            .setClientIp(message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress())
+                            .setClientPort(message.hasClientPort() ? message.getClientPort() : packet.getPort())
+                            .build();
+                }
+
                 ByteString kvResponse;
                 // if message cached retrieved cached response otherwise execute command
                 if (RequestCache.isStored(message.getMessageID())) {
@@ -75,22 +82,13 @@ public class App
                     kvResponse = server.exeCommand(message, packet);
                 }
 
-                int packetPort = packet.getPort();
-                InetAddress address = packet.getAddress();
-
-                if (message.hasClientPort() && message.hasClientIp()) {
-
-                    packetPort = message.getClientPort();
-                    address = InetAddress.getByName(message.getClientIp());
-                }
-
                 if (kvResponse != null) {
                     // build checksum and response message
                     long checksum = Server.buildChecksum(message.getMessageID(), kvResponse);
                     byte[] resMessage = Server.buildMessage(message.getMessageID(), kvResponse, checksum);
 
                     // load message into packet to send back to client
-                    packet = new DatagramPacket(resMessage, resMessage.length, address, packetPort);
+                    packet = new DatagramPacket(resMessage, resMessage.length, InetAddress.getByName(message.getClientIp()), message.getClientPort());
                     socket.send(packet);
                 }
 

@@ -15,14 +15,16 @@ import java.util.zip.CRC32;
 public class UDPClient {
     private static final int MAX_PACKET_SIZE = 16384;
     private static final int MAX_RETRIES = 3;
-    private static final int DEFAULT_TIMEOUT = 100;
+    private static final int DEFAULT_TIMEOUT = 2000;
 
     private DatagramSocket socket = null;
+    private int socketPort;
 
     public UDPClient() {
         try {
             this.socket = new DatagramSocket();
             socket.setSoTimeout(DEFAULT_TIMEOUT);
+            this.socketPort = this.socket.getLocalPort();
         } catch (IOException e) {
             System.err.println("Couldn't open socket!");
             e.printStackTrace();
@@ -180,6 +182,61 @@ public class UDPClient {
         }
     }
 
+    public void waitReplicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, String clientIp, int clientPort, ByteString messageID) {
+        try {
+            byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload);
+            long checksum = computeChecksum(checksumByteArray);
+
+            byte[] messageBuffer = Message.Msg.newBuilder()
+                    .setPayload(ByteString.copyFrom(payload))
+                    .setCheckSum(checksum)
+                    .setClientIp(clientIp)
+                    .setClientPort(clientPort)
+                    .setMessageID(messageID)
+                    .setPrimaryPort(socketPort)
+                    .build()
+                    .toByteArray();
+
+            // If the buffer is larger than 16 KB, then truncate
+            int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+            DatagramPacket replicaPacket = new DatagramPacket(
+                    messageBuffer,
+                    messageBufferSize,
+                    InetAddress.getByName("localhost"),
+                    replicaPort
+            );
+
+            socket.send(replicaPacket);
+
+            byte[] buf = new byte[16 * 1024];
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            socket.receive(packet);
+        } catch (SocketTimeoutException e) {
+            System.out.println("packet sent to " + replicaPort + " timed out");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void reply(DatagramPacket packet) {
+        try {
+            byte[] messageBuffer = {0};
+
+            // If the buffer is larger than 16 KB, then truncate
+            int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+            DatagramPacket ackPacket = new DatagramPacket(
+                    messageBuffer,
+                    messageBufferSize,
+                    InetAddress.getByName("localhost"),
+                    packet.getPort()
+            );
+
+            socket.send(ackPacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void sendClientResponse(byte[] payload, String clientIp, int clientPort) {
         byte[] uuid = new byte[0];
         byte[] checksumByteArray = new byte[0];
@@ -207,7 +264,7 @@ public class UDPClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
+
+
 }
