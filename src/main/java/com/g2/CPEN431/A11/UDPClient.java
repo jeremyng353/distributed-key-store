@@ -149,66 +149,72 @@ public class UDPClient {
     public void replicaRequest(InetAddress replicaAddress, int replicaPort, byte[] payload, int command, String clientIp, int clientPort, ByteString messageID) {
         // TODO: no timeout for this function since we don't expect a response from replicas, but
         //  maybe we should have a response...
-
         int current_timeout = DEFAULT_TIMEOUT;
+        try {
+            DatagramSocket replicaSocket = new DatagramSocket();
 
-        for (int i = 0; i <= MAX_RETRIES; i++) {
-            try {
+            for (int i = 0; i <= MAX_RETRIES; i++) {
                 try {
-                    socket.setSoTimeout(current_timeout);
-                } catch (SocketException e) {
-                    e.printStackTrace();
-                }
+                    try {
+                        replicaSocket.setSoTimeout(current_timeout);
+                    } catch (SocketException e) {
+                        e.printStackTrace();
+                    }
 
                     byte[] checksumByteArray = concatenateByteArrays(messageID.toByteArray(), payload);
-                long checksum = computeChecksum(checksumByteArray);
+                    long checksum = computeChecksum(checksumByteArray);
 
-                Message.Msg.Builder messageBufferBuilder = Message.Msg.newBuilder()
-                        .setPayload(ByteString.copyFrom(payload))
-                        .setCheckSum(checksum);
+                    Message.Msg.Builder messageBufferBuilder = Message.Msg.newBuilder()
+                            .setPayload(ByteString.copyFrom(payload))
+                            .setCheckSum(checksum);
 
-                if (command == Server.GET || command == Server.REPLICA_GET) {
-                    messageBufferBuilder.setClientIp(clientIp)
-                            .setClientPort(clientPort);
-                }
-
-                byte[] messageBuffer = messageBufferBuilder.setMessageID(messageID)
-                        .build()
-                        .toByteArray();
-
-                // If the buffer is larger than 16 KB, then truncate
-                int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
-                DatagramPacket replicaPacket = new DatagramPacket(
-                        messageBuffer,
-                        messageBufferSize,
-                        InetAddress.getByName("localhost"),
-                        replicaPort
-                );
-
-                socket.send(replicaPacket);
-
-                if (command != Server.GET && command != Server.REPLICA_GET) {
-                    byte[] rcvBuf = new byte[MAX_PACKET_SIZE];
-                    DatagramPacket rcvPacket = new DatagramPacket(rcvBuf, rcvBuf.length);
-                    socket.receive(rcvPacket);
-
-                    // Trim packet and parse into Message object
-                    byte[] trimmedResponse = new byte[rcvPacket.getLength()];
-                    System.arraycopy(rcvBuf, 0, trimmedResponse, 0, rcvPacket.getLength());
-                    Message.Msg rcvMessage = Message.Msg.parseFrom(trimmedResponse);
-                    byte[] receivedUUID = rcvMessage.getMessageID().toByteArray();
-
-                    if (validateChecksum(rcvMessage) && Arrays.equals(receivedUUID, messageID.toByteArray())) {
-                        return;
+                    if (command == Server.GET || command == Server.REPLICA_GET) {
+                        messageBufferBuilder.setClientIp(clientIp)
+                                .setClientPort(clientPort);
                     }
+
+                    byte[] messageBuffer = messageBufferBuilder.setMessageID(messageID)
+                            .build()
+                            .toByteArray();
+
+                    // If the buffer is larger than 16 KB, then truncate
+                    int messageBufferSize = Math.min(MAX_PACKET_SIZE, messageBuffer.length);
+                    DatagramPacket replicaPacket = new DatagramPacket(
+                            messageBuffer,
+                            messageBufferSize,
+                            InetAddress.getByName("localhost"),
+                            replicaPort
+                    );
+
+                    replicaSocket.send(replicaPacket);
+
+                    if (command != Server.GET && command != Server.REPLICA_GET) {
+                        byte[] rcvBuf = new byte[MAX_PACKET_SIZE];
+                        DatagramPacket rcvPacket = new DatagramPacket(rcvBuf, rcvBuf.length);
+                        replicaSocket.receive(rcvPacket);
+
+                        // Trim packet and parse into Message object
+                        byte[] trimmedResponse = new byte[rcvPacket.getLength()];
+                        System.arraycopy(rcvBuf, 0, trimmedResponse, 0, rcvPacket.getLength());
+                        Message.Msg rcvMessage = Message.Msg.parseFrom(trimmedResponse);
+                        byte[] receivedUUID = rcvMessage.getMessageID().toByteArray();
+
+                        if (validateChecksum(rcvMessage) && Arrays.equals(receivedUUID, messageID.toByteArray())) {
+                            socket.close();
+                            return;
+                        }
+                    }
+                } catch (SocketTimeoutException e) {
+//                    System.out.println(socket.getLocalPort() + ": Socket timed out. Retrying " + (i + 1) + " of " + MAX_RETRIES);
+                    current_timeout *= 2;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    socket.close();
+                    return;
                 }
-            } catch (SocketTimeoutException e) {
-//                System.out.println(socket.getLocalPort() + ": Socket timed out. Retrying " + (i + 1) + " of " + MAX_RETRIES);
-                current_timeout *= 2;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return;
             }
+        } catch (SocketException e) {
+            e.printStackTrace();
         }
     }
 

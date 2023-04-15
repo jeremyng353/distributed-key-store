@@ -301,10 +301,10 @@ public class Server {
                     response = buildResPayload(status);
                     RequestCache.put(message.getMessageID(), response);
 
-                    // System.out.println(port + ": " + "----------------- REMOVE KEY ------------------");
-                    // System.out.println(port + ": " + key);
-                    // System.out.println(port + ": Status: " + status);
-                    // System.out.println(port + ": " + "-----------------------------------------------");
+//                     System.out.println(port + ": " + "----------------- REMOVE KEY ------------------");
+//                     System.out.println(port + ": " + key);
+//                     System.out.println(port + ": Status: " + status);
+//                     System.out.println(port + ": " + "-----------------------------------------------");
 
                     String clientIp = message.hasClientIp() ? message.getClientIp() : packet.getAddress().getHostAddress();
                     int clientPort = message.hasClientPort() ? message.getClientPort() : packet.getPort();
@@ -418,11 +418,11 @@ public class Server {
 
                 int replicaCounter = kvRequest.getReplicaCounter();
 
-                // System.out.println(port + ": " + "--------------- REP REMOVE KEY ----------------");
-                // System.out.println(port + ": " + key);
-                // System.out.println(port + ": Replica Counter: " + replicaCounter);
-                // System.out.println(port + ": Status: " + status);
-                // System.out.println(port + ": " + "-----------------------------------------------");
+//                 System.out.println(port + ": " + "--------------- REP REMOVE KEY ----------------");
+//                 System.out.println(port + ": " + key);
+//                 System.out.println(port + ": Replica Counter: " + replicaCounter);
+//                 System.out.println(port + ": Status: " + status);
+//                 System.out.println(port + ": " + "-----------------------------------------------");
 
                 if (replicaCounter >= 2) {
                     // Send client a response
@@ -498,18 +498,21 @@ public class Server {
 
         AddressPair nextNode = command == REPLICA_GET ? consistentHash.getPreviousNode(new AddressPair(ip, port)) : consistentHash.getNextNode(new AddressPair(ip, port));
 
-        try {
-            udpClient.replicaRequest(InetAddress.getByName(nextNode.getIp()),
-                    nextNode.getPort(),
-                    replicaRequest.toByteArray(),
-                    command,
-                    clientIp,
-                    clientPort,
-                    messageID
-            );
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
+        Thread t = new Thread(() -> {
+            try {
+                udpClient.replicaRequest(InetAddress.getByName(nextNode.getIp()),
+                        nextNode.getPort(),
+                        replicaRequest.toByteArray(),
+                        command,
+                        clientIp,
+                        clientPort,
+                        messageID
+                );
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        t.start();
     }
 
     public void requestReplica(ByteString key, ByteString value, int replicaCounter, int version, ByteString response, int command, String clientIp, int clientPort, ByteString messageID) {
@@ -525,7 +528,7 @@ public class Server {
         AddressPair nextNode = command == REPLICA_GET ? consistentHash.getPreviousNode(new AddressPair(ip, port)) : consistentHash.getNextNode(new AddressPair(ip, port));
 //        System.out.println("requestReplica " + nextNode.getIp() + ":" + nextNode.getPort() + " replicaCounter: " + replicaCounter);
         // Replicate in a new thread
-//        Thread t = new Thread(() -> {
+        Thread t = new Thread(() -> {
             try {
                 udpClient.replicaRequest(
                         InetAddress.getByName(nextNode.getIp()),
@@ -539,8 +542,8 @@ public class Server {
             } catch (UnknownHostException e) {
                 throw new RuntimeException(e);
             }
-//        });
-//        t.start();
+        });
+        t.start();
     }
 
     public void requestTailRead(ByteString key, String clientIp, int clientPort, ByteString messageID) {
@@ -550,18 +553,21 @@ public class Server {
                 .setReplicaCounter(0)
                 .build();
         AddressPair tailNode = memberMonitor.getReplicas().get(memberMonitor.getReplicas().size()-1);
-        try {
-            udpClient.replicaRequest(
-                    InetAddress.getByName(tailNode.getIp()),
-                    tailNode.getPort(),
-                    replicaRequest.toByteArray(),
-                    REPLICA_GET,
-                    clientIp,
-                    clientPort,
-                    messageID
-            );
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
+        Thread t = new Thread(() -> {
+            try {
+                udpClient.replicaRequest(
+                        InetAddress.getByName(tailNode.getIp()),
+                        tailNode.getPort(),
+                        replicaRequest.toByteArray(),
+                        REPLICA_GET,
+                        clientIp,
+                        clientPort,
+                        messageID
+                );
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        t.start();
     }
 }
