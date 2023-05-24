@@ -1,14 +1,12 @@
-**Group ID:** G2
+# Distributed Key-Value Store
+Distributed key-value store that is hosted on an AWS EC2 instance. Features the following components:
+- Key-value store: Uses a hashmap to store key-value pairs.
+- Internodal communications: Uses Google protobufs to serialize data to communicate between nodes.
+- At-most-once semantics: Ensures that each message is received at most once. Done using Google's Guava caches.
+- Consistent hash ring: Balances server load across all nodes by allocating certain hash ranges to each node. 
+- Member monitor: Periodically checks each node to check whether they're alive.
+- Key transferer: Distributes key-value pairs from a dead node to alive nodes.
+- Replication chain: Replicates key-value pairs atomically to ensure that the system can still return data even if a node goes down.
 
-**Verification Code:** 49BA1E46A3917B7A048D2911A7636940
-
-**Used Run Command:** `./start.sh <NUM_NODES>` where `<NUM_NODES>` is the number of nodes to launch
-
-**Brief Description:** In order to allow node re-joins, we make sure to keep track of all its initial nodes as
-well as its associated hashes. When a node determines which node to pull its membership list from, we specifically
-allow nodes that were previously dead to allow them to re-join. Then, a node that re-joins will be re-added back to
-our consistent hash. 
-
-In the event that a node re-joins but keys were added while it was down, we implement a method such that the next node
-in the consistent hash's node ring will transfer any keys that should belong to the re-joined node. This is done by
-issuing multiple PUT commands in a separate thread to avoid blocking the main server thread that handles requests.
+## Launching the system
+`./start.sh <NUM_NODES>` where `<NUM_NODES>` is the number of nodes to launch.
