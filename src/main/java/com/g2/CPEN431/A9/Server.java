@@ -196,7 +196,7 @@ public class Server {
      * @return A ByteString containing the operation response payload to be sent back
      * @throws InvalidProtocolBufferException: This exception is thrown when an operation error occurs with parseFrom() function
      */
-    public Object exeCommand(Message.Msg message, DatagramPacket packet) throws InvalidProtocolBufferException, UnknownHostException {
+    public ByteString exeCommand(Message.Msg message, DatagramPacket packet) throws InvalidProtocolBufferException, UnknownHostException {
         // get kvrequest from message
         KeyValueRequest.KVRequest kvRequest = KeyValueRequest.KVRequest.parseFrom(message.getPayload());
         int status;
