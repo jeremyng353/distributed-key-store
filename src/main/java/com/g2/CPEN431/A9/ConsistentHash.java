@@ -33,14 +33,12 @@ public class ConsistentHash {
      */
     public void addNode(AddressPair addressPair) {
         if (savedHashes.containsKey(addressPair)) {
-//            System.out.println("[" + port + "]: Detected a rejoin from " + addressPair.getPort());
             int addressPairHash = savedHashes.get(addressPair);
             int selfAddressPairHash = savedHashes.get(selfAddress);
             nodeRing.put(addressPairHash, addressPair);
 
             // If the current node has keys that may belong to the re-joined node, then transfer keys
             if (isHigherThan(addressPairHash, addressPair)) {
-//                System.out.println("[" + port + "]: Transferring nodes to " + addressPair.getPort());
                 Thread transferKeyThread = new Thread(new KeyTransferer(addressPair, selfAddressPairHash, addressPairHash));
                 transferKeyThread.start();
             }
@@ -53,7 +51,6 @@ public class ConsistentHash {
         while (nodeRing.containsKey(addressHash)) {
             addressHash = (addressHash + 1) % 256;
         }
-//        System.out.println("[" + port + "]: Hashing addresspair: " + addressPair.toString() + " " + addressHash);
 
         // Save the address hash in case it rejoins, since the hash used may be different from the internal hashCode()
         savedHashes.put(addressPair, addressHash);
